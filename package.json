@@ -1,0 +1,31 @@
+{
+  "name": "exchanger-admin-web",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "elena <lenatrox@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "nuxt": "^1.4.0",
+    "postcss-flexboxfixer": "0.0.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "less-loader": "^4.0.5",
+    "nodemon": "^1.11.0",
+    "sass-loader": "^7.0.1",
+    "vue-style-loader": "^4.1.0"
+  }
+}
