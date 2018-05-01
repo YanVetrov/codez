@@ -26,8 +26,10 @@ module.exports = {
     '~/assets/css/animate.css',
     '~/assets/bootstrap.min.css',
     '~/assets/css/style.css',
-    '~/assets/css/default.css'
+    '~/assets/css/default.css',
+
   ],
+
 
   build: {
     /*

@@ -14,14 +14,16 @@
       <ul class="nav" id="side-menu">
 
         <li v-for="(el,i) in menu" :key="i">
-          <nuxt-link :to="el.page" class="waves-effect" active-class="active">
+          <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
+                     @click.native="el.child.length === 0 || openChild()" class="waves-effect"
+                     active-class="active">
             <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
             <span class="hide-menu">
               {{el.name}}
               <span v-if="el.child.length > 0" class="fa arrow"></span>
             </span>
           </nuxt-link>
-          <ul class="nav nav-second-level">
+          <ul class="nav nav-second-level collapse in">
             <li v-if="el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
               <nuxt-link :to="el.page+elc.page" active-class="active">
                 <i class=" fa-fw">{{elc.icon}}</i>
@@ -50,22 +52,14 @@
 
 <script>
   export default {
-    data() {
-      return {
-        menu: [{
-          name: 'Main',
-          page: '/test',
-          icon: '2',
-          child: [
-            {name: 'test11', page: '/test11', icon: '11'},
-            {name: 'test22', page: '/test22', icon: '33'},
-          ]
-        }, {
-          name: 'Main3',
-          page: '/test3',
-          icon: '3',
-          child: []
-        }]
+    methods: {
+      openChild() {
+        console.log('openChild тут нужно открыть то меню на которое нажали')
+      }
+    },
+    computed: {
+      menu() {
+        return this.$store.getters['Menu/list']
       }
     }
   }

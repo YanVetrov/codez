@@ -7,6 +7,7 @@
 /*Preloader*/
 @import "./spinners.css";
 @import "./icons/css/materialdesignicons.min.css";
+
 .preloader {
   width: 100%;
   height: 100%;
@@ -8626,9 +8627,11 @@ ul.select-row-icon li a.selected i.whn-hov {
   content: "\e68d";
 }
 .ti-menu:before {
+left: -100%;
   content: "\e68e";
 }
 .ti-menu-alt:before {
+  left: -100%;
   content: "\e68f";
 }
 .ti-map:before {
