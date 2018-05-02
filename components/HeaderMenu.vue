@@ -9,7 +9,8 @@
           <!--This is light logo icon--><img src="../static/images/admin-logo-dark.png" alt="home" class="light-logo"/>
         </b>
           <!-- Logo text image you can use text also --><span class="hidden-xs">
-                        <!--This is dark logo text--><img src="../static/images/admin-text.png" alt="home" class="dark-logo"/><!--This is light logo text--><img
+                        <!--This is dark logo text--><img src="../static/images/admin-text.png" alt="home"
+                                                          class="dark-logo"/><!--This is light logo text--><img
           src="../static/images/admin-text-dark.png" alt="home" class="light-logo"/>
                      </span> </a>
       </div>
@@ -17,7 +18,7 @@
       <!-- Search input and Toggle icon -->
 
       <ul class="nav navbar-top-links navbar-left">
-        <li><a @click="close()" class="open-close waves-effect waves-light"><i class="ti-menu" ></i></a></li>
+        <li><a @click="close()" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
         <script>
 
         </script>
@@ -236,13 +237,14 @@
 
 <script>
   export default {
-    methods:{
+    methods: {
       close() {
         return this.$store.dispatch('Menu/close')
       }
     }
   }
 </script>
+
 
 <style scoped>
 

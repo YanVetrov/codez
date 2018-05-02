@@ -1,19 +1,5 @@
 export const state = () => ({
-  close: false,
-  menu: [{
-    name: 'Main',
-    page: '/test',
-    icon: '2',
-    child: [
-      {name: 'test11', page: '/test11', icon: '11'},
-      {name: 'test22', page: '/test22', icon: '33'},
-    ]
-  }, {
-    name: 'Main3',
-    page: '/test3',
-    icon: '3',
-    child: []
-  }]
+  close: false
 });
 
 export const mutations = {

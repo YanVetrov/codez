@@ -32,6 +32,7 @@
   import HeaderMenu from "~/components/HeaderMenu";
   import LeftMenu from "~/components/LeftMenu";
 
+
   export default {
     head() {
       console.log('this.$store.1', this.$store.getters['Menu/close']);
@@ -46,7 +47,6 @@
       LeftMenu
     }
   }
-
 
 </script>
 

@@ -15,7 +15,7 @@
 
         <li v-for="(el,i) in menu" :key="i">
           <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
-                     @click.native="el.child.length === 0 || openChild()" class="waves-effect"
+                     @click.native="el.child.length === 0 || (el.isShow = !el.isShow)" class="waves-effect"
                      active-class="active">
             <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
             <span class="hide-menu">
@@ -23,11 +23,12 @@
               <span v-if="el.child.length > 0" class="fa arrow"></span>
             </span>
           </nuxt-link>
-          <ul class="nav nav-second-level collapse in">
+          <ul class="nav nav-second-level collapse" :class="{'in': el.isShow}">
             <li v-if="el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
               <nuxt-link :to="el.page+elc.page" active-class="active">
                 <i class=" fa-fw">{{elc.icon}}</i>
                 <span class="hide-menu"> {{elc.name}}</span>
+
               </nuxt-link>
             </li>
 
@@ -50,16 +51,33 @@
   </div>
 </template>
 
+
 <script>
+
   export default {
-    methods: {
-      openChild() {
-        console.log('openChild тут нужно открыть то меню на которое нажали')
-      }
-    },
-    computed: {
-      menu() {
-        return this.$store.getters['Menu/list']
+    data() {
+      let menu = [{
+        name: 'Dashboard',
+        isShow: false,
+        page: '/dashboard',
+        icon: '1',
+        child: []
+      }, {
+        name: 'News',
+        isShow: false,
+        page: '/news',
+        icon: '#',
+        child: [
+          {name: 'Create news', page: '/create', icon: '+'},
+          {name: 'All news', page: '/list', icon: '#'},
+        ]
+      }];
+      for (let i in menu)
+        if (menu[i].page === '/' + this.$router.currentRoute.path.split('/')[1])
+          menu[i].isShow = true;
+
+      return {
+        menu
       }
     }
   }
