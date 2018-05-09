@@ -1,0 +1,12 @@
+{
+  "serviceUrl": "http://localhost:3010",
+  "apiPath": "/service/api/v1/",
+  "server": {
+    "host": "0.0.0.0",
+    "port": "3002"
+  },
+  "airbrake": {
+    "projectId": 172814,
+    "projectKey": "dba2057d234ffacfcc801f72ec0e1c53"
+  }
+}
