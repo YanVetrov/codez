@@ -16,6 +16,31 @@
                 <h3 class="box-title">Создание новости </h3>
                 <p class="text-muted m-b-30 font-12">Инфо текст новстей</p>
 
+                <div>
+                    <label>Изображение новости</label>
+                    <a class="btn" @click="toggleShow">Загрузить фото</a>
+                    <ImageUploader field="img"
+                                   class="uploader-image"
+                                   @crop-success="cropSuccess"
+                                   @crop-upload-success="cropUploadSuccess"
+                                   @crop-upload-fail="cropUploadFail"
+                                   v-model="show"
+                                   :width="200"
+                                   :height="100"
+                                   langType="en"
+                                   :noRotate="false"
+                                   :noCircle="true"
+                                   :noSquare="true"
+                                   url="/upload"
+                                   :params="params"
+                                   :headers="headers"
+                                   img-format="png"></ImageUploader>
+
+                    <img :src="imgDataUrl">
+
+                </div>
+                <br>
+
                 <label for="label001">Заголовок новости</label>
                 <input id='label001' type="text" class="form-control form-control-line" placeholder="..."
                        v-model="title">
@@ -47,10 +72,41 @@
                 status_load: true,
                 afterPost: false,
                 title: '',
-                content: ''
+                content: '',
+
+                show: false,
+                params: {
+                    token: '123456798',
+                    name: 'avatar'
+                },
+                headers: {
+                    smail: '*_~'
+                },
+                imgDataUrl: ''
             };
         },
         methods: {
+            toggleShow() {
+                this.show = !this.show;
+            },
+            cropSuccess(imgDataUrl, field) {
+                console.log('-------- crop success --------');
+                this.imgDataUrl = imgDataUrl;
+            },
+
+            cropUploadSuccess(jsonData, field) {
+                console.log('------— upload success —------');
+                console.log(jsonData);
+                console.log('field: ' + field);
+            },
+
+            cropUploadFail(status, field) {
+                console.log('------— upload fail —------');
+                console.log(status);
+                console.log('field: ' + field);
+            },
+
+
             backToCreateNews() {
                 this.afterPost = false;
                 this.title = '';
@@ -95,6 +151,23 @@
 </script>
 
 <style>
+    /*uploader style*/
+    .vue-image-crop-upload.uploader-image .vicp-wrap {
+        width: 300px;
+    }
+
+    .vue-image-crop-upload.uploader-image .vicp-wrap .vicp-operate {
+        right: auto;
+        bottom: 10px;
+    }
+
+    .vue-image-crop-upload.uploader-image .vicp-wrap .vicp-step1 .vicp-drop-area {
+        height: 250px;
+        padding: 60px 10px;
+    }
+
+    /*uploader style*/
+
     .news-notify {
         position: absolute;
         top: auto !important;

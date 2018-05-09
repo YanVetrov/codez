@@ -37,6 +37,7 @@ module.exports = {
         '~/plugins/rest-api',
         {src: "~/plugins/vue2-editor", ssr: false},
         {src: "~/plugins/vue-notify", ssr: false},
+        {src: '~plugins/vue-core-image-upload.js', ssr: false}
 
     ],
 
