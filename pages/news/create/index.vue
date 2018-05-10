@@ -19,23 +19,23 @@
                 <div>
                     <label>Изображение новости</label>
                     <a class="btn" @click="toggleShow">Загрузить фото</a>
-                    <ImageUploader field="img"
+                    <ImageUploader field="image"
                                    class="uploader-image"
                                    @crop-success="cropSuccess"
                                    @crop-upload-success="cropUploadSuccess"
                                    @crop-upload-fail="cropUploadFail"
                                    v-model="show"
-                                   :width="200"
-                                   :height="100"
+                                   :width="360"
+                                   :height="150"
                                    langType="en"
                                    :noRotate="false"
                                    :noCircle="true"
                                    :noSquare="true"
-                                   url="/upload"
+                                   :url="$rest.apiPath+'uploadImage/'"
                                    :params="params"
                                    :headers="headers"
                                    img-format="png"></ImageUploader>
-
+                    <br>
                     <img :src="imgDataUrl">
 
                 </div>
@@ -73,11 +73,12 @@
                 afterPost: false,
                 title: '',
                 content: '',
+                imageId: '',
 
                 show: false,
                 params: {
-                    token: '123456798',
-                    name: 'avatar'
+                    public: true,
+                    type: 'news'
                 },
                 headers: {
                     smail: '*_~'
@@ -89,21 +90,39 @@
             toggleShow() {
                 this.show = !this.show;
             },
-            cropSuccess(imgDataUrl, field) {
-                console.log('-------- crop success --------');
+            cropSuccess(imgDataUrl) {
                 this.imgDataUrl = imgDataUrl;
             },
 
             cropUploadSuccess(jsonData, field) {
-                console.log('------— upload success —------');
-                console.log(jsonData);
-                console.log('field: ' + field);
+                if (jsonData.success === true) {
+                    this.imageId = jsonData.data._id;
+                }
+                else {
+                    this.imgDataUrl = '';
+                    this.imageId = '';
+                    if (jsonData.error) {
+                        this.$notify({
+                            group: 'news_create',
+                            duration: 5000,
+                            type: 'error',
+                            title: 'Error upload image!',
+                            text: jsonData.error.message
+                        })
+                    }
+                }
             },
 
             cropUploadFail(status, field) {
-                console.log('------— upload fail —------');
-                console.log(status);
-                console.log('field: ' + field);
+                this.imgDataUrl = '';
+                this.imageId = '';
+                this.$notify({
+                    group: 'news_create',
+                    duration: 5000,
+                    type: 'error',
+                    title: 'Error upload image!',
+                    text: 'Please retry upload image'
+                })
             },
 
 
@@ -118,6 +137,7 @@
                 this.$rest.api('createNews',
                     {
                         title: this.title,
+                        imageId: this.imageId,
                         content: this.content
                     })
                     .then(response => {
@@ -128,7 +148,7 @@
                         if (response.success === false) {
                             this.$notify({
                                 group: 'news_create',
-                                duration: 50000,
+                                duration: 5000,
                                 type: 'error',
                                 title: 'Error create news!',
                                 text: response.error.message
