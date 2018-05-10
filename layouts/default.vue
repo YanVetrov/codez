@@ -29,8 +29,8 @@
 </template>
 
 <script>
-  import HeaderMenu from "~/components/HeaderMenu";
-  import LeftMenu from "~/components/LeftMenu";
+  import HeaderMenu from "~/components/Menu/HeaderMenu";
+  import LeftMenu from "~/components/Menu/LeftMenu";
 
 
   export default {

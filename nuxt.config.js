@@ -21,10 +21,7 @@ module.exports = {
     ** Customize the progress bar colors
     */
     loading: '~/components/loading.vue',
-    /*
-    ** Build configuration
-    */
-    pagination: '~/components/pagination',
+
     css: [
         '~/assets/css/animate.css',
         '~/assets/bootstrap.min.css',

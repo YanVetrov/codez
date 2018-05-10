@@ -5,13 +5,13 @@
         <!-- Logo -->
         <a class="logo" href="index.html">
           <!-- Logo icon image, you can use font-icon also --><b>
-          <!--This is dark logo icon--><img src="../static/images/admin-logo.png" alt="home" class="dark-logo"/>
-          <!--This is light logo icon--><img src="../static/images/admin-logo-dark.png" alt="home" class="light-logo"/>
+          <!--This is dark logo icon--><img src="../../static/images/admin-logo.png" alt="home" class="dark-logo"/>
+          <!--This is light logo icon--><img src="../../static/images/admin-logo-dark.png" alt="home" class="light-logo"/>
         </b>
           <!-- Logo text image you can use text also --><span class="hidden-xs">
-                        <!--This is dark logo text--><img src="../static/images/admin-text.png" alt="home"
+                        <!--This is dark logo text--><img src="../../static/images/admin-text.png" alt="home"
                                                           class="dark-logo"/><!--This is light logo text--><img
-          src="../static/images/admin-text-dark.png" alt="home" class="light-logo"/>
+                src="../../static/images/admin-text-dark.png" alt="home" class="light-logo"/>
                      </span> </a>
       </div>
       <!-- /Logo -->
@@ -34,28 +34,28 @@
             <li>
               <div class="message-center">
                 <a href="#">
-                  <div class="user-img"><img src="../static/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                  <div class="user-img"><img src="../../static/images/users/pawandeep.jpg" alt="user" class="img-circle">
                     <span class="profile-status online pull-right"></span></div>
                   <div class="mail-contnet">
                     <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                   </div>
                 </a>
                 <a href="#">
-                  <div class="user-img"><img src="../static/images/users/sonu.jpg" alt="user" class="img-circle"> <span
+                  <div class="user-img"><img src="../../static/images/users/sonu.jpg" alt="user" class="img-circle"> <span
                     class="profile-status busy pull-right"></span></div>
                   <div class="mail-contnet">
                     <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
                   </div>
                 </a>
                 <a href="#">
-                  <div class="user-img"><img src="../static/images/users/arijit.jpg" alt="user" class="img-circle">
+                  <div class="user-img"><img src="../../static/images/users/arijit.jpg" alt="user" class="img-circle">
                     <span class="profile-status away pull-right"></span></div>
                   <div class="mail-contnet">
                     <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
                   </div>
                 </a>
                 <a href="#">
-                  <div class="user-img"><img src="../static/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                  <div class="user-img"><img src="../../static/images/users/pawandeep.jpg" alt="user" class="img-circle">
                     <span class="profile-status offline pull-right"></span></div>
                   <div class="mail-contnet">
                     <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
@@ -202,12 +202,12 @@
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-            src="../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b><span
+                  src="../../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b><span
             class="caret"></span> </a>
           <ul class="dropdown-menu dropdown-user animated flipInY">
             <li>
               <div class="dw-user-box">
-                <div class="u-img"><img src="../static/images/users/varun.jpg" alt="user"/></div>
+                <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
                 <div class="u-text"><h4>Steave Jobs</h4>
                   <p class="text-muted">varun@gmail.com</p><a href="profile.html"
                                                               class="btn btn-rounded btn-danger btn-sm">View Profile</a>
