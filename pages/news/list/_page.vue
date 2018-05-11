@@ -2,7 +2,7 @@
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load"/>
-            <h2 class="search2"> Поиск </h2>
+            <h2 class="search2"> Поиск  </h2>
             <div><i class="icon-magnifier search"></i>
                 <input type="text" class="form-control search2" placeholder="Введите текст поиска">
             </div>
@@ -22,9 +22,9 @@
                     <h3 class="m-t-20 m-b-20 news-title">{{el.title}}</h3>
                     <p>Вступление новости SOON...</p>
                     <div class="btn-group-news">
-                        <button class="btn btn-outline btn-rounded btn-success btn1">Read more</button>
-                        <button class="btn btn-outline btn-rounded btn-info btn2"><i class='icon-pencil'></i>
-                        </button>
+                        <nuxt-link class="btn btn-outline btn-rounded btn-success btn1" :to="'/news/view/'+el.link">Read more</nuxt-link>
+                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/news/edit/'+el._id"><i class='icon-pencil'></i>
+                        </nuxt-link>
                     </div>
                 </div>
             </div>
