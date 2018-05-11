@@ -5,6 +5,7 @@
             <input id='label001' type="text" class="form-control form-control-line" v-model="news_title">
             <br>
             <vue-editor v-model="news_content"></vue-editor>
+            <button type="button" class="btn btn-outline btn-primary btn-1e">отправить</button>
 
         </div>
     </div>
