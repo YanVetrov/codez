@@ -88,7 +88,7 @@
                         if (response.success === true) {
                             this.select_page = response.data.count.select_page || 1;
                             this.news = response.data.news;
-                            this.total_page = response.data.count.pages
+                            this.total_page = response.data.count.pages;
                             this.status_load = true;
                         }
 
@@ -99,7 +99,7 @@
                             duration: 5000,
                             type: 'error',
                             title: 'Error get news!',
-                            text: 'Server error 500! Please retry.'
+                            text: 'Server error 500! Please retry.\n' + err
                         });
                         this.$router.back();
                     });

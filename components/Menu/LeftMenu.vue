@@ -69,7 +69,7 @@
         icon: '#',
         child: [
           {name: 'Create news', page: '/create', icon: '+'},
-          {name: 'All news', page: '/list', icon: '#'},
+          {name: 'All news', page: '/page', icon: '#'},
         ]
       }, {
         name: 'Currencies',

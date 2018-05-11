@@ -54,7 +54,7 @@
                             duration: 5000,
                             type: 'error',
                             title: 'Error get currencies:',
-                            text: 'Server error 500! Please retry.'
+                            text: 'Server error 500! Please retry.\n' + err
                         });
                         this.$router.back();
                     });
