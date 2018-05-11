@@ -71,6 +71,15 @@
           {name: 'Create news', page: '/create', icon: '+'},
           {name: 'All news', page: '/list', icon: '#'},
         ]
+      }, {
+        name: 'Currencies',
+        isShow: false,
+        page: '/currency',
+        icon: '#',
+        child: [
+            {name: 'All currencies', page: '/page', icon: 'P'},
+            {name: 'Create currency', page: '/create', icon: '+'},
+        ]
       }];
       for (let i in menu)
         if (menu[i].page === '/' + this.$router.currentRoute.path.split('/')[1])

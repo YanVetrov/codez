@@ -18,6 +18,7 @@
           <!-- /.col-lg-12 -->
         </div>
 
+        <notifications position="top center" style="padding: 40px" group="main"/>
         <nuxt/>
 
       </div>
