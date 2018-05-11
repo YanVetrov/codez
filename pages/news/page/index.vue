@@ -1,7 +1,7 @@
 <script>
     export default {
         fetch ({ params, redirect }) {
-            redirect(302, '/news/list/1')
+            redirect(302, '/news/page/1')
         }
     }
 </script>

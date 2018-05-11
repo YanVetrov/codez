@@ -2,59 +2,15 @@
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load"/>
-            <h2 class="search2"> Поиск  </h2>
-            <div><i class="icon-magnifier search"></i>
-                <input type="text" class="form-control search2" placeholder="Введите текст поиска">
-            </div>
+            soon
         </div>
 
-        <div class="row">
-
-            <div class="col-md-4 col-lg-3 col-xs-12 col-sm-6" v-for="(el,i) in news "
-                 :key="i">
-                <img class="img-responsive" alt="user" src="~/static/img1.jpg">
-                <div class="white-box">
-                    <div class="text-muted">
-                    <span class="m-r-10">
-                        <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
-                    </span>
-                    </div>
-                    <h3 class="m-t-20 m-b-20 news-title">{{el.title}}</h3>
-                    <p>Вступление новости SOON...</p>
-                    <div class="btn-group-news">
-                        <nuxt-link class="btn btn-outline btn-rounded btn-success btn1" :to="'/news/view/'+el.link">Read more</nuxt-link>
-                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/news/edit/'+el._id"><i class='icon-pencil'></i>
-                        </nuxt-link>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="white-box">
-            <div id="pagination-template">
-                <div class="pagination">
-                    <div class="pagination__left">
-                        <a href="#" @click.prevent="">Предыдущая</a></div>
-                    <div class="pagination__mid" v-for='(pageNumber, i) in total_page' :key="i"
-                         v-if="Math.abs(pageNumber - select_page) < 3 || pageNumber === total_page  || pageNumber === 1">
-                        <li>
-                            <nuxt-link :to="'/news/list/'+pageNumber" @click="setPage(pageNumber)"
-                                       :class="{current: select_page === pageNumber}">{{pageNumber}}
-                            </nuxt-link>
-                        </li>
-                    </div>
-                    <div class="pagination__right">
-                        <a href="#" @click.prevent="">Следующая</a></div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </template>
 
 <script>
     import Loading from "~/components/loading";
-    import moment from 'moment'
 
 
     export default {
@@ -64,34 +20,50 @@
             return {
                 status_load: false,
                 select_page: this.$route.params.page,
-                news: [],
-                total_page: [],
-                moment: moment,
+                currencies: [],
+                total_page: 1,
             }
         },
 
         methods: {
-            getNews(page) {
+            getAllCurrency(page) {
 
-                this.$rest.api('getNewsBasic', {page: page || 1, limit: 12})
+                this.$rest.api('getAllCurrency', {page: page || 1, limit: 50})
                     .then(response => {
-                        this.select_page = response.data.count.select_page || 1;
-                        this.status_load = true;
-                        console.log(response.data);
-                        if (response.success === true) {
-                            this.news = response.data.news;
-                            this.total_page = response.data.count.pages
-
-
+                        if (response.success === false) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Error get currencies:',
+                                text: response.error.message
+                            });
+                            this.$router.back();
                         }
+                        if (response.success === true) {
+                            this.select_page = response.data.count.select_page || 1;
+                            this.currencies = response.data.currencies;
+                            this.total_page = response.data.count.pages;
+                            this.status_load = true;
+                        }
+
                     })
-            }, setPage: function (pageNumber) {
-                this.select_page = pageNumber
+                    .catch(err => {
+                        this.$notify({
+                            group: 'main',
+                            duration: 5000,
+                            type: 'error',
+                            title: 'Error get currencies:',
+                            text: 'Server error 500! Please retry.\n' + err
+                        });
+                        this.$router.back();
+                    });
+
             }
         },
 
         created() {
-            return this.getNews(this.select_page);
+            return this.getAllCurrency(this.select_page);
         }
     }
 

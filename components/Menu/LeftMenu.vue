@@ -69,7 +69,16 @@
         icon: '#',
         child: [
           {name: 'Create news', page: '/create', icon: '+'},
-          {name: 'All news', page: '/list', icon: '#'},
+          {name: 'All news', page: '/page', icon: '#'},
+        ]
+      }, {
+        name: 'Currencies',
+        isShow: false,
+        page: '/currency',
+        icon: '#',
+        child: [
+            {name: 'All currencies', page: '/page', icon: 'P'},
+            {name: 'Create currency', page: '/create', icon: '+'},
         ]
       }];
       for (let i in menu)
