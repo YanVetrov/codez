@@ -4,7 +4,7 @@
             <div class="white-box " style="text-align: center" v-if="afterPost === true">
                 <img src='~/assets/img/ok.svg' width="250px" height="250px">
                 <h2> Успешно опубликовано </h2>
-                <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="backToCreateNews()">
+                <button type="button" class="btn btn-outline btn-primary btn-1e" @click="backToCreateNews()">
                     Создать еще одну новость
                 </button>
             </div>
