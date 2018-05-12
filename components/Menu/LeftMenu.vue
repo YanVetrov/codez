@@ -26,7 +26,7 @@
                     <ul class="nav nav-second-level collapse" :class="{'in': el.isShow}">
                         <li v-if="el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
                             <nuxt-link :to="el.page+elc.page" active-class="active">
-                                <i class=" fa-fw">{{elc.icon}}</i>
+                                <i class="mdi fa-fw" :class="'mdi-'+elc.icon" data-icon="v"></i>
                                 <span class="hide-menu"> {{elc.name}}</span>
 
                             </nuxt-link>
@@ -55,6 +55,7 @@
 
 <script>
 
+    // https://materialdesignicons.com/
     export default {
         data() {
             let menu = [{
@@ -69,8 +70,8 @@
                 page: '/news',
                 icon: 'newspaper',
                 child: [
-                    {name: 'Create news', page: '/create', icon: '+'},
-                    {name: 'All news', page: '/page', icon: '#'},
+                    {name: 'Create news', page: '/create', icon: 'playlist-plus'},
+                    {name: 'All news', page: '/page', icon: 'format-list-bulleted-type'},
                 ]
             }, {
                 name: 'Currencies',
@@ -78,8 +79,8 @@
                 page: '/currency',
                 icon: 'currency-usd',
                 child: [
-                    {name: 'All currencies', page: '/page', icon: 'P'},
-                    {name: 'Create currency', page: '/create', icon: '+'},
+                    {name: 'All currencies', page: '/page', icon: 'format-list-numbers'},
+                    {name: 'Create currency', page: '/create', icon: 'plus'},
                 ]
             }];
             for (let i in menu)
