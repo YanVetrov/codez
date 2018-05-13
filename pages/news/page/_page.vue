@@ -2,7 +2,7 @@
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load"/>
-            <h2 class="search2"> Поиск  </h2>
+            <h2 class="search2"> Поиск </h2>
             <div><i class="icon-magnifier search"></i>
                 <input type="text" class="form-control search2" placeholder="Введите текст поиска">
             </div>
@@ -12,6 +12,9 @@
 
             <div class="col-md-4 col-lg-3 col-xs-12 col-sm-6" v-for="(el,i) in news "
                  :key="i">
+                <button class="btn btn-outline btn-rounded btn-info btn2" @click='deleteNews(el._id)'><i
+                        class='ti-close'></i>
+                </button>
                 <img class="img-responsive" alt="user" src="~/static/img1.jpg">
                 <div class="white-box">
                     <div class="text-muted">
@@ -19,11 +22,14 @@
                         <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
                     </span>
                     </div>
-                    <h3 class="m-t-20 m-b-20 news-title">{{el.title}}</h3>
+                    <h3 class="m-t-20 m-b-20 news-title">{{el.title}} </h3>
                     <p>Вступление новости SOON...</p>
                     <div class="btn-group-news">
-                        <nuxt-link class="btn btn-outline btn-rounded btn-success btn1" :to="'/news/view/'+el.link">Read more</nuxt-link>
-                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/news/edit/'+el._id"><i class='icon-pencil'></i>
+                        <nuxt-link class="btn btn-outline btn-rounded btn-success btn1" :to="'/news/view/'+el.link">Read
+                            more
+                        </nuxt-link>
+                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/news/edit/'+el._id"><i
+                                class='icon-pencil'></i>
                         </nuxt-link>
                     </div>
                 </div>
@@ -66,15 +72,17 @@
                 select_page: this.$route.params.page,
                 news: [],
                 total_page: [],
-                moment: moment,
+                moment: moment
             }
         },
 
         methods: {
             getNews(page) {
+                this.status_load = false;
 
                 this.$rest.api('getNewsBasic', {page: page || 1, limit: 12})
                     .then(response => {
+                        console.log(response.data.news);
                         if (response.success === false) {
                             this.$notify({
                                 group: 'main',
@@ -89,8 +97,8 @@
                             this.select_page = response.data.count.select_page || 1;
                             this.news = response.data.news;
                             this.total_page = response.data.count.pages;
-                            this.status_load = true;
                         }
+                        this.status_load = true;
 
                     })
                     .catch(err => {
@@ -102,17 +110,22 @@
                             text: 'Server error 500! Please retry.\n' + err
                         });
                         this.$router.back();
+                        this.status_load = true;
                     });
 
+            },
+            deleteNews(id) {
+
+                this.$rest.api('deleteNews', {news_id: id})
+                    .then(response => {
+                        return this.getNews(this.select_page);
+                    })
             }
         },
-
         created() {
             return this.getNews(this.select_page);
         }
     }
-
-
 </script>
 <style>
     .news-title {

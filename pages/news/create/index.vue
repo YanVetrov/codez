@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box " style="text-align: center" v-if="afterPost === true">
-                <img src='~/assets/img/ok.svg' width="250px" height="250px">
+                <img src='~/static/images/ok.svg' width="250px" height="250px">
                 <h2> Успешно опубликовано </h2>
-                <button type="button" class="btn btn-outline btn-primary btn-1e" @click="backToCreateNews()">
+                <button type="button" class="fcbbtn btn-outline btn-primary btn-1e" @click="backToCreateNews()">
                     Создать еще одну новость
                 </button>
             </div>
@@ -42,8 +42,7 @@
                 <br>
 
                 <label for="label001">Заголовок новости</label>
-                <input id='label001' type="text" class="form-control form-control-line" placeholder="..."
-                       v-model="title">
+                <input id='label001' type="text" class="form-control form-control-line" placeholder="..." v-model="title">
 
                 <div id="app" class="form-group" style="margin-top: 20px">
                     <label>Текст новости</label>
