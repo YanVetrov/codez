@@ -1,10 +1,7 @@
 <template>
-
-
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load "/>
-
             <div class="row" v-if="afterEdit === false">
                 <input id='label001' type="text" class="form-control form-control-line" v-model="news_title">
                 <br>
@@ -14,31 +11,33 @@
             <div class="row" v-else>
                 <div class="white-box " style="text-align: center">
                     <div class="col-md-12">
-                        <img src='~/static/images/ok.svg' width="250px" height="250px">
-                        <h2> Успешно опубликовано </h2>
+                        <succses_page />{{text}}</div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
+
 
 
 </template>
 
 <script>
     import Loading from "~/components/loading";
+    import Succses_page from "@/components/success_page";
 
     export default {
-        components: {Loading},
+        components: {Succses_page, Loading},
 
         data() {
             return {
                 status_load: true,
+                succses_page: true,
                 news_id: this.$route.params.id,
                 news_content: '',
                 news_title: '',
-                afterEdit: false
+                afterEdit: false,
+                text:''
 
             }
         },
@@ -62,6 +61,9 @@
                         if (response.success === true) {
                             this.status_load = true;
                             this.afterEdit = true;
+                            this.succses_page = true;
+                            this.text = 'Успешно опубликовано';
+
 
                         }
                         if (response.success === false) {
