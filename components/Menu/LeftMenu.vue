@@ -80,7 +80,7 @@
                 icon: 'currency-usd',
                 child: [
                     {name: 'All currencies', page: '/page', icon: 'format-list-numbers'},
-                    {name: 'Create currency', page: '/create', icon: 'plus'},
+                    {name: 'Create Сurrency', page: '/create', icon: 'plus'},
                 ]
             }];
             for (let i in menu)
