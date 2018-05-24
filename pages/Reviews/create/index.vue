@@ -85,9 +85,6 @@
                         }
                     })
             }
-        },
-        created() {
-            return this.createReview()
         }
     }
 </script>
