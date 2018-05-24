@@ -2,7 +2,7 @@
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load"/>
-            soon
+
         </div>
 
     </div>

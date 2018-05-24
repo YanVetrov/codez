@@ -22,6 +22,8 @@ module.exports = {
     */
     loading: '~/components/loading.vue',
     success_page: '~/components/success_page.vue',
+    pagination: '~/components/pagination.vue',
+
 
     css: [
         '~/assets/css/animate.css',
@@ -42,7 +44,7 @@ module.exports = {
     modules: [
         // Doc: https://github.com/nuxt-community/axios-module#usage
         '@nuxtjs/axios',
-        '@nuxtjs/proxy'
+        '@nuxtjs/proxy',
     ],
 
     /*

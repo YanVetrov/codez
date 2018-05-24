@@ -62,7 +62,7 @@
                 name: 'Dashboard',
                 isShow: false,
                 page: '/dashboard',
-                icon: 'view-dashboard',
+                icon: 'page-dashboard',
                 child: []
             }, {
                 name: 'News',
@@ -82,7 +82,20 @@
                     {name: 'All currencies', page: '/page', icon: 'format-list-numbers'},
                     {name: 'Create currency', page: '/create', icon: 'plus'},
                 ]
-            }];
+            },
+                {
+                    name: 'Reviews',
+                    isShow: false,
+                    page: '/reviews',
+                    icon: 'mdi mdi-comment-multiple-outline',
+                    child: [
+                        {name: 'All reviews', page: '/page', icon: 'format-list-numbers'},
+                        {name: 'Create reviews', page: '/create', icon: 'playlist-plus'},
+                    ]
+                }
+            ];
+
+
             for (let i in menu)
                 if (menu[i].page === '/' + this.$router.currentRoute.path.split('/')[1])
                     menu[i].isShow = true;

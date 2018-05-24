@@ -12,10 +12,13 @@
 
             <div class="col-md-4 col-lg-3 col-xs-12 col-sm-6" v-for="(el,i) in news "
                  :key="i">
-                <button class="btn btn-outline btn-rounded btn-info btn2" @click='deleteNews(el._id)'><i
-                        class='ti-close'></i>
-                </button>
-                <img class="img-responsive" alt="user" src="~/static/img1.jpg">
+                <div class="image">
+                    <img class="img-responsive " alt="user" src="~/static/img1.jpg">
+                    <button class="btn btn-outline btn-rounded btn-info btn2 img" @click='deleteNews(el._id)'><i
+                            class='ti-close'></i>
+                    </button>
+                </div>
+
                 <div class="white-box">
                     <div class="text-muted">
                     <span class="m-r-10">
@@ -36,24 +39,11 @@
             </div>
         </div>
 
-        <div class="white-box">
-            <div id="pagination-template">
-                <div class="pagination">
-                    <div class="pagination__left">
-                        <a href="#" @click.prevent="">Предыдущая</a></div>
-                    <div class="pagination__mid" v-for='(pageNumber, i) in total_page' :key="i"
-                         v-if="Math.abs(pageNumber - select_page) < 3 || pageNumber === total_page  || pageNumber === 1">
-                        <li>
-                            <nuxt-link :to="'/news/list/'+pageNumber"
-                                       :class="{current: select_page === pageNumber}">{{pageNumber}}
-                            </nuxt-link>
-                        </li>
-                    </div>
-                    <div class="pagination__right">
-                        <a href="#" @click.prevent="">Следующая</a></div>
-                </div>
-            </div>
-        </div>
+        <pagination :currentPage="current_page"
+                    :totalPages="total_page"
+                    @page-changed="getNews">
+        </pagination>
+
     </div>
 
 </template>
@@ -61,18 +51,20 @@
 <script>
     import Loading from "~/components/loading";
     import moment from 'moment'
+    import pagination from '~/components/pagination'
 
 
     export default {
-        components: {Loading},
-
+        components: {Loading, pagination},
         data() {
             return {
+                pagination: true,
                 status_load: false,
-                select_page: this.$route.params.page,
+                current_page: this.$route.params.page,
                 news: [],
                 total_page: [],
-                moment: moment
+                moment: moment,
+                perPage:this.$route.params.limit
             }
         },
 
@@ -94,9 +86,11 @@
                             this.$router.back();
                         }
                         if (response.success === true) {
-                            this.select_page = response.data.count.select_page || 1;
+                            console.log(response.data.count)
+                            this.current_page = response.data.count.select_page || 1;
                             this.news = response.data.news;
                             this.total_page = response.data.count.pages;
+                            this.perPage = response.data.count.limit
                         }
                         this.status_load = true;
 
@@ -120,7 +114,7 @@
                     .then(response => {
                         return this.getNews(this.select_page);
                     })
-            }
+            },
         },
         created() {
             return this.getNews(this.select_page);
@@ -254,5 +248,18 @@
     .pagination__mid li {
         display: inline-block;
     }
+
+    .image {
+        position: relative;
+        width: 100%; /* for IE 6 */
+    }
+
+    .img {
+        position: absolute;
+        top: 10px;
+        right: 3px;
+        width: 20%;
+    }
+
 
 </style>

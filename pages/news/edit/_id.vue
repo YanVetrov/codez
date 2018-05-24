@@ -1,6 +1,7 @@
 <template>
     <div class="row">
         <div class="white-box">
+            <notifications group="review_create" classes="news-create-notifications" class="news-notify"/>
             <loading type="block" :status_load="status_load "/>
             <div class="row" v-if="afterEdit === false">
                 <input id='label001' type="text" class="form-control form-control-line" v-model="news_title">
@@ -11,13 +12,13 @@
             <div class="row" v-else>
                 <div class="white-box " style="text-align: center">
                     <div class="col-md-12">
-                        <succses_page />{{text}}</div>
+                        <succses_page/>
+                        {{text}}
                     </div>
                 </div>
             </div>
         </div>
-
-
+    </div>
 
 
 </template>
@@ -37,7 +38,7 @@
                 news_content: '',
                 news_title: '',
                 afterEdit: false,
-                text:''
+                text: ''
 
             }
         },
@@ -82,7 +83,6 @@
         created() {
             return this.getOneNews()
         },
-
 
     }
 
