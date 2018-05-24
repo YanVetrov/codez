@@ -15,14 +15,12 @@
               <li class="active">Starter Page</li>
             </ol>
           </div>
-          <!-- /.col-lg-12 -->
         </div>
 
         <notifications position="top center" style="padding: 40px" group="main"/>
         <nuxt/>
 
       </div>
-      <!-- /.container-fluid -->
       <footer class="footer text-center"> 2017 &copy; Elena Medvedeva</footer>
     </div>
 
@@ -33,10 +31,8 @@
   import HeaderMenu from "~/components/Menu/HeaderMenu";
   import LeftMenu from "~/components/Menu/LeftMenu";
 
-
   export default {
     head() {
-      console.log('this.$store.1', this.$store.getters['Menu/close']);
       return {
         bodyAttrs: {
           class: this.$store.getters['Menu/close'] ? 'fix-header show-sidebar hide-sidebar' : 'fix-header'
