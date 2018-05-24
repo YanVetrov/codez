@@ -66,7 +66,7 @@
                         }
                         if (response.success === true) {
                             this.current_page = response.data.count.select_page || 1;
-                            currentPage = response.data.count.select_page || 1;
+                            this.currentPage = response.data.count.select_page || 1;
                             this.reviews = response.data.reviews;
                             this.total_page = response.data.count.pages;
                         }

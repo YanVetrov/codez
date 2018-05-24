@@ -62,7 +62,7 @@
                 name: 'Dashboard',
                 isShow: false,
                 page: '/dashboard',
-                icon: 'page-dashboard',
+                icon: 'view-dashboard',
                 child: []
             }, {
                 name: 'News',
