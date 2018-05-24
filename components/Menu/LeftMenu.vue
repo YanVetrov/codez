@@ -84,7 +84,7 @@
                 ]
             },
                 {
-                    name: 'reviews',
+                    name: 'Reviews',
                     isShow: false,
                     page: '/reviews',
                     icon: 'mdi mdi-comment-multiple-outline',
