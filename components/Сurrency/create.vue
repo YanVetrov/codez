@@ -196,7 +196,7 @@
                     </div>
 
                     <hr>
-                    <span style="font-size: 1em;text-transform: uppercase;font-weight: 500;">
+                    <span class="component-valut_right--span">
                         Инструкция оплаты
                     </span>
                     <div class="component-valut">
@@ -384,6 +384,18 @@
 
 <style scoped>
 
+    .component-valut_right--span {
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1365px){
+        .component-valut_right--span {
+            font-size: .8em;
+        }
+    }
+
 
     .component-valut {
         width: 100%;
@@ -419,7 +431,13 @@
         width: 290px;
     }
 
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1450px) {
+        .component-valut_left {
+            width: 260px;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
         .component-valut_left {
             width: 100%;
         }
@@ -460,6 +478,12 @@
         position: relative;
     }
 
+    @media screen and (max-width: 1200px) {
+        .component-valut_logo-upload label {
+            justify-content: center;
+        }
+    }
+
     .component-valut_logo-upload input {
         position: absolute;
         top: 0;
@@ -482,6 +506,20 @@
         background-size: 50%;
     }
 
+    @media screen and (max-width: 1450px) {
+        .component-valut_logo-upload span {
+            width: 4.5em;
+            height: 4.5em;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .component-valut_logo-upload span {
+            width: 6.5em;
+            height: 6.5em;
+        }
+    }
+
     .component-valut_logo-upload p {
         cursor: pointer;
         margin: 0 7% 0 0;
@@ -494,6 +532,12 @@
         background-position: center left;
         background-repeat: no-repeat;
         background-size: 30px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .component-valut_logo-upload p {
+            margin: 0 0 0 30px;
+        }
     }
 
     .component-valut_logo-upload p:hover {
@@ -560,6 +604,14 @@
         margin: 15px;
     }
 
+    @media screen and (min-width: 1201px) and (max-width: 1450px) {
+        .component-valut_arrow {
+            min-width: initial;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+    }
+
     @media screen and (max-width: 550px) {
         .component-valut_arrow {
             min-width: 100%;
@@ -573,6 +625,20 @@
         font-size: 1em;
         text-transform: uppercase;
         white-space: nowrap;
+        font-weight: 500;
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1450px) {
+        .component-valut_arrow p {
+            margin: 0;
+        }
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1365px) {
+        .component-valut_arrow p {
+            font-size: .8em;
+            margin-right: 11px;
+        }
     }
 
     .component-valut_arrow div {
@@ -596,6 +662,12 @@
         -ms-transition: .35s all;
         -o-transition: .35s all;
         transition: .35s all;
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1450px) {
+        .component-valut_arrow a {
+            height: 27px;
+        }
     }
 
     .component-valut_arrow a.component-valut_arrov-left {
@@ -639,6 +711,12 @@
         margin-right: -15px;
     }
 
+    @media screen and (min-width: 1201px) and (max-width: 1365px) {
+        .component-valut_right-item >span {
+            font-size: .8em;
+        }
+    }
+
     @media screen and (max-width: 1098px) {
         .component-valut_right-item {
             flex-wrap: wrap;
@@ -655,15 +733,23 @@
     .component-valut_right-info {
         border-radius: 3px;
         background-color: #e5f7ff;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 17px;
+        padding-right: 10px;
         margin: 15px;
-        min-width: 44.5%;
+        max-width: 45.5%;
         line-height: 3.7;
         display: flex;
         align-items: center;
         flex-direction: row;
         justify-content: center;
+        flex: 1 0;
+    }
+
+    @media screen and (min-width: 1450px) {
+        .component-valut_right-info {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
     }
 
     @media screen and (max-width: 550px) {
@@ -699,6 +785,7 @@
     .component-valut_right-info p {
         font-size: 1em;
         margin-left: 30px;
+        flex: 1 0;
     }
 
     @media screen and (max-width: 550px) {
@@ -741,6 +828,19 @@
         flex: .5 1;
     }
 
+
+    @media screen and (min-width: 1201px) and (max-width: 1450px) {
+        .component-valut_right label span {
+            margin-right: 5px;
+        }
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1365px) {
+        .component-valut_right label span {
+            font-size: .8em;
+        }
+    }
+
     .component-valut_right label div {
         position: relative;
         width: 100%;
@@ -762,8 +862,7 @@
     }
 
     .component-valut_right label input,
-    .component-valut_right label select,
-    .component-valut_right label textarea {
+    .component-valut_right label select{
         border: solid 1px #d5d5d5;
         border-radius: 3px;
         padding: 5px 10px;
@@ -774,21 +873,25 @@
         font-size: 1.3em;
     }
 
+    @media screen and (min-width: 1201px) and (max-width: 1450px) {
+        .component-valut_right label input,
+        .component-valut_right label select{
+            min-width: 120px;
+        }
+    }
+
     .component-valut_right label input:focus,
-    .component-valut_right label select:focus,
-    .component-valut_right label textarea:focus {
+    .component-valut_right label select:focus {
         outline: none;
     }
 
     .component-valut_right label input:invalid,
-    .component-valut_right label select:invalid,
-    .component-valut_right label textarea:invalid {
+    .component-valut_right label select:invalid{
         border-color: #ff7676;
     }
 
     .component-valut_right label input.error,
-    .component-valut_right label select.error,
-    .component-valut_right label textarea.error {
+    .component-valut_right label select.error{
         border-color: #ff7676;
     }
 
@@ -801,12 +904,6 @@
         background-color: transparent;
     }
 
-    .component-valut_right label textarea {
-        min-height: 7.5em;
-        height: 7.5em;
-        resize: vertical;
-    }
-
     .component-valut_right label.component-valut_right-currency {
         flex: .5 1;
     }
@@ -815,11 +912,6 @@
         .component-valut_right label.component-valut_right-currency {
             flex: 1 1;
         }
-    }
-
-    .component-valut_right label.component-valut_textarea span {
-        display: block;
-        width: 100%;
     }
 
     .component-valut_right-select {
