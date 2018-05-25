@@ -1,6 +1,6 @@
 {
-  "serviceUrl": "http://localhost:3010",
-  "apiPath": "/service/api/v1/",
+  "serviceUrl": "https://exchanger_001.proexchanger.net",
+  "apiPath": "https://exchanger_001.proexchanger.net/service/api/v1/",
   "server": {
     "host": "0.0.0.0",
     "port": "3002"

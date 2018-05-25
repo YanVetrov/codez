@@ -15,16 +15,16 @@
 
                 <li v-for="(el,i) in menu" :key="i">
                     <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
-                               @click.native="el.child.length === 0 || (el.isShow = !el.isShow)" class="waves-effect"
+                               @click.native="el.child && el.child.length === 0 || (el.isShow = !el.isShow)" class="waves-effect"
                                active-class="active">
                         <i class="mdi fa-fw" :class="'mdi-'+el.icon" data-icon="v"></i>
                         <span class="hide-menu">
               {{el.name}}
-              <span v-if="el.child.length > 0" class="fa arrow"></span>
+              <span v-if="el.child && el.child.length > 0" class="fa arrow"></span>
             </span>
                     </nuxt-link>
                     <ul class="nav nav-second-level collapse" :class="{'in': el.isShow}">
-                        <li v-if="el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
+                        <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
                             <nuxt-link :to="el.page+elc.page" active-class="active">
                                 <i class="mdi fa-fw" :class="'mdi-'+elc.icon" data-icon="v"></i>
                                 <span class="hide-menu"> {{elc.name}}</span>
@@ -108,38 +108,37 @@
                     name: 'Partners',
                     page: '/partners',
                     isShow: false,
-                    icon: 'account-multiple'
+                    icon: 'account-multiple',
+                    child: []
                 },
                 {
                     name: 'Feedback',
                     page: '/fback',
                     isShow: false,
-                    icon: 'message'
+                    icon: 'message',
+                    child: []
                 },
                 {
                     name: 'Rules',
                     page: '/rules',
                     isShow: false,
-                    icon: 'book-open-variant'
+                    icon: 'book-open-variant',
+                    child: []
                 },
                 {
                     name: 'Routes',
                     page: '/routes',
                     isShow: false,
-                    icon: 'routes'
+                    icon: 'routes',
+                    child: []
                 },
                 {
                     name: 'Statistic',
                     page: '/statistic',
                     isShow: false,
-                    icon: 'chart-line'
-                },
-                {
-                    name: 'Currency & Reserving',
-                    page: '/reserve',
-                    isShow: false,
-                    icon: 'currency-usd'
-                },
+                    icon: 'chart-line',
+                    child: []
+                }
             ];
 
 
