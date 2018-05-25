@@ -80,9 +80,20 @@
                 icon: 'currency-usd',
                 child: [
                     {name: 'All currencies', page: '/page', icon: 'format-list-numbers'},
-                    {name: 'Create Сurrency', page: '/create', icon: 'plus'},
+                    {name: 'Create currency', page: '/create', icon: 'plus'},
                 ]
             },
+                {
+                    name: 'Settings',
+                    isShow: false,
+                    page: '/settings',
+                    icon: 'settings',
+                    child: [
+                        {name: 'History', page: '/history', icon: 'history'},
+                        {name: 'Administrators', page: '/admins', icon: 'lock'},
+                        {name: 'Apperance', page: '/apperance', icon: 'brush'},
+                    ]
+                },
                 {
                     name: 'Reviews',
                     isShow: false,
@@ -92,13 +103,45 @@
                         {name: 'All reviews', page: '/page', icon: 'format-list-numbers'},
                         {name: 'Create reviews', page: '/create', icon: 'playlist-plus'},
                     ]
-                }
+                },
+                {
+                    name: 'Partners',
+                    page: '/partners',
+                    isShow: false,
+                    icon: 'account-multiple'
+                },
+                {
+                    name: 'Feedback',
+                    page: '/fback',
+                    isShow: false,
+                    icon: 'message'
+                },
+                {
+                    name: 'Rules',
+                    page: '/rules',
+                    isShow: false,
+                    icon: 'book-open-variant'
+                },
+                {
+                    name: 'Routes',
+                    page: '/routes',
+                    isShow: false,
+                    icon: 'routes'
+                },
+                {
+                    name: 'Statistic',
+                    page: '/statistic',
+                    isShow: false,
+                    icon: 'chart-line'
+                },
+                {
+                    name: 'Currency & Reserving',
+                    page: '/reserve',
+                    isShow: false,
+                    icon: 'currency-usd'
+                },
             ];
 
-
-            for (let i in menu)
-                if (menu[i].page === '/' + this.$router.currentRoute.path.split('/')[1])
-                    menu[i].isShow = true;
 
             return {
                 menu
@@ -107,3 +150,7 @@
     }
 </script>
 
+<style>
+
+
+</style>
