@@ -15,5 +15,8 @@ loadMap(Highcharts);
 loadDrilldown(Highcharts);
 loadHighchartsMore(Highcharts);
 loadSolidGauge(Highcharts);
-
+Highcharts.seriesTypes.line.prototype.requireSorting = false;
 Vue.use(VueHighcharts, { Highcharts });
+
+
+Highcharts.seriesTypes.line.prototype.requireSorting = false;

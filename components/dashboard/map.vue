@@ -5009,7 +5009,7 @@
         },
         mounted() {
             this.$rest.api('getStatisticClient').then(res => {
-                console.log(res);
+               
                 let main = res.data.visitors;
                 let obj = {};
                 let arr = [];
@@ -5029,7 +5029,7 @@
                 });
                 this.options.series[0].data = arr1;
                 this.Stat = arr;
-                console.log(this.Stat)
+              
             })
         },
 

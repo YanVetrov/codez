@@ -387,9 +387,6 @@ import axios from 'axios'
               let arr=[];
               main.forEach(el => {
                   let date = el.date.slice(0,10);
-                  el.countries.forEach(el=>{
-                      arr1.push([el.country.toLocaleLowerCase(),el.count]);
-                  })
                   el.fromUrl.forEach(el=>{
                       el.date = date;
                       arr.push(el)
