@@ -3,16 +3,13 @@
         <div class="navbar-header">
             <div class="top-left-part">
                 <!-- Logo -->
-                <a class="logo" href="index.html">
-                    <!-- Logo icon image, you can use font-icon also --><b>
-                    <!--This is dark logo icon--><img src="../../static/images/admin-logo.png" alt="home" class="dark-logo"/>
-                    <!--This is light logo icon--><img src="../../static/images/admin-logo-dark.png" alt="home" class="light-logo"/>
-                </b>
-                    <!-- Logo text image you can use text also --><span class="hidden-xs">
-                        <!--This is dark logo text--><img src="../../static/images/admin-text.png" alt="home"
-                                                          class="dark-logo"/><!--This is light logo text--><img
-                        src="../../static/images/admin-text-dark.png" alt="home" class="light-logo"/>
-                     </span> </a>
+                <nuxt-link class="logo" to="/">
+
+                    <span class="hidden-xs">
+                        <img :src="logoUrl" alt="home" class="dark-logo"/>
+                        <img :src="logoUrl" alt="home" class="light-logo"/>
+                     </span>
+                </nuxt-link>
             </div>
             <!-- /Logo -->
             <!-- Search input and Toggle icon -->
@@ -34,10 +31,12 @@
                         <li>
                             <div class="message-center">
                                 <a href="#" v-for="mess in messages.box" :key='mess.id'>
-                                    <div class="user-img"><img src="../../static/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                                    <div class="user-img"><img src="../../static/images/users/pawandeep.jpg" alt="user"
+                                                               class="img-circle">
                                         <span class="profile-status online pull-right"></span></div>
                                     <div class="mail-contnet">
-                                        <h5>{{mess.user}}</h5> <span class="mail-desc">{{mess.text.lenght>10?mess.text.slice(0,10)+'...':mess.text}}</span> <span class="time">{{mess.time}}</span>
+                                        <h5>{{mess.user}}</h5> <span class="mail-desc">{{mess.text.lenght>10?mess.text.slice(0,10)+'...':mess.text}}</span>
+                                        <span class="time">{{mess.time}}</span>
                                     </div>
                                 </a>
                             </div>
@@ -59,7 +58,8 @@
 
                 <li :class="dropdown2" @click="openProfile()">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-                            src="../../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b><span
+                            src="../../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b
+                            class="hidden-xs">Steave</b><span
                             class="caret"></span> </a>
                     <ul class="dropdown-menu dropdown-user animated flipInY">
                         <li>
@@ -67,12 +67,15 @@
                                 <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
                                 <div class="u-text"><h4>Steave Jobs</h4>
                                     <p class="text-muted">varun@gmail.com</p><a href="profile.html"
-                                                                                class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                                                class="btn btn-rounded btn-danger btn-sm">View
+                                        Profile</a>
                                 </div>
                             </div>
                         </li>
                         <li role="separator" class="divider"></li>
-                        <li v-for='list in profileList' :key="list.id"><nuxt-link :to="list.link"><i :class="'ti-'+list.icon"></i>{{list.name}}</nuxt-link></li>
+                        <li v-for='list in profileList' :key="list.id">
+                            <nuxt-link :to="list.link"><i :class="'ti-'+list.icon"></i>{{list.name}}</nuxt-link>
+                        </li>
                         <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                         <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                         <li role="separator" class="divider"></li>
@@ -93,23 +96,26 @@
 </template>
 
 <script>
+    const config = require('../../_config/app');
+
     export default {
-        data(){
-            return{
-                dropdown2:'dropdown',
-                dropdown1:'dropdown',
-                dropdown:'dropdown',
-                profileList:[
-                    {name:'My profile',icon:'user',link:'/profile'}
+        data() {
+            return {
+                dropdown2: 'dropdown',
+                logoUrl: config.fsPath + '/img/logo/res/logo.png',
+                dropdown1: 'dropdown',
+                dropdown: 'dropdown',
+                profileList: [
+                    {name: 'My profile', icon: 'user', link: '/profile'}
                 ],
-                messages:{
-                    total:'5',
-                    box:[
-                        {text:"Привет!!",time:"22:30",user:"Шик"},
-                        {text:"Привет!!",time:"22:30",user:"Шик"},
-                        {text:"Привет!!",time:"22:30",user:"Шик"},
-                        {text:"Привет!!",time:"22:30",user:"Шик"},
-                        {text:"Привет!!",time:"22:30",user:"Шик"},
+                messages: {
+                    total: '5',
+                    box: [
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
                     ]
                 }
             }
@@ -119,17 +125,17 @@
                 this.$store.dispatch('Menu/close');
 
             },
-            messageOpen(e){
+            messageOpen(e) {
                 let n = 'dropdown';
-                this.dropdown===n?this.dropdown=`${n} open`:this.dropdown=n;
+                this.dropdown === n ? this.dropdown = `${n} open` : this.dropdown = n;
             },
-            openTask(e){
+            openTask(e) {
                 let n = 'dropdown';
-                this.dropdown1===n?this.dropdown1=`${n} open`:this.dropdown1=n;
+                this.dropdown1 === n ? this.dropdown1 = `${n} open` : this.dropdown1 = n;
             },
-            openProfile(e){
+            openProfile(e) {
                 let n = 'dropdown';
-                this.dropdown2===n?this.dropdown2=`${n} open`:this.dropdown2=n;
+                this.dropdown2 === n ? this.dropdown2 = `${n} open` : this.dropdown2 = n;
             },
         }
     }

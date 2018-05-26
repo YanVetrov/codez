@@ -1,4 +1,7 @@
 const config = require('./_config/app');
+let proxyConfig = {};
+proxyConfig[config.servicePath + '/'] = {target: config.serviceUrl, pathRewrite: {}};
+proxyConfig[config.servicePath + '/'].pathRewrite['^' + config.servicePath + '/'] = '/';
 
 module.exports = {
     /*
@@ -54,18 +57,8 @@ module.exports = {
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
     },
-    moment:{
-
-    },
-    proxy: {
-        // Simple proxy
-        '/service/': {
-            target: config.serviceUrl,
-            pathRewrite: {
-                '^/service/': '/'
-            }
-        },
-    },
+    moment: {},
+    proxy: proxyConfig,
     build: {
         vendor: 'vue2-editor',
         extend(config, {isDev, isClient}) {

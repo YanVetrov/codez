@@ -1,5 +1,7 @@
 {
-  "serviceUrl": "http://localhost:3010/service",
+  "serviceUrl": "http://localhost:3010",
+  "servicePath": "/service",
+  "fsPath": "/service/fs",
   "apiPath": "/api/v1/",
   "server": {
     "host": "0.0.0.0",

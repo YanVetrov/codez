@@ -897,7 +897,7 @@ pre {
   color: #ffffff;
   line-height: 59px;
   font-size: 18px;
-  padding-left: 10px;
+  padding-left: 0;
   text-transform: uppercase;
 }
 .top-left-part .light-logo {
@@ -16488,7 +16488,7 @@ ul.pro-amenities li span i {
     margin-right: 0px;
   }
   .top-left-part {
-    width: 60px;
+    width: 0px;
   }
   .navbar-top-links > li:last-child {
     margin-right: 0px;
