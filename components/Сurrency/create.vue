@@ -217,7 +217,7 @@
                             <span>Мерчант</span>
 
                             <div class="component-valut_right-select">
-                                <select>
+                                <select v-model="form.mechant">
                                     <option disabled selected>Выбирете Мерчант</option>
                                     <option>Privat24</option>
                                     <option>PayPal</option>
@@ -267,6 +267,7 @@
                     fieldDeposit: '',
                     regexpWithdrawal: '',
                     fieldWithdrawal: '',
+                    mechant: '',
                     help_pay: '',
                     link: '',
                     account: ''
