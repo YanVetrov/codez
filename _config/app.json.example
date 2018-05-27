@@ -1,0 +1,14 @@
+{
+    "serviceUrl": "https://exchanger_001.proexchanger.net",
+    "servicePath": "/service",
+    "fsPath": "/service/fs",
+    "apiPath": "/api/v1/",
+    "server": {
+        "host": "https://exchanger_001.proexchanger.net",
+        "port": "process.env.PORT"
+    },
+    "airbrake": {
+        "projectId": 172814,
+        "projectKey": "dba2057d234ffacfcc801f72ec0e1c53"
+    }
+}
