@@ -14,11 +14,7 @@
                         text: 'Entries',
                         x: -20
                     },
-                    xAxis: {
-                        categories: [ 'Dec' , 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov'
-                        ]
-                    },
+
                     yAxis: {
                         title: {
                             text: 'USERS'
@@ -59,7 +55,7 @@
                 let arr = [];
                 main.forEach(el => {
                     let date = el.date.slice(0, 10).split('-');
-                    let realDate = [Date.UTC(parseInt(date[0]), parseInt(date[1]), parseInt(date[2])), parseInt(el.total_count)];
+                    let realDate = [Date.UTC(parseInt(date[0]), parseInt(date[1]) - 1, parseInt(date[2])), parseInt(el.total_count)];
                     arr.unshift(realDate);
                 });
                 
