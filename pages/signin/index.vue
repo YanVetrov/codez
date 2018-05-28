@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group text-center m-t-20">
                       <div class="col-xs-12">
-                        <button @click="checkLogin" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" >Log In</button>
+                        <div @click="checkLogin" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" >Log In</div>
                       </div>
                     </div>
                     <div class="row">
