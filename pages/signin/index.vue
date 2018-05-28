@@ -112,7 +112,7 @@
         let obj = { email, password };
         this.$rest.api('loginUseEmail', obj)
           .then(res => {
-            if (this.$store.gettrs['Menu/checkAdmin']) {
+            if (res.success) {
               this.$root.$emit('login', true);
               this.$store.dispatch('Menu/admin');
               this.$router.push('dashboard');
