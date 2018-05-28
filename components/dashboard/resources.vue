@@ -43,8 +43,6 @@
                       let count = el.count;
                       let url = el.url;
                       obj[url]?obj[url]=parseInt(obj[url])+count:obj[url]=count;
-                      
-                      
                   })
               });
               let total=0;
