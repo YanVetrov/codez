@@ -1,8 +1,8 @@
 <template>
   <div id="wrapper">
     
-    <HeaderMenu v-if='login' />
-    <LeftMenu v-if='login'/>
+    <HeaderMenu  />
+    <LeftMenu />
     <div id="page-wrapper">
       <div class="container-fluid">
         <div class="row bg-title">
@@ -32,21 +32,10 @@
   import LeftMenu from "~/components/Menu/LeftMenu";
 
   export default {
-    data(){
-      return{
-        login:false,  
-      }
-    },
-    beforeCreate(){
-      this.$store.getters['Menu/checkAdmin']?'':this.$router.push('/signin');
-    },
-    mounted(){
-      this.$root.$on('login',(res)=>{this.login=res});
-      this.$route.name=='signin'?this.login=false:this.login=true;
-    },
+    middleware:'auth',
     methods:{
       check(){
-        console.log(this.$store.getters['Menu/checkAdmin'])
+        console.log(this.$store.getters['admin/checkAdmin'])
       }
     },
     head() {
@@ -58,8 +47,7 @@
     },
     watch:{
       $route(){
-        this.$route.name=='signin'?this.login=false:this.login=true;
-        this.$store.getters['Menu/checkAdmin']?'':this.$router.push('/signin');
+        this.$store.getters['admin/checkAdmin']?'':this.$router.push('/signin');
       }
     },
     components: {

@@ -5,7 +5,7 @@
               <div class="inner-panel">
                   <a href="javascript:void(0)" class="p-20 di"><img src="../../static/images/admin-logo.png"></a>
                   <div class="lg-content">
-                      <h2>THE ULTIMATE & MULTIPURPOSE ADMIN TEMPLATE OF 2017</h2>
+                      <h2 @click="check">THE ULTIMATE & MULTIPURPOSE ADMIN TEMPLATE OF 2017</h2>
                       <p class="text-muted">with this admin you can get 2000+ pages, 500+ ui component, 2000+ icons, different demos and many more... </p>
                       <a href="#" class="btn btn-rounded btn-danger p-l-20 p-r-20"> Buy now</a>
                   </div>
@@ -88,6 +88,8 @@
 
 <script>
   export default {
+    middleware: 'authtrue',
+    layout: 'login',
     data() {
       return {
         password: '',
@@ -95,36 +97,28 @@
       }
 
     },
-    beforeCreate() {
-      if (this.$store.getters['Menu/checkAdmin']) {
-        this.$root.$emit('login', true);
-        this.$store.dispatch('Menu/admin');
-        this.$router.push('dashboard');
-        this.$destroy;
-      }
-    },
     methods: {
 
       checkLogin(e) {
         let email = this.login;
         let password = this.password;
-        e.preventDefault();
         let obj = { email, password };
         this.$rest.api('loginUseEmail', obj)
           .then(res => {
             if (res.success) {
-              this.$root.$emit('login', true);
-              this.$store.dispatch('Menu/admin');
+              this.$store.dispatch('admin/admin');
               this.$router.push('dashboard');
               this.$destroy;
             }
 
           })
-          .catch(err => {
-          });
+          .catch(err => {})
 
 
 
+      },
+      check() {
+        console.log(this.$store.getters['admin/checkAdmin'])
       }
 
 
