@@ -75,10 +75,9 @@
 
         mounted() {
             this.getServerStatus();
-            this.intervalUpdate = setInterval(this.getServerStatus, 10000)
+            this.intervalUpdate = setInterval(this.getServerStatus, 5000)
         },
         beforeDestroy() {
-            this.getServerStatus();
             clearInterval(this.intervalUpdate);
         },
         methods: {
