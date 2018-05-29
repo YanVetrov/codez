@@ -18,7 +18,7 @@
                     <div class="form-group  m-t-20">
                         <div class="col-xs-12">
                             <label>Email Address</label>
-                            <input class="form-control" type="text" v-model="login" required="" placeholder="Email">
+                            <input class="form-control" type="text" v-model="email" required="" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -59,25 +59,24 @@
         data() {
             return {
                 password: '',
-                login: ''
+                email: ''
             }
         },
         methods: {
-            checkLogin(e) {
-                let email = this.login;
-                let password = this.password;
-                let obj = {email, password};
-                return this.$rest.api('loginUseEmail', obj)
+            checkLogin() {
+                return this.$rest
+                    .api('loginUseEmail', {email: this.email, password: this.password})
                     .then(res => {
                         if (res.success) {
                             return this.$store.dispatch('admin/admin', res.data);
                         }
                         return Promise.reject(res.error);
-                    }).then(() => {
+                    })
+                    .then(() => {
                         return this.$router.push('dashboard');
                     })
                     .catch(err => {
-                        console.error(err);
+                        return console.error(err);
                     })
             }
         }
