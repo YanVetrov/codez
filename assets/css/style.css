@@ -3985,7 +3985,6 @@ table.focus-on tbody tr.focused td {
 }
 /* Login- register pages */
 .login-register {
-  background: url(../css/images/login-register.jpg) no-repeat center center / cover !important;
   height: 100%;
   position: fixed;
 }
@@ -4012,7 +4011,6 @@ table.focus-on tbody tr.focused td {
   height: 100%;
 }
 .new-login-register .lg-info-panel {
-  background: url(../css/images/login-register.jpg) no-repeat center center / cover !important;
   width: 500px;
   height: 100%;
   position: fixed;
@@ -4021,7 +4019,7 @@ table.focus-on tbody tr.focused td {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: #00558a;
 }
 .new-login-register .lg-info-panel .lg-content {
   margin-top: 50%;

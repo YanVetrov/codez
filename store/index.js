@@ -2,7 +2,7 @@ export const state = () => ({
   // Возможные языки
   locales: ['ru', 'en'],
   locale: 'ru'
-})
+});
 
 export const mutations = {
   SET_LANG(state, locale) {
@@ -10,4 +10,4 @@ export const mutations = {
       state.locale = locale
     }
   }
-}
+};
