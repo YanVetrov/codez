@@ -67,16 +67,17 @@
                 let email = this.login;
                 let password = this.password;
                 let obj = {email, password};
-                this.$rest.api('loginUseEmail', obj)
+                return this.$rest.api('loginUseEmail', obj)
                     .then(res => {
                         if (res.success) {
-                            this.$store.dispatch('admin/admin',res.data);
-                            this.$router.push('dashboard');
-                            // this.$destroy;
+                            return this.$store.dispatch('admin/admin', res.data);
                         }
+                        return Promise.reject(res.error);
+                    }).then(() => {
+                        return this.$router.push('dashboard');
                     })
                     .catch(err => {
-
+                        console.error(err);
                     })
             }
         }

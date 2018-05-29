@@ -17,8 +17,5 @@ export const actions = {
 export const getters = {
     checkAdmin: state => {
         return !!(state.user && state.user.adminLvl > 0);
-    },
-    getAdmin: state => {
-        return state.user;
     }
 };
