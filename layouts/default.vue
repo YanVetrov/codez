@@ -32,11 +32,27 @@
   import LeftMenu from "~/components/Menu/LeftMenu";
 
   export default {
-    middleware: 'auth',
     methods: {
       check() {
         console.log(this.$store.getters['admin/checkAdmin'])
       }
+    },
+    mounted() {
+      this.$rest
+        .api('isAuthUser')
+        .then(res => {
+          if (res.success) {
+            this.$store.dispatch('admin/admin', res.data);
+            let d = res.data,
+              fn = d.first_name,
+              ln = d.last_name,
+              email = d.email,
+              obj = { fn, ln, email }
+            this.$root.$emit('userInfo', obj)
+            console.log(obj)
+          }
+
+        })
     },
     head() {
       return {
@@ -47,9 +63,9 @@
     },
     watch: {
       $route() {
-        this.$store.getters['admin/checkAdmin'] ? '' : this.$router.push('/signin');
         this.$rest.api('isAuthUser')
           .then(res => {
+            res.success ? '' : this.$router.push('/signin');
             console.log(res);
           })
       }

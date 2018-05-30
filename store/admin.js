@@ -1,5 +1,5 @@
 export const state = () => ({
-    user: null
+    user: {},
 });
 
 export const mutations = {
@@ -9,13 +9,13 @@ export const mutations = {
 };
 
 export const actions = {
-    admin({commit}, user) {
-        commit('ADMIN', user)
+    admin({ commit }, user) {
+        commit('ADMIN', user);
     }
 };
 
 export const getters = {
     checkAdmin: state => {
-        return !!(state.user && state.user.adminLvl > 0);
+        return state.user;
     }
 };

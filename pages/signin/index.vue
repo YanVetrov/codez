@@ -54,7 +54,6 @@
 
 <script>
     export default {
-        middleware: 'auth',
         layout: 'login',
         data() {
             return {
@@ -65,7 +64,10 @@
         mounted(){
           this.$rest.api('isAuthUser')
           .then(res=>{
-            console.log(res);
+              if(res.success){
+                  this.$store.dispatch('admin/admin', res.data);
+                  this.$router.push('dashboard');
+              }
           })
         },
         methods: {

@@ -59,14 +59,14 @@
                 <li :class="dropdown2" @click="openProfile()">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
                             src="../../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b
-                            class="hidden-xs">Steave</b><span
+                            class="hidden-xs">{{firstName}}</b><span
                             class="caret"></span> </a>
                     <ul class="dropdown-menu dropdown-user animated flipInY">
                         <li>
                             <div class="dw-user-box">
                                 <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
-                                <div class="u-text"><h4>Steave Jobs</h4>
-                                    <p class="text-muted">varun@gmail.com</p><a href="profile.html"
+                                <div class="u-text"><h4>{{firstName}} {{lastName}}</h4>
+                                    <p class="text-muted">{{email}}</p><a href="profile.html"
                                                                                 class="btn btn-rounded btn-danger btn-sm">View
                                         Profile</a>
                                 </div>
@@ -117,8 +117,20 @@
                         {text: "Привет!!", time: "22:30", user: "Шик"},
                         {text: "Привет!!", time: "22:30", user: "Шик"},
                     ]
-                }
+                },
+                
+                firstName:'',
+                lastName:'',
+                email:''
             }
+        },
+        mounted(){
+          this.$root.$on('userInfo',(data)=>{
+              this.firstName = data.fn;
+              this.lastName = data.ln;
+              this.email = data.email;
+              
+          }) 
         },
         methods: {
             close() {
