@@ -32,9 +32,9 @@
   import LeftMenu from "~/components/Menu/LeftMenu";
 
   export default {
-    middleware:'auth',
-    methods:{
-      check(){
+    middleware: 'auth',
+    methods: {
+      check() {
         console.log(this.$store.getters['admin/checkAdmin'])
       }
     },
@@ -45,9 +45,13 @@
         }
       };
     },
-    watch:{
-      $route(){
-        this.$store.getters['admin/checkAdmin']?'':this.$router.push('/signin');
+    watch: {
+      $route() {
+        this.$store.getters['admin/checkAdmin'] ? '' : this.$router.push('/signin');
+        this.$rest.api('isAuthUser')
+          .then(res => {
+            console.log(res);
+          })
       }
     },
     components: {
@@ -55,6 +59,4 @@
       LeftMenu
     }
   }
-
 </script>
-

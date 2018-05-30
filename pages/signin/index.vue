@@ -62,6 +62,12 @@
                 email: ''
             }
         },
+        mounted(){
+          this.$rest.api('isAuthUser')
+          .then(res=>{
+            console.log(res);
+          })
+        },
         methods: {
             checkLogin() {
                 return this.$rest
@@ -78,6 +84,7 @@
                     .catch(err => {
                         return console.error(err);
                     })
+
             }
         }
     }
