@@ -1,27 +1,40 @@
 <template>
 
     <div class="row">
-        <loading type="block" :status_load="status_load"/>
-        <div class="col-md-4 col-lg-3 col-xs-12 col-sm-6" v-for="(el,i) in reviews "
-             :key="i">
-            <div class="white-box icon">
-                <button class="btn btn-outline btn-rounded btn-info btn2 img" @click='deleteNews(el._id)'><i
-                        class='ti-close'></i></button>
-                <br>
-                <div class="text-muted">
-                    <span class="m-r-10">
-                        <i class="icon-user icon_m"></i>{{el.name}}
-                        <br>
-                        <i class="icon-calender icon_m "></i>{{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
-                    </span>
-                    <h3 class="m-t-20 m-b-20 news-title">{{el.message}} </h3>
+        <div class='white-box' v-for="(el,i) in reviews" :key="i">
+            <loading type="block" :status_load="status_load"/>
+            <div class="head line">
+                <div class='lay'>ID</div>
+                <div class='lay'>PUBLISHER</div>
+                <div class='lay'>DATE</div>
+                <div class='lay'>E-MAIL</div>
+                <div class='lay'>IP</div>
+                <div class='lay'>USER-ID</div>
+                <div class='lay'>STATE</div>
+            </div>
+            <div class='info line'>
+                <div class='lay'>7015</div>
+                <div class='lay'>
+                    <div class='av'></div>
+                    {{el.name}}
                 </div>
-                <div class="btn-group-news">
-                    <button class="btn btn-outline btn-rounded btn-success btn1">Read more
-                    </button>
-                    <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/reviews/edit/'+el._id"><i
-                            class='icon-pencil'></i>
-                    </nuxt-link>
+                <div class='lay'>{{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}</div>
+                <div class='lay'>{{el.email}}</div>
+                <div class='lay'>177.234.55.23</div>
+                <div class='lay'>{{el._id}}</div>
+                <div class='lay'>PUBLISHED
+                    <button type="button" class="btn btn-info btn-outline btn-circle btn-s m-r-14"><i
+                            class="ti-check"></i></button>
+                    <button type="button" class="btn btn-info btn-outline btn-circle btn-s m-r-14"
+                            @click="deleteReview(el._id)"><i
+                            class="ti-trash"></i></button>
+                </div>
+            </div>
+            <div class='comment line'>
+                <i class="fa fa-thumbs-up"/>
+                <div style="height:80px;" class='lay comment-area'>{{el.message}}</div>
+                <div @click="heigh($event)" class='lay btn btn-info btn-outline btn-rectangle btn-s m-r-20'>
+                    {{showHide}}
                 </div>
             </div>
         </div>
@@ -29,7 +42,6 @@
                     :totalPages="total_page"
                     @page-changed="getReviews">
         </pagination>
-
     </div>
 </template>
 
@@ -47,6 +59,7 @@
                 moment: moment,
                 total_page: [],
                 current_page: this.$route.params.page,
+                showHide: 'Show',
             }
         },
         methods: {
@@ -65,8 +78,8 @@
                             this.$router.back();
                         }
                         if (response.success === true) {
+                            console.log(response.data)
                             this.current_page = response.data.count.select_page || 1;
-                            this.currentPage = response.data.count.select_page || 1;
                             this.reviews = response.data.reviews;
                             this.total_page = response.data.count.pages;
                         }
@@ -85,9 +98,30 @@
                         this.status_load = true;
                     });
             },
+            deleteReview(id) {
+                this.$rest.api('deleteReview', {review_id: id})
+                    .then(response => {
+                        console.log(response);
+                        return this.getReviews(this.select_page);
+                    })
+            },
+            heigh(e) {
+                this.$rest.api('getStatisticClient').then(res => {
+                    console.log(res)
+                })
+                if (e.target.previousSibling.style.height == '80px') {
+                    e.target.previousSibling.style.height = 'auto'
+                    this.showHide = 'Hide'
+                }
+                else {
+                    e.target.previousSibling.style.height = '80px';
+                    this.showHide = 'Show'
+                }
+            },
         },
+
         created() {
-            return this.getReviews();
+            return this.getReviews(this.select_page);
         },
 
     }
@@ -95,140 +129,69 @@
 </script>
 
 <style>
-
-
-    .pagination {
-        width: 100%;
-        height: 44px;
+    .line {
         display: flex;
+        flex-direction: row;
+        width: 100%;
         justify-content: space-between;
-        margin: 30px auto 30px;
-        padding: 0 15px;
-        max-width: 1280px;
+        border-bottom: 1px solid rgba(245, 245, 245, 0);
+        padding: 5px;
+        margin-top: 10px;
+        color: #666;
     }
 
-    .pagination__left, .pagination__right {
+    .info {
+        border-bottom: none;
+    }
+
+    .lay:not(.comment) {
         width: 20%;
     }
 
-    .pagination__left {
-        float: left;
-    }
-
-    .pagination__right {
-        float: right;
-    }
-
-    .pagination__right a {
-        float: right;
-    }
-
-    .pagination a, .pagination span {
-        display: block;
-        text-align: center;
-        font-family: Helvetica, Arial, sans-serif;
-        font-weight: 300;
-        line-height: 42px;
-        height: 44px;
-        color: #a3cef1;
-        font-size: 18px;
-    }
-
-    .pagination a {
-        padding: 0 20px;
-        max-width: 160px;
-        background-color: transparent;
-        border-radius: 4px;
-        border: 1px solid #009fea;
-        text-decoration: none;
-        margin: 0 6px;
-        transition: all .2s ease-in-out;
-    }
-
-    .pagination a.current {
-        border-color: #009fea;
-        color: #ea4c89;
-    }
-
-    @media (hover) {
-        .pagination a:hover {
-            border-color: #0090ea;
-            color: #0090ea;
-        }
-    }
-
-    .pagination__mid {
+    .info .lay {
         display: flex;
-        justify-content: center;
-        width: 60%;
+        flex-direction: row;
+        align-items: center;
     }
 
-    .pagination__mid ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .pagination__mid li {
-        display: inline-block;
-    }
-
-    .icon_m {
-        margin: 0px 5px 5px 0px;
-
-    }
-
-    .news-title {
-        overflow-wrap: break-word; /* не поддерживает IE, Firefox; является копией word-wrap */
-        word-wrap: break-word;
-        word-break: keep-all; /* не поддерживает Opera12.14, значение keep-all не поддерживается IE, Chrome */
-        line-break: loose; /* нет поддержки для русского языка */
-        -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-        hyphens: auto; /* значение auto не поддерживается Chrome */
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        height: 3em;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .btn-group-news {
-        margin-top: 20px;
+    .av {
+        width: 30px;
         height: 30px;
-        width: 100%;
+        background: silver;
+        border-radius: 100%;
+        margin-right: 5px;
     }
 
-    .btn1 {
-        display: inline-block;
-        float: left;
-        width: calc(100% - 60px)
+    .comment {
+        background: rgba(252, 252, 252, 1);
+        overflow: hidden;
+        align-items: flex-end;
+        padding: 15px;
     }
 
-    .btn2 {
-        display: inline-block;
-        float: right;
-        width: 50px
+    .lay:first-child {
+        width: 5%;
     }
 
-    .search2 {
-        width: 80%;
-        margin-left: 30px
-
+    .line .btn {
+        margin-left: 3px;
     }
 
-    .img {
-        position: absolute;
-        top: 10px;
-        right: 3px;
-        width: 20%;
+    .comment .btn {
+        height: 30px;
     }
 
-    .icon {
-        position: relative;
-        width: 100%; /* for IE 6 */
+    .comment i {
+        font-size: 25px;
+        color: #DDD;
     }
 
+    .line .comment-area {
+        border-radius: 5px;
+        padding: 15px;
+        height: 20px;
+        width: 90%;
+
+    }
 
 </style>

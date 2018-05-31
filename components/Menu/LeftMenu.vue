@@ -138,7 +138,15 @@
                     isShow: false,
                     icon: 'chart-line',
                     child: []
+                },
+                {
+                    name: 'Users',
+                    page: '/users',
+                    isShow: false,
+                    icon: 'icon-user',
+                    child: [{name: 'All users', page: '/page', icon: 'icon-user'}]
                 }
+
             ];
 
 
