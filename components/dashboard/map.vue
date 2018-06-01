@@ -5008,6 +5008,7 @@
             }
         },
         mounted() {
+            this.$root.$emit('loading',true)
             this.$rest.api('getStatisticClient').then(res => {
                
                 let main = res.data.visitors;
@@ -5029,6 +5030,7 @@
                 });
                 this.options.series[0].data = arr1;
                 this.Stat = arr;
+                this.$root.$emit('loading',false);
               
             })
         },

@@ -18,6 +18,9 @@
 
             }
         },
+        created(){
+          this.$root.$on('loading',state=>this.loading=state)  
+        },
         methods: {
             start() {
                 this.loading = true
