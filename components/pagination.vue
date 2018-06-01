@@ -22,8 +22,6 @@
 
         props: {
             currentPage: {
-                type: Number,
-                required: true
             },
             totalPages: {},
             // Items per page
