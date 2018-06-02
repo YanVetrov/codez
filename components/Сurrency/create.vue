@@ -65,16 +65,7 @@
                             <input type="text" v-model="form.type">
                         </div>
                     </label>
-                    <div class="component-valut_arrow">
-                        <p>Точность суммы</p>
-                        <div>
-                            <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1"
-                               class="component-valut_arrov-left"></a>
-                            <span>{{form.precision}}</span>
-                            <a @click="form.precision = (form.precision+1 > 16)? 16 : form.precision+1"
-                               class="component-valut_arrov-right"></a>
-                        </div>
-                    </div>
+
                 </div>
 
                 <hr>
@@ -99,13 +90,6 @@
 
                 <div class="component-valut_right-item">
 
-                    <label>
-                        <span>Введите курс валют</span>
-
-                        <div>
-                            <input type="text" v-model="form.rate">
-                        </div>
-                    </label>
 
                     <label>
                         <span>Сумма резерва</span>
@@ -115,7 +99,95 @@
                         </div>
                     </label>
 
+                    <div class="component-valut_arrow">
+                        <p>Точность суммы</p>
+                        <div>
+                            <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1"
+                               class="component-valut_arrov-left"></a>
+                            <span>{{form.precision}}</span>
+                            <a @click="form.precision = (form.precision+1 > 16)? 16 : form.precision+1"
+                               class="component-valut_arrov-right"></a>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="component-valut_right-payment-method">
+
+                    <div class="component-valut_right-payment-method_title">
+                        <p>Курс валюты {{form.name}} {{form.type}} к USD</p>
+                        <div>
+                            <a class="cl-pointer" @click="form.type_rate = 'manually'"
+                               :class="{active:(form.type_rate==='manually')}">Вручную</a>
+                            <a class="cl-pointer" @click="form.type_rate = 'auto'"
+                               :class="{active:(form.type_rate==='auto')}">Автоматически</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div v-if="form.type_rate==='manually'">
+                    <div class="component-valut_right-item">
+
+                        <label>
+                            <span>Введите курс валюты<br></span>
+
+                            <div class="component-valut_right">
+                                <input type="text" v-model="form.rate">
+                            </div>
+                        </label>
+
+                        <div class="component-valut_right-info">
+                            <a><img src="~/static/images/information.svg" alt=""></a>
+                            <p>Внимание данное поле необходимо корректировать для того чтоб партнерские вознаграждения
+                                начислялись верно.</p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div v-if="form.type_rate==='auto'">
+
+                    <div class="component-valut_right-item">
+
+
+                        <label>
+                            <span>Валюта</span>
+
+                            <div>
+                                <input type="text" v-model="form.currency_for_parser">
+                            </div>
+                        </label>
+                        <div class="component-valut_right-info">
+                            <a><img src="~/static/images/information.svg" alt=""></a>
+                            <p>Код валюты (Пример: EUR)</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="component-valut_right-item">
+
+                        <label>
+                            <span>Парсер</span>
+
+                            <div class="component-valut_right-select">
+                                <select v-model="form.parser_rate">
+                                    <option disabled selected>Выбирете Парсер</option>
+                                    <option>Privat24</option>
+                                    <option>PayPal</option>
+                                </select>
+                            </div>
+                        </label>
+                        <div class="component-valut_right-info">
+                            <a><img src="~/static/images/information.svg" alt=""></a>
+                            <p>C полным списком парсеров и доступных им направлений вы можете увидеть в розделе
+                                <nuxt-link to="/parsers">Парсеры курсов</nuxt-link>
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
 
                 <div class="component-valut_right-payment-method">
 
@@ -196,6 +268,7 @@
                     </div>
 
                     <hr>
+                    <br>
                     <span class="component-valut_right--span">
                         Инструкция оплаты
                     </span>
@@ -262,10 +335,13 @@
                     reserve: '',
                     rate: '',
                     precision: 2,
+                    type_rate: 'manually',
                     type_pay: 'manually',
                     regexpDeposit: '',
+                    parser_rate: '',
                     fieldDeposit: '',
                     regexpWithdrawal: '',
+                    currency_for_parser: '',
                     fieldWithdrawal: '',
                     mechant: '',
                     help_pay: '',
@@ -384,6 +460,10 @@
 </script>
 
 <style scoped>
+    .component-valut hr {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
     .component-valut_right--span {
         font-size: 1em;
@@ -391,12 +471,11 @@
         font-weight: 500;
     }
 
-    @media screen and (min-width: 1201px) and (max-width: 1365px){
+    @media screen and (min-width: 1201px) and (max-width: 1365px) {
         .component-valut_right--span {
             font-size: .8em;
         }
     }
-
 
     .component-valut {
         width: 100%;
@@ -713,7 +792,7 @@
     }
 
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
-        .component-valut_right-item >span {
+        .component-valut_right-item > span {
             font-size: .8em;
         }
     }
@@ -829,7 +908,6 @@
         flex: .5 1;
     }
 
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_right label span {
             margin-right: 5px;
@@ -863,7 +941,7 @@
     }
 
     .component-valut_right label input,
-    .component-valut_right label select{
+    .component-valut_right label select {
         border: solid 1px #d5d5d5;
         border-radius: 3px;
         padding: 5px 10px;
@@ -876,7 +954,7 @@
 
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_right label input,
-        .component-valut_right label select{
+        .component-valut_right label select {
             min-width: 120px;
         }
     }
@@ -887,12 +965,12 @@
     }
 
     .component-valut_right label input:invalid,
-    .component-valut_right label select:invalid{
+    .component-valut_right label select:invalid {
         border-color: #ff7676;
     }
 
     .component-valut_right label input.error,
-    .component-valut_right label select.error{
+    .component-valut_right label select.error {
         border-color: #ff7676;
     }
 
