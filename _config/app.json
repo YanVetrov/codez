@@ -1,5 +1,5 @@
 {
-    "serviceUrl": "http://exchanger_001.proexchanger.net/service",
+    "serviceUrl": "http://localhost:3010",
     "servicePath": "/service",
     "fsPath": "/service/fs",
     "apiPath": "/api/v1/",
