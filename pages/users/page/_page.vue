@@ -42,7 +42,7 @@
     import Loading from "~/components/loading";
     import moment from 'moment'
     import pagination from '~/components/pagination'
-    import Users from "~/components/users";
+    import Users from "~/components/Users/users";
 
     export default {
         components: {Users, Loading, pagination},

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <notifications group="review_create" classes="news-create-notifications" class="news-notify"/>
+                <notifications group="review_create" classes="reviews-create-notifications" class="reviews-notify"/>
                 <loading type="block" :status_load="status_load "/>
                 <div class="row" v-if="afterPost === false">
                     <label><h3>Оставить отзыв</h3></label>

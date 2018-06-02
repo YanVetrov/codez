@@ -95,7 +95,7 @@
                                 group: 'main',
                                 duration: 5000,
                                 type: 'error',
-                                title: 'Error get news!',
+                                title: 'Error get user!',
                                 text: 'Server error 500! Please retry.\n' + response.error.message
                             });
                         }
