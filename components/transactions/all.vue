@@ -1,7 +1,21 @@
 <template>
   <div class="row">
-    <input type="text" name="heh" v-model="filter"/>
-                    <div class="col-sm-6" v-for="tra in filterBy(transactions,filter)" :key="tra._id">
+      ID
+    <input type="text" placeholder="example: 412423423523" name="heh" v-model="filter"/>
+        Start date
+    <input type="date" placeholder="dd/mm/yy" name="startDate" v-model="startDate" />
+        End date
+    <input type="date" placeholder="dd/mm/yy" name="endDate" v-model="endDate"/>
+        Currency 1
+    <select v-model="currency1">
+        <option>валюта 1</option>
+    </select>
+        Currency 2
+    <select v-model="currency2">
+        <option>валюта 2</option>
+    </select>
+    <button class="fcbtn btn btn-info btn-1b" @click="sendFilter" style="margin:5px">accept</button>
+                    <div class="col-sm-6" v-for="tra in transactions" :key="tra._id">
                         <div class="white-box">
                           <span class='text-muted'><i class='ti-time'></i> {{tra.date}}</span>
                             
@@ -83,7 +97,11 @@
 
     data() {
       return {
-        filter: 'ALFA',
+        filter: '',
+        startDate:'',
+        endDate:'',
+        currency1:'',
+        currency2:'',
 
         transactions: [{
             date: '24.06.2018 17:00:34',
@@ -135,6 +153,21 @@
 
 
       }
+    },
+    methods:{
+        
+        sendFilter(){
+            let obj = {
+                currency1:this.currency1,
+                currency2:this.currency2,
+                startDate:this.startDate,
+                endDate:this.endDate,
+                id:this.filter
+            }
+            console.log(obj)
+        }
+        
+        
     }
 
   }
