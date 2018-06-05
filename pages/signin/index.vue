@@ -17,14 +17,15 @@
                 <form class="form-horizontal new-lg-form" id="loginform" action="#">
                     <div class="form-group  m-t-20">
                         <div class="col-xs-12">
+                            <label v-if="!valid" style="color:red">Incorrect login\password</label>
                             <label>Email Address</label>
-                            <input class="form-control" type="text" v-model="email" required="" placeholder="Email">
+                            <input class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' type="text" v-model="email" required="" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <label>Password</label>
-                            <input class="form-control" v-model="password" type="password" required=""
+                            <input class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' v-model="password" type="password" required=""
                                    placeholder="Password">
                         </div>
                     </div>
@@ -58,25 +59,31 @@
         data() {
             return {
                 password: '',
-                email: ''
+                email: '',
+                valid: true,
             }
         },
-        mounted(){
-          this.$rest.api('isAuthUser')
-          .then(res=>{
-              if(res.success){
-                  this.$store.dispatch('admin/admin', res.data);
-                  this.$router.push('dashboard');
-              }
-          })
+        mounted() {
+            this.$rest.api('isAuthUser')
+                .then(res => {
+                    if (res.success) {
+                        this.$store.dispatch('admin/admin', res.data);
+                        this.$router.push('dashboard');
+                    }
+                })
         },
         methods: {
             checkLogin() {
                 return this.$rest
-                    .api('loginUseEmail', {email: this.email, password: this.password})
+                    .api('loginUseEmail', { email: this.email, password: this.password })
                     .then(res => {
                         if (res.success) {
                             return this.$store.dispatch('admin/admin', res.data);
+                        }
+                        else {
+                            this.valid = false;
+                            this.email = '';
+                            this.password = '';
                         }
                         return Promise.reject(res.error);
                     })
@@ -87,6 +94,9 @@
                         return console.error(err);
                     })
 
+            },
+            clearValid() {
+                this.valid = true;
             }
         }
     }
