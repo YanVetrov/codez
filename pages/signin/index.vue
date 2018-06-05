@@ -19,13 +19,13 @@
                         <div class="col-xs-12">
                             <label v-if="!valid" style="color:red">Incorrect login\password</label>
                             <label>Email Address</label>
-                            <input class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' type="text" v-model="email" required="" placeholder="Email">
+                            <input @keyup.enter="checkLogin" class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' type="text" v-model="email" required="" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <label>Password</label>
-                            <input class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' v-model="password" type="password" required=""
+                            <input @keyup.enter="checkLogin" class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' v-model="password" type="password" required=""
                                    placeholder="Password">
                         </div>
                     </div>

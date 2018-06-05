@@ -1,14 +1,16 @@
 <template>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="white-box">
-        <h3 class="box-title">Main page</h3> </div>
-    </div>
-  </div>
+  <transactions></transactions>
 </template>
 
 <script>
-    export default {
-    }
+import transactions from '~/components/transactions/all'
+  export default {
+
+   components:{
+     transactions
+   }
+
+  }
 </script>
+
 
