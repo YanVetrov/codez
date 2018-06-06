@@ -1,15 +1,14 @@
 <template>
-  <transactions></transactions>
+   <all></all>
+
 </template>
 
 <script>
-import transactions from '~/components/transactions/all'
+import all from '~/components/transactions/all'
   export default {
-
    components:{
-     transactions
+     all
    }
-
   }
 </script>
 
