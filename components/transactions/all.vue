@@ -39,16 +39,11 @@
                 this.$root.$emit('loading', true);
                 // filter params
                 let filterParam = {};
-                if (this.currency1 && this.currency1 !== '')
-                    filterParam.currency1 = this.currency1;
-                if (this.currency2 && this.currency2 !== '')
-                    filterParam.currency2 = this.currency2;
-                if (this.startDate && this.startDate !== '')
-                    filterParam.startDate = this.startDate;
-                if (this.endDate && this.endDate !== '')
-                    filterParam.endDate = this.endDate;
-                if (this.filterId && this.filterId !== '')
-                    filterParam.id = this.filterId;
+                this.currency1 && this.currency1 !== '' ?   filterParam.currency1 =     this.currency1 : '';
+                this.currency2 && this.currency2 !== '' ?   filterParam.currency2 =     this.currency2 : '';
+                this.startDate && this.startDate !== '' ?   filterParam.startDate =     this.startDate : '';
+                this.endDate && this.endDate !== ''     ?   filterParam.endDate   =     this.endDate   : '';
+                this.filterId && this.filterId !== ''   ?   filterParam.id        =     this.filterId  : '';
 
                 // send api req
                 this.$rest.api('adminGetOrders', filterParam)
