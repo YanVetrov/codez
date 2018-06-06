@@ -124,10 +124,17 @@
         
     },
     mounted(){
+        this.$root.$emit('loading',true);
+        
         
         this.$rest.api('adminGetOrders')
         .then(res=>{
             this.transactions = res.data.transactions;
+
+
+
+            this.$root.$emit('loading',false);
+
         })
         
     }
