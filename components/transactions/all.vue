@@ -20,7 +20,7 @@
                           <span class='text-muted'><i class='ti-time'></i> {{tra.date}}</span>
                             
                             <h4 class="box-title">OUT</h4>
-                            <h3 class="box-title"><img class="img-circle" :src="tra.inner.logo" />{{tra.outter.bank}}</h3>
+                            <h3 class="box-title"><img class="img-circle" :src="tra.inner.logo" />{{tra.outer.bank}}</h3>
                             
                             <div class="table-responsive">
                                 <table class="table color-table info-table">
@@ -35,10 +35,10 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{tra.outter.sum}}</td>
-                                            <td>{{tra.outter.back}}</td>
-                                            <td>{{tra.outter.currency}}</td>
-                                            <td>{{tra.outter.total}}</td>
+                                            <td>{{tra.outer.sum}}</td>
+                                            <td>{{tra.outer.back}}</td>
+                                            <td>{{tra.outer.currency}}</td>
+                                            <td>{{tra.outer.total}}</td>
                                         </tr>
 
                                     </tbody>
@@ -103,53 +103,7 @@
         currency1:'',
         currency2:'',
 
-        transactions: [{
-            date: '24.06.2018 17:00:34',
-            id: '234235235235',
-            inner: {
-              bank: 'ALFA-BANK',
-              logo: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/gdax.png',
-              sum: '253.435 USD',
-              back: '2.3%',
-              currency: '1',
-              total: '400.3 USD'
-            },
-            outter: {
-              bank: 'SBERBANK',
-              logo: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/privat24.png',
-              sum: '23.435 RUB',
-              back: '1.3%',
-              currency: '1',
-              total: '340.3 RUB'
-            }
-
-          },
-          {
-            date: '24.06.2018 17:00:34',
-            id: '234235235235',
-            inner: {
-              bank: 'ALFA-BANK',
-              logo: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/gdax.png',
-              sum: '253.435 USD',
-              back: '2.3%',
-              currency: '1',
-              total: '400.3 USD'
-            },
-            outter: {
-              bank: 'SBERBANK',
-              logo: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/privat24.png',
-              sum: '23.435 RUB',
-              back: '1.3%',
-              currency: '1',
-              total: '340.3 RUB'
-            }
-
-          }
-
-
-
-
-        ]
+        transactions: []
 
 
       }
@@ -167,6 +121,14 @@
             console.log(obj)
         }
         
+        
+    },
+    mounted(){
+        
+        this.$rest.api('adminGetOrders')
+        .then(res=>{
+            this.transactions = res.data.transactions;
+        })
         
     }
 
