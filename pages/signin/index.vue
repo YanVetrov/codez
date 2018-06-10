@@ -17,7 +17,7 @@
                 <form class="form-horizontal new-lg-form" id="loginform" action="#">
                     <div class="form-group  m-t-20">
                         <div class="col-xs-12">
-                            <label v-if="!valid" style="color:red">Incorrect login\password</label>
+                            <label v-if="!valid" style="color:red">Incorrect login\password</label><br/>
                             <label>Email Address</label>
                             <input @keyup.enter="checkLogin" class="form-control" @focus='clearValid' :style='{borderColor:valid?"silver":"red"}' type="text" v-model="email" required="" placeholder="Email">
                         </div>
