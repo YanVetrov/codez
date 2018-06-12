@@ -1,15 +1,7 @@
-<template>
-   <all></all>
-
-</template>
-
 <script>
-import all from '~/components/transactions/all'
-  export default {
-   components:{
-     all
-   }
-  }
+    export default {
+        fetch ({ params, redirect }) {
+            redirect(302, '/routes/page/1')
+        }
+    }
 </script>
-
-

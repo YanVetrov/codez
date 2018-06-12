@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import all from '~/components/reviews/all'
+import all from '~/components/transactions/all'
   export default {
    components:{
      all

@@ -1,14 +1,7 @@
-<template>
-  <all></all>
-</template>
-
 <script>
-        import all from '~/components/history/all';
     export default {
-
-       components:{
-           all
-       }
+        fetch ({ params, redirect }) {
+            redirect(302, '/settings/history/page/1')
+        }
     }
 </script>
-

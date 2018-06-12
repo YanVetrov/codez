@@ -16,12 +16,23 @@
                                     </div>
                                 </li>
                             </ul>
+                                                                                            <div class="text-right">
+                                                                    <paging
+                                                                    
+                                                                    :currentPage="1"
+                                                                    :totalPages="2"
+                                                                    
+                                                                    
+                                                                    >
+                                                                       </paging>
+                                        </div>
                         </div>
                     </div>
 
 </template>
 
 <script>
+    import paging from '~/components/pagination';
     export default {
         props: ['history'],
         methods: {

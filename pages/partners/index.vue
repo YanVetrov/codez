@@ -1,17 +1,7 @@
-<template>
-<list />
-</template>
-
 <script>
-  import list from '~/components/admins/list'
-  export default {
-    components:{
-      list
+    export default {
+        fetch ({ params, redirect }) {
+            redirect(302, '/partners/page/1')
+        }
     }
-
-  }
 </script>
-
-<style scoped>
-
-</style>

@@ -75,7 +75,14 @@
                                                             </div>
                                                             <td colspan="7">
                                                                 <div class="text-right">
-                                                                    <ul class="pagination"> </ul>
+                                                                    <paging
+                                                                    
+                                                                    :currentPage="current_page"
+                                                                    :totalPages="total_page"
+                                                                    @page-changed="getReviews"
+                                                                    
+                                                                    >
+                                                                    </paging>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -89,84 +96,85 @@
 </template>
 
 <script>
-  export default {
+    import paging from '~/components/pagination';
+    export default {
+        components: { paging },
+        data() {
+            return {
+                name: '',
+                email: '',
+                link: '',
+                skype: '',
+                admins: [
 
-    data() {
-      return {
-        name: '',
-        email: '',
-        link: '',
-        skype: '',
-        admins: [
+                    {
+                        name: 'Alex',
+                        id: '34234',
+                        lastActive: '00:34:04',
+                        lvl: '10',
+                        avatar: '/img/parsers/binance.png',
+                        email: '324erw@gmail.com',
+                        skype: '@yans',
+                        date: '20/12/2018'
+                    }
 
-          {
-            name: 'Alex',
-            id: '34234',
-            lastActive: '00:34:04',
-            lvl: '10',
-            avatar: '/img/parsers/binance.png',
-            email: '324erw@gmail.com',
-            skype: '@yans',
-            date: '20/12/2018'
-          }
-
-        ],
-        show: false
-
-
-      }
-    },
-    methods: {
-
-      newAdmin() {
-        this.$root.$emit('loading', true)
-        let obj = {};
-        this.name && this.name !== '' ? obj.name = this.name : '';
-        this.skype && this.skype !== '' ? obj.skype = this.skype : '';
-        this.email && this.email !== '' ? obj.email = this.email : '';
-        this.link && this.link !== '' ? obj.link = this.link : '';
-        this.$rest.api('addAdmin',obj)
-          .then(res => {
-            console.log(res);
-            if (res.success) {
-              this.$notify({
-                duration: 5000,
-                type: 'info',
-                title: 'OK',
-                text: 'new Admin added'
-              })
-              this.show=false;
+                ],
+                show: false
 
 
             }
-            else {
-              this.$notify({
-                duration: 5000,
-                type: 'error',
-                title: 'Bad',
-                text: "Something wrong..."
-              })
+        },
+        methods: {
+
+            newAdmin() {
+                this.$root.$emit('loading', true)
+                let obj = {};
+                this.name && this.name !== '' ? obj.name = this.name : '';
+                this.skype && this.skype !== '' ? obj.skype = this.skype : '';
+                this.email && this.email !== '' ? obj.email = this.email : '';
+                this.link && this.link !== '' ? obj.link = this.link : '';
+                this.$rest.api('addAdmin', obj)
+                    .then(res => {
+                        console.log(res);
+                        if (res.success) {
+                            this.$notify({
+                                duration: 5000,
+                                type: 'info',
+                                title: 'OK',
+                                text: 'new Admin added'
+                            })
+                            this.show = false;
+
+
+                        }
+                        else {
+                            this.$notify({
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Bad',
+                                text: "Something wrong..."
+                            })
+                        }
+
+
+
+                        this.$root.$emit('loading', false);
+                    })
+
+
             }
 
 
-
-            this.$root.$emit('loading', false);
-          })
-
-
-      }
-
-
+        }
     }
-  }
 </script>
 
 <style scoped>
-  #add-contact,
-  .modal {
-    display: block;
-    opacity: 1;
+    #add-contact,
+    .modal {
+        display: block;
+        opacity: 1;
 
 
-  }
+    }
 </style>
