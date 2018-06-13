@@ -474,20 +474,23 @@
     }
 </script>
 
-<style>
-    .component-valut hr {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
 
+<style>
     .fade-enter-active,
     .fade-leave-active {
-        transition: opacity 0.05s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        transition: opacity 0.01s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
 
     .fade-enter,
     .fade-leave-to {
         opacity: 0;
+    }
+</style>
+
+<style scoped>
+    .component-valut hr {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .component-valut_right--span {
