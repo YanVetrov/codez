@@ -8,7 +8,7 @@
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">{{oper(list.operation)}}</h4>
                                             <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{list.time}}</small> </p>
-                                            <p><small class="text-muted"><i class="fa fa-user"></i> {{list.user}}</small> </p>
+                                            <p><small class="text-muted"><i class="fa fa-user"></i> {{list.user}}[{{list.id}}] {{list.email}} {{list.ip}}</small> </p>
                                         </div>
                                         <div class="timeline-body">
                                             <p>{{getTitle(list.operation)}} {{list.currency}} : {{list.total}} {{list.short}}</p>
@@ -17,14 +17,7 @@
                                 </li>
                             </ul>
                                                                                             <div class="text-right">
-                                                                    <paging
-                                                                    
-                                                                    :currentPage="1"
-                                                                    :totalPages="2"
-                                                                    
-                                                                    
-                                                                    >
-                                                                       </paging>
+
                                         </div>
                         </div>
                     </div>
@@ -32,36 +25,42 @@
 </template>
 
 <script>
-    import paging from '~/components/pagination';
     export default {
         props: ['history'],
-        methods: {
-            oper(num) {
-                switch (num) {
-                    case '1':
-                        return 'Изменение счёта'
-                        break;
-                    default:
-                        return 'Неизвестная операция'
-                        break;
+        data() {
+            return {
+                operations: {
+                    change: 'Changing operation',
+                    trans: 'Transaction operation'
+                },
+                description: {
+                    change: 'Changed from',
+                    trans: 'Transaction would be ready'
                 }
+            }
+        },
+        methods: {
+            oper(type) {
+                for (let k in this.operations) {
+                    if (k == type) {
+                        return this.operations[type];
+                    }
 
+                }
+                return 'Unknown';
 
             },
-            getTitle(num) {
-                switch (num) {
-                    case '1':
-                        return 'Администратор отредактировал  -'
-                        break;
-                    default:
-                        return 'Неизвестная операция'
-                        break;
+            getTitle(type) {
+                for (let k in this.description) {
+                    if (k == type) {
+                        return this.description[type];
+                    }
+
                 }
-                this.$rest.api('getInfo')
-                    .then((res) => { console.log(res) })
+                return 'Unknown operation';
+            },
 
 
-            }
 
 
         }

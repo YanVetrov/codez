@@ -6,50 +6,92 @@
             <option disabled>Валюта</option>
             <option>валюта 1</option>
         </select>
-        <button class="fcbtn btn btn-info btn-1b" @click="getOper" style="margin:5px"><i class='fa fa-search'></i></button>
+        <button class="fcbtn btn btn-info btn-1b" @click="getOrders" style="margin:5px"><i class='fa fa-search'></i></button>
         
         <history :history="history"></history>
-        
+         <paging
+          :currentPage="current_page"
+          :totalPages="total_page"
+          @page-changed="getHistory"
+         />
+         
         </div>
 </template>
 
 <script>
+    import paging from '~/components/pagination';
     import history from '~/components/history/history';
     export default {
         data() {
             return {
-                operName:'',
-                currency:'',
-                history: [
-                    { currency: 'Private UAH', short: 'UAH', total: '11', operation: "1", time: "24.06.2018 13:44", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
-                    { currency: 'Private UAH', short: 'UAH', total: '15', operation: "1", time: "21.05.2018 24:54", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
-                    { currency: 'Private UAH', short: 'UAH', total: '223', operation: "1", time: "24.04.2018 13:44", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
-                    { currency: 'Private UAH', short: 'UAH', total: '55', operation: "1", time: "14.03.2018 23:34", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
-                    { currency: 'Private UAH', short: 'UAH', total: '32', operation: "1", time: "22.03.2018 13:44", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
-                    { currency: 'Private UAH', short: 'UAH', total: '235', operation: "1", time: "25.02.2018 12:54", user: "Sergey12[id:422] serg@gmail.com 194.22.42.122 " },
+                operName: '',
+                currency: '',
+                current_page: '',
+                total_page: '',
+                filterParam: {},
+                history: [{
+
+                        currency: 'Private UAH',
+                        short: 'UAH',
+                        total: '11',
+                        operation: "change",
+                        time: "24.06.2018 13:44",
+                        user: "Sergey12",
+                        id: 'id:422',
+                        ip: '194.22.42.122',
+                        email: 'serg@gmail.com',
+
+                    },
+                    { currency: 'Private UAH', short: 'UAH', total: '11', operation: "change", time: "24.06.2018 13:44", user: "Sergey12", id: 'id:422', ip: '194.22.42.122', email: 'serg@gmail.com', },
                 ],
             }
         },
         methods: {
             getOrders() {
                 this.$root.$emit('loading', true);
-                // filter params
                 let obj = {}
-                this.operName.trim()!==''?obj.operName=this.operName:'';
-                this.currency!==''?obj.currency=this.currency:'';
-                console.log(obj);
-
-                // send api req
+                this.operName.trim() !== '' ? obj.operName = this.operName : '';
+                this.currency !== '' ? obj.currency = this.currency : '';
+                this.filterParam = obj;
                 this.$rest.api('adminGetOrders', obj)
                     .then(res => {
-                      
+                        this.current_page = res.data.count.select_page || 1;
+                        this.history = res.data.history;
+                        this.total_page = res.data.count.pages;
                         this.$root.$emit('loading', false);
                     })
 
-            }
+            },
+            getHistory(page) {
+                this.$root.$emit('loading', false);
+                let pages = { page: page || 1, limit: 10 },
+                    filter = this.filterParam,
+                    obj = { pages, filter };
+                this.$rest.api('getHistory', obj)
+                    .then(res => {
+                        if (res.success) {
+                            this.current_page = res.data.count.select_page || 1;
+                            this.history = res.data.history;
+                            this.total_page = res.data.count.pages;
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Error get history!',
+                                text: res.error.message,
+                            });
+                            this.$router.back();
+                        }
+                        this.$root.$emit('loading', true);
+
+                    })
+            },
         },
         components: {
-            history
+            history,
+            paging
         }
 
     }
