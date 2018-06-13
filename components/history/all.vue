@@ -44,7 +44,6 @@
                 this.$rest.api('getAdminHistory', obj)
                     .then(res => {
                         this.$root.$emit('loading', false);
-
                         if (res.success) {
                             this.current_page = res.data.count.select_page || 1;
                             this.history = res.data.history;
