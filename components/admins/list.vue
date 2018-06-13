@@ -159,7 +159,7 @@
                                 type: 'info',
                                 title: 'OK',
                                 text: 'new Admin added'
-                            })
+                            });
                             this.show = false;
 
 

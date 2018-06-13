@@ -120,20 +120,13 @@
                     child: []
                 },
                 {
-                    name: 'Statistic',
-                    page: '/statistic',
-                    isShow: false,
-                    icon: 'chart-line',
-                    child: []
-                },
-                {
                     name: 'Users',
                     page: '/users',
                     isShow: false,
                     icon: 'mdi mdi-account-multiple-outline',
                     child: [
                         {name: 'All users', page: '/clients', icon: 'mdi mdi-account-multiple-outline'},
-                        {name: 'Partners', page: '/partners', icon: 'mdi mdi-account-multiple-outline'},
+                        {name: 'Partners', page: '/partners', icon: 'chart-line'},
                     ]
                 }
 
