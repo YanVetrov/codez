@@ -36,9 +36,10 @@ module.exports = {
         // '~/plugins/airbrake.js',
         '~/plugins/rest-api',
         {src: "~/plugins/vue2-editor", ssr: false},
+        {src: '~/plugins/v-select.js', ssr: false},
         {src: "~/plugins/vue-charts.js", ssr: false},
         {src: "~/plugins/vue-notify", ssr: false},
-        {src: '~plugins/vue-core-image-upload.js', ssr: false}
+        {src: '~/plugins/vue-core-image-upload.js', ssr: false}
 
     ],
 
@@ -47,7 +48,9 @@ module.exports = {
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
     ],
-
+    env: {
+        config: config
+    },
     /*
      ** Axios module configuration
      */

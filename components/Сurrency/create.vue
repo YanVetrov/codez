@@ -169,11 +169,13 @@
                             <span>Парсер</span>
 
                             <div class="component-valut_right-select">
-                                <select v-model="form.parser_rate">
-                                    <option disabled selected>Выбирете Парсер</option>
-                                    <option>Privat24</option>
-                                    <option>PayPal</option>
-                                </select>
+                                <v-select :options="optionsParsers" label="title" placeholder="Вибирите парсер">
+                                    <template slot="option" slot-scope="option">
+                                        <img :src="fsPath+option.logo" style="width: 20px;height: 20px"/>
+                                        {{ option.title }}
+                                    </template>
+                                </v-select>
+
                             </div>
                         </label>
                         <div class="component-valut_right-info">
@@ -327,6 +329,8 @@
         components: {Loading},
         data() {
             return {
+                fsPath: process.env.config.fsPath,
+
                 form: {
                     name: '',
                     type: '',
@@ -348,6 +352,7 @@
                     link: '',
                     account: ''
                 },
+                optionsParsers: [{img: 'img', title: 'privat24', key: 'p24'}],
                 status_load: true,
                 afterPost: false,
                 title: '',
@@ -364,7 +369,20 @@
                 imgDataUrl: ''
             };
         },
+        mounted() {
+            this.getParsers();
+        },
         methods: {
+            getParsers() {
+
+                return this.$rest.api('getAllParsers')
+                    .then((res) => {
+                        this.optionsParsers = res.data.parsers.map(el => {
+                            return {...el.conf, _id: el._id};
+                        })
+
+                    })
+            },
             toggleShow() {
                 this.show = !this.show;
             },
