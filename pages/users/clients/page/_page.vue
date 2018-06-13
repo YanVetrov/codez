@@ -11,7 +11,7 @@
                         {{first_name}} {{last_name}}
                     </div>
                     <div>
-                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/users/edit/'+id"><i
+                        <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'/users/clients/edit/'+id"><i
                                 class='icon-pencil'></i>
                         </nuxt-link>
                     </div>
@@ -42,7 +42,7 @@
     import Loading from "~/components/loading";
     import moment from 'moment'
     import pagination from '~/components/pagination'
-    import Users from "~/components/Users/users";
+    import Users from "~/components/users/users";
 
     export default {
         components: {Users, Loading, pagination},

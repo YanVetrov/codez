@@ -15,7 +15,8 @@
 
                 <li v-for="(el,i) in menu" :key="i">
                     <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
-                               @click.native="el.child && el.child.length === 0 || (el.isShow = !el.isShow)" class="waves-effect"
+                               @click.native="el.child && el.child.length === 0 || (el.isShow = !el.isShow)"
+                               class="waves-effect"
                                active-class="active">
                         <i class="mdi fa-fw" :class="'mdi-'+el.icon" data-icon="v"></i>
                         <span class="hide-menu">
@@ -105,20 +106,6 @@
                     ]
                 },
                 {
-                    name: 'Partners',
-                    page: '/partners',
-                    isShow: false,
-                    icon: 'account-multiple',
-                    child: []
-                },
-                {
-                    name: 'Feedback',
-                    page: '/fback',
-                    isShow: false,
-                    icon: 'message',
-                    child: []
-                },
-                {
                     name: 'Rules',
                     page: '/rules',
                     isShow: false,
@@ -143,8 +130,11 @@
                     name: 'Users',
                     page: '/users',
                     isShow: false,
-                    icon: 'icon-user',
-                    child: [{name: 'All users', page: '/page', icon: 'icon-user'}]
+                    icon: 'mdi mdi-account-multiple-outline',
+                    child: [
+                        {name: 'All users', page: '/clients', icon: 'mdi mdi-account-multiple-outline'},
+                        {name: 'Partners', page: '/partners', icon: 'mdi mdi-account-multiple-outline'},
+                    ]
                 }
 
             ];

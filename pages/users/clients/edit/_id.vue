@@ -13,9 +13,9 @@
                 <label>ПАРТНЕРСКИЙ ПРОЦЕНТ</label>
                 <input type="text" class="form-control form-control-line" v-model="rate">
                 <br>
-                <nuxt-link type="button" class=" btn-outline btn-primary btn-1e" :to="'/users/page/1'">
+                <button type="button" class=" btn-outline btn-primary btn-1e" @click="back">
                     Вернуться
-                </nuxt-link>
+                </button>
                 <button type="button" class="btn btn-outline btn-primary btn-1e" @click='editUser()'>отправить</button>
             </div>
             <div class="row" v-else>
@@ -24,8 +24,8 @@
                         <succses_page/>
                         {{text}}
                     </div>
-                    <nuxt-link class="btn btn-outline btn-rounded btn-info " :to="'/users/page/'">Вернуться<i
-                    ></i>
+                    <nuxt-link class="btn btn-outline btn-rounded btn-info " :to="'/users/clients/'">Вернуться
+                        <i></i>
                     </nuxt-link>
                 </div>
             </div>
@@ -57,6 +57,9 @@
             }
         },
         methods: {
+            back() {
+                this.$router.back();
+            },
             getOneUser() {
                 this.$rest.api('getOneUser', {id: this.id})
                     .then(response => {

@@ -21,8 +21,7 @@
     export default {
 
         props: {
-            currentPage: {
-            },
+            currentPage: {},
             totalPages: {},
             // Items per page
             itemsPerPage: Number,
