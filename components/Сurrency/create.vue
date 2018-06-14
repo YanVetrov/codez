@@ -75,7 +75,13 @@
                         <span>XML Валюты</span>
 
                         <div>
-                            <input type="text" v-model="form.xml">
+                            <v-select :options="optionsXML" label="xml" placeholder="Введите XML"
+                                      v-model="form.xml">
+                                <template slot="option" slot-scope="option">
+                                    {{ option.name }}
+                                </template>
+                            </v-select>
+
                         </div>
                     </label>
 
@@ -218,7 +224,12 @@
                             <span>Валидатор для поля депозита</span>
 
                             <div>
-                                <input type="text" v-model="form.regexpDeposit">
+                                <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
+                                          v-model="form.regexpDeposit">
+                                    <template slot="option" slot-scope="option">
+                                        {{ option.name }}
+                                    </template>
+                                </v-select>
                             </div>
                         </label>
 
@@ -233,6 +244,7 @@
                             <span>Название поля для вывода</span>
 
                             <div>
+
                                 <input type="text" v-model="form.fieldWithdrawal">
                             </div>
                         </label>
@@ -241,7 +253,12 @@
                             <span>Валидатор для поля вывода</span>
 
                             <div>
-                                <input type="text" v-model="form.regexpWithdrawal">
+                                <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
+                                          v-model="form.regexpWithdrawal">
+                                    <template slot="option" slot-scope="option">
+                                        {{ option.name }}
+                                    </template>
+                                </v-select>
                             </div>
                         </label>
 
@@ -269,21 +286,61 @@
 
                     </div>
 
-                    <hr>
-                    <br>
-                    <span class="component-valut_right--span">
-                        Инструкция оплаты
-                    </span>
-                    <div class="component-valut">
+                    <div class="component-valut_right-payment-method">
 
-                        <label class="">
-
-
-                            <vue-editor v-model="form.help_pay"></vue-editor>
-
-                        </label>
+                        <div class="component-valut_right-payment-method_title">
+                            <p>Инструкция ручной оплаты</p>
+                            <div>
+                                <a class="cl-pointer" @click="form.type_help_text = 'standard'"
+                                   :class="{active:(form.type_help_text==='standard')}">Стандартная</a>
+                                <a class="cl-pointer" @click="form.type_help_text = 'unique'"
+                                   :class="{active:(form.type_help_text==='unique')}">Уникальное</a>
+                            </div>
+                        </div>
 
                     </div>
+
+                    <div v-if="form.type_help_text==='standard'">
+
+                        <br>
+                        <div class="form-manual-must text-center">
+                            <h3 class="title">Для завершение обмена необходимо выполнить следушие действия:</h3>
+                            <ol>
+                                <li>
+                                    <div>
+                                        <p>Авторизируйтесь в:</p>
+                                        <a href="" class="btn btn-log-in"><img :src="imgDataUrl" alt=""><span>{{form.name}}</span></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p>Оплатите:</p>
+                                        <div class="form-manual-must_txt">СУММА {{form.type}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p>На счет:</p>
+                                        <div class="form-manual-must_txt">{{form.account}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p>Комментарий к платежу:</p>
+                                        <div class="form-manual-must_txt">#OrderID</div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div v-if="form.type_help_text==='unique'">
+                        <div class="component-valut">
+                            <label class="">
+                                <vue-editor v-model="form.help_pay"></vue-editor>
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
                 <div v-if="form.type_pay==='auto'">
                     <div class="component-valut_right-item">
@@ -340,21 +397,25 @@
                     precision: 2,
                     type_rate: 'manually',
                     type_pay: 'manually',
-                    regexpDeposit: '',
                     fieldDeposit: '',
-                    regexpWithdrawal: '',
+                    fieldWithdrawal: '',
+
+                    regexpDeposit: undefined,
+                    regexpWithdrawal: undefined,
                     // parser
                     parser_rate: '',
                     currency_for_parser: '',
                     selectParser: undefined,
                     //===
-                    fieldWithdrawal: '',
                     mechant: '',
+                    type_help_text: 'standard',
                     help_pay: '',
                     link: '',
                     account: ''
                 },
                 optionsParsers: [{img: '', title: 'Загрузка...', key: 'null'}],
+                optionsRegexp: [{ name: 'Загрузка...', regexp: 'null'}],
+                optionsXML: [{ name: 'Введите XML', xml: 'xml'}],
                 status_load: true,
                 afterPost: false,
                 title: '',
@@ -372,10 +433,9 @@
             };
         },
         mounted() {
-            setInterval(() => {
-                console.log(this.form.name_parser)
-            }, 1000);
+            this.getXMLestandardsInfo();
             this.getParsers();
+            this.getRegExp();
         },
         methods: {
             getParsers() {
@@ -385,6 +445,22 @@
                         this.optionsParsers = res.data.parsers.map(el => {
                             return {...el.conf, _id: el._id};
                         })
+
+                    })
+            },
+            getRegExp() {
+
+                return this.$rest.api('getAllRegExp')
+                    .then((res) => {
+                        this.optionsRegexp = res.data.regexp
+
+                    })
+            },
+            getXMLestandardsInfo() {
+
+                return this.$axios.get('https://proexchanger.net/service/api/v1/estandardsInfo')
+                    .then((res) => {
+                        this.optionsXML = res.data.data.res;
 
                     })
             },
@@ -484,7 +560,7 @@
 </script>
 
 
-<style>
+<style scoped>
     .v-select.single .selected-tag {
         position: absolute !important;
     }
@@ -498,9 +574,89 @@
     .fade-leave-to {
         opacity: 0;
     }
-</style>
 
-<style scoped>
+    .form-manual-must ol {
+        margin: 0 -.875rem 15px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        counter-reset: a;
+    }
+
+    ol, ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .form-manual-must_txt {
+        font-size: 1.5rem;
+        margin-top: 1.8rem;
+        font-weight: 600;
+
+    }
+
+    .form-manual-must .btn {
+        margin-top: 10px;
+        border-radius: 35px;
+        font-weight: 600;
+    }
+
+    .form-manual-must .btn img {
+        margin: 0 15px 0 0;
+        max-width: 100%;
+        height: 29px;
+        border-radius: 50%;
+    }
+
+    .btn-log-in {
+        margin: 0 auto;
+        max-width: 220px;
+        width: 100%;
+        background: #f0f1f4;
+        color: inherit;
+        font-size: 1.5rem;
+        line-height: 2;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-pack: center;
+        justify-content: center;
+        border: 1px solid #f0f1f4;
+    }
+
+    .form-manual-must li {
+        border: 1px solid #e6e6e6;
+        margin: 2em .875rem .875rem;
+        padding: 1rem .94rem;
+        -ms-flex: 1 1;
+        flex: 1 1;
+        position: relative;
+    }
+
+    .form-manual-must li:before {
+        counter-increment: a;
+        content: counter(a);
+        font-size: 15px;
+        font-weight: 500;
+        position: absolute;
+        top: -19px;
+        width: 40px;
+        height: 19px;
+        line-height: 35px;
+        border: 1px solid #e6e6e6;
+        border-radius: 20px 20px 0 0/20px 20px 0 0;
+        border-bottom: transparent;
+        background: #fff;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
 
     .component-valut hr {
         margin-top: 0;
