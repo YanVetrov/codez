@@ -117,7 +117,11 @@
                     page: '/routes',
                     isShow: false,
                     icon: 'routes',
-                    child: []
+                    child: 
+                        [
+                        {name: 'All routes', page: '/all', icon: 'routes'},
+                        {name: 'Create route', page: '/create', icon: 'routes'},
+                        ]
                 },
                 {
                     name: 'Users',

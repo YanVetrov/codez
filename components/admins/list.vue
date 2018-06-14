@@ -96,7 +96,7 @@
                                 <td colspan="7">
                                     <div class="text-right">
                                         <paging :currentPage="current_page" :totalPages="total_page"
-                                                @page-changed="newAdmin"/>
+                                                @page-changed="getAdmins"/>
                                     </div>
                                 </td>
                             </tr>
@@ -181,6 +181,30 @@
 
 
             },
+            getAdmins(page) {
+                this.$root.$emit('loading', true);
+                this.$rest.api('getAdmins', { page, limit: 10 })
+                    .then(res => {
+                        if (res.success) {
+                            this.routes = res.data.admins;
+                            this.current_page = res.data.count.select_page || 1;
+                            this.total_page = res.data.count.pages || 1;
+
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Error get admins!',
+                                text: res.error.message,
+                            });
+                            this.$router.back();
+                        }
+                        this.$root.$emit('loading', false);
+
+                    })
+            },
             deleteAdmin(id) {
                 this.$rest.api('deleteAdmin')
                     .then(res => {
@@ -208,6 +232,9 @@
                                 text: res.error.message,
                             });
                         }
+                    })
+                    .catch(err => {
+                        this.$root.$emit('loading', false);
                     })
 
             }

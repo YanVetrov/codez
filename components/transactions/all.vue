@@ -45,7 +45,7 @@
         },
         methods: {
             getTransactions(page) {
-                this.$root.$emit('loading', false);
+                this.$root.$emit('loading', true);
                 let filters = {};
                 this.currency1 && this.currency1 !== '' ? filters.currency1 = this.currency1 : '';
                 this.currency2 && this.currency2 !== '' ? filters.currency2 = this.currency2 : '';
@@ -74,8 +74,11 @@
                             });
                             this.$router.back();
                         }
-                        this.$root.$emit('loading', true);
+                        this.$root.$emit('loading', false);
 
+                    })
+                    .catch(err=>{
+                        this.$root.$emit('loading', false);
                     })
 
             },
