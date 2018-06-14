@@ -169,7 +169,8 @@
                             <span>Парсер</span>
 
                             <div>
-                                <v-select :options="optionsParsers" label="title" placeholder="Вибирите парсер">
+                                <v-select :options="optionsParsers" label="title" placeholder="Вибирите парсер"
+                                          v-model="form.selectParser">
                                     <template slot="option" slot-scope="option">
                                         <img :src="fsPath+option.logo" style="width: 20px;height: 20px"/>
                                         {{ option.title }}
@@ -329,7 +330,6 @@
         data() {
             return {
                 fsPath: process.env.config.fsPath,
-
                 form: {
                     name: '',
                     type: '',
@@ -341,17 +341,20 @@
                     type_rate: 'manually',
                     type_pay: 'manually',
                     regexpDeposit: '',
-                    parser_rate: '',
                     fieldDeposit: '',
                     regexpWithdrawal: '',
+                    // parser
+                    parser_rate: '',
                     currency_for_parser: '',
+                    selectParser: undefined,
+                    //===
                     fieldWithdrawal: '',
                     mechant: '',
                     help_pay: '',
                     link: '',
                     account: ''
                 },
-                optionsParsers: [{img: 'img', title: 'privat24', key: 'p24'}],
+                optionsParsers: [{img: '', title: 'Загрузка...', key: 'null'}],
                 status_load: true,
                 afterPost: false,
                 title: '',
@@ -369,6 +372,9 @@
             };
         },
         mounted() {
+            setInterval(() => {
+                console.log(this.form.name_parser)
+            }, 1000);
             this.getParsers();
         },
         methods: {
@@ -428,7 +434,6 @@
                     type: this.form.type,
                     xml: this.form.xml,
                     reserve: this.form.reserve,
-                    rate: this.form.rate,
                     precision: this.form.precision,
                     type_pay: this.form.type_pay,
                     regexpDeposit: this.form.regexpDeposit,
@@ -438,6 +443,9 @@
                     help_pay: this.form.help_pay,
                     link: this.form.link,
                     account: this.form.account,
+                    parserId: this.form.selectParser._id && this.form.selectParser._id ? this.form.selectParser._id : undefined,
+                    currencyParser: this.form.currency_for_parser,
+                    rate: this.form.rate,
                     imageId: this.form.imageId
                 })
                     .then(response => {
@@ -480,6 +488,7 @@
     .v-select.single .selected-tag {
         position: absolute !important;
     }
+
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity 0.01s cubic-bezier(1.0, 0.5, 0.8, 1.0);
