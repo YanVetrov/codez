@@ -14,7 +14,7 @@
         <select v-model="currency2">
             <option>валюта 2</option>
         </select>
-        <button class="fcbtn btn btn-info btn-1b" @click="getOrders" style="margin:5px">accept</button>
+        <button class="fcbtn btn btn-info btn-1b" @click="getTransactions" style="margin:5px">accept</button>
         
         <transactions :transactions="transactions" ></transactions>
          <paging
@@ -43,40 +43,25 @@
             }
         },
         methods: {
-            getOrders() {
-                this.$root.$emit('loading', true);
-
-                let filterParam = {};
-                this.currency1 && this.currency1 !== '' ? filterParam.currency1 = this.currency1 : '';
-                this.currency2 && this.currency2 !== '' ? filterParam.currency2 = this.currency2 : '';
-                this.startDate && this.startDate !== '' ? filterParam.startDate = this.startDate : '';
-                this.endDate && this.endDate !== '' ? filterParam.endDate = this.endDate : '';
-                this.filterId && this.filterId !== '' ? filterParam.id = this.filterId : '';
-                this.filterParam = filterParam;
-
-                this.$rest.api('adminGetOrders', filterParam)
-                    .then(res => {
-                        this.current_page = res.data.count.select_page || 1;
-                        this.transactions = res.data.transactions;
-                        this.total_page = res.data.count.pages;
-                        this.$root.$emit('loading', false);
-                    })
-                    .catch(err => {
-                        this.$root.$emit('loading', false);
-                    })
-
-            },
             getTransactions(page) {
                 this.$root.$emit('loading', false);
-                let pages = { page: page || 1, limit: 10 },
-                    filter = this.filterParam,
-                    obj = { pages, filter }
-                this.$rest.api('getTransactions', obj)
+                let filters = {};
+                this.currency1 && this.currency1 !== '' ? filters.currency1 = this.currency1 : '';
+                this.currency2 && this.currency2 !== '' ? filters.currency2 = this.currency2 : '';
+                this.startDate && this.startDate !== '' ? filters.startDate = this.startDate : '';
+                this.endDate && this.endDate !== '' ? filters.endDate = this.endDate : '';
+                this.filterId && this.filterId !== '' ? filters.id = this.filterId : '';
+                this.filterParam = filters;
+                let pages = { page, limit: 10 },
+                    obj = { filters, pages }
+                this.$rest.api('adminGetOrders', obj)
                     .then(res => {
-                        if (res.success) {
-                            this.current_page = res.data.count.select_page || 1;
+                        console.log(res)
+                        if (res.success === true) {
                             this.transactions = res.data.transactions;
-                            this.total_page = res.data.count.pages;
+                            this.current_page = res.data.count.select_page || 1;
+                            this.total_page = res.data.count.pages || 1;
+
                         }
                         if (!res.success) {
                             this.$notify({
@@ -91,10 +76,22 @@
                         this.$root.$emit('loading', true);
 
                     })
+
             },
         },
         mounted() {
-            return this.getOrders();
+            this.$root.$on('delete', (id) => {
+                console.log('ok')
+                this.transactions.forEach((el, i) => {
+                    if (el.id == id) {
+                        this.transactions.splice(i, 1);
+                    }
+
+                })
+
+
+            })
+            return this.getTransactions();
         },
         components: {
             transactions,

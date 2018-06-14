@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-sm-6" v-for="tra in transactions" :key="tra._id">
+        <div class="col-sm-6" v-for="tra in transactions" :key="tra.id">
             <div class="white-box">
                 <span class='text-muted'><i class='ti-time'></i> {{tra.date}}</span>
 
@@ -55,18 +55,7 @@
                     </table>
                 </div>
                 <hr/>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12" style="width:100%">
-                        <div class="white-box">
-                            <div class="button-box">
-                                <button class="fcbtn btn btn-success btn-outline btn-1b">ok</button>
-                                <button class="fcbtn btn btn-info btn-outline btn-1b">not paid</button>
-                                <button class="fcbtn btn btn-info btn-outline btn-1b">return</button>
-                                <button class="fcbtn btn btn-danger btn-outline btn-2b">in trash</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <buttons :id="tra.id"></buttons>
                 <span class='text-muted'>TRANSACTION ID: {{tra.id}}</span>
             </div>
         </div>
@@ -75,8 +64,16 @@
 </template>
 
 <script>
+    import buttons from './buttons';
     export default {
-        props:['transactions']
+        data(){
+          return{
+          }  
+        },
+        props:['transactions'],
+        components:{
+            buttons
+        },
     }
 </script>
 

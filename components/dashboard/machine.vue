@@ -37,9 +37,10 @@
                     <h4>Free: {{(disk.free/1024).toFixed(2)}} GB</h4></div>
                 <span class="text-info">{{parseInt( (100-(100/disk.total) *disk.free ))}}%</span>
                 <div class="progress m-b-0">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0"
-                         aria-valuemax="100" :style="{width:parseInt( (100-(100/disk.total) *disk.free ))+'%'}"><span
-                            class="sr-only"></span></div>
+                    <div class="progress-bar progress-bar-info"
+                         :style="{width:parseInt( (100-(100/disk.total) *disk.free ))+'%'}">
+                        <span class="sr-only"></span>
+                    </div>
                 </div>
             </div>
         </div>

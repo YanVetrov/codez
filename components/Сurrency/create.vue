@@ -80,24 +80,24 @@
                                 <template slot="option" slot-scope="option">
                                     {{ option.name }}
                                 </template>
-                            </v-select>
+</v-select>
 
-                        </div>
-                    </label>
+</div>
+</label>
 
-                    <div class="component-valut_right-info">
-                        <a><img src="~/static/images/information.svg" alt=""></a>
-                        <p>Введите обозначение (согласно стандарту) <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
-                        </p>
-                    </div>
-                </div>
+<div class="component-valut_right-info">
+    <a><img src="~/static/images/information.svg" alt=""></a>
+    <p>Введите обозначение (согласно стандарту) <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
+    </p>
+</div>
+</div>
 
-                <hr>
+<hr>
 
-                <div class="component-valut_right-item">
+<div class="component-valut_right-item">
 
 
-                    <label>
+    <label>
                         <span>Сумма резерва</span>
 
                         <div>
@@ -105,36 +105,32 @@
                         </div>
                     </label>
 
-                    <div class="component-valut_arrow">
-                        <p>Точность суммы</p>
-                        <div>
-                            <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1"
-                               class="component-valut_arrov-left"></a>
-                            <span>{{form.precision}}</span>
-                            <a @click="form.precision = (form.precision+1 > 16)? 16 : form.precision+1"
-                               class="component-valut_arrov-right"></a>
-                        </div>
-                    </div>
-                </div>
+    <div class="component-valut_arrow">
+        <p>Точность суммы</p>
+        <div>
+            <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1" class="component-valut_arrov-left"></a>
+            <span>{{form.precision}}</span>
+            <a @click="form.precision = (form.precision+1 > 16)? 16 : form.precision+1" class="component-valut_arrov-right"></a>
+        </div>
+    </div>
+</div>
 
-                <div class="component-valut_right-payment-method">
+<div class="component-valut_right-payment-method">
 
-                    <div class="component-valut_right-payment-method_title">
-                        <p>Курс валюты {{form.name}} {{form.type}} к USD</p>
-                        <div>
-                            <a class="cl-pointer" @click="form.type_rate = 'manually'"
-                               :class="{active:(form.type_rate==='manually')}">Вручную</a>
-                            <a class="cl-pointer" @click="form.type_rate = 'auto'"
-                               :class="{active:(form.type_rate==='auto')}">Автоматически</a>
-                        </div>
-                    </div>
+    <div class="component-valut_right-payment-method_title">
+        <p>Курс валюты {{form.name}} {{form.type}} к USD</p>
+        <div>
+            <a class="cl-pointer" @click="form.type_rate = 'manually'" :class="{active:(form.type_rate==='manually')}">Вручную</a>
+            <a class="cl-pointer" @click="form.type_rate = 'auto'" :class="{active:(form.type_rate==='auto')}">Автоматически</a>
+        </div>
+    </div>
 
-                </div>
+</div>
 
-                <div v-if="form.type_rate==='manually'">
-                    <div class="component-valut_right-item">
+<div v-if="form.type_rate==='manually'">
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Введите курс валюты<br></span>
 
                             <div class="component-valut_right">
@@ -142,36 +138,35 @@
                             </div>
                         </label>
 
-                        <div class="component-valut_right-info">
-                            <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Внимание данное поле необходимо корректировать для того чтоб партнерские вознаграждения
-                                начислялись верно.</p>
-                        </div>
-                    </div>
+        <div class="component-valut_right-info">
+            <a><img src="~/static/images/information.svg" alt=""></a>
+            <p>Внимание данное поле необходимо корректировать для того чтоб партнерские вознаграждения начислялись верно.</p>
+        </div>
+    </div>
 
 
-                </div>
-                <div v-if="form.type_rate==='auto'">
+</div>
+<div v-if="form.type_rate==='auto'">
 
-                    <div class="component-valut_right-item">
+    <div class="component-valut_right-item">
 
 
-                        <label>
+        <label>
                             <span>Валюта</span>
 
                             <div>
                                 <input type="text" v-model="form.currency_for_parser">
                             </div>
                         </label>
-                        <div class="component-valut_right-info">
-                            <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Код валюты (Пример: EUR)</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="component-valut_right-item">
+        <div class="component-valut_right-info">
+            <a><img src="~/static/images/information.svg" alt=""></a>
+            <p>Код валюты (Пример: EUR)</p>
+        </div>
+    </div>
+    <hr>
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Парсер</span>
 
                             <div>
@@ -184,43 +179,41 @@
                                 </v-select>
                             </div>
                         </label>
-                        <div class="component-valut_right-info">
-                            <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>C полным списком парсеров и доступных им направлений вы можете увидеть в розделе
-                                <nuxt-link to="/parsers">Парсеры курсов</nuxt-link>
-                            </p>
-                        </div>
+        <div class="component-valut_right-info">
+            <a><img src="~/static/images/information.svg" alt=""></a>
+            <p>C полным списком парсеров и доступных им направлений вы можете увидеть в розделе
+                <nuxt-link to="/parsers">Парсеры курсов</nuxt-link>
+            </p>
+        </div>
 
 
-                    </div>
+    </div>
 
-                </div>
+</div>
 
 
-                <div class="component-valut_right-payment-method">
+<div class="component-valut_right-payment-method">
 
-                    <div class="component-valut_right-payment-method_title">
-                        <p>Способ оплаты</p>
-                        <div>
-                            <a class="cl-pointer" @click="form.type_pay = 'manually'"
-                               :class="{active:(form.type_pay==='manually')}">Вручную</a>
-                            <a class="cl-pointer" @click="form.type_pay = 'auto'"
-                               :class="{active:(form.type_pay==='auto')}">Автоматически</a>
-                        </div>
-                    </div>
+    <div class="component-valut_right-payment-method_title">
+        <p>Способ оплаты</p>
+        <div>
+            <a class="cl-pointer" @click="form.type_pay = 'manually'" :class="{active:(form.type_pay==='manually')}">Вручную</a>
+            <a class="cl-pointer" @click="form.type_pay = 'auto'" :class="{active:(form.type_pay==='auto')}">Автоматически</a>
+        </div>
+    </div>
 
-                </div>
-                <div v-if="form.type_pay==='manually'">
-                    <div class="component-valut_right-item">
+</div>
+<div v-if="form.type_pay==='manually'">
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Название поля для депозита</span>
 
                             <div>
                                 <input type="text" v-model="form.fieldDeposit">
                             </div>
                         </label>
-                        <label>
+        <label>
                             <span>Валидатор для поля депозита</span>
 
                             <div>
@@ -234,13 +227,13 @@
                         </label>
 
 
-                    </div>
+    </div>
 
-                    <hr>
+    <hr>
 
-                    <div class="component-valut_right-item">
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Название поля для вывода</span>
 
                             <div>
@@ -249,7 +242,7 @@
                             </div>
                         </label>
 
-                        <label>
+        <label>
                             <span>Валидатор для поля вывода</span>
 
                             <div>
@@ -262,13 +255,13 @@
                             </div>
                         </label>
 
-                    </div>
+    </div>
 
-                    <hr>
+    <hr>
 
-                    <div class="component-valut_right-item">
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Ссылка платежной системы</span>
 
                             <div>
@@ -276,7 +269,7 @@
                             </div>
                         </label>
 
-                        <label>
+        <label>
                             <span>Ваш счет</span>
 
                             <div>
@@ -284,68 +277,66 @@
                             </div>
                         </label>
 
+    </div>
+
+    <div class="component-valut_right-payment-method">
+
+        <div class="component-valut_right-payment-method_title">
+            <p>Инструкция ручной оплаты</p>
+            <div>
+                <a class="cl-pointer" @click="form.type_help_text = 'standard'" :class="{active:(form.type_help_text==='standard')}">Стандартная</a>
+                <a class="cl-pointer" @click="form.type_help_text = 'unique'" :class="{active:(form.type_help_text==='unique')}">Уникальное</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div v-if="form.type_help_text==='standard'">
+
+        <br>
+        <div class="form-manual-must text-center">
+            <h3 class="title">Для завершение обмена необходимо выполнить следушие действия:</h3>
+            <ol>
+                <li>
+                    <div>
+                        <p>Авторизируйтесь в:</p>
+                        <a href="" class="btn btn-log-in"><img :src="imgDataUrl" alt=""><span>{{form.name}}</span></a>
                     </div>
-
-                    <div class="component-valut_right-payment-method">
-
-                        <div class="component-valut_right-payment-method_title">
-                            <p>Инструкция ручной оплаты</p>
-                            <div>
-                                <a class="cl-pointer" @click="form.type_help_text = 'standard'"
-                                   :class="{active:(form.type_help_text==='standard')}">Стандартная</a>
-                                <a class="cl-pointer" @click="form.type_help_text = 'unique'"
-                                   :class="{active:(form.type_help_text==='unique')}">Уникальное</a>
-                            </div>
-                        </div>
-
+                </li>
+                <li>
+                    <div>
+                        <p>Оплатите:</p>
+                        <div class="form-manual-must_txt">СУММА {{form.type}}</div>
                     </div>
-
-                    <div v-if="form.type_help_text==='standard'">
-
-                        <br>
-                        <div class="form-manual-must text-center">
-                            <h3 class="title">Для завершение обмена необходимо выполнить следушие действия:</h3>
-                            <ol>
-                                <li>
-                                    <div>
-                                        <p>Авторизируйтесь в:</p>
-                                        <a href="" class="btn btn-log-in"><img :src="imgDataUrl" alt=""><span>{{form.name}}</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <p>Оплатите:</p>
-                                        <div class="form-manual-must_txt">СУММА {{form.type}}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <p>На счет:</p>
-                                        <div class="form-manual-must_txt">{{form.account}}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <p>Комментарий к платежу:</p>
-                                        <div class="form-manual-must_txt">#OrderID</div>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
+                </li>
+                <li>
+                    <div>
+                        <p>На счет:</p>
+                        <div class="form-manual-must_txt">{{form.account}}</div>
                     </div>
-                    <div v-if="form.type_help_text==='unique'">
-                        <div class="component-valut">
-                            <label class="">
+                </li>
+                <li>
+                    <div>
+                        <p>Комментарий к платежу:</p>
+                        <div class="form-manual-must_txt">#OrderID</div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div v-if="form.type_help_text==='unique'">
+        <div class="component-valut">
+            <label class="">
                                 <vue-editor v-model="form.help_pay"></vue-editor>
                             </label>
-                        </div>
-                    </div>
+        </div>
+    </div>
 
-                </div>
-                <div v-if="form.type_pay==='auto'">
-                    <div class="component-valut_right-item">
+</div>
+<div v-if="form.type_pay==='auto'">
+    <div class="component-valut_right-item">
 
-                        <label>
+        <label>
                             <span>Мерчант</span>
 
                             <div class="component-valut_right-select">
@@ -357,33 +348,33 @@
                             </div>
                         </label>
 
-                        <div class="component-valut_right-info">
-                            <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Внимание если вы не видите в списке нужно мерчанта возможно он не настроен в меню
-                                <nuxt-link to="/payments/merchant">Мерчаинты и API</nuxt-link>
-                                .
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="component-valut_right-item component-valut_right-send">
-
-                    <button @click="postPost">Создать</button>
-
-                </div>
-
-            </div>
-
+        <div class="component-valut_right-info">
+            <a><img src="~/static/images/information.svg" alt=""></a>
+            <p>Внимание если вы не видите в списке нужно мерчанта возможно он не настроен в меню
+                <nuxt-link to="/payments/merchant">Мерчаинты и API</nuxt-link>
+                .
+            </p>
         </div>
+
     </div>
+</div>
+<div class="component-valut_right-item component-valut_right-send">
+
+    <button @click="postPost">Создать</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
 </template>
 
 <script>
     import Loading from "~/components/loading";
 
     export default {
-        components: {Loading},
+        components: { Loading },
         data() {
             return {
                 fsPath: process.env.config.fsPath,
@@ -413,9 +404,9 @@
                     link: '',
                     account: ''
                 },
-                optionsParsers: [{img: '', title: 'Загрузка...', key: 'null'}],
-                optionsRegexp: [{ name: 'Загрузка...', regexp: 'null'}],
-                optionsXML: [{ name: 'Введите XML', xml: 'xml'}],
+                optionsParsers: [{ img: '', title: 'Загрузка...', key: 'null' }],
+                optionsRegexp: [{ name: 'Загрузка...', regexp: 'null' }],
+                optionsXML: [{ name: 'Введите XML', xml: 'xml' }],
                 status_load: true,
                 afterPost: false,
                 title: '',
@@ -443,7 +434,7 @@
                 return this.$rest.api('getAllParsers')
                     .then((res) => {
                         this.optionsParsers = res.data.parsers.map(el => {
-                            return {...el.conf, _id: el._id};
+                            return { ...el.conf, _id: el._id };
                         })
 
                     })
@@ -506,24 +497,24 @@
             postPost() {
                 this.status_load = false;
                 this.$rest.api('createCurrency', {
-                    name: this.form.name,
-                    type: this.form.type,
-                    xml: this.form.xml,
-                    reserve: this.form.reserve,
-                    precision: this.form.precision,
-                    type_pay: this.form.type_pay,
-                    regexpDeposit: this.form.regexpDeposit,
-                    fieldDeposit: this.form.fieldDeposit,
-                    regexpWithdrawal: this.form.regexpWithdrawal,
-                    fieldWithdrawal: this.form.fieldWithdrawal,
-                    help_pay: this.form.help_pay,
-                    link: this.form.link,
-                    account: this.form.account,
-                    parserId: this.form.selectParser._id && this.form.selectParser._id ? this.form.selectParser._id : undefined,
-                    currencyParser: this.form.currency_for_parser,
-                    rate: this.form.rate,
-                    imageId: this.form.imageId
-                })
+                        name: this.form.name,
+                        type: this.form.type,
+                        xml: this.form.xml,
+                        reserve: this.form.reserve,
+                        precision: this.form.precision,
+                        type_pay: this.form.type_pay,
+                        regexpDeposit: this.form.regexpDeposit,
+                        fieldDeposit: this.form.fieldDeposit,
+                        regexpWithdrawal: this.form.regexpWithdrawal,
+                        fieldWithdrawal: this.form.fieldWithdrawal,
+                        help_pay: this.form.help_pay,
+                        link: this.form.link,
+                        account: this.form.account,
+                        parserId: this.form.selectParser._id && this.form.selectParser._id ? this.form.selectParser._id : undefined,
+                        currencyParser: this.form.currency_for_parser,
+                        rate: this.form.rate,
+                        imageId: this.form.imageId
+                    })
                     .then(response => {
                         console.log(response);
                         if (response.success === true) {
@@ -558,13 +549,7 @@
         }
     }
 </script>
-
-
-<style scoped>
-    .v-select.single .selected-tag {
-        position: absolute !important;
-    }
-
+<style>
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity 0.01s cubic-bezier(1.0, 0.5, 0.8, 1.0);
@@ -574,6 +559,13 @@
     .fade-leave-to {
         opacity: 0;
     }
+</style>
+
+<style scoped>
+    .v-select.single .selected-tag {
+        position: absolute !important;
+    }
+
 
     .form-manual-must ol {
         margin: 0 -.875rem 15px;
@@ -586,7 +578,8 @@
         counter-reset: a;
     }
 
-    ol, ul {
+    ol,
+    ul {
         list-style-type: none;
         padding: 0;
     }
@@ -990,7 +983,7 @@
     }
 
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
-        .component-valut_right-item > span {
+        .component-valut_right-item>span {
             font-size: .8em;
         }
     }
@@ -1044,7 +1037,7 @@
         font-size: 1em;
     }
 
-    .component-valut_right-info > a {
+    .component-valut_right-info>a {
         display: flex;
         align-items: center;
     }
@@ -1226,11 +1219,11 @@
         }
     }
 
-    .component-valut_right-payment-method_title > p {
+    .component-valut_right-payment-method_title>p {
         font-size: 1.125em;
     }
 
-    .component-valut_right-payment-method > * {
+    .component-valut_right-payment-method>* {
         color: #ffffff;
         text-transform: uppercase;
     }

@@ -19,7 +19,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="admin in admins" :key="admin._id">
+                            <tr v-for="admin in admins" :key="admin.id">
                                 <td>{{admin.id}}</td>
                                 <td>
                                     <a :href="admin.link"><img
@@ -32,10 +32,10 @@
                                 <td>{{admin.date}}</td>
                                 <td>{{admin.lastActive}}</td>
                                 <td>
-                                    <button type="button"
+                                    <button type="button" @click="deleteAdmin(admin.id)"
                                             class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
-                                            data-toggle="tooltip" data-original-title="Delete"><i class="ti-close"
-                                                                                                  aria-hidden="true"></i>
+                                           ><i class="ti-close"
+                                             ></i>
                                     </button>
                                 </td>
                             </tr>
@@ -113,7 +113,7 @@
     import paging from '~/components/pagination';
 
     export default {
-        components: {paging},
+        components: { paging },
         data() {
             return {
                 total_page: 1,
@@ -122,6 +122,7 @@
                 email: '',
                 link: '',
                 skype: '',
+                ids: {},
                 admins: [
 
                     {
@@ -154,6 +155,7 @@
                     .then(res => {
                         console.log(res);
                         if (res.success) {
+                            this.admins.push(obj);
                             this.$notify({
                                 duration: 5000,
                                 type: 'info',
@@ -177,6 +179,36 @@
                         this.$root.$emit('loading', false);
                     })
 
+
+            },
+            deleteAdmin(id) {
+                this.$rest.api('deleteAdmin')
+                    .then(res => {
+                        if (res.success) {
+                            this.admins.forEach((el, i) => {
+                                if (el.id == id) {
+                                    this.admins.splice(i, 1);
+                                }
+
+                            })
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'success',
+                                title: `Admin ${res.data.id} successful deleted`,
+                            });
+
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Something wrong...',
+                                text: res.error.message,
+                            });
+                        }
+                    })
 
             }
 
