@@ -15,13 +15,14 @@
             <option>валюта 2</option>
         </select>
         <button class="fcbtn btn btn-info btn-1b" @click="getTransactions" style="margin:5px">accept</button>
-        
+        <div class="white-box">
         <transactions :transactions="transactions" ></transactions>
          <paging
           :currentPage="current_page"
           :totalPages="total_page"
           @page-changed="getTransactions"
          />
+         </div>
         </div>
 </template>
 

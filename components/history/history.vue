@@ -3,7 +3,7 @@
                         <div class="white-box">
                             <ul class="timeline"  >
                                 <li class="timeline-inverted" v-for="list in history" :key="list.id">
-                                    <div class="timeline-badge info"> </div>
+                                    <div class="timeline-badge info"> <i class="fa" :class="'fa-'+getIcon(list.operation)"></i> </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">{{oper(list.operation)}}</h4>
@@ -31,11 +31,15 @@
             return {
                 operations: {
                     change: 'Changing operation',
-                    trans: 'Transaction operation'
+                    enter: 'Transaction operation'
                 },
                 description: {
                     change: 'Changed from',
-                    trans: 'Transaction would be ready'
+                    enter: 'Transaction would be ready'
+                },
+                icons: {
+                    change: 'exchange',
+                    enter: 'sign-in'
                 }
             }
         },
@@ -54,11 +58,24 @@
                 for (let k in this.description) {
                     if (k == type) {
                         return this.description[type];
+
                     }
 
                 }
                 return 'Unknown operation';
             },
+            getIcon(type) {
+
+                for (let k in this.icons) {
+                    if (k == type) {
+                        return this.icons[type];
+
+                    }
+
+                }
+                return 'question-circle';
+
+            }
 
 
 

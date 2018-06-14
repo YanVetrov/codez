@@ -8,14 +8,14 @@
         </select>
         <button class="fcbtn btn btn-info btn-1b" @click="getAdminHistory" style="margin:5px"><i
                 class='fa fa-search'></i></button>
-
+<div class='white-box'>
         <history :history="history"></history>
         <paging
                 :currentPage="current_page"
                 :totalPages="total_page"
                 @page-changed="getAdminHistory"
         />
-
+</div>
     </div>
 </template>
 
@@ -43,6 +43,7 @@
                 this.filterParam = obj;
                 this.$rest.api('getAdminHistory', obj)
                     .then(res => {
+                        console.log(res)
                         this.$root.$emit('loading', false);
                         if (res.success) {
                             this.current_page = res.data.count.select_page || 1;
