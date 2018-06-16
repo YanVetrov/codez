@@ -48,6 +48,10 @@
                     <nuxt-link to="/api/" class="waves-effect"><i class="fa fa-circle-o text-success"></i> <span
                             class="hide-menu">API</span></nuxt-link>
                 </li>
+                <li>
+                    <nuxt-link to="/faq/" class="waves-effect"><i class="fa fa-circle-o text-success"></i> <span
+                            class="hide-menu">FAQ</span></nuxt-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -108,6 +112,13 @@
                 {
                     name: 'Rules',
                     page: '/rules',
+                    isShow: false,
+                    icon: 'book-open-variant',
+                    child: []
+                },
+                {
+                    name: 'Parsers',
+                    page: '/parsers',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: []

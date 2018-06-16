@@ -1,12 +1,12 @@
 <template>
- <rules></rules>
+ <faq></faq>
 </template>
 
 <script>
-import rules from '~/components/rules/rules'
+import faq from '~/components/faq/faq'
   export default {
     components:{
-      rules
+      faq
     }
   }
 </script>

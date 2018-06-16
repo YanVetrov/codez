@@ -118,9 +118,6 @@
                     </div>
                 </div>
                 
-                
-                
-                <credits></credits>
             </div>
             <!-- /.row -->
             <!-- ============================================================== -->
@@ -188,7 +185,6 @@
 
 <script>
     import maps from '~/components/dashboard/map.vue'
-    import credits from '~/components/dashboard/credits.vue'
     import cards from '~/components/dashboard/cards.vue'
     import resources from '~/components/dashboard/resources.vue'
     import machine from '~/components/dashboard/machine.vue'
@@ -253,7 +249,6 @@
             machine,
             resources,
             cards,
-            credits
         },
     }
 </script>

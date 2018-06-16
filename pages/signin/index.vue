@@ -74,23 +74,28 @@
         },
         methods: {
             checkLogin() {
+                this.$root.$emit('loading',true)
                 return this.$rest
                     .api('loginUseEmail', { email: this.email, password: this.password })
                     .then(res => {
                         if (res.success) {
+                            this.$root.$emit('loading',false)
                             return this.$store.dispatch('admin/admin', res.data);
                         }
                         else {
                             this.valid = false;
                             this.email = '';
                             this.password = '';
+                            this.$root.$emit('loading',false)
                         }
                         return Promise.reject(res.error);
                     })
                     .then(() => {
+                        this.$root.$emit('loading',false);
                         return this.$router.push('dashboard');
                     })
                     .catch(err => {
+                        this.$root.$emit('loading',false);
                         return console.error(err);
                     })
 
