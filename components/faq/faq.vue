@@ -1,23 +1,17 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-      
-      <div class="white-box" v-for="faq in faqs" :key="faq.id">
-        <h3 class="box-question">{{faq.question}}</h3>
-        
-        <input type="answer" v-model="faq.question" v-if="!faq.active"/>
+      <div class="white-box" v-for="faq in faqs" :key="faq._id">
+        <h3 class="box-title">{{faq.title}}</h3>
+        <input type="text" v-model="faq.title" v-if="!faq.active"/>
         <br/>
-        
-        {{faq.answer}}
+        {{faq.content}}
         <br/>
-        
-        <textarea v-model='faq.answer' v-if="!faq.active" />
+        <textarea v-model='faq.content' v-if="!faq.active" />
         <br/>
-        
         <button @click="faq.active = !faq.active">{{faq.active?"Edit":"Close"}}</button>
-        
-        
-        <button @click="save(faq.answer,faq.question,faq.id)">Save</button>
+        <button @click="save(faq.content,faq.title,faq._id)">Save</button>
+        <button @click="save('delete','delete',faq._id)">Delete</button>
         
       </div>
       <button @click='createNew'>Create</button>
@@ -32,21 +26,21 @@
 
 
         faqs: [{
-            question: 'question',
-            answer: 'efwtwetwerwetew',
-            id: 23423234,
+            title: 'Title',
+            content: 'efwtwetwerwetew',
+            _id: 23423234,
             active: true,
           },
           {
-            question: 'question',
-            answer: 'efwtwetwerwetew3523423',
-            id: 234232434,
+            title: 'Title',
+            content: 'efwtwetwerwetew3523423',
+            _id: 234232434,
             active: true,
           },
           {
-            question: 'question',
-            answer: 'efwtwet23423werwetew',
-            id: 2344234,
+            title: 'Title',
+            content: 'efwtwet23423werwetew',
+            _id: 2344234,
             active: true,
           },
         ],
@@ -54,19 +48,24 @@
       }
     },
     methods: {
-      save(answer, question, id) {
+      save(content, title, id) {
 
-        console.log(`${answer} ${question} ${id}`)
-        this.$root.$emit('loading',true);
-        this.$rest.api('faqEdit', { answer, question, id })
+        console.log(`${content} ${title} ${id}`)
+        let link,
+        sortNumber=1,
+        obj = { content, title, id, sortNumber };
+        id == 'new' ? link = 'createFaq' : link = 'editFaq';
+        content == 'delete'?link='deleteFaq':'';
+        this.$root.$emit('loading', true);
+        this.$rest.api(link, obj)
           .then(res => {
             if (res.success) {
               this.$notify({
                 group: 'main',
                 duration: 5000,
                 type: 'info',
-                question: 'OK',
-                answer: 'Faq successful edited'
+                title: 'OK',
+                text: 'faq successful edited'
               })
             }
             if (!res.success) {
@@ -74,21 +73,21 @@
                 group: 'main',
                 duration: 5000,
                 type: 'error',
-                question: 'Error ...',
-                answer: res.error.message,
+                title: 'Error ...',
+                text: res.error.message,
               })
             }
-            this.$root.$emit('loading',false);
+            this.$root.$emit('loading', false);
           })
-          .catch(err=>{
-            this.$root.$emit('loading',false);
+          .catch(err => {
+            this.$root.$emit('loading', false);
           })
 
 
       },
-      createNew(){
-        let obj = {question:"question",answer:"answer",id:'new',active:true}
-        this.rules.push(obj);
+      createNew() {
+        let obj = { title: "Title", content: "Text", _id: 'new', active: true }
+        this.faqs.push(obj);
       }
     }
   }

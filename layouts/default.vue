@@ -30,15 +30,21 @@
 <script>
   import HeaderMenu from "~/components/Menu/HeaderMenu";
   import LeftMenu from "~/components/Menu/LeftMenu";
-
   export default {
     methods: {
       check() {
         console.log(this.$store.getters['admin/checkAdmin'])
       }
     },
+    created(){
+            this.$rest
+        .api('isAuthUser')
+        .then(res => {
+          res.success ? '' : this.$router.push('/signin');
+        })
+    },
     mounted() {
-      this.$root.$emit('loading',true)
+      this.$root.$emit('loading', true)
       this.$rest
         .api('isAuthUser')
         .then(res => {
@@ -51,9 +57,13 @@
               obj = { fn, ln, email }
             this.$root.$emit('userInfo', obj)
             console.log(obj)
-            this.$root.$emit('loading',false)
+            this.$root.$emit('loading', false)
           }
+          res.success ? '' : this.$router.push('/signin');
 
+        })
+        .catch(err => {
+          this.$root.$emit('loading', false)
         })
     },
     head() {
