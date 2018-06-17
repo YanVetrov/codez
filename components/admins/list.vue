@@ -9,30 +9,28 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Login</th>
-                                <th>Email</th>
+                                <th>Type</th>
+                                <th>Link</th>
                                 <th>Skype</th>
                                 <th>LVL</th>
-                                <th>DATE</th>
-                                <th>Last active</th>
+                                <th>Created</th>
+                                <th>Last update</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr v-for="admin in admins" :key="admin.id">
-                                <td>{{admin.id}}</td>
+                                <td>{{admin._id}}</td>
                                 <td>
-                                    <a :href="admin.link"><img
-                                            :src="'https://exchanger_001.proexchanger.net/service/fs'+admin.avatar"
-                                            alt="user" class="img-circle"/> {{admin.name}}</a>
+                                    <a :href="admin.link"><i :class=" 'fa fa-'+admin.icon "></i>{{admin.name}}</a>
                                 </td>
-                                <td>{{admin.email}}</td>
-                                <td>{{admin.skype}}</td>
-                                <td><span class="label label-info">{{admin.lvl}}</span></td>
-                                <td>{{admin.date}}</td>
-                                <td>{{admin.lastActive}}</td>
+                                <td><a :href="admin.link">{{admin.value}}</a></td>
+                                <td>skype</td>
+                                <td><span class="label label-info">10</span></td>
+                                <td>{{admin.createdAt}}</td>
+                                <td>{{admin.updatedAt}}</td>
                                 <td>
-                                    <button type="button" @click="deleteAdmin(admin.id)"
+                                    <button type="button" @click="deleteAdmin(admin._id)"
                                             class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
                                            ><i class="ti-close"
                                              ></i>
@@ -63,12 +61,6 @@
                                                         <div class="col-md-12 m-b-20">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Type name" v-model="name"></div>
-                                                        <div class="col-md-12 m-b-20">
-                                                            <input type="text" class="form-control" placeholder="Email"
-                                                                   v-model='email'></div>
-                                                        <div class="col-md-12 m-b-20">
-                                                            <input type="text" class="form-control" placeholder="Skype"
-                                                                   v-model="skype"></div>
                                                         <div class="col-md-12 m-b-20">
                                                             <input type="text" class="form-control" placeholder="Link"
                                                                    v-model="link"></div>
@@ -125,17 +117,6 @@
                 ids: {},
                 admins: [
 
-                    {
-                        name: 'Alex',
-                        id: '34234',
-                        lastActive: '00:34:04',
-                        lvl: '10',
-                        avatar: '/img/parsers/binance.png',
-                        email: '324erw@gmail.com',
-                        skype: '@yans',
-                        date: '20/12/2018'
-                    }
-
                 ],
                 show: false
 
@@ -148,10 +129,8 @@
                 this.$root.$emit('loading', true);
                 let obj = {};
                 this.name && this.name !== '' ? obj.name = this.name : '';
-                this.skype && this.skype !== '' ? obj.skype = this.skype : '';
-                this.email && this.email !== '' ? obj.email = this.email : '';
-                this.link && this.link !== '' ? obj.link = this.link : '';
-                this.$rest.api('addAdmin', obj)
+                this.link && this.link !== '' ? obj.value = this.link : '';
+                this.$rest.api('addContact', obj)
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -160,7 +139,7 @@
                                 duration: 5000,
                                 type: 'info',
                                 title: 'OK',
-                                text: 'new Admin added'
+                                text: 'new contact added'
                             });
                             this.show = false;
 
@@ -183,10 +162,10 @@
             },
             getAdmins(page) {
                 this.$root.$emit('loading', true);
-                this.$rest.api('getAdmins', { page, limit: 10 })
+                this.$rest.api('getContacts', { page, limit: 10 })
                     .then(res => {
                         if (res.success) {
-                            this.routes = res.data.admins;
+                            this.admins = res.data.contacts;
                             this.current_page = res.data.count.select_page || 1;
                             this.total_page = res.data.count.pages || 1;
 
@@ -204,10 +183,14 @@
                         this.$root.$emit('loading', false);
 
                     })
+                    .catch(err => {
+                        this.$root.$emit('loading', false);
+                    })
             },
             deleteAdmin(id) {
-                this.$rest.api('deleteAdmin')
+                this.$rest.api('deleteContact',{contact_id:id})
                     .then(res => {
+                        console.log(res);
                         if (res.success) {
                             this.admins.forEach((el, i) => {
                                 if (el.id == id) {
@@ -232,6 +215,7 @@
                                 text: res.error.message,
                             });
                         }
+                        this.$root.$emit('loading', false);
                     })
                     .catch(err => {
                         this.$root.$emit('loading', false);
@@ -240,6 +224,9 @@
             }
 
 
+        },
+        mounted() {
+            return this.getAdmins();
         }
     }
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div class="row">
     <div class="col-md-12">
+      <input type="text" v-model='id'/>id
+      <input type="text" v-model='link'/>link
+      <button @click="getRule">send</button>
       <div class="white-box" v-for="rule in rules" :key="rule._id">
         <h3 class="box-title">{{rule.title}}</h3>
         <input type="text" v-model="rule.title" v-if="!rule.active"/>
@@ -23,8 +26,8 @@
   export default {
     data() {
       return {
-
-
+        link:'',
+        id:'',
         rules: [{
             title: 'Title',
             content: 'efwtwetwerwetew',
@@ -88,7 +91,20 @@
       createNew() {
         let obj = { title: "Title", text: "Text", id: 'new', active: true }
         this.rules.push(obj);
+      },
+      getRule(){
+        let obj = {id:this.id,link:this.link}
+        this.$rest.api('getRule')
+        .then(res=>{
+          res.data.rule.forEach(el=>{
+            el.active=true;
+          })
+          this.rules = res.data.rule
+        })
       }
+    },
+    mounted(){
+      return this.getRule()
     }
   }
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div class="row">
     <div class="col-md-12">
+            <input type="text" v-model='id'/>id
+      <input type="text" v-model='link'/>link
+      <button @click="getFaq">send</button>
       <div class="white-box" v-for="faq in faqs" :key="faq._id">
         <h3 class="box-title">{{faq.title}}</h3>
         <input type="text" v-model="faq.title" v-if="!faq.active"/>
@@ -23,8 +26,8 @@
   export default {
     data() {
       return {
-
-
+        link:'',
+        id:'',
         faqs: [{
             title: 'Title',
             content: 'efwtwetwerwetew',
@@ -52,10 +55,10 @@
 
         console.log(`${content} ${title} ${id}`)
         let link,
-        sortNumber=1,
-        obj = { content, title, id, sortNumber };
+          sortNumber = 1,
+          obj = { content, title, id, sortNumber };
         id == 'new' ? link = 'createFaq' : link = 'editFaq';
-        content == 'delete'?link='deleteFaq':'';
+        content == 'delete' ? link = 'deleteFaq' : '';
         this.$root.$emit('loading', true);
         this.$rest.api(link, obj)
           .then(res => {
@@ -88,6 +91,16 @@
       createNew() {
         let obj = { title: "Title", content: "Text", _id: 'new', active: true }
         this.faqs.push(obj);
+      },
+      getFaq(){
+        let obj = {id:this.id,link:this.link}
+        this.$rest.api('getFaq')
+        .then(res=>{
+          res.data.rule.forEach(el=>{
+            el.active=true;
+          })
+          this.faqs = res.data.faq
+        })
       }
     }
   }

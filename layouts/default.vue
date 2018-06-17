@@ -36,13 +36,6 @@
         console.log(this.$store.getters['admin/checkAdmin'])
       }
     },
-    created(){
-            this.$rest
-        .api('isAuthUser')
-        .then(res => {
-          res.success ? '' : this.$router.push('/signin');
-        })
-    },
     mounted() {
       this.$root.$emit('loading', true)
       this.$rest
