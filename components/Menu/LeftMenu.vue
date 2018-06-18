@@ -136,6 +136,13 @@
                     child: []
                 },
                 {
+                    name: 'Contacts',
+                    page: '/contacts',
+                    isShow: false,
+                    icon: 'book-open-variant',
+                    child: []
+                },
+                {
                     name: 'Routes',
                     page: '/routes',
                     isShow: false,

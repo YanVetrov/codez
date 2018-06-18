@@ -1,15 +1,16 @@
 <template>
-<list />
+    <div>
+        страница партнеры (это юзеры) контакты я перенес в отдельное меню
+        <h1>/contacts</h1>
+    </div>
 </template>
 
 <script>
-  import list from '~/components/admins/list'
-  export default {
-    components:{
-      list
-    }
 
-  }
+    export default {
+        components: {}
+
+    }
 </script>
 
 <style scoped>
