@@ -1,12 +1,7 @@
-<template>
- <rules></rules>
-</template>
-
 <script>
-import rules from '~/components/rules/rules'
-  export default {
-    components:{
-      rules
+    export default {
+        fetch ({ params, redirect }) {
+            redirect(302, '/rules/rules/')
+        }
     }
-  }
 </script>

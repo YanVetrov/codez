@@ -1,23 +1,19 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-      <input type="text" v-model='id'/>id
-      <input type="text" v-model='link'/>link
-      <button @click="getRule">send</button>
-      <div class="white-box" v-for="rule in rules" :key="rule._id">
+     <div class='white-box'>
         <h3 class="box-title">{{rule.title}}</h3>
-        <input type="text" v-model="rule.title" v-if="!rule.active"/>
+        <input type="text" v-model="rule.title"/>
         <br/>
-        <div v-html='rule.content'></div>
+        <div v-html="rule.content"></div>
         <br/>
-        <vue-editor v-model='rule.content' v-if="!rule.active" />
+        <vue-editor v-model='rule.content'></vue-editor>
         <br/>
         <button @click="rule.active = !rule.active">{{rule.active?"Edit":"Close"}}</button>
         <button @click="save(rule.content,rule.title,rule._id)">Save</button>
-        <button @click="save('delete','delete',rule._id)">Delete</button>
+        <button @click="rule.content=''">Clear</button>
         
       </div>
-      <button @click='createNew'>Create</button>
     </div>
   </div>
 </template>
@@ -28,25 +24,13 @@
       return {
         link:'',
         id:'',
-        rules: [{
+        rule: {
             title: 'Title',
             content: 'efwtwetwerwetew',
             _id: 23423234,
             active: true,
           },
-          {
-            title: 'Title',
-            content: 'efwtwetwerwetew3523423',
-            _id: 234232434,
-            active: true,
-          },
-          {
-            title: 'Title',
-            content: 'efwtwet23423werwetew',
-            _id: 2344234,
-            active: true,
-          },
-        ],
+        
 
       }
     },
@@ -57,10 +41,8 @@
         let link,
         sortNumber=1,
         obj = { content, title, id, sortNumber };
-        id == 'new' ? link = 'createRules' : link = 'editRule';
-        content == 'delete'?link='deleteRule':'';
         this.$root.$emit('loading', true);
-        this.$rest.api(link, obj)
+        this.$rest.api('createRule', obj)
           .then(res => {
             if (res.success) {
               this.$notify({
@@ -68,7 +50,7 @@
                 duration: 5000,
                 type: 'info',
                 title: 'OK',
-                text: 'Rule successful edited'
+                text: 'Rule successful created'
               })
             }
             if (!res.success) {
@@ -88,23 +70,7 @@
 
 
       },
-      createNew() {
-        let obj = { title: "Title", text: "Text", id: 'new', active: true }
-        this.rules.push(obj);
-      },
-      getRule(){
-        let obj = {id:this.id,link:this.link}
-        this.$rest.api('getRule')
-        .then(res=>{
-          res.data.rule.forEach(el=>{
-            el.active=true;
-          })
-          this.rules = res.data.rule
-        })
-      }
     },
-    mounted(){
-      return this.getRule()
-    }
+
   }
 </script>

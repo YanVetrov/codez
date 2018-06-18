@@ -1,16 +1,21 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-            <input type="text" v-model='id'/>id
-      <input type="text" v-model='link'/>link
+            <input type="text" v-model='filter.search'/>search
+      <select>
+        <option v-for="lang in langs" @click="filter.lang = lang.lang" :key="lang.id">{{lang.name}} - {{lang.lang}}</option>
+      </select>
+      <select>
+        <option v-for="group in groups" @click="filter.group = group.groupName" :key="group.id">{{group.groupName}}</option>
+      </select>
       <button @click="getFaq">send</button>
       <div class="white-box" v-for="faq in faqs" :key="faq._id">
         <h3 class="box-title">{{faq.title}}</h3>
         <input type="text" v-model="faq.title" v-if="!faq.active"/>
         <br/>
-        {{faq.content}}
+        <div v-html="faq.content"></div>
         <br/>
-        <textarea v-model='faq.content' v-if="!faq.active" />
+        <vue-editor v-model='faq.content' v-if="!faq.active" />
         <br/>
         <button @click="faq.active = !faq.active">{{faq.active?"Edit":"Close"}}</button>
         <button @click="save(faq.content,faq.title,faq._id)">Save</button>
@@ -18,35 +23,33 @@
         
       </div>
       <button @click='createNew'>Create</button>
+               <paging
+          :currentPage="current_page"
+          :totalPages="total_page"
+          @page-changed="getFaq"
+         />
     </div>
   </div>
 </template>
 
 <script>
+  import paging from '~/components/pagination';
+
   export default {
+    components: {
+      paging
+    },
     data() {
       return {
-        link:'',
-        id:'',
-        faqs: [{
-            title: 'Title',
-            content: 'efwtwetwerwetew',
-            _id: 23423234,
-            active: true,
-          },
-          {
-            title: 'Title',
-            content: 'efwtwetwerwetew3523423',
-            _id: 234232434,
-            active: true,
-          },
-          {
-            title: 'Title',
-            content: 'efwtwet23423werwetew',
-            _id: 2344234,
-            active: true,
-          },
-        ],
+        link: '',
+        id: '',
+        current_page: 1,
+        total_page: 1,
+        faqs: [],
+        filter: {        search:'',group:'',lang:''},
+        langs: [],
+        groups:[],
+
 
       }
     },
@@ -56,10 +59,12 @@
         console.log(`${content} ${title} ${id}`)
         let link,
           sortNumber = 1,
-          obj = { content, title, id, sortNumber };
+          group = 'main',
+          obj = { group, content, title, id, sortNumber };
         id == 'new' ? link = 'createFaq' : link = 'editFaq';
         content == 'delete' ? link = 'deleteFaq' : '';
         this.$root.$emit('loading', true);
+        console.log(obj);
         this.$rest.api(link, obj)
           .then(res => {
             if (res.success) {
@@ -92,16 +97,33 @@
         let obj = { title: "Title", content: "Text", _id: 'new', active: true }
         this.faqs.push(obj);
       },
-      getFaq(){
-        let obj = {id:this.id,link:this.link}
-        this.$rest.api('getFaq')
-        .then(res=>{
-          res.data.rule.forEach(el=>{
-            el.active=true;
+      getFaq(page) {
+        let obj = this.filter
+        obj.page = page || 1;
+        obj.limit = 10;
+        this.$rest.api('getFaqFull', obj )
+          .then(res => {
+            console.log(res)
+            res.data.faq.forEach(el => {
+              el.active = true;
+            })
+            this.faqs = res.data.faq
           })
-          this.faqs = res.data.faq
-        })
+        this.$rest.api('getAllLang')
+          .then(res => {
+            this.langs = res.data.lang
+          })
+        this.$rest.api('getFaqGroup')
+          .then(res => {
+            console.log(res);
+            this.groups = res.data.faqGroups
+
+          })
       }
+    },
+    mounted() {
+      return this.getFaq()
+
     }
   }
 </script>

@@ -59,44 +59,43 @@
 
 
 <script>
-
     // https://materialdesignicons.com/
     export default {
         data() {
             let menu = [{
-                name: 'Dashboard',
-                isShow: false,
-                page: '/dashboard',
-                icon: 'view-dashboard',
-                child: []
-            }, {
-                name: 'News',
-                isShow: false,
-                page: '/news',
-                icon: 'newspaper',
-                child: [
-                    {name: 'Create news', page: '/create', icon: 'playlist-plus'},
-                    {name: 'All news', page: '/page', icon: 'format-list-bulleted-type'},
-                ]
-            }, {
-                name: 'Currencies',
-                isShow: false,
-                page: '/currency',
-                icon: 'currency-usd',
-                child: [
-                    {name: 'All currencies', page: '/page', icon: 'format-list-numbers'},
-                    {name: 'Create currency', page: '/create', icon: 'plus'},
-                ]
-            },
+                    name: 'Dashboard',
+                    isShow: false,
+                    page: '/dashboard',
+                    icon: 'view-dashboard',
+                    child: []
+                }, {
+                    name: 'News',
+                    isShow: false,
+                    page: '/news',
+                    icon: 'newspaper',
+                    child: [
+                        { name: 'Create news', page: '/create', icon: 'playlist-plus' },
+                        { name: 'All news', page: '/page', icon: 'format-list-bulleted-type' },
+                    ]
+                }, {
+                    name: 'Currencies',
+                    isShow: false,
+                    page: '/currency',
+                    icon: 'currency-usd',
+                    child: [
+                        { name: 'All currencies', page: '/page', icon: 'format-list-numbers' },
+                        { name: 'Create currency', page: '/create', icon: 'plus' },
+                    ]
+                },
                 {
                     name: 'Settings',
                     isShow: false,
                     page: '/settings',
                     icon: 'settings',
                     child: [
-                        {name: 'History', page: '/history', icon: 'history'},
-                        {name: 'Administrators', page: '/admins', icon: 'lock'},
-                        {name: 'Apperance', page: '/apperance', icon: 'brush'},
+                        { name: 'History', page: '/history', icon: 'history' },
+                        { name: 'Administrators', page: '/admins', icon: 'lock' },
+                        { name: 'Apperance', page: '/apperance', icon: 'brush' },
                     ]
                 },
                 {
@@ -105,8 +104,8 @@
                     page: '/reviews',
                     icon: 'mdi mdi-comment-multiple-outline',
                     child: [
-                        {name: 'All reviews', page: '/page', icon: 'format-list-numbers'},
-                        {name: 'Create reviews', page: '/create', icon: 'playlist-plus'},
+                        { name: 'All reviews', page: '/page', icon: 'format-list-numbers' },
+                        { name: 'Create reviews', page: '/create', icon: 'playlist-plus' },
                     ]
                 },
                 {
@@ -114,7 +113,20 @@
                     page: '/rules',
                     isShow: false,
                     icon: 'book-open-variant',
-                    child: []
+                    child: [
+                        { name: 'All rules', page: '/rules', icon: 'routes' },
+                        { name: 'Create rule', page: '/create', icon: 'routes' },
+                    ]
+                },
+                {
+                    name: 'Faq',
+                    page: '/faq',
+                    isShow: false,
+                    icon: 'book-open-variant',
+                    child: [
+                        { name: 'All FAQ', page: '/faq', icon: 'routes' },
+                        { name: 'Create FAQ', page: '/create', icon: 'routes' },
+                    ]
                 },
                 {
                     name: 'Parsers',
@@ -128,11 +140,10 @@
                     page: '/routes',
                     isShow: false,
                     icon: 'routes',
-                    child: 
-                        [
-                        {name: 'All routes', page: '/all', icon: 'routes'},
-                        {name: 'Create route', page: '/create', icon: 'routes'},
-                        ]
+                    child: [
+                        { name: 'All routes', page: '/all', icon: 'routes' },
+                        { name: 'Create route', page: '/create', icon: 'routes' },
+                    ]
                 },
                 {
                     name: 'Users',
@@ -140,8 +151,8 @@
                     isShow: false,
                     icon: 'mdi mdi-account-multiple-outline',
                     child: [
-                        {name: 'All users', page: '/clients', icon: 'mdi mdi-account-multiple-outline'},
-                        {name: 'Partners', page: '/partners', icon: 'chart-line'},
+                        { name: 'All users', page: '/clients', icon: 'mdi mdi-account-multiple-outline' },
+                        { name: 'Partners', page: '/partners', icon: 'chart-line' },
                     ]
                 }
 
@@ -156,6 +167,4 @@
 </script>
 
 <style>
-
-
 </style>
