@@ -101,22 +101,22 @@
         let obj = this.filter
         obj.page = page || 1;
         obj.limit = 10;
+        console.log(obj);
         this.$rest.api('getFaqFull', obj )
           .then(res => {
             console.log(res)
             res.data.faq.forEach(el => {
               el.active = true;
             })
-            this.faqs = res.data.faq
+            this.faqs = res.data.faq;
           })
         this.$rest.api('getAllLang')
           .then(res => {
-            this.langs = res.data.lang
+            this.langs = res.data.lang;
           })
         this.$rest.api('getFaqGroup')
           .then(res => {
-            console.log(res);
-            this.groups = res.data.faqGroups
+            this.groups = res.data.faqGroups;
 
           })
       }

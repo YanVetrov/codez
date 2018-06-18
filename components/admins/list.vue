@@ -8,8 +8,8 @@
                         <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Nick</th>
                                 <th>Link</th>
                                 <th>LVL</th>
                                 <th>Created</th>
@@ -19,13 +19,14 @@
                             </thead>
                             <tbody>
                             <tr v-for="admin in admins" :key="admin.id">
-                                <td>{{admin._id}}</td>
+                                <td v-if='!admin.edit'>{{admin.name}}</td>
+                                <td v-else><input v-model='admin.name'/></td>
                                 <td v-if='!admin.edit'>
-                                    <a :href="admin.link" ><i :class=" 'fa fa-'+admin.icon "></i>{{admin.name}}</a>
+                                    <a :href="admin.link" ><i :class=" 'fa fa-'+admin.icon "></i>{{admin.value}}</a>
                                 </td>
-                                <td v-else><input v-model='admin.name'  /></td>
-                                <td v-if='!admin.edit'><a :href="admin.link">{{admin.value}}</a></td>
-                                <td v-else><input v-model='admin.value'/></td>
+                                <td v-else><input v-model='admin.value'  /></td>
+                                <td v-if='!admin.edit'><a :href="admin.link">{{admin.link}}</a></td>
+                                <td v-else><input v-model='admin.link'/></td>
                                 <td><span class="label label-info">10</span></td>
                                 <td>{{admin.createdAt.split('T')[0]}}<br/> {{admin.createdAt.split('T')[1].slice(0,8)}}</td>
                                 <td>{{admin.updatedAt.split('T')[0]}}<br/> {{admin.updatedAt.split('T')[1].slice(0,8)}}</td>
@@ -36,7 +37,7 @@
                                              ></i>
                                     </button>
                                     <button @click='admin.edit = !admin.edit'>{{admin.edit?'Close':'Edit'}}</button>
-                                    <button @click='editAdmin(admin.value,admin.name,admin._id)' v-if='admin.edit'>Save</button>
+                                    <button @click='editAdmin(admin.value,admin.name,admin._id,admin.link)' v-if='admin.edit'>Save</button>
                                 </td>
                             </tr>
 
@@ -48,6 +49,7 @@
                                         Contact
                                     </button>
                                 </td>
+                                <transition name="fade">
                                 <div v-if="show" id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
                                      aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -63,6 +65,9 @@
                                                         <div class="col-md-12 m-b-20">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Type name" v-model="name"></div>
+                                                       <div class="col-md-12 m-b-20">
+                                                            <input type="text" class="form-control" placeholder="Nick"
+                                                                   v-model="value"></div>
                                                         <div class="col-md-12 m-b-20">
                                                             <input type="text" class="form-control" placeholder="Link"
                                                                    v-model="link"></div>
@@ -87,6 +92,7 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>
+                                </transition>
                                 <td colspan="7">
                                     <div class="text-right">
                                         <paging :currentPage="current_page" :totalPages="total_page"
@@ -116,6 +122,7 @@
                 email: '',
                 link: '',
                 skype: '',
+                value: '',
                 ids: {},
                 admins: [
 
@@ -131,7 +138,8 @@
                 this.$root.$emit('loading', true);
                 let obj = {};
                 this.name && this.name !== '' ? obj.name = this.name : '';
-                this.link && this.link !== '' ? obj.value = this.link : '';
+                this.link && this.link !== '' ? obj.link = this.link : '';
+                this.value && this.value !== '' ? obj.value = this.value : '';
                 this.$rest.api('addContact', obj)
                     .then(res => {
                         console.log(res);
@@ -193,7 +201,7 @@
                     })
             },
             deleteAdmin(contact_id) {
-                this.$rest.api('deleteContact', {contact_id})
+                this.$rest.api('deleteContact', { contact_id })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -227,9 +235,9 @@
                     })
 
             },
-            editAdmin(value, name, contact_id) {
+            editAdmin(value, name, contact_id, link) {
 
-                this.$rest.api('editContact', { value, name, contact_id })
+                this.$rest.api('editContact', { value, name, contact_id, link })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -263,10 +271,22 @@
 </script>
 
 <style scoped>
-    #add-contact,
+   
     .modal {
         display: block;
         opacity: 1;
+        background:rgba(0,0,0,0.3);
+        transition:background 0.2s;
 
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.2s ease;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+        opacity:0;
     }
 </style>

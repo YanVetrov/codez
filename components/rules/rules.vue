@@ -7,17 +7,10 @@
       <div class="white-box" v-for="rule in rules" :key="rule._id">
         <h3 class="box-title">{{rule.title}}</h3>
         <input type="text" v-model="rule.title" v-if="!rule.active"/>
-        <br/>
-        <div v-html='rule.content'></div>
-        <br/>
-        <vue-editor v-model='rule.content' v-if="!rule.active" />
-        <br/>
-        <button @click="rule.active = !rule.active">{{rule.active?"Edit":"Close"}}</button>
-        <button @click="save(rule.content,rule.title,rule._id)">Save</button>
-        <button @click="save('delete','delete',rule._id)">Delete</button>
+        <nuxt-link :to="rule._id.toString()"><button>Edit</button></nuxt-link>
+        <button @click="save(rule._id)">Delete</button>
         
       </div>
-      <button @click='createNew'>Create</button>
     </div>
   </div>
 </template>
@@ -26,41 +19,16 @@
   export default {
     data() {
       return {
-        link:'',
-        id:'',
-        rules: [{
-            title: 'Title',
-            content: 'efwtwetwerwetew',
-            _id: 23423234,
-            active: true,
-          },
-          {
-            title: 'Title',
-            content: 'efwtwetwerwetew3523423',
-            _id: 234232434,
-            active: true,
-          },
-          {
-            title: 'Title',
-            content: 'efwtwet23423werwetew',
-            _id: 2344234,
-            active: true,
-          },
-        ],
+        link: '',
+        id: '',
+        rules: [],
 
       }
     },
     methods: {
-      save(content, title, id) {
-
-        console.log(`${content} ${title} ${id}`)
-        let link,
-        sortNumber=1,
-        obj = { content, title, id, sortNumber };
-        id == 'new' ? link = 'createRules' : link = 'editRule';
-        content == 'delete'?link='deleteRule':'';
+      save(id) {
         this.$root.$emit('loading', true);
-        this.$rest.api(link, obj)
+        this.$rest.api('deleteRule', { id })
           .then(res => {
             if (res.success) {
               this.$notify({
@@ -68,7 +36,7 @@
                 duration: 5000,
                 type: 'info',
                 title: 'OK',
-                text: 'Rule successful edited'
+                text: 'Rule successful deleted'
               })
             }
             if (!res.success) {
@@ -88,22 +56,21 @@
 
 
       },
-      createNew() {
-        let obj = { title: "Title", text: "Text", id: 'new', active: true }
-        this.rules.push(obj);
-      },
-      getRule(){
-        let obj = {id:this.id,link:this.link}
-        this.$rest.api('getRule')
-        .then(res=>{
-          res.data.rule.forEach(el=>{
-            el.active=true;
+      getRule() {
+        this.$root.$emit('loading', true);
+        let obj = { id: this.id, link: this.link }
+        this.$rest.api('getTitleRules')
+          .then(res => {
+            console.log(res)
+            res.data.rules.forEach(el => {
+              el.active = true;
+            })
+            this.rules = res.data.rules
+            this.$root.$emit('loading', false);
           })
-          this.rules = res.data.rule
-        })
       }
     },
-    mounted(){
+    mounted() {
       return this.getRule()
     }
   }

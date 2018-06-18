@@ -9,7 +9,7 @@
         <br/>
         <vue-editor v-model='rule.content'></vue-editor>
         <br/>
-        <button @click="save(rule.content,rule.title)">Save</button>
+        <button @click="save(rule.content,rule.title,rule._id,rule.sortNumber)">Save</button>
         <button @click="rule.content=''">Clear</button>
         
       </div>
@@ -21,33 +21,26 @@
   export default {
     data() {
       return {
-        link:'',
-        id:'',
-        rule: {
-            title: 'Title',
-            content: '',
-          },
-        
+        link: '',
+        id: '',
+        rule: {},
+
 
       }
     },
     methods: {
-      save(content, title) {
-
-        console.log(`${content} ${title}`)
-        let link,
-        sortNumber=1,
-        obj = { content, title, sortNumber };
+      save(content, title, id, sortNumber) {
+         let obj = { content, title, id, sortNumber };
         this.$root.$emit('loading', true);
-        this.$rest.api('createRules', obj)
+        this.$rest.api('editRule', obj)
           .then(res => {
             if (res.success) {
               this.$notify({
                 group: 'main',
                 duration: 5000,
-                type: 'success',
+                type: 'info',
                 title: 'OK',
-                text: 'Rule successful created'
+                text: 'Rule successful edited'
               })
             }
             if (!res.success) {
@@ -68,6 +61,17 @@
 
       },
     },
+
+    mounted() {
+      let id = this.$route.params.id
+      this.$root.$emit('loading', true)
+      this.$rest.api('getRule', { id })
+        .then(res => {
+          this.rule = res.data.rule
+          this.$root.$emit('loading', false)
+        })
+
+    }
 
   }
 </script>
