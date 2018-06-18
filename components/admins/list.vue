@@ -11,7 +11,6 @@
                                 <th>ID</th>
                                 <th>Type</th>
                                 <th>Link</th>
-                                <th>Skype</th>
                                 <th>LVL</th>
                                 <th>Created</th>
                                 <th>Last update</th>
@@ -21,20 +20,23 @@
                             <tbody>
                             <tr v-for="admin in admins" :key="admin.id">
                                 <td>{{admin._id}}</td>
-                                <td>
-                                    <a :href="admin.link"><i :class=" 'fa fa-'+admin.icon "></i>{{admin.name}}</a>
+                                <td v-if='!admin.edit'>
+                                    <a :href="admin.link" ><i :class=" 'fa fa-'+admin.icon "></i>{{admin.name}}</a>
                                 </td>
-                                <td><a :href="admin.link">{{admin.value}}</a></td>
-                                <td>skype</td>
+                                <td v-else><input v-model='admin.name'  /></td>
+                                <td v-if='!admin.edit'><a :href="admin.link">{{admin.value}}</a></td>
+                                <td v-else><input v-model='admin.value'/></td>
                                 <td><span class="label label-info">10</span></td>
-                                <td>{{admin.createdAt}}</td>
-                                <td>{{admin.updatedAt}}</td>
+                                <td>{{admin.createdAt.split('T')[0]}}<br/> {{admin.createdAt.split('T')[1].slice(0,8)}}</td>
+                                <td>{{admin.updatedAt.split('T')[0]}}<br/> {{admin.updatedAt.split('T')[1].slice(0,8)}}</td>
                                 <td>
                                     <button type="button" @click="deleteAdmin(admin._id)"
                                             class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
                                            ><i class="ti-close"
                                              ></i>
                                     </button>
+                                    <button @click='admin.edit = !admin.edit'>{{admin.edit?'Close':'Edit'}}</button>
+                                    <button @click='editAdmin(admin.value,admin.name,admin._id)' v-if='admin.edit'>Save</button>
                                 </td>
                             </tr>
 
@@ -118,7 +120,7 @@
                 admins: [
 
                 ],
-                show: false
+                show: false,
 
 
             }
@@ -165,6 +167,9 @@
                 this.$rest.api('getContacts', { page, limit: 10 })
                     .then(res => {
                         if (res.success) {
+                            res.data.contacts.forEach(el => {
+                                el.edit = false;
+                            })
                             this.admins = res.data.contacts;
                             this.current_page = res.data.count.select_page || 1;
                             this.total_page = res.data.count.pages || 1;
@@ -187,8 +192,8 @@
                         this.$root.$emit('loading', false);
                     })
             },
-            deleteAdmin(id) {
-                this.$rest.api('deleteContact',{contact_id:id})
+            deleteAdmin(contact_id) {
+                this.$rest.api('deleteContact', {contact_id})
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -202,7 +207,7 @@
                                 group: 'main',
                                 duration: 5000,
                                 type: 'success',
-                                title: `Admin ${res.data.id} successful deleted`,
+                                title: `Contact successful deleted`,
                             });
 
                         }
@@ -219,6 +224,32 @@
                     })
                     .catch(err => {
                         this.$root.$emit('loading', false);
+                    })
+
+            },
+            editAdmin(value, name, contact_id) {
+
+                this.$rest.api('editContact', { value, name, contact_id })
+                    .then(res => {
+                        console.log(res);
+                        if (res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'success',
+                                title: `Contact successful edited`,
+                            });
+
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Something wrong...',
+                                text: res.error.message,
+                            });
+                        }
                     })
 
             }
