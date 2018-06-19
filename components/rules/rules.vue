@@ -38,6 +38,9 @@
                 title: 'OK',
                 text: 'Rule successful deleted'
               })
+              this.rules.forEach((el,i)=>{
+                el[i]._id = id?this.rules.splice(i,1):'';
+              })
             }
             if (!res.success) {
               this.$notify({

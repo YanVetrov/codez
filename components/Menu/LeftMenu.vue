@@ -175,11 +175,8 @@
 </script>
 
 <style>
-    .sidebar {
-        z-index: 9999;
-    }
-    @media screen and (max-width:600px){
-       .col-lg-1,
+    @media screen and (max-width:600px) {
+        .col-lg-1,
         .col-lg-10,
         .col-lg-11,
         .col-lg-12,
@@ -229,10 +226,9 @@
         .col-xs-9 {
             padding-left: 0;
             padding-right: 0;
-        } 
+        }
+        .sidebar {
+            z-index: 9999;
+        }
     }
-
-
-        
-    
 </style>

@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-info waves-effect"
-                                                        @click="newAdmin">Add
+                                                        @click.prevent="newAdmin">Add
                                                 </button>
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         @click="show=false">Cancel
@@ -206,7 +206,7 @@
                         console.log(res);
                         if (res.success) {
                             this.admins.forEach((el, i) => {
-                                if (el.id == id) {
+                                if (el.id == contact_id) {
                                     this.admins.splice(i, 1);
                                 }
 

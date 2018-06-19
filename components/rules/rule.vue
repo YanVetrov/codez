@@ -9,8 +9,9 @@
         <br/>
         <vue-editor v-model='rule.content'></vue-editor>
         <br/>
-        <button @click="save(rule.content,rule.title,rule._id,rule.sortNumber)">Save</button>
-        <button @click="rule.content=''">Clear</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(rule.content,rule.title,rule._id,rule.sortNumber)">SAVE</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="rule.content=''">CLEAR</button>
+        <button class='btn btn-danger btn-outline btn-rectangle btn-s m-r-14' @click="save('delete','delete',rule._id,rule.sortNumber)">DELETE</button>
         
       </div>
     </div>
@@ -31,8 +32,10 @@
     methods: {
       save(content, title, id, sortNumber) {
          let obj = { content, title, id, sortNumber };
+         let link = 'editRule';
+         content=='delete'?link='deleteRule':'';
         this.$root.$emit('loading', true);
-        this.$rest.api('editRule', obj)
+        this.$rest.api(link, obj)
           .then(res => {
             if (res.success) {
               this.$notify({

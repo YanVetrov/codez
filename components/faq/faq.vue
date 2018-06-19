@@ -17,9 +17,8 @@
         <br/>
         <vue-editor v-model='faq.content' v-if="!faq.active" />
         <br/>
-        <button @click="faq.active = !faq.active">{{faq.active?"Edit":"Close"}}</button>
-        <button @click="save(faq.content,faq.title,faq._id)">Save</button>
-        <button @click="save('delete','delete',faq._id)">Delete</button>
+        <nuxt-link :to="faq._id.toString()"><button>Edit</button></nuxt-link>
+        <button @click="save(faq._id)">Delete</button>
         
       </div>
       <button @click='createNew'>Create</button>
@@ -46,26 +45,17 @@
         current_page: 1,
         total_page: 1,
         faqs: [],
-        filter: {        search:'',group:'',lang:''},
+        filter: { search: '', group: '', lang: '' },
         langs: [],
-        groups:[],
+        groups: [],
 
 
       }
     },
     methods: {
-      save(content, title, id) {
-
-        console.log(`${content} ${title} ${id}`)
-        let link,
-          sortNumber = 1,
-          group = 'main',
-          obj = { group, content, title, id, sortNumber };
-        id == 'new' ? link = 'createFaq' : link = 'editFaq';
-        content == 'delete' ? link = 'deleteFaq' : '';
+      save(id) {
         this.$root.$emit('loading', true);
-        console.log(obj);
-        this.$rest.api(link, obj)
+        this.$rest.api('deleteFaq', { id })
           .then(res => {
             if (res.success) {
               this.$notify({
@@ -74,6 +64,9 @@
                 type: 'info',
                 title: 'OK',
                 text: 'faq successful edited'
+              })
+              this.faqs.forEach((el, i) => {
+                el[i]._id = id ? this.rules.splice(i, 1) : '';
               })
             }
             if (!res.success) {
@@ -102,7 +95,7 @@
         obj.page = page || 1;
         obj.limit = 10;
         console.log(obj);
-        this.$rest.api('getFaqFull', obj )
+        this.$rest.api('getFaqFull', obj)
           .then(res => {
             console.log(res)
             res.data.faq.forEach(el => {

@@ -9,8 +9,8 @@
         <br/>
         <vue-editor v-model='rule.content'></vue-editor>
         <br/>
-        <button @click="save(rule.content,rule.title)">Save</button>
-        <button @click="rule.content=''">Clear</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(rule.content,rule.title)">SAVE</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="rule.content=''">CLEAR</button>
         
       </div>
     </div>
