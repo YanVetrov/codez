@@ -18,12 +18,16 @@
             <br>
             <div class="white-box box_m" v-for="(el,i) in comment "
                  :key="i">
+                <span>
+                        <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
+                    </span>
+                <h5>Имя :{{el.name_author}}</h5>
                 <div>
                     {{el.message}}
                 </div>
-                <span class="img">
-                        <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
-                    </span>
+                <br>
+
+
             </div>
         </div>
     </div>
@@ -63,7 +67,11 @@
                     })
             },
             createCommentForNews() {
-                this.$rest.api('createCommentForNews', {news_id: this.news_id, message: this.message, name: this.name})
+                this.$rest.api('createCommentForNews', {
+                    news_id: this.news_id,
+                    message: this.message,
+                    name_author: this.name
+                })
                     .then(response => {
                         console.log(response);
                         if (response.success === true) {
@@ -76,7 +84,8 @@
                     .then(response => {
                         console.log(response.data);
                         if (response.success === true) {
-                            this.comment = response.data.comments
+                            this.comment = response.data.comments;
+                            this.name = response.data.name_author
 
                         }
                     })
@@ -103,7 +112,7 @@
         top: -55px;
     }
 
-    .box_m{
+    .box_m {
         position: relative;
         top: 55px;
 
