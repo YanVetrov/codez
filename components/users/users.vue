@@ -2,9 +2,9 @@
     <div class='white-box' @click="viewDetailsClicked">
         <div class="head line">
             <div> №</div>
-            <div class='lay'>ФИО</div>
-            <div class='lay'>E-mail</div>
-            <div class='lay'>Баланс</div>
+            <div class='lay'>{{$t('fn')}} {{$t('ln')}}</div>
+            <div class='lay'>{{$t('email')}}</div>
+            <div class='lay'>{{$t('balance')}}</div>
         </div>
         <div class='info line'>
             <div class='lay'>

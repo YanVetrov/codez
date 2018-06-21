@@ -11,13 +11,13 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Entries',
+                        text: this.$t('entries'),
                         x: -20
                     },
 
                     yAxis: {
                         title: {
-                            text: 'USERS'
+                            text: this.$t('users')
                         },
                         plotLines: [{
                             value: 0,

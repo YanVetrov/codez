@@ -23,7 +23,7 @@
                         enabled: true
                     },
                     series: [{
-                        name: 'Country',
+                        name: this.$t('country'),
                         mapData: {
                             "title": "World, Miller projection, medium resolution",
                             "version": "1.1.2",

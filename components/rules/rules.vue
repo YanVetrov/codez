@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-12">
       <input type="text" v-model='id'/>id
-      <input type="text" v-model='link'/>link
-      <button @click="getRule">send</button>
+      <input type="text" v-model='link'/>{{$t('link')}}
+      <button @click="getRule">{{$t('send')}}</button>
       <div class="white-box" v-for="rule in rules" :key="rule._id">
         <h3 class="box-title">{{rule.title}}</h3>
         <input type="text" v-model="rule.title" v-if="!rule.active"/>
-        <nuxt-link :to="rule._id.toString()"><button>Edit</button></nuxt-link>
-        <button @click="save(rule._id)">Delete</button>
+        <nuxt-link :to="rule._id.toString()"><button>{{$t('edit')}}</button></nuxt-link>
+        <button @click="save(rule._id)">{{$t('delete')}}</button>
         
       </div>
     </div>

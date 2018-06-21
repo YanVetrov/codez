@@ -2,19 +2,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h3 class="box-title">Contact listing</h3>
+                <h3 class="box-title">{{$t('contacts')}}</h3>
                 <div class="scrollable">
                     <div class="table-responsive">
                         <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Nick</th>
-                                <th>Link</th>
+                                <th>{{$t('name')}}</th>
+                                <th>{{$t('nick')}}</th>
+                                <th>{{$t('link')}}</th>
                                 <th>LVL</th>
-                                <th>Created</th>
-                                <th>Last update</th>
-                                <th>Action</th>
+                                <th>{{$t('created')}}</th>
+                                <th>{{$t('lastupd')}}</th>
+                                <th>{{$t('action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,8 +45,7 @@
                             <tfoot>
                             <tr>
                                 <td colspan="2">
-                                    <button type="button" class="btn btn-info btn-rounded" @click="show=true">Add New
-                                        Contact
+                                    <button type="button" class="btn btn-info btn-rounded" @click="show=true">{{$t('add')}}
                                     </button>
                                 </td>
                                 <transition name="fade">
@@ -58,7 +57,7 @@
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-hidden="true">×
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">Add New Contact</h4></div>
+                                                <h4 class="modal-title" id="myModalLabel">{{$t('add')}}</h4></div>
                                             <div class="modal-body">
                                                 <div class="form-horizontal form-material">
                                                     <div class="form-group">
@@ -81,10 +80,10 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-info waves-effect"
-                                                        @click.prevent="newAdmin">Add
+                                                        @click.prevent="newAdmin">{{$t('add')}}
                                                 </button>
                                                 <button type="button" class="btn btn-default waves-effect"
-                                                        @click="show=false">Cancel
+                                                        @click="show=false">{{$t('cancel')}}
                                                 </button>
                                             </div>
                                         </div>

@@ -7,7 +7,7 @@
         <br/>
                                         <select v-model="faq.group">
                                     <option v-for='group in groups' :key='group.id'>{{group.groupName}}</option>
-                                    <option @click='show=true'>Create new group</option>
+                                    <option @click='show=true'>{{$t('create group')}}</option>
                                 </select>
                                 <br/>
                                 <input type="text" v-model="faq.group" v-if="show" @blur="show=false"/>{{faq.group=='Create new group'?'':faq.group}}<br/>
@@ -19,8 +19,8 @@
         <br/>
         <vue-editor v-model='faq.content'></vue-editor>
         <br/>
-        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(faq.content,faq.title,faq.group,faq._id)">SAVE</button>
-        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="faq.content=''">CLEAR</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(faq.content,faq.title,faq.group,faq._id)">{{$t('save')}}</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="faq.content=''">{{$t('clear')}}</button>
         
       </div>
     </div>

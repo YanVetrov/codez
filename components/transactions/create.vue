@@ -2,19 +2,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h3 class="box-title">Wait for verification</h3>
+                <h3 class="box-title">{{$t('wait')}} {{$t('verif')}}</h3>
                 <div class="scrollable">
                     <div class="table-responsive">
                         <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
                             <thead>
                             <tr>
-                                <th>Photo</th>
-                                <th>First name</th>
-                                <th>Last name</th>
+                                <th>{{$t('photo')}}</th>
+                                <th>{{$t('fn')}}</th>
+                                <th>{{$t('ln')}}</th>
                                 <th>IP</th>
-                                <th>Currency1 -></th>
-                                <th> -> Currency2 </th>
-                                <th>Action</th>
+                                <th>{{$t('currency')}}1 -></th>
+                                <th> -> {{$t('currency')}}2 </th>
+                                <th>{{$t('action')}}</th>
                             </tr>
                             </thead>
                             <tbody>

@@ -1,10 +1,10 @@
 <template>
     <div class="row">
-        название операции
+        {{$t('operation')}}
         <input type="text" placeholder="example: 412423423" name="heh" v-model="operName"/>
         <select v-model="currency">
-            <option disabled>Валюта</option>
-            <option>валюта 1</option>
+            <option disabled>{{$t('currency')}}</option>
+            <option>{{$t('currency')}} 1</option>
         </select>
         <button class="fcbtn btn btn-info btn-1b" @click="getAdminHistory" style="margin:5px"><i
                 class='fa fa-search'></i></button>

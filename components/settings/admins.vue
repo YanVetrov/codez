@@ -26,7 +26,7 @@
                     <div class="component-valut_logo-upload">
                         <label @click="toggleShow">
                             <span> <img :src="imgDataUrl" style="border-radius: 50%; width: 6.5em;"></span>
-                            <p>Choose</p>
+                            <p>{{$t('choose')}}</p>
                         </label>
                     </div>
                 </div>
@@ -37,14 +37,14 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Contacts</p>
+                        <p>{{$t('contacts')}}</p>
                     </div>
 
                 </div>
                 <div class="component-valut_right-item">
                     
                     <label>
-                        <span>Email</span>
+                        <span>{{$t('email')}}</span>
 
                         <div>
                             <input type="text" v-model="form.email">
@@ -84,7 +84,7 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Exchanger design</p>
+                        <p>{{$t('design')}}</p>
                     </div>
 
                 </div>
@@ -96,11 +96,11 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Design</span>
+                            <span>{{$t('design')}}</span>
 
                             <div class="component-valut_right-select">
                                 <select v-model="form.design">
-                                    <option disabled selected>Choose design</option>
+                                    <option disabled selected>{{$t('choose')}} {{$t('design')}}</option>
                                     <option>black</option>
                                     <option>white</option>
                                 </select>
@@ -112,7 +112,7 @@
  <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Rules</p>
+                        <p>{{$t('rules')}}</p>
                     </div>
 
                 </div>
@@ -125,7 +125,7 @@
                     
                 </div>
 <div v-if='edit'>
-<h3>Title</h3>
+<h3>{{$t('title')}}</h3>
   <div class="component-valut_right-item">
 
                                           <div class="component-valut">
@@ -141,7 +141,7 @@
 
 
                     </div>
-                    <h3>Rules</h3>
+                    <h3>{{$t('rules')}}</h3>
 
                     <div class="component-valut_right-item">
 
@@ -165,12 +165,12 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Partners</p>
+                        <p>{{$t('partners')}}</p>
                         <div>
                             <a class="cl-pointer" @click="form.type_pay = 'manually'"
-                               :class="{active:(form.type_pay==='manually')}">Add</a>
+                               :class="{active:(form.type_pay==='manually')}">{{$t('add')}}</a>
                             <a class="cl-pointer" @click="form.type_pay = 'auto'"
-                               :class="{active:(form.type_pay==='auto')}">Current</a>
+                               :class="{active:(form.type_pay==='auto')}">{{$t('all')}}</a>
                         </div>
                     </div>
 
@@ -179,14 +179,14 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Link</span>
+                            <span>{{$t('link')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.fieldDeposit">
                             </div>
                         </label>
                         <label>
-                            <span>Logo upload</span>
+                            <span>{{$t('upload')}} {{$t('logo')}}</span>
 
                             <div>
                     <div class="component-valut_logo" style="width:100px;height:100px;border-radius:100%;padding:0;">
@@ -231,7 +231,7 @@
                 
                 <div class="component-valut_right-item component-valut_right-send">
 
-                    <button @click="postPost">Save</button>
+                    <button @click="postPost">{{$t('save')}}</button>
 
                 </div>
 

@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-            <input type="text" v-model='filter.search'/>search
+            <input type="text" v-model='filter.search'/>{{$t('search')}}
       <select>
         <option v-for="lang in langs" @click="filter.lang = lang.lang" :key="lang.id">{{lang.name}} - {{lang.lang}}</option>
       </select>
       <select>
         <option v-for="group in groups" @click="filter.group = group.groupName" :key="group.id">{{group.groupName}}</option>
       </select>
-      <button @click="getFaq">send</button>
+      <button @click="getFaq">{{$t('send')}}</button>
       <div class="white-box" v-for="faq in faqs" :key="faq._id">
         <h3 class="box-title">{{faq.title}}</h3>
         <input type="text" v-model="faq.title" v-if="!faq.active"/>
@@ -17,11 +17,11 @@
         <br/>
         <vue-editor v-model='faq.content' v-if="!faq.active" />
         <br/>
-        <nuxt-link :to="faq._id.toString()"><button>Edit</button></nuxt-link>
-        <button @click="save(faq._id)">Delete</button>
+        <nuxt-link :to="faq._id.toString()"><button>{{$t('edit')}}</button></nuxt-link>
+        <button @click="save(faq._id)">{{$t('delete')}}</button>
         
       </div>
-      <button @click='createNew'>Create</button>
+      <button @click='createNew'>{{$t('create')}}</button>
                <paging
           :currentPage="current_page"
           :totalPages="total_page"

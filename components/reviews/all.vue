@@ -5,12 +5,12 @@
             <loading type="block" :status_load="status_load"/>
             <div class="head line">
                 <div class='lay'>ID</div>
-                <div class='lay'>PUBLISHER</div>
-                <div class='lay'>DATE</div>
-                <div class='lay'>E-MAIL</div>
+                <div class='lay'>{{$t('user')}}</div>
+                <div class='lay'>{{$t('date')}}</div>
+                <div class='lay'>{{$t('email')}}</div>
                 <div class='lay'>IP</div>
                 <div class='lay'>USER-ID</div>
-                <div class='lay'>STATE</div>
+                <div class='lay'>{{$t('state')}}</div>
             </div>
             <div class='info line'>
                 <div class='lay'>7015</div>

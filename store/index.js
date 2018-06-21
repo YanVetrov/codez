@@ -1,5 +1,4 @@
 export const state = () => ({
-  // Возможные языки
   locales: ['ru', 'en'],
   locale: 'ru'
 });
@@ -10,4 +9,10 @@ export const mutations = {
       state.locale = locale
     }
   }
+};
+
+export const actions = {
+    lang({ commit }, lang) {
+        commit('SET_LANG', lang);
+    }
 };

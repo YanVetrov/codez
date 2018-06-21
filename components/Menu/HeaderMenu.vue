@@ -26,7 +26,7 @@
                     </a>
                     <ul class="dropdown-menu mailbox animated bounceInDown">
                         <li>
-                            <div class="drop-title">You have {{messages.total}} new messages</div>
+                            <div class="drop-title">{{$t('youhave')}} {{messages.total}} {{$t('notifications')}}</div>
                         </li>
                         <li>
                             <div class="message-center">
@@ -42,7 +42,7 @@
                             </div>
                         </li>
                         <li>
-                            <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i
+                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}} {{$t('notifications')}}</strong> <i
                                     class="fa fa-angle-right"></i> </a>
                         </li>
                     </ul>
@@ -67,8 +67,7 @@
                                 <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
                                 <div class="u-text"><h4>{{firstName}} {{lastName}}</h4>
                                     <p class="text-muted">{{email}}</p><a href="profile.html"
-                                                                                class="btn btn-rounded btn-danger btn-sm">View
-                                        Profile</a>
+                                                                                class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
                                 </div>
                             </div>
                         </li>
@@ -76,12 +75,12 @@
                         <li v-for='list in profileList' :key="list.id">
                             <nuxt-link :to="list.link"><i :class="'ti-'+list.icon"></i>{{list.name}}</nuxt-link>
                         </li>
-                        <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                        <li><a href="#"><i class="ti-wallet"></i> {{$t('balance')}}</a></li>
                         <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                        <li @click="locale"><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> {{$t('logout')}}</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -149,6 +148,9 @@
                 let n = 'dropdown';
                 this.dropdown2 === n ? this.dropdown2 = `${n} open` : this.dropdown2 = n;
             },
+            locale(){
+                this.$store.dispatch('lang','ru');
+            }
         }
     }
 </script>
