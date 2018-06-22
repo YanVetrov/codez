@@ -11,10 +11,10 @@
                     <table class="table color-table info-table">
                         <thead>
                         <tr>
-                            <th>Sum</th>
-                            <th>Backward</th>
-                            <th>Currency</th>
-                            <th>Total</th>
+                            <th>{{$t('sum')}}</th>
+                            <th>{{$t('comission')}}</th>
+                            <th>{{$t('currency')}}</th>
+                            <th>{{$t('total')}}</th>
                         </tr>
 
                         </thead>
@@ -36,10 +36,10 @@
                         <thead>
                         <tr>
 
-                            <th>Sum</th>
-                            <th>Backward</th>
-                            <th>Currency</th>
-                            <th>Total</th>
+                            <th>{{$t('sum')}}</th>
+                            <th>{{$t('comission')}}</th>
+                            <th>{{$t('currency')}}</th>
+                            <th>{{$t('total')}}</th>
                         </tr>
 
                         </thead>
@@ -56,7 +56,7 @@
                 </div>
                 <hr/>
                <buttons :id="tra.id"></buttons>
-                <span class='text-muted'>TRANSACTION ID: {{tra.id}}</span>
+                <span class='text-muted'>{{$t('trans')}} ID: {{tra.id}}</span>
             </div>
         </div>
 </div>

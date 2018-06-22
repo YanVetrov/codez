@@ -23,11 +23,11 @@
             <div class="component-valut_left">
 
                 <div class="component-valut_logo">
-                    <h5 class="component-valut_logo-title">Лого платежной системы</h5>
+                    <h5 class="component-valut_logo-title">{{$t('choose')}} {{$t('logo')}} </h5>
                     <div class="component-valut_logo-upload">
                         <label @click="toggleShow">
                             <span> <img :src="imgDataUrl" style="border-radius: 50%; width: 6.5em;"></span>
-                            <p>Выберите</p>
+                            <p>{{$t('choose')}}</p>
                         </label>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
 
                     <div class="component-valut_requirement-top">
                         <span></span>
-                        <p>Изображенние должно быть не менее 100 х 100 пикселей, и быть форматом PNG, JPEG</p>
+                        <p>{{$t('from')}} 100 х 100, PNG, JPEG</p>
                     </div>
 
                     <div class="component-valut_requirement-bot">
@@ -52,14 +52,14 @@
             <div class="component-valut_right">
                 <div class="component-valut_right-item">
                     <label>
-                        <span>Платежная система</span>
+                        <span>{{$t('paysystem')}}</span>
 
                         <div>
                             <input type="text" v-model="form.name">
                         </div>
                     </label>
                     <label class="component-valut_right-currency">
-                        <span>Тип валюты</span>
+                        <span>{{$t('type')}} {{$t('currencies')}}</span>
 
                         <div>
                             <input type="text" v-model="form.type">
@@ -72,7 +72,7 @@
 
                 <div class="component-valut_right-item">
                     <label>
-                        <span>XML Валюты</span>
+                        <span>XML {{$t('currencies')}}</span>
 
                         <div>
                             <v-select :options="optionsXML" label="xml" placeholder="Введите XML"
@@ -87,7 +87,7 @@
 
                     <div class="component-valut_right-info">
                         <a><img src="~/static/images/information.svg" alt=""></a>
-                        <p>Введите обозначение (согласно стандарту) <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
+                        <p>{{$t('createCurrency.1')}} <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
                         </p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
 
 
                     <label>
-                        <span>Сумма резерва</span>
+                        <span>{{$t('createCurrency.2')}}</span>
 
                         <div>
                             <input type="text" v-model="form.reserve">
@@ -106,7 +106,7 @@
                     </label>
 
                     <div class="component-valut_arrow">
-                        <p>Точность суммы</p>
+                        <p>{{$t('createCurrency.3')}}</p>
                         <div>
                             <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1"
                                class="component-valut_arrov-left"></a>
@@ -120,12 +120,12 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Курс валюты {{form.name}} {{form.type}} к USD</p>
+                        <p>{{$t('createCurrency.4')}} {{form.name}} {{form.type}} {{$t('to')}} USD</p>
                         <div>
                             <a class="cl-pointer" @click="form.type_rate = 'manually'"
-                               :class="{active:(form.type_rate==='manually')}">Вручную</a>
+                               :class="{active:(form.type_rate==='manually')}">{{$t('manual')}}</a>
                             <a class="cl-pointer" @click="form.type_rate = 'auto'"
-                               :class="{active:(form.type_rate==='auto')}">Автоматически</a>
+                               :class="{active:(form.type_rate==='auto')}">{{$t('auto')}}</a>
                         </div>
                     </div>
 
@@ -135,7 +135,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Введите курс валюты<br></span>
+                            <span>{{$t('createCurrency.5')}}<br></span>
 
                             <div class="component-valut_right">
                                 <input type="text" v-model="form.rate">
@@ -145,8 +145,7 @@
                         <div class="component-valut_right-info">
 
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Внимание данное поле необходимо корректировать для того чтоб партнерские вознаграждения
-                                начислялись верно.</p>
+                            <p>{{$t('createCurrency.6')}}</p>
                         </div>
                     </div>
 
@@ -158,7 +157,7 @@
 
 
                         <label>
-                            <span>Валюта</span>
+                            <span>{{$t('currency')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.currency_for_parser">
@@ -166,7 +165,7 @@
                         </label>
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Код валюты (Пример: EUR)</p>
+                            <p>{{$t('createCurrency.7')}}</p>
                         </div>
                     </div>
                     <hr>
@@ -174,7 +173,7 @@
 
                         <label>
 
-                            <span>Парсер</span>
+                            <span>{{$t('parser')}}</span>
 
                             <div>
                                 <v-select :options="optionsParsers" label="title" placeholder="Вибирите парсер"
@@ -188,8 +187,8 @@
                         </label>
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>C полным списком парсеров и доступных им направлений вы можете увидеть в розделе
-                                <nuxt-link to="/parsers">Парсеры курсов</nuxt-link>
+                            <p>{{$t('createCurrency.8')}}
+                                <nuxt-link to="/parsers">{{$t('parsers')}}</nuxt-link>
                             </p>
                         </div>
 
@@ -202,12 +201,12 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>Способ оплаты</p>
+                        <p>{{$t('createCurrency.9')}}</p>
                         <div>
                             <a class="cl-pointer" @click="form.type_pay = 'manually'"
-                               :class="{active:(form.type_pay==='manually')}">Вручную</a>
+                               :class="{active:(form.type_pay==='manually')}">{{$t('manual')}}</a>
                             <a class="cl-pointer" @click="form.type_pay = 'auto'"
-                               :class="{active:(form.type_pay==='auto')}">Автоматически</a>
+                               :class="{active:(form.type_pay==='auto')}">{{$t('auto')}}</a>
                         </div>
                     </div>
 
@@ -216,14 +215,14 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Название поля для депозита</span>
+                            <span>{{$t('createCurrency.10')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.fieldDeposit">
                             </div>
                         </label>
                         <label>
-                            <span>Валидатор для поля депозита</span>
+                            <span>{{$t('createCurrency.11')}}</span>
 
                             <div>
                                 <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
@@ -243,7 +242,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Название поля для вывода</span>
+                            <span>{{$t('createCurrency.12')}}</span>
 
                             <div>
 
@@ -252,7 +251,7 @@
                         </label>
 
                         <label>
-                            <span>Валидатор для поля вывода</span>
+                            <span>{{$t('createCurrency.13')}}</span>
 
                             <div>
                                 <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
@@ -271,7 +270,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Ссылка платежной системы</span>
+                            <span>{{$t('createCurrency.14')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.link">
@@ -279,7 +278,7 @@
                         </label>
 
                         <label>
-                            <span>Ваш счет</span>
+                            <span>{{$t('createCurrency.15')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.account">
@@ -291,7 +290,7 @@
                     <div class="component-valut_right-payment-method">
 
                         <div class="component-valut_right-payment-method_title">
-                            <p>Инструкция ручной оплаты</p>
+                            <p>{{$t('createCurrency.16')}}</p>
                             <div>
                                 <a class="cl-pointer" @click="form.type_help_text = 'standard'"
                                    :class="{active:(form.type_help_text==='standard')}">Стандартная</a>
@@ -306,29 +305,29 @@
 
                         <br>
                         <div class="form-manual-must text-center">
-                            <h3 class="title">Для завершение обмена необходимо выполнить следушие действия:</h3>
+                            <h3 class="title">{{$t('createCurrency.17')}}</h3>
                             <ol>
                                 <li>
                                     <div>
-                                        <p>Авторизируйтесь в:</p>
+                                        <p>{{$t('createCurrency.18')}}</p>
                                         <a href="" class="btn btn-log-in"><img :src="imgDataUrl" alt=""><span>{{form.name}}</span></a>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <p>Оплатите:</p>
-                                        <div class="form-manual-must_txt">СУММА {{form.type}}</div>
+                                        <p>{{$t('createCurrency.19')}}</p>
+                                        <div class="form-manual-must_txt">{{$t('sum')}} {{form.type}}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <p>На счет:</p>
+                                        <p>{{$t('createCurrency.20')}}</p>
                                         <div class="form-manual-must_txt">{{form.account}}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <p>Комментарий к платежу:</p>
+                                        <p>{{$t('comment')}}</p>
                                         <div class="form-manual-must_txt">
                                             <v-select :options="optionsLastStep" label="name"
                                                       placeholder="Что должен оставить?"
@@ -356,11 +355,11 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>Мерчант</span>
+                            <span>{{$t('merchant')}}</span>
 
                             <div class="component-valut_right-select">
                                 <select v-model="form.mechant">
-                                    <option disabled selected>Выбирете Мерчант</option>
+                                    <option disabled selected>{{$t('choose')}} {{$t('merch')}}</option>
                                     <option>Privat24</option>
                                     <option>PayPal</option>
                                 </select>
@@ -369,8 +368,8 @@
 
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>Внимание если вы не видите в списке нужно мерчанта возможно он не настроен в меню
-                                <nuxt-link to="/payments/merchant">Мерчаинты и API</nuxt-link>
+                            <p>{{$t('createCurrency.21')}}
+                                <nuxt-link to="/payments/merchant">{{$t('merch')}} API</nuxt-link>
                                 .
                             </p>
                         </div>
@@ -379,7 +378,7 @@
                 </div>
                 <div class="component-valut_right-item component-valut_right-send">
 
-                    <button @click="postPost">Создать</button>
+                    <button @click="postPost">{{$t('create')}}</button>
 
                 </div>
 
@@ -391,7 +390,6 @@
 
 <script>
     import Loading from "~/components/loading";
-
     export default {
         components: {Loading},
         data() {
@@ -409,7 +407,6 @@
                     type_pay: 'manually',
                     fieldDeposit: '',
                     fieldWithdrawal: '',
-
                     regexpDeposit: undefined,
                     regexpWithdrawal: undefined,
                     // parser
@@ -435,7 +432,6 @@
                 afterPost: false,
                 title: '',
                 content: '',
-
                 show: false,
                 params: {
                     public: true,
@@ -454,29 +450,23 @@
         },
         methods: {
             getParsers() {
-
                 return this.$rest.api('getAllParsers')
                     .then((res) => {
                         this.optionsParsers = res.data.parsers.map(el => {
                             return {...el.conf, _id: el._id};
                         })
-
                     })
             },
             getRegExp() {
-
                 return this.$rest.api('getAllRegExp')
                     .then((res) => {
                         this.optionsRegexp = res.data.regexp
-
                     })
             },
             getXMLestandardsInfo() {
-
                 return this.$axios.get('https://proexchanger.net/service/api/v1/estandardsInfo')
                     .then((res) => {
                         this.optionsXML = res.data.data.res;
-
                     })
             },
             toggleShow() {
@@ -485,7 +475,6 @@
             cropSuccess(imgDataUrl) {
                 this.imgDataUrl = imgDataUrl;
             },
-
             cropUploadSuccess(jsonData, field) {
                 if (jsonData.success === true) {
                     this.form.imageId = jsonData.data._id;
@@ -505,7 +494,6 @@
                     }
                 }
             },
-
             cropUploadFail(status, field) {
                 this.imgDataUrl = '';
                 this.form.imageId = '';
@@ -517,10 +505,8 @@
                     text: 'Please retry upload image'
                 })
             },
-
             postPost() {
                 this.status_load = false;
-
                 this.$rest.api('createCurrency', {
                     name: this.form.name,
                     type: this.form.type,
@@ -566,33 +552,25 @@
                     .finally(() => {
                         this.status_load = true;
                     });
-
             }
-
-
         }
     }
 </script>
 <style>
-
     .v-select.single .selected-tag {
         position: absolute !important;
     }
-
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity 0.01s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
-
     .fade-enter,
     .fade-leave-to {
         opacity: 0;
     }
-
 </style>
 
 <style scoped>
-
     .form-manual-must ol {
         margin: 0 -.875rem 15px;
         display: -ms-flexbox;
@@ -603,32 +581,26 @@
         flex-direction: row;
         counter-reset: a;
     }
-
     ol, ul {
         list-style-type: none;
         padding: 0;
     }
-
     .form-manual-must_txt {
         font-size: 1.5rem;
         margin-top: 1.8rem;
         font-weight: 600;
-
     }
-
     .form-manual-must .btn {
         margin-top: 10px;
         border-radius: 35px;
         font-weight: 600;
     }
-
     .form-manual-must .btn img {
         margin: 0 15px 0 0;
         max-width: 100%;
         height: 29px;
         border-radius: 50%;
     }
-
     .btn-log-in {
         margin: 0 auto;
         max-width: 220px;
@@ -647,7 +619,6 @@
         justify-content: center;
         border: 1px solid #f0f1f4;
     }
-
     .form-manual-must li {
         border: 1px solid #e6e6e6;
         margin: 2em .875rem .875rem;
@@ -656,7 +627,6 @@
         flex: 1 1;
         position: relative;
     }
-
     .form-manual-must li:before {
         counter-increment: a;
         content: counter(a);
@@ -675,24 +645,20 @@
         transform: translateX(-50%);
         z-index: 2;
     }
-
     .component-valut hr {
         margin-top: 0;
         margin-bottom: 0;
     }
-
     .component-valut_right--span {
         font-size: 1em;
         text-transform: uppercase;
         font-weight: 500;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
         .component-valut_right--span {
             font-size: .8em;
         }
     }
-
     .component-valut {
         width: 100%;
         font-size: 14px;
@@ -700,59 +666,49 @@
         line-height: 1.42857143;
         font-family: 'Rubik', sans-serif;
     }
-
     .component-valut p {
         margin: 0;
     }
-
     .component-valut {
         /* margin: 0 0 0 60px; */
         color: #656565;
     }
-
     @media screen and (max-width: 768px) {
         .component-valut {
             margin-left: 0;
         }
     }
-
     .component-valut_wr_block {
         padding: 0 10px 50px;
         display: flex;
         flex-wrap: wrap;
     }
-
     .component-valut_left {
         margin: 10px 15px;
         width: 290px;
     }
-
     @media screen and (max-width: 1450px) {
         .component-valut_left {
             width: 260px;
         }
     }
-
     @media screen and (max-width: 1200px) {
         .component-valut_left {
             width: 100%;
         }
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_left {
             margin-left: 0;
             margin-right: 0;
         }
     }
-
     .component-valut_logo {
         border-radius: 3px;
         background-color: #f7f7f7;
         padding: 15px;
         box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.11);
     }
-
     .component-valut_logo-title {
         font-size: 1em;
         text-transform: uppercase;
@@ -760,26 +716,22 @@
         text-align: center;
         border-bottom: 1px solid rgba(101, 101, 101, 0.2);
     }
-
     .component-valut_logo-upload {
         position: relative;
         overflow: hidden;
         margin-top: 15px;
     }
-
     .component-valut_logo-upload label {
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: relative;
     }
-
     @media screen and (max-width: 1200px) {
         .component-valut_logo-upload label {
             justify-content: center;
         }
     }
-
     .component-valut_logo-upload input {
         position: absolute;
         top: 0;
@@ -788,7 +740,6 @@
         height: 1px;
         opacity: 0;
     }
-
     .component-valut_logo-upload span {
         cursor: pointer;
         width: 6.5em;
@@ -801,21 +752,18 @@
         background-repeat: no-repeat;
         background-size: 50%;
     }
-
     @media screen and (max-width: 1450px) {
         .component-valut_logo-upload span {
             width: 4.5em;
             height: 4.5em;
         }
     }
-
     @media screen and (max-width: 1200px) {
         .component-valut_logo-upload span {
             width: 6.5em;
             height: 6.5em;
         }
     }
-
     .component-valut_logo-upload p {
         cursor: pointer;
         margin: 0 7% 0 0;
@@ -829,13 +777,11 @@
         background-repeat: no-repeat;
         background-size: 30px;
     }
-
     @media screen and (max-width: 1200px) {
         .component-valut_logo-upload p {
             margin: 0 0 0 30px;
         }
     }
-
     .component-valut_logo-upload p:hover {
         -webkit-transition: .35s all;
         -moz-transition: .35s all;
@@ -843,17 +789,14 @@
         -o-transition: .35s all;
         transition: .35s all;
     }
-
     .component-valut_requirement {
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.11);
         margin-top: 30px;
         padding: 20px;
     }
-
     .component-valut_requirement p {
         font-size: 1em;
     }
-
     .component-valut_requirement-top {
         display: flex;
         align-items: center;
@@ -863,7 +806,6 @@
         padding-bottom: 20px;
         margin-bottom: 40px;
     }
-
     .component-valut_requirement-top span {
         display: inline-block;
         width: 50px;
@@ -876,20 +818,16 @@
         background-repeat: no-repeat;
         background-size: 50%;
     }
-
     .component-valut_requirement-top p {
         line-height: 1.46;
         flex: 1 0;
     }
-
     .component-valut_requirement-bot {
         margin-bottom: 10px;
     }
-
     .component-valut_requirement-bot p {
         line-height: 1.29;
     }
-
     .component-valut_arrow {
         display: flex;
         align-items: center;
@@ -899,7 +837,6 @@
         flex: .5 1;
         margin: 15px;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_arrow {
             min-width: initial;
@@ -907,7 +844,6 @@
             justify-content: flex-end;
         }
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_arrow {
             min-width: 100%;
@@ -915,7 +851,6 @@
             margin-right: 0;
         }
     }
-
     .component-valut_arrow p {
         margin: 0 20px 0 0;
         font-size: 1em;
@@ -923,27 +858,23 @@
         white-space: nowrap;
         font-weight: 500;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_arrow p {
             margin: 0;
         }
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
         .component-valut_arrow p {
             font-size: .8em;
             margin-right: 11px;
         }
     }
-
     .component-valut_arrow div {
         display: flex;
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
     }
-
     .component-valut_arrow a {
         width: 35px;
         height: 33px;
@@ -959,37 +890,30 @@
         -o-transition: .35s all;
         transition: .35s all;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_arrow a {
             height: 27px;
         }
     }
-
     .component-valut_arrow a.component-valut_arrov-left {
         background-image: url("~/static/images/back.svg");
     }
-
     .component-valut_arrow a.component-valut_arrov-right {
         background-image: url("~/static/images/next.svg");
     }
-
     .component-valut_arrow a:hover {
         background-color: #dadada;
     }
-
     .component-valut_arrow span {
         font-size: 1.28em;
         display: inline-block;
         margin-right: 25px;
         margin-left: 25px;
     }
-
     .component-valut_right {
         margin: 10px 15px;
         flex: 1 1;
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right {
             margin-left: 0;
@@ -997,7 +921,6 @@
             width: 100%;
         }
     }
-
     .component-valut_right-item {
         display: flex;
         justify-content: space-between;
@@ -1006,26 +929,22 @@
         margin-left: -15px;
         margin-right: -15px;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
         .component-valut_right-item > span {
             font-size: .8em;
         }
     }
-
     @media screen and (max-width: 1098px) {
         .component-valut_right-item {
             flex-wrap: wrap;
         }
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right-item {
             margin-left: 10px;
             margin-right: 10px;
         }
     }
-
     .component-valut_right-info {
         border-radius: 3px;
         background-color: #e5f7ff;
@@ -1040,14 +959,12 @@
         justify-content: center;
         flex: 1 0;
     }
-
     @media screen and (min-width: 1450px) {
         .component-valut_right-info {
             padding-left: 30px;
             padding-right: 30px;
         }
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right-info {
             margin-left: 0;
@@ -1056,34 +973,28 @@
             min-width: 230px;
         }
     }
-
     .component-valut_right-info a {
         color: #656565;
         font-size: 1em;
     }
-
     .component-valut_right-info > a {
         display: flex;
         align-items: center;
     }
-
     .component-valut_right-info img {
         max-width: 18px;
         width: 100%;
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right-info img {
             max-width: 50px;
         }
     }
-
     .component-valut_right-info p {
         font-size: 1em;
         margin-left: 30px;
         flex: 1 0;
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right-info p {
             line-height: normal;
@@ -1091,7 +1002,6 @@
             padding-bottom: 5px;
         }
     }
-
     .component-valut_right label {
         display: flex;
         align-items: center;
@@ -1100,7 +1010,6 @@
         margin: 15px;
         flex: 1 1;
     }
-
     @media screen and (max-width: 768px) {
         .component-valut_right label {
             width: 100%;
@@ -1108,14 +1017,12 @@
             display: block;
         }
     }
-
     @media screen and (max-width: 550px) {
         .component-valut_right label {
             margin-left: 0;
             margin-right: 0;
         }
     }
-
     .component-valut_right label span {
         font-size: 1em;
         text-transform: uppercase;
@@ -1123,25 +1030,21 @@
         cursor: pointer;
         flex: .5 1;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_right label span {
             margin-right: 5px;
         }
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1365px) {
         .component-valut_right label span {
             font-size: .8em;
         }
     }
-
     .component-valut_right label div {
         position: relative;
         width: 100%;
         flex: 1 1;
     }
-
     .component-valut_right label div p.error {
         position: absolute;
         right: 0;
@@ -1155,7 +1058,6 @@
         background-size: 12px;
         margin-right: 3%;
     }
-
     .component-valut_right label input,
     .component-valut_right label select {
         border: solid 1px #d5d5d5;
@@ -1167,29 +1069,24 @@
         box-sizing: border-box;
         font-size: 1.3em;
     }
-
     @media screen and (min-width: 1201px) and (max-width: 1450px) {
         .component-valut_right label input,
         .component-valut_right label select {
             min-width: 120px;
         }
     }
-
     .component-valut_right label input:focus,
     .component-valut_right label select:focus {
         outline: none;
     }
-
     .component-valut_right label input:invalid,
     .component-valut_right label select:invalid {
         border-color: #ff7676;
     }
-
     .component-valut_right label input.error,
     .component-valut_right label select.error {
         border-color: #ff7676;
     }
-
     .component-valut_right label select {
         height: 2.805em;
         padding-right: 25px;
@@ -1198,21 +1095,17 @@
         appearance: none;
         background-color: transparent;
     }
-
     .component-valut_right label.component-valut_right-currency {
         flex: .5 1;
     }
-
     @media screen and (max-width: 798px) {
         .component-valut_right label.component-valut_right-currency {
             flex: 1 1;
         }
     }
-
     .component-valut_right-select {
         position: relative;
     }
-
     .component-valut_right-select:after {
         content: "";
         border: 5px solid transparent;
@@ -1227,7 +1120,6 @@
         box-sizing: border-box;
         margin-top: -2px;
     }
-
     .component-valut_right-payment-method_title {
         display: flex;
         align-items: center;
@@ -1236,29 +1128,24 @@
         background-color: #2cabe3;
         padding: 0px 30px;
     }
-
     @media screen and (max-width: 650px) {
         .component-valut_right-payment-method_title {
             padding-left: 10px;
             padding-right: 10px;
         }
     }
-
     .component-valut_right-payment-method_title > p {
         font-size: 1.125em;
     }
-
     .component-valut_right-payment-method > * {
         color: #ffffff;
         text-transform: uppercase;
     }
-
     .component-valut_right-payment-method div {
         display: flex;
         align-items: center;
         position: relative;
     }
-
     .component-valut_right-payment-method div:after,
     .component-valut_right-payment-method div:before {
         content: '';
@@ -1268,15 +1155,12 @@
         width: 1px;
         background: rgba(229, 247, 255, 0.3);
     }
-
     .component-valut_right-payment-method div:after {
         right: 0;
     }
-
     .component-valut_right-payment-method div:before {
         left: 0;
     }
-
     .component-valut_right-payment-method a {
         font-size: 1em;
         flex: 1 1;
@@ -1288,14 +1172,12 @@
         padding-right: 3.5em;
         color: #b4e4f9;
     }
-
     @media screen and (max-width: 650px) {
         .component-valut_right-payment-method a {
             padding-left: 0.5em;
             padding-right: 0.5em;
         }
     }
-
     .component-valut_right-payment-method a:first-child:before {
         content: '';
         position: absolute;
@@ -1305,7 +1187,6 @@
         background: rgba(229, 247, 255, 0.3);
         right: 0;
     }
-
     .component-valut_right-payment-method a:hover,
     .component-valut_right-payment-method a.active {
         color: #ffffff;
@@ -1316,7 +1197,6 @@
         -o-transition: .35s all;
         transition: .35s all;
     }
-
     .component-valut_right-payment-method a.active:after {
         content: '';
         position: absolute;
@@ -1326,11 +1206,9 @@
         border-top: 10px solid #6cc3ec;
         margin-left: -10px;
     }
-
     .component-valut_right-payment-method a:hover:not(.active) {
         background: rgba(0, 0, 0, 0.5);
     }
-
     .component-valut_right button {
         border-radius: 24px;
         background-color: #ff7676;
@@ -1354,25 +1232,20 @@
         -o-transition: .35s all;
         transition: .35s all;
     }
-
     .component-valut_right button:focus {
         outline: none;
     }
-
     .component-valut_right button:hover {
         background-color: #c75858;
     }
-
     .component-valut_right-send {
         justify-content: flex-end;
         margin: 45px 0 0;
     }
-
     .component-valut hr {
         border: none;
         border-bottom: 1px solid #ededed;
     }
-
     .news-notify {
         position: absolute;
         top: auto !important;
@@ -1380,30 +1253,23 @@
         right: 25px !important;
         z-index: 1;
     }
-
     .news-create-notifications {
         padding: 10px;
         width: 100%;
-
         margin: 0 5px 5px;
-
         font-size: 12px;
-
         color: #ffffff;
         background: #44A4FC;
         border-left: 5px solid #187FE7;
     }
-
     .news-create-notifications.warn {
         background: #ffb648;
         border-left-color: #f48a06;
     }
-
     .news-create-notifications.error {
         background: #E54D42;
         border-left-color: #B82E24;
     }
-
     .news-create-notifications.success {
         background: #68CD86;
         border-left-color: #42A85F;

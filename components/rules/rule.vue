@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
      <div class='white-box'>
+       {{$t('hello')}}
         <h3 class="box-title">{{rule.title}}</h3>
         <input type="text" v-model="rule.title"/>
         <br/>
@@ -9,9 +10,9 @@
         <br/>
         <vue-editor v-model='rule.content'></vue-editor>
         <br/>
-        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(rule.content,rule.title,rule._id,rule.sortNumber)">SAVE</button>
-        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="rule.content=''">CLEAR</button>
-        <button class='btn btn-danger btn-outline btn-rectangle btn-s m-r-14' @click="save('delete','delete',rule._id,rule.sortNumber)">DELETE</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="save(rule.content,rule.title,rule._id,rule.sortNumber)">{{$t('save')}}</button>
+        <button class='btn btn-info btn-outline btn-rectangle btn-s m-r-14' @click="rule.content=''">{{$t('clear')}}</button>
+        <button class='btn btn-danger btn-outline btn-rectangle btn-s m-r-14' @click="save('delete','delete',rule._id,rule.sortNumber)">{{$t('delete')}}</button>
         
       </div>
     </div>

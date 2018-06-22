@@ -11,11 +11,7 @@
                         type: 'line'
                     },
                     title: {
-                        text: 'Average Salary',
-                        x: -20
-                    },
-                    subtitle: {
-                        text: 'experience:',
+                        text: this.$t('average salary'),
                         x: -20
                     },
                     xAxis: {
@@ -25,7 +21,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Salary ($)'
+                            text: this.$t('salary')
                         },
                         plotLines: [{
                             value: 0,

@@ -2,19 +2,19 @@
     <div class="row">
         ID
         <input type="text" placeholder="example: 412423423" name="heh" v-model="filterId"/>
-        Start date
+        {{$t('from')}}
         <input type="date" placeholder="dd/mm/yy" name="startDate" v-model="startDate"/>
-        End date
+        {{$t('to')}}
         <input type="date" placeholder="dd/mm/yy" name="endDate" v-model="endDate"/>
-        Currency 1
+        {{$t('currency')}} 1
         <select v-model="currency1">
             <option>валюта 1</option>
         </select>
-        Currency 2
+        {{$t('currency')}} 2
         <select v-model="currency2">
-            <option>валюта 2</option>
+            <option>{{$t('currency')}} 2</option>
         </select>
-        <button class="fcbtn btn btn-info btn-1b" @click="getTransactions" style="margin:5px">accept</button>
+        <button class="fcbtn btn btn-info btn-1b" @click="getTransactions" style="margin:5px">{{$t('accept')}}</button>
         <div class="white-box">
         <transactions :transactions="transactions" ></transactions>
          <paging

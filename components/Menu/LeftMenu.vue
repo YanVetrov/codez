@@ -95,9 +95,6 @@
                     icon: 'settings',
                     child: [
                         { name: 'History', page: '/history', icon: 'history' },
-                        { name: 'Partners', page: '/partners', icon: 'history' },
-                        { name: 'Create Partner', page: '/create', icon: 'history' },
-                        { name: 'Edit Partner', page: '/edit', icon: 'history' },
                         { name: 'Administrators', page: '/admins', icon: 'lock' },
                         { name: 'Apperance', page: '/apperance', icon: 'brush' },
                     ]

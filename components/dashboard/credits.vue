@@ -11,9 +11,9 @@
                         <li><img :src="fsPath+bank.conf.logo"/></li>
                         <li style="width:50%" class="text-right">
                             <ul>
-                                <li>{{bank.countRates}} Rates</li>
+                                <li>{{bank.countRates}} {{$t('rates')}}</li>
                                 <li :style="{color:bank.conf.config.active?'green':'red'}">
-                                    {{bank.conf.config.active?'ACTIVE':'NOT ACTIVE'}}
+                                    {{bank.conf.config.active?$t('active'):$t('nactive')}}
                                 </li>
 
                             </ul>
