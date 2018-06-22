@@ -48,10 +48,10 @@
 <script>
     import Loading from "~/components/loading";
     import moment from 'moment';
-    import paging from '~/components/pagination'
+    import pagination from '~/components/pagination'
 
     export default {
-        components: {paging, Loading,},
+        components: {pagination, Loading,},
         data() {
             return {
                 status_load: true,
