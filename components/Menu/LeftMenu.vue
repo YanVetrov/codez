@@ -2,7 +2,7 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav slimscrollsidebar">
             <div class="sidebar-head" @click="$store.dispatch('Menu/close')">
-                
+
                 <h3 >
           <span class="fa-fw open-close">
             <i class="ti-close ti-menu"></i>
@@ -64,30 +64,30 @@
     export default {
         data() {
             let menu = [{
-                    name: this.$t('dash'),
-                    isShow: false,
-                    page: '/dashboard',
-                    icon: 'view-dashboard',
-                    child: []
-                }, {
-                    name: this.$t('news'),
-                    isShow: false,
-                    page: '/news',
-                    icon: 'newspaper',
-                    child: [
-                        { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
-                        { name: this.$t('all')+" "+this.$t('news'), page: '/page', icon: 'format-list-bulleted-type' },
-                    ]
-                }, {
-                    name: this.$t('currencies'),
-                    isShow: false,
-                    page: '/currency',
-                    icon: 'currency-usd',
-                    child: [
-                        { name: this.$t('all')+" "+this.$t('currencies'), page: '/page', icon: 'format-list-numbers' },
-                        { name: this.$t('create'), page: '/create', icon: 'plus' },
-                    ]
-                },
+                name: this.$t('dash'),
+                isShow: false,
+                page: '/dashboard',
+                icon: 'view-dashboard',
+                child: []
+            }, {
+                name: this.$t('news'),
+                isShow: false,
+                page: '/news',
+                icon: 'newspaper',
+                child: [
+                    { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
+                    { name: this.$t('all')+" "+this.$t('news'), page: '/page', icon: 'format-list-bulleted-type' },
+                ]
+            }, {
+                name: this.$t('currencies'),
+                isShow: false,
+                page: '/currency',
+                icon: 'currency-usd',
+                child: [
+                    { name: this.$t('all')+" "+this.$t('currencies'), page: '/page', icon: 'format-list-numbers' },
+                    { name: this.$t('create'), page: '/create', icon: 'plus' },
+                ]
+            },
                 {
                     name: this.$t('settings'),
                     isShow: false,
@@ -97,6 +97,7 @@
                         { name: this.$t('history'), page: '/history', icon: 'history' },
                         { name: this.$t('admins'), page: '/admins', icon: 'lock' },
                         { name: this.$t('design'), page: '/apperance', icon: 'brush' },
+                        { name: this.$t('Partners'), page: '/partners', icon: 'history' }
                     ]
                 },
                 {

@@ -11,13 +11,7 @@ export default ({ app, store, params }) => {
       'ru': require('~/locales/ru.json'),
       'en': require('~/locales/en.json')
     }
-  })
-  if (module.hot) {
-    module.hot.accept(['~/locales/en.json','~/locales/ru.json'], ()=> {
-      app.i18n.setLocaleMessage('ru')
-      console.log('UPDATEd')
-    })
-  }
+  });
   app.i18n.path = (link) => {
     if (app.i18n.locale === app.i18n.fallbackLocale) {
       return /${link}/
