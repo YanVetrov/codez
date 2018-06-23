@@ -2,6 +2,7 @@
 <template>
     <div class="row">
         <label>Partners</label>
+        <nuxt-link to="./create">Create partner</nuxt-link>
         <div class="white-box">
             <div v-for="(el,i) in partners" :key="i">
                 <td><input v-model='el.title'/></td>
