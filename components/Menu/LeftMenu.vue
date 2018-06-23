@@ -2,12 +2,12 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav slimscrollsidebar">
             <div class="sidebar-head" @click="$store.dispatch('Menu/close')">
-                
+
                 <h3 >
           <span class="fa-fw open-close">
             <i class="ti-close ti-menu"></i>
           </span>
-                    <span class="hide-menu">Navigation</span>
+                    <span class="hide-menu">{{$t('navigation')}}</span>
                 </h3>
             </div>
 
@@ -40,7 +40,7 @@
 
                 <li>
                     <nuxt-link to="/logout/" class="waves-effect"><i class="mdi mdi-logout fa-fw"></i> <span
-                            class="hide-menu">Log out</span>
+                            class="hide-menu">{{$t('logout')}}</span>
                     </nuxt-link>
                 </li>
                 <li class="devider"></li>
@@ -64,61 +64,61 @@
     export default {
         data() {
             let menu = [{
-                    name: 'Dashboard',
-                    isShow: false,
-                    page: '/dashboard',
-                    icon: 'view-dashboard',
-                    child: []
-                }, {
-                    name: 'News',
-                    isShow: false,
-                    page: '/news',
-                    icon: 'newspaper',
-                    child: [
-                        { name: 'Create news', page: '/create', icon: 'playlist-plus' },
-                        { name: 'All news', page: '/page', icon: 'format-list-bulleted-type' },
-                    ]
-                }, {
-                    name: 'Currencies',
-                    isShow: false,
-                    page: '/currency',
-                    icon: 'currency-usd',
-                    child: [
-                        { name: 'All currencies', page: '/page', icon: 'format-list-numbers' },
-                        { name: 'Create currency', page: '/create', icon: 'plus' },
-                    ]
-                },
+                name: this.$t('dash'),
+                isShow: false,
+                page: '/dashboard',
+                icon: 'view-dashboard',
+                child: []
+            }, {
+                name: this.$t('news'),
+                isShow: false,
+                page: '/news',
+                icon: 'newspaper',
+                child: [
+                    { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
+                    { name: this.$t('all')+" "+this.$t('news'), page: '/page', icon: 'format-list-bulleted-type' },
+                ]
+            }, {
+                name: this.$t('currencies'),
+                isShow: false,
+                page: '/currency',
+                icon: 'currency-usd',
+                child: [
+                    { name: this.$t('all')+" "+this.$t('currencies'), page: '/page', icon: 'format-list-numbers' },
+                    { name: this.$t('create'), page: '/create', icon: 'plus' },
+                ]
+            },
                 {
-                    name: 'Settings',
+                    name: this.$t('settings'),
                     isShow: false,
                     page: '/settings',
                     icon: 'settings',
                     child: [
-                        { name: 'History', page: '/history', icon: 'history' },
+                        { name: this.$t('history'), page: '/history', icon: 'history' },
+                        { name: this.$t('admins'), page: '/admins', icon: 'lock' },
+                        { name: this.$t('design'), page: '/apperance', icon: 'brush' },
                         { name: 'Partners', page: '/partners', icon: 'history' },
-                        { name: 'Create Partner', page: '/create', icon: 'history' },
-                        { name: 'Administrators', page: '/admins', icon: 'lock' },
-                        { name: 'Apperance', page: '/apperance', icon: 'brush' },
+                        { name: 'Create Partner', page: '/create', icon: 'history' }
                     ]
                 },
                 {
-                    name: 'Reviews',
+                    name: this.$t('reviews'),
                     isShow: false,
                     page: '/reviews',
                     icon: 'mdi mdi-comment-multiple-outline',
                     child: [
-                        { name: 'All reviews', page: '/page', icon: 'format-list-numbers' },
-                        { name: 'Create reviews', page: '/create', icon: 'playlist-plus' },
+                        { name: this.$t('all')+' '+this.$t('reviews'), page: '/page', icon: 'format-list-numbers' },
+                        { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
                     ]
                 },
                 {
-                    name: 'Rules',
+                    name: this.$t('rules'),
                     page: '/rules',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: [
-                        { name: 'All rules', page: '/rules', icon: 'routes' },
-                        { name: 'Create rule', page: '/create', icon: 'routes' },
+                        { name: this.$t('all')+' '+this.$t('rules'), page: '/rules', icon: 'routes' },
+                        { name: this.$t('create'), page: '/create', icon: 'routes' },
                     ]
                 },
                 {
@@ -127,42 +127,42 @@
                     isShow: false,
                     icon: 'book-open-variant',
                     child: [
-                        { name: 'All FAQ', page: '/faq', icon: 'routes' },
-                        { name: 'Create FAQ', page: '/create', icon: 'routes' },
+                        { name: this.$t('all')+' FAQ', page: '/faq', icon: 'routes' },
+                        { name: this.$t('create'), page: '/create', icon: 'routes' },
                     ]
                 },
                 {
-                    name: 'Parsers',
+                    name: this.$t('parsers'),
                     page: '/parsers',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: []
                 },
                 {
-                    name: 'Contacts',
+                    name: this.$t('contacts'),
                     page: '/contacts',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: []
                 },
                 {
-                    name: 'Routes',
+                    name: this.$t('routes'),
                     page: '/routes',
                     isShow: false,
                     icon: 'routes',
                     child: [
-                        { name: 'All routes', page: '/all', icon: 'routes' },
-                        { name: 'Create route', page: '/create', icon: 'routes' },
+                        { name: this.$t('all')+' '+this.$t('routes'), page: '/all', icon: 'routes' },
+                        { name: this.$t('create'), page: '/create', icon: 'routes' },
                     ]
                 },
                 {
-                    name: 'Users',
+                    name: this.$t('users'),
                     page: '/users',
                     isShow: false,
                     icon: 'mdi mdi-account-multiple-outline',
                     child: [
-                        { name: 'All users', page: '/clients', icon: 'mdi mdi-account-multiple-outline' },
-                        { name: 'Partners', page: '/partners', icon: 'chart-line' },
+                        { name: this.$t('all')+' '+this.$t('users'), page: '/clients', icon: 'mdi mdi-account-multiple-outline' },
+                        { name: this.$t('partners'), page: '/partners', icon: 'chart-line' },
                     ]
                 }
 

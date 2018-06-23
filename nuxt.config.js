@@ -20,6 +20,7 @@ module.exports = {
     },
 
 
+
     /*
      ** Customize the progress bar colors
      */
