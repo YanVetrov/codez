@@ -42,7 +42,8 @@
                             </div>
                         </li>
                         <li>
-                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}} {{$t('notifications')}}</strong> <i
+                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}}
+                                {{$t('notifications')}}</strong> <i
                                     class="fa fa-angle-right"></i> </a>
                         </li>
                     </ul>
@@ -67,7 +68,7 @@
                                 <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
                                 <div class="u-text"><h4>{{firstName}} {{lastName}}</h4>
                                     <p class="text-muted">{{email}}</p><a href="profile.html"
-                                                                                class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
+                                                                          class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
                                 </div>
                             </div>
                         </li>
@@ -78,7 +79,9 @@
                         <li><a href="#"><i class="ti-wallet"></i> {{$t('balance')}}</a></li>
                         <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                         <li role="separator" class="divider"></li>
+
                         <li ><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
+
                         <li role="separator" class="divider"></li>
                         <li><a href="#"><i class="fa fa-power-off"></i> {{$t('logout')}}</a></li>
                     </ul>
@@ -178,11 +181,12 @@
                 let n = 'dropdown';
                 this.dropdown2 === n ? this.dropdown2 = `${n} open` : this.dropdown2 = n;
             },
+
             localizee(lang) {
-                this.$root.$i18n.locale == 'en'?this.$root.$i18n.locale='ru':this.$root.$i18n.locale='en';
+                this.$root.$i18n.locale == 'en' ? this.$root.$i18n.locale = 'ru' : this.$root.$i18n.locale = 'en';
                 this.$store.dispatch('lang', lang);
                 console.log(lang);
-                
+
             }
         }
     }

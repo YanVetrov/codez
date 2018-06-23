@@ -1,19 +1,40 @@
 <template>
-        <div class="row">
-            <!--<notifications group="partner_create" classes="partner-create-notifications" class="partner-notify"/>-->
-            <!--<loading type="block" :status_load="status_load "/>-->
-            <div class="white-box">
+    <div class="row">
+        <!--<notifications group="partner_create" classes="partner-create-notifications" class="partner-notify"/>-->
+        <!--<loading type="block" :status_load="status_load "/>-->
+        <div class="white-box">
+            <a @click="back()">Back</a>
+
             <label>Partner create</label>
-                <br>
-                <label>Title:</label>
-                <input type="text" class="form-control form-control-line" placeholder="..." v-model="title">
-                <label>link:</label>
-                <input type="text" class="form-control form-control-line" placeholder="..." v-model="link">
-                <label>imageId:</label>
-                <input type="text" class="form-control form-control-line" placeholder="..." v-model="imageId">
-            </div>
-                <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createPartner() "> отправить</button>
+            <br>
+            <label>Изображение партнера</label>
+            <a class="btn" @click="toggleShow">Загрузить фото</a>
+            <ImageUploader field="image"
+                           class="uploader-image"
+                           @crop-success="cropSuccess"
+                           @crop-upload-success="cropUploadSuccess"
+                           @crop-upload-fail="cropUploadFail"
+                           v-model="show"
+                           :width="360"
+                           :height="150"
+                           langType="en"
+                           :noRotate="false"
+                           :noCircle="true"
+                           :noSquare="true"
+                           :url="$rest.apiPath+'uploadImage/'"
+                           :params="params"
+                           :headers="headers"
+                           img-format="png"></ImageUploader>
+            <br>
+            <img :src="imgDataUrl">
+            <label>Title:</label>
+            <input type="text" class="form-control form-control-line" placeholder="..." v-model="title">
+            <label>link:</label>
+            <input type="text" class="form-control form-control-line" placeholder="..." v-model="link">
+            <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createPartner() "> отправить
+            </button>
         </div>
+    </div>
 </template>
 
 <script>
@@ -21,15 +42,32 @@
         // components: {Loading},
         data() {
             return {
-                title:'',
-                link:'',
-                imageId:" "
+                title: '',
+                link: '',
+                params: {
+                    public: true,
+                    type: 'partners'
+                },
+                headers: {
+                    smail: '._~'
+                },
+                imgDataUrl: '',
+                imageId: '',
+                show: false,
+
             }
         },
         methods: {
+            back() {
+                return this.$router.back()
+            },
             createPartner() {
                 this.status_load = false;
-                this.$rest.api('createPartner', {title: this.title, imageId:this.imageId, link:this.link})
+                this.$rest.api('createPartner', {
+                    title: this.title,
+                    imageId: this.imageId,
+                    link: this.link
+                })
                     .then(response => {
                         console.log(response);
                         if (response.success === true) {
@@ -49,7 +87,44 @@
                             });
                         }
                     })
-            }
+            },
+            toggleShow() {
+                this.show = !this.show;
+            },
+            cropSuccess(imgDataUrl) {
+                this.imgDataUrl = imgDataUrl;
+            },
+
+            cropUploadSuccess(jsonData, field) {
+                if (jsonData.success === true) {
+                    this.imageId = jsonData.data._id;
+                }
+                else {
+                    this.imgDataUrl = '';
+                    this.imageId = '';
+                    if (jsonData.error) {
+                        this.$notify({
+                            group: 'news_create',
+                            duration: 5000,
+                            type: 'error',
+                            title: 'Error upload image!',
+                            text: jsonData.error.message
+                        })
+                    }
+                }
+            },
+            cropUploadFail(status, field) {
+                this.imgDataUrl = '';
+                this.imageId = '';
+                this.$notify({
+                    group: 'news_create',
+                    duration: 5000,
+                    type: 'error',
+                    title: 'Error upload image!',
+                    text: 'Please retry upload image'
+                })
+            },
+
         }
     }
 </script>

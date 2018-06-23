@@ -52,7 +52,7 @@
 
 
                 <div class="btn-group">
-                    <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="postPost()">
+                    <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="createNews()">
                         Отправить
                     </button>
                 </div>
@@ -131,8 +131,8 @@
                 this.title = '';
                 this.content = '';
             },
-            postPost() {
 
+            createNews() {
                 this.status_load = false;
                 this.$rest.api('createNews',
                     {

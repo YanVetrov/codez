@@ -21,7 +21,7 @@
                                active-class="active">
                         <i class="mdi fa-fw" :class="'mdi-'+el.icon" data-icon="v"></i>
                         <span class="hide-menu">
-              {{$t(el.name)}}
+              {{typeof $t(el.name)=='string'?$t(el.name):el.name}}
               <span v-if="el.child && el.child.length > 0" class="fa arrow"></span>
             </span>
                     </nuxt-link>
@@ -29,7 +29,7 @@
                         <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
                             <nuxt-link :to="el.page+elc.page" active-class="active">
                                 <i class="mdi fa-fw" :class="'mdi-'+elc.icon" data-icon="v"></i>
-                                <span class="hide-menu">{{$t(elc.pr)}} {{$t(elc.name)}}</span>
+                                <span class="hide-menu">{{typeof $t(elc.pr)=='string'?$t(elc.pr):elc.pr}} {{typeof $t(elc.name)=='string'?$t(elc.name):elc.name}}</span>
 
                             </nuxt-link>
                         </li>
@@ -95,10 +95,12 @@
                     page: '/settings',
                     icon: 'settings',
                     child: [
+
                         { name: 'history', page: '/history', icon: 'history' },
                         { name: 'admins', page: '/admins', icon: 'lock' },
                         { name: 'design', page: '/apperance', icon: 'brush' },
                         { name: 'Partners', page: '/partners', icon: 'history' }
+
                     ]
                 },
                 {
