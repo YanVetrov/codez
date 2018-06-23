@@ -36,11 +36,11 @@ module.exports = {
     plugins: [
         // '~/plugins/airbrake.js',
         '~/plugins/rest-api',
+        { src: "~/plugins/i18n"},
         { src: "~/plugins/vue2-editor", ssr: false },
         { src: '~/plugins/v-select.js', ssr: false },
         { src: "~/plugins/vue-charts.js", ssr: false },
         { src: "~/plugins/vue-notify", ssr: false },
-        { src: "~/plugins/i18n", ssr: false },
         { src: '~/plugins/vue-core-image-upload.js', ssr: false }
 
     ],
