@@ -34,6 +34,7 @@
     methods: {
       check() {
         console.log(this.$store.getters['admin/checkAdmin'])
+        this.$root.$i18n.locale == 'en'?this.$root.$i18n.locale='ru':this.$root.$i18n.locale='en';
       }
     },
     mounted() {

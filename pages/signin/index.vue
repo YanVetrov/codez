@@ -78,6 +78,7 @@
                 return this.$rest
                     .api('loginUseEmail', { email: this.email, password: this.password })
                     .then(res => {
+                        console.log(res);
                         if (res.success) {
                             this.$root.$emit('loading',false)
                             return this.$store.dispatch('admin/admin', res.data);

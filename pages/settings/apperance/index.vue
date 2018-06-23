@@ -10,10 +10,10 @@
                                     </template>
 </v-select>
 
-<span>Comission %</span><input type="text" v-model="currency1.percent" /><br/>
-<span>Min. comission</span><input type="text" v-model="currency1.min_comission" /><br/>
-<span>Min. exchange sum</span><input type="text" v-model="currency1.min_sum" /><br/>
-<span>Max. exchange sum</span><input type="text" v-model="currency1.max_sum" /><br/>
+<span>{{$t('comission')}} %</span><input type="text" v-model="currency1.percent" /><br/>
+<span>{{$t('min')}} {{$t('comission')}}</span><input type="text" v-model="currency1.min_comission" /><br/>
+<span>{{$t('min')}} {{$t('exAmoutn')}}</span><input type="text" v-model="currency1.min_sum" /><br/>
+<span>{{$t('max')}} {{$t('exAmoutn')}}</span><input type="text" v-model="currency1.max_sum" /><br/>
 
 
 <v-select :options="options" label="name" placeholder="Choose" v-model="currency2.name">
@@ -22,22 +22,22 @@
                                     </template>
 </v-select>
 
-<span>Comission %</span><input type="text" v-model="currency2.percent" /><br/>
-<span>Min. comission</span><input type="text" v-model="currency2.min_comission" /><br/>
-<span>Min. exchange sum</span><input type="text" v-model="currency2.min_sum" /><br/>
-<span>Max. exchange sum</span><input type="text" v-model="currency2.max_sum" /><br/>
+<span>{{$t('comission')}} %</span><input type="text" v-model="currency2.percent" /><br/>
+<span>{{$t('min')}} {{$t('comission')}}</span><input type="text" v-model="currency2.min_comission" /><br/>
+<span>{{$t('min')}} {{$t('exAmoutn')}}</span><input type="text" v-model="currency2.min_sum" /><br/>
+<span>{{$t('max')}} {{$t('exAmoutn')}}</span><input type="text" v-model="currency2.max_sum" /><br/>
 
-<h3>Accept step information</h3>
+<h3>{{$t('createRoute.acceptInfo')}}</h3>
 <vue-editor v-model="acceptInfo"></vue-editor>
-<h3>Pay step information</h3>
+<h3>{{$t('createRoute.payInfo')}}</h3>
 <vue-editor v-model="payInfo"></vue-editor>
 
-<h1 :style="{color:parserEnabled?'green':'red'}"> Parser: {{parserEnabled?"ACTIVE":"NON ACTIVE"}}</h1>
-<button @click="parserEnabled=!parserEnabled">Switch</button>
+<h1 :style="{color:parserEnabled?'green':'red'}"> {{$t('parser')}}: {{parserEnabled?$t('active'):$t('nactive')}}</h1>
+<button @click="parserEnabled=!parserEnabled">{{$t('switch')}}</button>
 
-<h3>Guide for verification</h3>
+<h3>{{$t('createRoute.verifInfo')}}</h3>
 <vue-editor v-model="verifInfo"></vue-editor>
-<button @click="send">SEND</button>
+<button @click="send">{{$t('send')}}</button>
 </div>
 </div>
 </div>
@@ -98,7 +98,6 @@
     },
 
     mounted() {
-
       this.$axios.get('https://proexchanger.net/service/api/v1/estandardsInfo')
         .then((res) => {
           this.options = res.data.data.res;

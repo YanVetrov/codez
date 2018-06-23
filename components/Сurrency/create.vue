@@ -87,7 +87,7 @@
 
                     <div class="component-valut_right-info">
                         <a><img src="~/static/images/information.svg" alt=""></a>
-                        <p>{{$t('createCurrency.1')}} <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
+                        <p>{{$t('createCurrency.standard')}} <a href="http://estandarts.info/" target="_blank">estandarts.info</a>
                         </p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
 
 
                     <label>
-                        <span>{{$t('createCurrency.2')}}</span>
+                        <span>{{$t('createCurrency.amount')}}</span>
 
                         <div>
                             <input type="text" v-model="form.reserve">
@@ -106,7 +106,7 @@
                     </label>
 
                     <div class="component-valut_arrow">
-                        <p>{{$t('createCurrency.3')}}</p>
+                        <p>{{$t('createCurrency.accuracy')}}</p>
                         <div>
                             <a @click="form.precision = (form.precision-1 < 0)? 0 : form.precision-1"
                                class="component-valut_arrov-left"></a>
@@ -120,7 +120,7 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>{{$t('createCurrency.4')}} {{form.name}} {{form.type}} {{$t('to')}} USD</p>
+                        <p>{{$t('createCurrency.rate')}} {{form.name}} {{form.type}} {{$t('to')}} USD</p>
                         <div>
                             <a class="cl-pointer" @click="form.type_rate = 'manually'"
                                :class="{active:(form.type_rate==='manually')}">{{$t('manual')}}</a>
@@ -135,7 +135,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>{{$t('createCurrency.5')}}<br></span>
+                            <span>{{$t('createCurrency.exRate')}}<br></span>
 
                             <div class="component-valut_right">
                                 <input type="text" v-model="form.rate">
@@ -145,7 +145,7 @@
                         <div class="component-valut_right-info">
 
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>{{$t('createCurrency.6')}}</p>
+                            <p>{{$t('createCurrency.attention')}}</p>
                         </div>
                     </div>
 
@@ -165,7 +165,7 @@
                         </label>
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>{{$t('createCurrency.7')}}</p>
+                            <p>{{$t('createCurrency.code')}}</p>
                         </div>
                     </div>
                     <hr>
@@ -187,7 +187,7 @@
                         </label>
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>{{$t('createCurrency.8')}}
+                            <p>{{$t('createCurrency.parsersList')}}
                                 <nuxt-link to="/parsers">{{$t('parsers')}}</nuxt-link>
                             </p>
                         </div>
@@ -201,7 +201,7 @@
                 <div class="component-valut_right-payment-method">
 
                     <div class="component-valut_right-payment-method_title">
-                        <p>{{$t('createCurrency.9')}}</p>
+                        <p>{{$t('createCurrency.payMethod')}}</p>
                         <div>
                             <a class="cl-pointer" @click="form.type_pay = 'manually'"
                                :class="{active:(form.type_pay==='manually')}">{{$t('manual')}}</a>
@@ -215,14 +215,14 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>{{$t('createCurrency.10')}}</span>
+                            <span>{{$t('createCurrency.depField')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.fieldDeposit">
                             </div>
                         </label>
                         <label>
-                            <span>{{$t('createCurrency.11')}}</span>
+                            <span>{{$t('createCurrency.depValid')}}</span>
 
                             <div>
                                 <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
@@ -242,7 +242,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>{{$t('createCurrency.12')}}</span>
+                            <span>{{$t('createCurrency.outField')}}</span>
 
                             <div>
 
@@ -251,7 +251,7 @@
                         </label>
 
                         <label>
-                            <span>{{$t('createCurrency.13')}}</span>
+                            <span>{{$t('createCurrency.outValid')}}</span>
 
                             <div>
                                 <v-select :options="optionsRegexp" label="name" placeholder="Вибирите валидатор"
@@ -270,7 +270,7 @@
                     <div class="component-valut_right-item">
 
                         <label>
-                            <span>{{$t('createCurrency.14')}}</span>
+                            <span>{{$t('createCurrency.linkPaySys')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.link">
@@ -278,7 +278,7 @@
                         </label>
 
                         <label>
-                            <span>{{$t('createCurrency.15')}}</span>
+                            <span>{{$t('createCurrency.acc')}}</span>
 
                             <div>
                                 <input type="text" v-model="form.account">
@@ -290,7 +290,7 @@
                     <div class="component-valut_right-payment-method">
 
                         <div class="component-valut_right-payment-method_title">
-                            <p>{{$t('createCurrency.16')}}</p>
+                            <p>{{$t('createCurrency.manual')}}</p>
                             <div>
                                 <a class="cl-pointer" @click="form.type_help_text = 'standard'"
                                    :class="{active:(form.type_help_text==='standard')}">Стандартная</a>
@@ -305,23 +305,23 @@
 
                         <br>
                         <div class="form-manual-must text-center">
-                            <h3 class="title">{{$t('createCurrency.17')}}</h3>
+                            <h3 class="title">{{$t('createCurrency.steps')}}</h3>
                             <ol>
                                 <li>
                                     <div>
-                                        <p>{{$t('createCurrency.18')}}</p>
+                                        <p>{{$t('createCurrency.login')}}</p>
                                         <a href="" class="btn btn-log-in"><img :src="imgDataUrl" alt=""><span>{{form.name}}</span></a>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <p>{{$t('createCurrency.19')}}</p>
+                                        <p>{{$t('createCurrency.pay')}}</p>
                                         <div class="form-manual-must_txt">{{$t('sum')}} {{form.type}}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <p>{{$t('createCurrency.20')}}</p>
+                                        <p>{{$t('createCurrency.target')}}</p>
                                         <div class="form-manual-must_txt">{{form.account}}</div>
                                     </div>
                                 </li>
@@ -368,7 +368,7 @@
 
                         <div class="component-valut_right-info">
                             <a><img src="~/static/images/information.svg" alt=""></a>
-                            <p>{{$t('createCurrency.21')}}
+                            <p>{{$t('createCurrency.attention2')}}
                                 <nuxt-link to="/payments/merchant">{{$t('merch')}} API</nuxt-link>
                                 .
                             </p>
@@ -447,6 +447,7 @@
             this.getXMLestandardsInfo();
             this.getParsers();
             this.getRegExp();
+            
         },
         methods: {
             getParsers() {
