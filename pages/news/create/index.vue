@@ -131,6 +131,7 @@
                 this.title = '';
                 this.content = '';
             },
+
             createNews() {
                 this.status_load = false;
                 this.$rest.api('createNews',
