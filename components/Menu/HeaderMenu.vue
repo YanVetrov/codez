@@ -42,7 +42,8 @@
                             </div>
                         </li>
                         <li>
-                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}} {{$t('notifications')}}</strong> <i
+                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}}
+                                {{$t('notifications')}}</strong> <i
                                     class="fa fa-angle-right"></i> </a>
                         </li>
                     </ul>
@@ -67,7 +68,7 @@
                                 <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
                                 <div class="u-text"><h4>{{firstName}} {{lastName}}</h4>
                                     <p class="text-muted">{{email}}</p><a href="profile.html"
-                                                                                class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
+                                                                          class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
                                 </div>
                             </div>
                         </li>
@@ -78,7 +79,8 @@
                         <li><a href="#"><i class="ti-wallet"></i> {{$t('balance')}}</a></li>
                         <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                         <li role="separator" class="divider"></li>
-                        <li @click="locale"><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
+                        <li @click="locale"><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a>
+                        </li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#"><i class="fa fa-power-off"></i> {{$t('logout')}}</a></li>
                     </ul>
@@ -117,19 +119,19 @@
                         {text: "Привет!!", time: "22:30", user: "Шик"},
                     ]
                 },
-                
-                firstName:'',
-                lastName:'',
-                email:''
+
+                firstName: '',
+                lastName: '',
+                email: ''
             }
         },
-        mounted(){
-          this.$root.$on('userInfo',(data)=>{
-              this.firstName = data.fn;
-              this.lastName = data.ln;
-              this.email = data.email;
-              
-          }) 
+        mounted() {
+            this.$root.$on('userInfo', (data) => {
+                this.firstName = data.fn;
+                this.lastName = data.ln;
+                this.email = data.email;
+
+            })
         },
         methods: {
             close() {
@@ -148,8 +150,8 @@
                 let n = 'dropdown';
                 this.dropdown2 === n ? this.dropdown2 = `${n} open` : this.dropdown2 = n;
             },
-            locale(){
-                this.$store.dispatch('lang','ru');
+            locale() {
+                this.$store.dispatch('lang', 'ru');
             }
         }
     }

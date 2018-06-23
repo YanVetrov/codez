@@ -2,8 +2,9 @@
 <template>
     <div class="row">
         <label>Partners</label>
-        <nuxt-link to="./create">Create partner</nuxt-link>
         <div class="white-box">
+            <nuxt-link :to="this.$route.path.replace(/\/$/,'')+'/create'">Create partner</nuxt-link>
+
             <div v-for="(el,i) in partners" :key="i">
                 <td><input v-model='el.title'/></td>
                 <td><input v-model='el.link'/></td>
@@ -89,10 +90,29 @@
 
             },
             deletePartner(id) {
-                this.$rest.api('deletePartner', {id: id})
+                console.log(id);
+                this.$rest.api('deletePartner', {partner_id: id})
                     .then(res => {
-                        console.log(res.data);
+                        console.log(res);
                         if (res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'success',
+                                title: 'Success!',
+                                text: res.error.message
+                            });
+                            this.getPartnersAll(this.current_page);
+                        }
+                        if (res.success === false) {
+                            // this.status_load = true;
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Error delete partner!',
+                                text: res.error.message
+                            });
                         }
                     })
             }

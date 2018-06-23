@@ -97,7 +97,7 @@
                         { name: this.$t('history'), page: '/history', icon: 'history' },
                         { name: this.$t('admins'), page: '/admins', icon: 'lock' },
                         { name: this.$t('design'), page: '/apperance', icon: 'brush' },
-                        { name: this.$t('Partners'), page: '/partners', icon: 'history' }
+                        { name: this.$t('partners'), page: '/partners', icon: 'history' }
                     ]
                 },
                 {
