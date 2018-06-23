@@ -3,13 +3,12 @@
     <div class="row">
         <label>Partners</label>
         <div class="white-box">
-            <div v-for="(el,i) in partners" :key="i">{{el.title}}
-                <!--{{el.image}}-->
-                <nuxt-link class="btn btn-outline btn-rounded btn-info btn2" :to="'settings/edit/'+el._id"><i
-                        class='icon-pencil'></i>
-                </nuxt-link>
+            <div v-for="(el,i) in partners" :key="i">
+                <td><input v-model='el.title'/></td>
+                <td><input v-model='el.link'/></td>
+                <button @click='editPartner(el)'>Save</button>
+                <button @click='deletePartner(el._id)'>Delete</button>
             </div>
-
             <br>
         </div>
         <pagination :currentPage="current_page"
@@ -30,45 +29,74 @@
                 partners: [],
                 total_page: [],
                 current_page: this.$route.params.page,
+                id: this.$route.params.id,
+
+
             }
         },
         methods: {
+
             getPartnersAll(page) {
-                this.$rest.api('getPartnersAll', {page: page || 1, limit: 10})
-                    .then(response => {
-                        console.log(response);
-                        if (response.success === false) {
+                this.$root.$emit('loading', true);
+                this.$rest.api('getPartnersAll', {page, limit: 10})
+                    .then(res => {
+                        if (res.success) {
+                            this.partners = res.data.partners;
+                            this.current_page = res.data.count.select_page || 1;
+                            this.total_page = res.data.count.pages || 1;
+                        }
+                        if (!res.success) {
                             this.$notify({
                                 group: 'main',
                                 duration: 5000,
                                 type: 'error',
                                 title: 'Error get partners!',
-                                text: response.error.message
+                                text: res.error.message,
                             });
                             this.$router.back();
                         }
-                        if (response.success === true) {
-                            console.log(response.data.partners._id);
-                            this.current_page = response.data.count.select_page || 1;
-                            this.total_page = response.data.count.pages;
-                            this.partners = response.data.partners;
-                        }
-                        this.status_load = true;
+                        this.$root.$emit('loading', false);
+
                     })
                     .catch(err => {
-                        this.$notify({
-                            group: 'main',
-                            duration: 5000,
-                            type: 'error',
-                            title: 'Error get partners!',
-                            text: 'Server error 500! Please retry.\n' + err
-                        });
-                        this.$router.back();
-                        this.status_load = true;
-                    });
+                        this.$root.$emit('loading', false);
+                    })
             },
+            editPartner(partner) {
+                this.$rest.api('editPartner', {title: partner.title, id: partner._id, link: partner.link})
+                    .then(res => {
+                        console.log(res);
+                        if (res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'success',
+                                title: `Partner successful edited`,
+                            });
+
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Something wrong...',
+                                text: res.error.message,
+                            });
+                        }
+                    })
+
+            },
+            deletePartner(id) {
+                this.$rest.api('deletePartner', {id: id})
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.success) {
+                        }
+                    })
+            }
         },
-        created() {
+        mounted() {
             return this.getPartnersAll();
         }
     }
