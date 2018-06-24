@@ -21,7 +21,7 @@
                                active-class="active">
                         <i class="mdi fa-fw" :class="'mdi-'+el.icon" data-icon="v"></i>
                         <span class="hide-menu">
-              {{el.name}}
+              {{typeof $t(el.name)=='string'?$t(el.name):el.name}}
               <span v-if="el.child && el.child.length > 0" class="fa arrow"></span>
             </span>
                     </nuxt-link>
@@ -29,7 +29,7 @@
                         <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
                             <nuxt-link :to="el.page+elc.page" active-class="active">
                                 <i class="mdi fa-fw" :class="'mdi-'+elc.icon" data-icon="v"></i>
-                                <span class="hide-menu"> {{elc.name}}</span>
+                                <span class="hide-menu">{{typeof $t(elc.pr)=='string'?$t(elc.pr):elc.pr}} {{typeof $t(elc.name)=='string'?$t(elc.name):elc.name}}</span>
 
                             </nuxt-link>
                         </li>
@@ -63,61 +63,64 @@
     // https://materialdesignicons.com/
     export default {
         data() {
-            let menu = [{
-                name: this.$t('dash'),
+            return{ 
+                menu:[{
+                name: 'dash',
                 isShow: false,
                 page: '/dashboard',
                 icon: 'view-dashboard',
                 child: []
             }, {
-                name: this.$t('news'),
+                name: 'news',
                 isShow: false,
                 page: '/news',
                 icon: 'newspaper',
                 child: [
-                    { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
-                    { name: this.$t('all')+" "+this.$t('news'), page: '/page', icon: 'format-list-bulleted-type' },
+                    { name: 'create', page: '/create', icon: 'playlist-plus' },
+                    { name: 'news', pr:'all', page: '/page', icon: 'format-list-bulleted-type' },
                 ]
             }, {
-                name: this.$t('currencies'),
+                name: 'currencies',
                 isShow: false,
                 page: '/currency',
                 icon: 'currency-usd',
                 child: [
-                    { name: this.$t('all')+" "+this.$t('currencies'), page: '/page', icon: 'format-list-numbers' },
-                    { name: this.$t('create'), page: '/create', icon: 'plus' },
+                    { name: 'currencies', pr:'all', page: '/page', icon: 'format-list-numbers' },
+                    { name: 'create', page: '/create', icon: 'plus' },
                 ]
             },
                 {
-                    name: this.$t('settings'),
+                    name: 'settings',
                     isShow: false,
                     page: '/settings',
                     icon: 'settings',
                     child: [
-                        { name: this.$t('history'), page: '/history', icon: 'history' },
-                        { name: this.$t('admins'), page: '/admins', icon: 'lock' },
-                        { name: this.$t('design'), page: '/apperance', icon: 'brush' },
-                        { name: this.$t('partners'), page: '/partners', icon: 'history' }
+
+                        { name: 'history', page: '/history', icon: 'history' },
+                        { name: 'admins', page: '/admins', icon: 'lock' },
+                        { name: 'design', page: '/apperance', icon: 'brush' },
+                        { name: 'Partners', page: '/partners', icon: 'history' }
+
                     ]
                 },
                 {
-                    name: this.$t('reviews'),
+                    name: 'reviews',
                     isShow: false,
                     page: '/reviews',
                     icon: 'mdi mdi-comment-multiple-outline',
                     child: [
-                        { name: this.$t('all')+' '+this.$t('reviews'), page: '/page', icon: 'format-list-numbers' },
-                        { name: this.$t('create'), page: '/create', icon: 'playlist-plus' },
+                        { name: 'reviews',pr:'all', page: '/page', icon: 'format-list-numbers' },
+                        { name: 'create', page: '/create', icon: 'playlist-plus' },
                     ]
                 },
                 {
-                    name: this.$t('rules'),
+                    name: 'rules',
                     page: '/rules',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: [
-                        { name: this.$t('all')+' '+this.$t('rules'), page: '/rules', icon: 'routes' },
-                        { name: this.$t('create'), page: '/create', icon: 'routes' },
+                        { name: 'rules',pr:'all', page: '/rules', icon: 'routes' },
+                        { name: 'create', page: '/create', icon: 'routes' },
                     ]
                 },
                 {
@@ -126,52 +129,48 @@
                     isShow: false,
                     icon: 'book-open-variant',
                     child: [
-                        { name: this.$t('all')+' FAQ', page: '/faq', icon: 'routes' },
-                        { name: this.$t('create'), page: '/create', icon: 'routes' },
+                        { name: 'FAQ',pr:'all', page: '/faq', icon: 'routes' },
+                        { name: 'create', page: '/create', icon: 'routes' },
                     ]
                 },
                 {
-                    name: this.$t('parsers'),
+                    name: 'parsers',
                     page: '/parsers',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: []
                 },
                 {
-                    name: this.$t('contacts'),
+                    name: 'contacts',
                     page: '/contacts',
                     isShow: false,
                     icon: 'book-open-variant',
                     child: []
                 },
                 {
-                    name: this.$t('routes'),
+                    name: 'routes',
                     page: '/routes',
                     isShow: false,
                     icon: 'routes',
                     child: [
-                        { name: this.$t('all')+' '+this.$t('routes'), page: '/all', icon: 'routes' },
-                        { name: this.$t('create'), page: '/create', icon: 'routes' },
+                        { name: 'routes',pr:'all', page: '/all', icon: 'routes' },
+                        { name: 'create', page: '/create', icon: 'routes' },
                     ]
                 },
                 {
-                    name: this.$t('users'),
+                    name: 'users',
                     page: '/users',
                     isShow: false,
                     icon: 'mdi mdi-account-multiple-outline',
                     child: [
-                        { name: this.$t('all')+' '+this.$t('users'), page: '/clients', icon: 'mdi mdi-account-multiple-outline' },
-                        { name: this.$t('partners'), page: '/partners', icon: 'chart-line' },
+                        { name: 'partners', page: '/partners', icon: 'chart-line' },
                     ]
                 }
 
-            ];
-
-
-            return {
-                menu
+            ]
+                
             }
-        }
+        },
     }
 </script>
 

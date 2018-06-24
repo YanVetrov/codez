@@ -6,6 +6,7 @@ export default ({ app, store, params }) => {
   app.i18n = new VueI18n({
     locale: store.state.locale,
     fallbackLocale: params.lang || 'ru',
+    silentTranslationWarn: true,
     messages: {
       'ru': require('~/locales/ru.json'),
       'en': require('~/locales/en.json')
