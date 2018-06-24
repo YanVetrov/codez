@@ -80,35 +80,35 @@
                         <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                         <li role="separator" class="divider"></li>
 
-                        <li ><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
+                        <li><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
 
                         <li role="separator" class="divider"></li>
                         <li><a href="#"><i class="fa fa-power-off"></i> {{$t('logout')}}</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                                <li :class="dropdown1" @click="openTask">
-                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" > <i
+                <li :class="dropdown1" @click="openTask">
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"> <i
                             class="fa fa-flag"></i>
-                      
+
                     </a>
                     <ul class="dropdown-menu mailbox animated bounceInDown">
                         <li>
                             <div class="message-center">
                                 <a href='' @click.prevent="localizee('ru')">
                                     <div class="user-img"><i class='fa fa-flag'></i>
-                                        </div>
+                                    </div>
                                     <div class="mail-contnet">
                                         <h5>RU</h5> <span class="mail-desc">Русский язык</span>
-                                        
+
                                     </div>
                                 </a>
                                 <a href='' @click.prevent="localizee('en')">
-                                    <div class="user-img"><i class='fa fa-flag' ></i>
-                                        </div>
+                                    <div class="user-img"><i class='fa fa-flag'></i>
+                                    </div>
                                     <div class="mail-contnet">
                                         <h5>EN</h5> <span class="mail-desc">English language</span>
-                                        
+
                                     </div>
                                 </a>
                             </div>
@@ -138,16 +138,16 @@
                 dropdown3: 'dropdown',
                 dropdown: 'dropdown',
                 profileList: [
-                    { name: 'My profile', icon: 'user', link: '/profile' }
+                    {name: 'My profile', icon: 'user', link: '/profile'}
                 ],
                 messages: {
                     total: '5',
                     box: [
-                        { text: "Привет!!", time: "22:30", user: "Шик" },
-                        { text: "Привет!!", time: "22:30", user: "Шик" },
-                        { text: "Привет!!", time: "22:30", user: "Шик" },
-                        { text: "Привет!!", time: "22:30", user: "Шик" },
-                        { text: "Привет!!", time: "22:30", user: "Шик" },
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
+                        {text: "Привет!!", time: "22:30", user: "Шик"},
                     ]
                 },
 
@@ -183,10 +183,8 @@
             },
 
             localizee(lang) {
-                this.$root.$i18n.locale == 'en' ? this.$root.$i18n.locale = 'ru' : this.$root.$i18n.locale = 'en';
+                this.$root.$i18n.locale = lang;
                 this.$store.dispatch('lang', lang);
-                console.log(lang);
-
             }
         }
     }
