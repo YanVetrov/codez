@@ -3,9 +3,9 @@
         <div class="col-md-12">
             <div class="white-box " style="text-align: center" v-if="afterPost === true">
                 <img src='~/static/images/ok.svg' width="250px" height="250px">
-                <h2> Успешно опубликовано </h2>
+                <h2> {{$t('createNews.success')}} </h2>
                 <button type="button" class=" btn-outline btn-primary btn-1e" @click="backToCreateNews()">
-                    Создать еще одну новость
+                    {{$t('createNews.more')}}
                 </button>
             </div>
 
@@ -13,12 +13,12 @@
             <div v-else class="white-box">
                 <notifications group="news_create" classes="news-create-notifications" class="news-notify"/>
                 <loading type="block" :status_load="status_load"/>
-                <h3 class="box-title">Создание новости </h3>
-                <p class="text-muted m-b-30 font-12">Инфо текст новстей</p>
+                <h3 class="box-title">{{$t('createNews.create')}} </h3>
+                <p class="text-muted m-b-30 font-12">{{$t('createNews.info')}}</p>
 
                 <div>
-                    <label>Изображение новости</label>
-                    <a class="btn" @click="toggleShow">Загрузить фото</a>
+                    <label>{{$t('createNews.img')}}</label>
+                    <a class="btn" @click="toggleShow">{{$t('createNews.upload')}}</a>
                     <ImageUploader field="image"
                                    class="uploader-image"
                                    @crop-success="cropSuccess"
@@ -41,19 +41,19 @@
                 </div>
                 <br>
 
-                <label for="label001">Заголовок новости</label>
+                <label for="label001">{{$t('createNews.title')}}</label>
                 <input id='label001' type="text" class="form-control form-control-line" placeholder="..."
                        v-model="title">
 
                 <div id="app" class="form-group" style="margin-top: 20px">
-                    <label>Текст новости</label>
+                    <label>{{$t('createNews.text')}}</label>
                     <vue-editor v-model="content"></vue-editor>
                 </div>
 
 
                 <div class="btn-group">
                     <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="createNews()">
-                        Отправить
+                        {{$t('send')}}
                     </button>
                 </div>
             </div>

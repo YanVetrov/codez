@@ -5,10 +5,10 @@
         <div class="white-box">
             <a @click="back()">Back</a>
 
-            <label>Partner create</label>
+            <label>{{$t('create')}}</label>
             <br>
-            <label>Изображение партнера</label>
-            <a class="btn" @click="toggleShow">Загрузить фото</a>
+            <label>{{$t('img')}}</label>
+            <a class="btn" @click="toggleShow">{{$t('upload')}} {{$t('img')}}</a>
             <ImageUploader field="image"
                            class="uploader-image"
                            @crop-success="cropSuccess"
@@ -27,11 +27,11 @@
                            img-format="png"></ImageUploader>
             <br>
             <img :src="imgDataUrl">
-            <label>Title:</label>
+            <label>{{$t('title')}}</label>
             <input type="text" class="form-control form-control-line" placeholder="..." v-model="title">
-            <label>link:</label>
+            <label>{{$t('link')}}</label>
             <input type="text" class="form-control form-control-line" placeholder="..." v-model="link">
-            <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createPartner() "> отправить
+            <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createPartner() "> {{$t('send')}}
             </button>
         </div>
     </div>

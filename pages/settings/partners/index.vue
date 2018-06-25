@@ -1,9 +1,9 @@
 <div>Partners</div>
 <template>
     <div class="row">
-        <label>Partners</label>
+        <label>{{$t('partners')}}</label>
         <div class="white-box">
-            <nuxt-link :to="this.$route.path.replace(/\/$/,'')+'/create'">Create partner</nuxt-link>
+            <nuxt-link :to="this.$route.path.replace(/\/$/,'')+'/create'">{{$t('create')}}</nuxt-link>
             <div v-for="(el,i) in partners" :key="i">
                 <td style="width: 100px;text-align:center"><img :src="config.fsPath +el.image.files.medium.url" style="height: 30px"/></td>
                 <td><input v-model='el.title'/></td>

@@ -5,23 +5,23 @@
                 <notifications group="review_create" classes="reviews-create-notifications" class="reviews-notify"/>
                 <loading type="block" :status_load="status_load "/>
                 <div class="row" v-if="afterPost === false">
-                    <label><h3>Оставить отзыв</h3></label>
+                    <label><h3>{{$t('create')}}</h3></label>
                     <div>
                         <br>
-                        <label> Имя:</label>
+                        <label> {{$t('name')}}:</label>
                         <input type="text" class="form-control form-control-line" placeholder="..." v-model="name">
                     </div>
 
                     <div>
-                        <label> Email:</label>
+                        <label> {{$t('email')}}:</label>
                         <input type="text" class="form-control form-control-line" placeholder="..." v-model="email">
                     </div>
                     <div>
-                        <label> Коментарий:</label>
+                        <label> {{$t('comment')}}:</label>
                         <input type="text" class="form-control form-control-line" placeholder="..." v-model="message">
                     </div>
                     <br>
-                    <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createReview() "> отправить
+                    <button type="button" class="btn btn-outline btn-primary btn-1e" @click="createReview() "> {{$t('send')}}
                     </button>
                 </div>
                 <div class="row" v-else>

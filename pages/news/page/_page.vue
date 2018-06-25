@@ -2,9 +2,9 @@
     <div class="row">
         <div class="white-box">
             <loading type="block" :status_load="status_load"/>
-            <h2 class="search2"> Поиск </h2>
+            <h2 class="search2"> {{$t('search')}} </h2>
             <div><i class="icon-magnifier search"></i>
-                <input type="text" class="form-control search2" placeholder="Введите текст поиска">
+                <input type="text" class="form-control search2" :placeholder="$t('search')">
             </div>
         </div>
 
