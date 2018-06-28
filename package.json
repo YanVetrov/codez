@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/moment": "^1.0.0",
     "@nuxtjs/proxy": "^1.2.4",
     "highcharts": "^6.1.0",
-    "moment": "^2.22.1",
     "nuxt": "^1.4.0",
     "postcss-flexboxfixer": "0.0.5",
     "vue": "^2.5.16",

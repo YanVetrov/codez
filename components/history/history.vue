@@ -1,86 +1,102 @@
 <template>
-                        <div class="col-md-24">
-                        <div class="white-box">
-                            <ul class="timeline"  >
-                                <li class="timeline-inverted" v-for="list in history" :key="list.id">
-                                    <div class="timeline-badge info"> <i class="fa" :class="'fa-'+getIcon(list.operation)"></i> </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">{{oper(list.operation)}}</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{list.time}}</small> </p>
-                                            <p><small class="text-muted"><i class="fa fa-user"></i> {{list.user}}[{{list.id}}] {{list.email}} {{list.ip}}</small> </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>{{getTitle(list.operation)}} {{list.currency}} : {{list.total}} {{list.short}}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                                                                                            <div class="text-right">
-
-                                        </div>
-                        </div>
+    <div class="col-md-24">
+        <div class="white-box">
+            <ul class="timeline">
+                <li class="timeline-inverted" v-for="action in history" :key="action.id">
+                    <div class="timeline-badge info"><i class="fa" :class="'fa-'+getTypeAction(action.method).icon"></i>
                     </div>
+                    <div class="timeline-panel">
+
+                        <component v-bind:is="getTypeAction(action.method).componentName"
+                                   :method="action.method"
+                                   :date="action.createdAt"
+                                   :param="action.param"
+                                   :network="action.network"
+                                   :user="action.user"
+                                   :response="action.response"/>
+                    </div>
+                </li>
+            </ul>
+            <div class="text-right">
+
+            </div>
+        </div>
+    </div>
 
 </template>
 
 <script>
+    import actionCommentForNews from './actions/comment_for_news.vue';
+    import actionNews from './actions/news.vue';
+    import actionRules from './actions/rules.vue';
+    import actionReview from './actions/review.vue';
+    import actionPartner from './actions/partners.vue';
+    import actionFaq from './actions/faq.vue';
+    import actionContact from './actions/contacts.vue';
+    import actionUser from './actions/user.vue';
+    import actionCurrency from './actions/currency.vue';
+
     export default {
+        components: {
+            actionNews,
+            actionReview,
+            actionRules,
+            actionCommentForNews,
+            actionPartner,
+            actionFaq,
+            actionContact,
+            actionUser,
+            actionCurrency,
+
+        },
         props: ['history'],
         data() {
             return {
-                operations: {
-                    change: 'Changing operation',
-                    enter: 'Transaction operation'
-                },
-                description: {
-                    change: 'Changed from',
-                    enter: 'Transaction would be ready'
-                },
-                icons: {
-                    change: 'exchange',
-                    enter: 'sign-in'
+                type: {
+                    deleteCommentNews: {componentName: 'actionCommentForNews', icon: 'exchange'},
+
+                    createNews: {componentName: "actionNews", icon: 'sign-in'},
+                    editNews: {componentName: "actionNews", icon: 'sign-in'},
+                    deleteNews: {componentName: "actionNews", icon: 'sign-in'},
+
+                    createRules: {componentName: "actionRules", icon: 'sign-in'},
+                    editRules: {componentName: "actionRules", icon: 'sign-in'},
+                    deleteRule: {componentName: "actionRules", icon: 'sign-in'},
+
+                    createPartner: {componentName: "actionPartner", icon: 'sign-in'},
+                    deletePartner: {componentName: "actionPartner", icon: 'sign-in'},
+
+                    createFaq: {componentName: "actionFaq", icon: 'sign-in'},
+                    editFaq: {componentName: "actionFaq", icon: 'sign-in'},
+                    deleteFaq: {componentName: "actionFaq", icon: 'sign-in'},
+
+                    addContact: {componentName: "actionContact", icon: 'sign-in'},
+                    editContact: {componentName: "actionContact", icon: 'sign-in'},
+                    deleteContact: {componentName: "actionContact", icon: 'sign-in'},
+
+                    confirmReviewAdmin: {componentName: "actionReview", icon: 'sign-in'},
+                    editReviewAdmin: {componentName: "actionReview", icon: 'sign-in'},
+
+                    editUser: {componentName: "actionUser", icon: 'sign-in'},
+
+                    createCurrency: {componentName: "actionCurrency", icon: 'sign-in'},
+                    editCurrency: {componentName: "actionCurrency", icon: 'sign-in'},
+                    deleteCurrency: {componentName: "actionCurrency", icon: 'sign-in'},
                 }
             }
         },
         methods: {
-            oper(type) {
-                for (let k in this.operations) {
-                    if (k == type) {
-                        return this.operations[type];
-                    }
-
+            getTypeAction(method) {
+                if (!!this.type[method]) {
+                    return this.type[method];
+                } else {
+                    return {componentName: "default", icon: 'settings'}
                 }
-                return 'Unknown';
-
-            },
-            getTitle(type) {
-                for (let k in this.description) {
-                    if (k == type) {
-                        return this.description[type];
-
-                    }
-
-                }
-                return 'Unknown operation';
-            },
-            getIcon(type) {
-
-                for (let k in this.icons) {
-                    if (k == type) {
-                        return this.icons[type];
-
-                    }
-
-                }
-                return 'question-circle';
-
             }
-
-
-
-
+        },
+        created() {
         }
+
     }
 </script>
 
@@ -102,7 +118,6 @@
         background: rgba(245, 245, 245, 1);
         padding: 15px;
 
-
     }
 
     .history-title {
@@ -111,7 +126,6 @@
         justify-content: space-between;
         border-bottom: 1px solid #CCC;
         padding: 5px;
-
 
     }
 
@@ -138,18 +152,18 @@
         left: 15px;
     }
 
-    .timeline>li.timeline-inverted>.timeline-panel {
+    .timeline > li.timeline-inverted > .timeline-panel {
         float: none;
         left: 50px;
     }
 
-    .timeline>li>.timeline-panel {
+    .timeline > li > .timeline-panel {
         float: none;
         position: relative;
         width: 100%;
     }
 
-    .timeline>li>.timeline-badge {
+    .timeline > li > .timeline-badge {
         left: 15px;
     }
 </style>

@@ -13,7 +13,8 @@
         <paging
                 :currentPage="current_page"
                 :totalPages="total_page"
-                @page-changed="getAdminHistory"/>
+                @page-changed="getAdminHistory"
+        />
 </div>
     </div>
 </template>

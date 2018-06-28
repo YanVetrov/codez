@@ -89,7 +89,7 @@
         this.groups = res.data.faqGroups
         
       })
-            this.$rest.api('getAllLang')
+        this.$rest.api('getAllLang')
         .then(res => {
           this.langs = res.data.lang;
         })
