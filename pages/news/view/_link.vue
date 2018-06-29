@@ -51,7 +51,8 @@
                 comment: '',
                 moment: moment,
                 name: '',
-                message: ''
+                message: '',
+
             }
         },
         methods: {

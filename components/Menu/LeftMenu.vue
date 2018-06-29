@@ -97,6 +97,7 @@
                     child: [
 
                         { name: 'history', page: '/history', icon: 'history' },
+                        { name: 'Auth', page: '/auth', icon: 'history' },
                         { name: 'admins', page: '/admins', icon: 'lock' },
                         { name: 'design', page: '/apperance', icon: 'brush' },
                         { name: 'Partners', page: '/partners', icon: 'history' }

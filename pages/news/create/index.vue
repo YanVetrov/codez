@@ -69,6 +69,7 @@
         components: {Loading},
         data() {
             return {
+
                 status_load: true,
                 afterPost: false,
                 title: '',
