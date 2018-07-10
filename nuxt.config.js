@@ -29,27 +29,18 @@ module.exports = {
 
     css: [
         // '~/assets/sass/style.scss',
-        '~/assets/css/animate.css',
         '~/assets/bootstrap.min.css',
+        '~/assets/css/animate.css',
         '~/assets/css/style.css',
         '~/assets/css/default.css',
-        //- Sass Utils
-        // '~/assets/sass/utils/_animation.scss',
-        // '~/assets/sass/utils/_burger.scss',
-        // '~/assets/sass/utils/_button.scss',
-        // '~/assets/sass/utils/_fonts.scss',
-        // '~/assets/sass/utils/_icomoon.scss',
-        // '~/assets/sass/utils/_mixins.scss',
-        // '~/assets/sass/utils/_variables.scss',
-        // '~/assets/sass/utils/_helpers.scss'
-        //-
+
 
     ],
     plugins: [
         // '~/plugins/airbrake.js',
         { src: "~/plugins/i18n" },
         '~/plugins/rest-api',
-        { src: "~/plugins/i18n" },
+        { src: "~/plugins/vue-animate-number.js", ssr: false },
         { src: "~/plugins/vue2-editor", ssr: false },
         { src: '~/plugins/v-select.js', ssr: false },
         { src: "~/plugins/vue-charts.js", ssr: false },

@@ -137,7 +137,7 @@
 
                     <div class="dashboard-server-item--bot">
 
-                        <p></p>
+                        <p>Uptime:</p>
                         <div class="dashboard-server--line">
                             <span class="blue line-uptime" :style="{width:'100%'}"></span>
                         </div>

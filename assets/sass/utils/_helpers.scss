@@ -41,10 +41,13 @@
     border: none;
 }
 
+html {
+    font-size: 13px !important;
+}
 html, body {
     min-height: 100vh;
     height: 100%;
-    font-size: 13px;
+    font-size: 13px !important;
 
     @media screen and (max-width:814px) {
         font-size: 12px;
@@ -113,7 +116,7 @@ p {
 
 .sidebar-width {
     width: 320px;
-
+    overflow: hidden;
     border-radius: 10px;
     background-color: $bacBody;
     box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
@@ -156,6 +159,7 @@ ul, ol {
 
 .border {
     border-radius: 10px;
+    overflow: hidden;
     background-color: $bacBody;
     box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
 }

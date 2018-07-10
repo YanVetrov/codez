@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="dashboard-profit__chart border">
+    <div class="dashboard-profit--chart border">
         <loading type="block" :status_load="status_load"/>
     <highstock :options="options"></highstock>
     </div>
