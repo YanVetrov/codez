@@ -1,9 +1,10 @@
 <template>
 
 
-
-    <highstock :options="data"></highstock>
-
+    <div>
+        <h5 class="title">{{$t('profit')}}</h5>
+        <highstock :options="data" style="height: 270px;"></highstock>
+    </div>
 
 </template>
 

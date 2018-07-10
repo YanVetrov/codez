@@ -57,7 +57,7 @@
                     },
                     mapNavigation: {
                         enabled: true,
-                        enableDoubleClickZoomTo: true
+                        enableDoubleClickZoomTo: false
                     },
                     legend: {
                         enabled: true

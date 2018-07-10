@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div style="height: 100%;width: 100%">
         <h5 class="title">Посещения</h5>
 
-    <highmaps :options='data'></highmaps>
+        <highmaps :options='data' style="height: 270px"></highmaps>
 
     </div>
 </template>

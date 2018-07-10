@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+
 const config = require('../_config/app');
 
 const Rest = {
@@ -7,7 +8,7 @@ const Rest = {
         Vue.prototype.$rest = this
     },
     api(method, param) {
-        return axios.post(config.servicePath + config.apiPath + method + '/', param )
+        return axios.post(config.baseUrl + config.servicePath + config.apiPath + method + '/', param)
             .then(res => {
                 if (res.success === false) {
                     return Promise.reject(res.error)
@@ -18,7 +19,9 @@ const Rest = {
                 return Promise.reject(err)
             })
     },
-    apiPath: config.servicePath + config.apiPath
+    baseUrl: config.baseUrl ,
+    apiPath: config.baseUrl + config.servicePath + config.apiPath,
+    fsPath: config.baseUrl + config.servicePath + config.fsPath
 };
 Vue.use(Rest);
 

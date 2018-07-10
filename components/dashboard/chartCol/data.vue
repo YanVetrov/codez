@@ -1,7 +1,8 @@
 <template>
-
-    <highstock :options="dat"></highstock>
-
+    <div>
+        <h5 class="title">{{$t('entries')}}</h5>
+        <highstock :options="dat" style="height: 270px;"></highstock>
+    </div>
 </template>
 
 <script>
