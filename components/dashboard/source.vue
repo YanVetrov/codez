@@ -19,7 +19,7 @@
     </div>
 </template>
 <style lang='scss' scoped>
- @import "dashboard/dashboard";
+ /*@import "dashboard/dashboard";*/
 </style>
 <script>
     import maps from '~/components/dashboard/map.vue'
@@ -30,8 +30,6 @@
     import chartLine from '~/components/dashboard/chartLine.vue'
     import profit from '~/components/dashboard/profit.vue'
     import partners from '~/components/dashboard/partners.vue'
-
-    import axios from 'axios'
 
     export default {
 

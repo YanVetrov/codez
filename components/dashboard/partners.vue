@@ -29,7 +29,7 @@
 
 </template>
 <style lang='scss' scoped>
- @import "dashboard/dashboard-profit";
+ /*@import "dashboard/dashboard-profit";*/
 </style>
 <script>
     import Loading from "~/components/loading";

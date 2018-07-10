@@ -134,5 +134,5 @@
 
 
 <style lang='scss' scoped>
- @import "dashboard/dashboard-top";
+ /*@import "dashboard/dashboard-top";*/
 </style>

@@ -8,7 +8,7 @@
     </div>
 </template>
 <style lang='scss' scoped>
- @import "dashboard/dashboard-visitors";
+ /*@import "dashboard/dashboard-visitors";*/
 </style>
 <script>
     import Loading from "~/components/loading";

@@ -50,6 +50,6 @@
 </script>
 
 <style lang='scss' scoped>
- @import "dashboard/dashboard-profit";
+ /*@import "dashboard/dashboard-profit";*/
 </style>
 
