@@ -19,7 +19,7 @@
                 </div>
 
                 <p class="dashboard-top--count">
-                    <span>{{data.newClients.total}}</span>
+                    <span><animate-number :from="data.newClients.total" :to="data.newClients.total"></animate-number></span>
                 </p>
 
             </li>
@@ -41,7 +41,7 @@
                 </div>
 
                 <p class="dashboard-top--count">
-                    <span>{{data.newProjects.total}}</span>
+                    <span><animate-number :from="data.newProjects.total" :to="data.newProjects.total"></animate-number></span>
                 </p>
 
             </li>
@@ -63,7 +63,7 @@
                 </div>
 
                 <p class="dashboard-top--count">
-                    <span>{{data.openProjects.total}}</span>
+                    <span><animate-number :from="data.openProjects.total" :to="data.openProjects.total"></animate-number></span>
                 </p>
 
             </li>

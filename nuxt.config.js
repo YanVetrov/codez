@@ -40,7 +40,7 @@ module.exports = {
         // '~/plugins/airbrake.js',
         { src: "~/plugins/i18n" },
         '~/plugins/rest-api',
-        { src: "~/plugins/i18n" },
+        { src: "~/plugins/vue-animate-number.js", ssr: false },
         { src: "~/plugins/vue2-editor", ssr: false },
         { src: '~/plugins/v-select.js', ssr: false },
         { src: "~/plugins/vue-charts.js", ssr: false },
