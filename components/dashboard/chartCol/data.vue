@@ -1,13 +1,13 @@
 <template>
 
-    <highstock :options="data"></highstock>
+    <highstock :options="dat"></highstock>
 
 </template>
 
 <script>
     export default {
-        name: "data",
-        props: ['data']
+        name: "dat",
+        props: ['dat']
     }
 </script>
 

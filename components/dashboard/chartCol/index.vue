@@ -1,7 +1,7 @@
 <template>
 
     <div class="dashboard-visitors--chart border">
-        <DataInfo :data="options" v-if="load && options"></DataInfo>
+        <DataInfo :dat="info" v-if="load && info"></DataInfo>
         
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
@@ -15,25 +15,7 @@
         components: { DataInfo, WaitInfo },
         data() {
             return {
-                options: false,
-                load: false,
-                errorData: false,
-
-            }
-        },
-
-        created() {
-            this.updateData();
-        },
-        methods: {
-            updateData() {
-                return Promise.resolve()
-                    .then(() => {
-                        return new Promise(resolve => setTimeout(resolve, 5000))
-                    })
-                    .then(() => {
-
-                        return {
+                info: {
                             
                                 chart: {
                                     type: 'column'
@@ -72,12 +54,33 @@
 
                                 }]
                             
-                        }
-                    })
-                    .then((res) => {
-                        this.options = res;
-                        this.load = true;
-                    }).catch((err) => {
+                        },
+                load: false,
+                errorData: false,
+
+            }
+        },
+
+        created() {
+            this.updateData();
+        },
+        methods: {
+            updateData() {
+                 this.$rest.api('getStatisticClient').then(res => {
+
+                let main = res.data.visitors;
+                let arr = [];
+                main.forEach(el => {
+                    let date = el.date.slice(0, 10).split('-');
+                    let realDate = [Date.UTC(parseInt(date[0]), parseInt(date[1]) - 1, parseInt(date[2])), parseInt(el.total_count)];
+                    arr.unshift(realDate);
+                });
+                this.load=true;
+                this.info.series[0].data = arr;
+                
+
+            })
+            .catch((err) => {
                         this.errorData = { message: 'Error load data' }
                     });
             }
