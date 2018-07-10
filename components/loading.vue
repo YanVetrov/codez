@@ -18,8 +18,8 @@
 
             }
         },
-        created(){
-          this.$root.$on('loading',state=>this.loading=state)  
+        created() {
+            this.$root.$on('loading', state => this.loading = state)
         },
         methods: {
             start() {
@@ -36,17 +36,13 @@
 
 
     .preloader {
-        position: absolute;
-        /*top: 0;*/
-        /*left: 0;*/
-        /*right: 0;*/
-        /*bottom: 0;*/
-        /*width: auto;*/
-        /*height: auto;*/
-        width:300px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 50px;
         background: rgba(255, 255, 255, 0.8);
         text-align: center;
-        padding-top: 200px;
+        /*padding-top: 200px;*/
         font-size: 30px;
         font-family: sans-serif;
         z-index: 999;
@@ -56,6 +52,12 @@
         content: '';
         display: block;
         padding-top: 0;
+    }
+
+    .preloader svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .preloader.page-wrapper {
