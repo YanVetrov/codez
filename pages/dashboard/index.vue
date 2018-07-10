@@ -23,14 +23,14 @@
 </style>
 
 <script>
-    import maps from '~/components/dashboard/map.vue'
+    import maps from '~/components/dashboard/map'
     import cards from '~/components/dashboard/cards'
-    import resources from '~/components/dashboard/resources.vue'
-    import machine from '~/components/dashboard/machine.vue'
-    import chartCol from '~/components/dashboard/chartCol.vue'
-    import chartLine from '~/components/dashboard/chartLine.vue'
-    import profit from '~/components/dashboard/profit.vue'
-    import partners from '~/components/dashboard/partners.vue'
+    import resources from '~/components/dashboard/resources'
+    import machine from '~/components/dashboard/machine'
+    import chartCol from '~/components/dashboard/chartCol'
+    import chartLine from '~/components/dashboard/chartLine'
+    import profit from '~/components/dashboard/profit'
+    import partners from '~/components/dashboard/partners'
 
     export default {
         components: {
