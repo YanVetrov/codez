@@ -16726,3 +16726,6 @@ ul.pro-amenities li span i {
 .cl-pointer{
   cursor:pointer;
 }
+html{
+  font-size: 13px;
+}

@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height: 70px">
+    <div>
         <ul>
             <li>
                 <p class="dashboard-top--img"><img src="~/assets/img/users-dash-red.png" alt=""></p>
