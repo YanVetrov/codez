@@ -1,0 +1,46 @@
+
+.dashboard {
+
+  &-visitors {
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin: 0 -17px;
+
+    >div {
+      margin: 17px;
+
+      @media screen and (max-width: 1300px) {
+        flex: 1 1;
+      }
+
+      >div {
+        height: 24.5rem !important;
+      }
+    }
+
+    &-schedule-wr {
+      width: 100%;
+
+        div {
+          width: 100% !important;
+        }
+    }
+
+    .title {
+      border-bottom: 1px solid $middleGrey;
+    }
+
+    &--chart {
+      flex: auto;
+      overflow: hidden;
+    }
+
+    &--country {
+      min-width: 320px;
+    }
+  }
+
+}

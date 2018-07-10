@@ -1,0 +1,51 @@
+@import "dashboard-top";
+@import "dashboard-visitors";
+@import "dashboard-profit";
+@import "dashboard-wait";
+@import "dashboard-server";
+@import "dashboard-reserve";
+
+.dashboard {
+
+  &-top, &-visitors, &-profit, &-wait, &-server, &-reserve  {
+
+    .title, .pagination {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+      margin: 0;
+    }
+
+  }
+
+  &-wait {
+    .pagination {
+      padding-bottom: 0;
+    }
+  }
+
+}
+
+.uptime-hours {
+  font-size: 20px;
+  color: #656565;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 1300px) {
+    font-size: 17px;
+  }
+}
+
+
+.line-cpu {
+  width: 0;
+}
+.line-memory {
+  width: 0;
+}
+.line-drive {
+  width: 0;
+}
+.line-uptime {
+  width: 0;
+}

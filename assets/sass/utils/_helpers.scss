@@ -1,0 +1,188 @@
+/*%container {
+    width: $wide;
+    margin: 0 auto;
+
+    @include respond-to(phone) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    @include respond-to(tablet-lend) {
+        width: $large;
+    }
+
+    @include respond-to(tablet) {
+        width: $tablet;
+    }
+
+
+    @include respond-to(telephone) {
+        width: $telephone;
+    }
+
+    @include respond-to(phone) {
+        width: 100%;
+        max-width: $phone;
+    }
+}*/
+
+// %container-padding {
+//     padding: 0 15px;
+
+//     @include respond-to(phone) {
+//         padding-left: 10px;
+//         padding-right: 10px;
+//     }
+// }
+
+%reset_link {
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+
+html, body {
+    min-height: 100vh;
+    height: 100%;
+    font-size: 13px;
+
+    @media screen and (max-width:814px) {
+        font-size: 12px;
+    }
+}
+
+body {
+    background-color: $bacBody;
+    font-family: $rubik;
+    color: $colorBody;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    background-color: $bacWrap;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.main {
+    flex: 1 0 auto;
+
+    padding: 35px 15px 35px 35px;
+}
+
+a {
+    text-decoration: none;
+}
+
+p, h2, h3, ul, h1, button, div, a, li, span, img {
+    margin: 0;
+    padding:0;
+
+    -webkit-transition: .35s;
+    -moz-transition: .35s;
+    -ms-transition: .35s;
+    -o-transition: .35s;
+    transition: .35s;
+
+        &:after, &:before {
+            -webkit-transition: .35s;
+            -moz-transition: .35s;
+            -ms-transition: .35s;
+            -o-transition: .35s;
+            transition: .35s;
+        }
+}
+
+ul {
+    width: 100%;
+}
+
+p {
+    font-weight: 100;
+    line-height: 1.88;
+}
+
+.sidebar-width {
+    width: 320px;
+
+    border-radius: 10px;
+    background-color: $bacBody;
+    box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
+}
+
+.title {
+    width: 100%;
+    font-family: $rubik;
+    line-height: 3.43;
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: $dark;
+    text-transform: uppercase;
+}
+
+.red {
+    color: $red;
+}
+
+.light-green {
+    color: $lightGreen;
+}
+
+.green {
+    color: $green;
+}
+
+.blue {
+    color: $bacBlue;
+}
+
+ul, ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.border {
+    border-radius: 10px;
+    background-color: $bacBody;
+    box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
+}
+
+input, button {
+    border: none;
+    outline: none;
+
+        &:focus, &:active {
+            border: none;
+            outline: none;
+        }
+}
+
+button {
+    cursor: pointer;
+}
+
+
+
+
+
+
+.dn-mob {
+    @include respond-to(phone) {
+        display: none;
+    }
+}

@@ -1,0 +1,140 @@
+.fadeInDown, .open-calendar, .open-reserve{
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, -30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, -30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*-----------------------------------------------*/
+.fadeInUp{
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInUp;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 30px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*-----------------------------------------------*/
+.fadeInUpSmall{
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInUpSmall;
+}
+
+@-webkit-keyframes fadeInUpSmall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 10px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUpSmall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, 10px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*-----------------------------------------------*/
+.fadeInDownSmall{
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInDownSmall;
+}
+
+@-webkit-keyframes fadeInDownSmall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, -10px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDownSmall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0px, -10px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*-----------------------------------------------*/
+.fadeInLeft{
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(30px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(30px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*-----------------------------------------------*/

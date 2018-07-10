@@ -1,14 +1,28 @@
 <template>
-    <highstock :options="options"></highstock>
-</template>
 
+
+    <div class="dashboard-profit__chart border">
+        <loading type="block" :status_load="status_load"/>
+    <highstock :options="options"></highstock>
+    </div>
+
+</template>
+<style lang='scss' scoped>
+ @import "dashboard/dashboard-profit";
+</style>
 <script>
+    import Loading from "~/components/loading";
     export default {
+        components: {Loading},
+        mounted(){
+          this.status_load=true;  
+        },
         data() {
             return {
+                status_load:false,
                 options: {
                     chart: {
-                        type: 'line'
+                        type: 'areaspline'
                     },
                     title: {
                         text: this.$t('average salary'),

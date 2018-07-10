@@ -1,0 +1,38 @@
+
+$sizePagin: 28px;
+
+.pagination {
+
+  padding-top: 30px;
+  padding-bottom: 35px;
+
+  ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    margin: 0 -5px;
+  }
+
+  li {
+    margin: 5px;
+
+  }
+
+  a {
+    display: inline-block;
+    width: $sizePagin;
+    height: $sizePagin;
+    line-height: $sizePagin;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+    color: $darkGrey;
+
+    &.pagination-current, &:hover {
+      color: $white;
+      background: $bacBlue;
+    }
+  }
+
+}

@@ -23,7 +23,9 @@
     "@nuxtjs/moment": "^1.0.0",
     "@nuxtjs/proxy": "^1.2.4",
     "highcharts": "^6.1.0",
+    "moment": "^2.22.2",
     "nuxt": "^1.4.0",
+    "nuxt-sass-resources-loader": "^2.0.2",
     "postcss-flexboxfixer": "0.0.5",
     "vue": "^2.5.16",
     "vue-highcharts": "0.0.10",
@@ -44,8 +46,10 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.0.0",
     "less-loader": "^4.0.5",
+    "node-sass": "^4.9.2",
     "nodemon": "^1.17.3",
-    "sass-loader": "^7.0.1",
+    "normalize.css": "^8.0.0",
+    "sass-loader": "^7.0.3",
     "vue-style-loader": "^4.1.0"
   }
 }

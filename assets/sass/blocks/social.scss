@@ -1,0 +1,52 @@
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: baseline;
+  width: auto;
+
+  @media screen and (max-width:1200px) {
+    justify-content: center;
+  }
+
+  li {
+    margin: 5px;
+  }
+
+
+  a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+}
+
+.ic {
+
+  &-vk {
+    background-image: url("~/assets/img/vk.svg");
+  }
+
+  &-fc {
+    background-image: url("~/assets/img/facebook.svg");
+  }
+
+  &-telegram {
+    background-image: url("~/assets/img/telegram.svg");
+  }
+
+  &-whapp {
+    background-image: url("~/assets/img/whatsapp.svg");
+  }
+    &-vib {
+    background-image: url("~/assets/img/viber.svg");
+  }
+
+
+}

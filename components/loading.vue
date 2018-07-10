@@ -37,12 +37,13 @@
 
     .preloader {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: auto;
-        height: auto;
+        /*top: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*bottom: 0;*/
+        /*width: auto;*/
+        /*height: auto;*/
+        width:300px;
         background: rgba(255, 255, 255, 0.8);
         text-align: center;
         padding-top: 200px;

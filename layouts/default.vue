@@ -37,7 +37,6 @@
       }
     },
     mounted() {
-      this.$root.$emit('loading', true)
       this.$rest
         .api('isAuthUser')
         .then(res => {
@@ -50,13 +49,12 @@
               obj = { fn, ln, email }
             this.$root.$emit('userInfo', obj)
             console.log(obj)
-            this.$root.$emit('loading', false)
           }
           res.success ? '' : this.$router.push('/signin');
 
         })
         .catch(err => {
-          this.$root.$emit('loading', false)
+
         })
     },
     head() {

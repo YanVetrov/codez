@@ -1,11 +1,19 @@
 <template>
+        <div class="dashboard-visitors--chart border">
+            <loading type="block" :status_load="status_load"/>
     <highstock :options="options"></highstock>
+    </div>
 </template>
-
+<style lang='scss' scoped>
+ @import "dashboard/dashboard-visitors";
+</style>
 <script>
+    import Loading from "~/components/loading";
     export default {
+        components: {Loading},
         data() {
             return {
+                status_load:false,
                 options: {
                     chart: {
                         type: 'column'
@@ -58,7 +66,7 @@
                     let realDate = [Date.UTC(parseInt(date[0]), parseInt(date[1]) - 1, parseInt(date[2])), parseInt(el.total_count)];
                     arr.unshift(realDate);
                 });
-                
+                this.status_load=true;
                 this.options.series[0].data = arr;
                 
 

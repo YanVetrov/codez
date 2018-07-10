@@ -1,38 +1,35 @@
 <template>
-    
-       <div class="col-lg-4 col-md-12">
-                    <div class="white-box">
-                        <h3 class="box-title">{{$t('visits')}}</h3>
-                        <ul class="country-state  p-t-20">
-                            <li v-for="country in Stat" :key="country.id">
-                                <h2>{{country.count}}</h2> <small>{{$t('from')}} {{country.url}}</small>
-                                <div class="pull-right">{{country.percent}}%<i class="fa fa-level-up text-success"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" :style="{width:country.percent +'%'}"> <span class="sr-only"></span></div>
-                                </div>
-                            </li>
   
-                        </ul>
+    <div class="dashboard-visitors--source sidebar-width">
+      <span><loading type="block" :status_load="status_load"/></span>
+        <h5 class="title">{{$t('visits')}}</h5>
+        <div class="list-sidebar-wr">
+            <ul class="list-sidebar">
+                <li v-for="country in Stat" :key="country.id">
+                    <div class="list-sidebar--progress">
+                        <strong>{{country.count}}</strong>
+                        <span>{{country.percent}}%</span>
+                        <span class="list-sidebar--progress-line" :style="{width:country.percent +'%'}"></span>
                     </div>
-                </div>
-
-
-
+                    <p>{{country.url}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
+    import Loading from "~/components/loading";
     export default {
+      components:{Loading},
         data() {
             return {
-          
+                status_load:true,
                 Stat:[]
-
-
             }
         },
-
         mounted() {
-       
+              this.status_load=false
                this.$rest.api('getStatisticClient')
           .then(res => {         
               let main = res.data.visitors;
@@ -58,18 +55,12 @@
               })
               console.log(arr);
               this.Stat = arr;
+            this.status_load=true;
              
             })
-
-
         }
-
-
     }
-
-
 </script>
-
-
-
-
+<style lang='scss' scoped>
+ @import "dashboard/dashboard-visitors";
+</style>

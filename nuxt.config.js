@@ -1,4 +1,5 @@
 const config = require('./_config/app');
+let resolvee = require("path").resolve;
 let proxyConfig = {};
 proxyConfig[config.servicePath + '/'] = { target: config.serviceUrl, pathRewrite: {} };
 proxyConfig[config.servicePath + '/'].pathRewrite['^' + config.servicePath + '/'] = '/';
@@ -27,17 +28,28 @@ module.exports = {
     loading: '~/components/loading.vue',
 
     css: [
+        // '~/assets/sass/style.scss',
         '~/assets/css/animate.css',
         '~/assets/bootstrap.min.css',
         '~/assets/css/style.css',
         '~/assets/css/default.css',
+        //- Sass Utils
+        // '~/assets/sass/utils/_animation.scss',
+        // '~/assets/sass/utils/_burger.scss',
+        // '~/assets/sass/utils/_button.scss',
+        // '~/assets/sass/utils/_fonts.scss',
+        // '~/assets/sass/utils/_icomoon.scss',
+        // '~/assets/sass/utils/_mixins.scss',
+        // '~/assets/sass/utils/_variables.scss',
+        // '~/assets/sass/utils/_helpers.scss'
+        //-
 
     ],
     plugins: [
         // '~/plugins/airbrake.js',
         { src: "~/plugins/i18n" },
         '~/plugins/rest-api',
-        { src: "~/plugins/i18n"},
+        { src: "~/plugins/i18n" },
         { src: "~/plugins/vue2-editor", ssr: false },
         { src: '~/plugins/v-select.js', ssr: false },
         { src: "~/plugins/vue-charts.js", ssr: false },
@@ -51,6 +63,9 @@ module.exports = {
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
         '@nuxtjs/moment',
+        ['nuxt-sass-resources-loader', 
+            './assets/sass/style.scss'
+        ]
     ],
     env: {
         config: config
