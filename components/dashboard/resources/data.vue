@@ -1,5 +1,7 @@
 <template>
-  
+
+    <div>
+        <h5 class="title">{{$t('visits')}}</h5>
 
         <div class="list-sidebar-wr">
             <ul class="list-sidebar">
@@ -13,7 +15,7 @@
                 </li>
             </ul>
         </div>
-
+    </div>
 </template>
 <script>
     export default {

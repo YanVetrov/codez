@@ -1,7 +1,6 @@
 <template>
 
     <div class="dashboard-profit--active-partner sidebar-width">
-                <h5 class="title">{{$t('visits')}}</h5>
         <DataInfo :data="info" v-if="load && info"></DataInfo>
         
         <WaitInfo :errorData="errorData" v-else></WaitInfo>

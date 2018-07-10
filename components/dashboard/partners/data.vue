@@ -1,8 +1,6 @@
 <template>
-
-
-
-
+    <div>
+        <h5 class="title">{{$t('visits')}}</h5>
         <div class="list-sidebar-wr">
             <ul class="list-sidebar">
                 <li v-for="country in data" :key="country.id">
@@ -17,15 +15,10 @@
                     <p>{{country.url}}</p>
 
                 </li>
-               
+
             </ul>
         </div>
-
-
-
-
-
-
+    </div>
 </template>
 <script>
     export default {
