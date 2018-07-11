@@ -2,28 +2,16 @@
     <div>
         <h5 class="title">{{$t('visits')}}</h5>
         <div class="list-sidebar-wr">
-            <ul class="list-sidebar">
-                <li v-for="country in data" :key="country.id">
-
-                    <div class="list-sidebar--progress">
-                        <strong>{{country.count}}</strong>
-                        <span>{{country.percent}}%</span>
-
-                        <span class="list-sidebar--progress-line" :style="{width:country.percent +'%'}"></span>
-                    </div>
-
-                    <p>{{country.url}}</p>
-
-                </li>
-
-            </ul>
+            <litem :country='data'></litem>
         </div>
     </div>
 </template>
 <script>
+import litem from '~/components/litem.vue'
     export default {
         name: "data",
-        props: ['data']
+        props: ['data'],
+        components:{litem}
     }
 </script>
 

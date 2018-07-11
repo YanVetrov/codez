@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-
 const config = require('../_config/app');
 
 const Rest = {
