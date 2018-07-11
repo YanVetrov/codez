@@ -1,5 +1,6 @@
 <template>
-    <ul class="pagination">
+    <div class="pagination">
+    <ul>
         <li>
             <a href="#" @click.prevent="pageChanged(1)" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -14,10 +15,13 @@
             </a>
         </li>
     </ul>
+    </div>
 </template>
+<style lang='scss' scoped>
+    
+</style>
 
 <script>
-
     export default {
 
         props: {
@@ -42,18 +46,19 @@
             lastPage() {
                 if (this.totalPages) {
                     return this.totalPages
-                } else {
-                    return this.totalItems % this.itemsPerPage === 0
-                        ? this.totalItems / this.itemsPerPage
-                        : Math.floor(this.totalItems / this.itemsPerPage) + 1
+                }
+                else {
+                    return this.totalItems % this.itemsPerPage === 0 ?
+                        this.totalItems / this.itemsPerPage :
+                        Math.floor(this.totalItems / this.itemsPerPage) + 1
                 }
             },
 
             paginationRange() {
-                let start = this.currentPage - this.visiblePages / 2 <= 0
-                    ? 1 : this.currentPage + this.visiblePages / 2 > this.lastPage
-                        ? (this.lastPage - this.visiblePages + 1, 1)
-                        : Math.ceil(this.currentPage - this.visiblePages / 2);
+                let start = this.currentPage - this.visiblePages / 2 <= 0 ?
+                    1 : this.currentPage + this.visiblePages / 2 > this.lastPage ?
+                    (this.lastPage - this.visiblePages + 1, 1) :
+                    Math.ceil(this.currentPage - this.visiblePages / 2);
                 let range = [];
                 for (let i = 0; i < this.visiblePages && i < this.lastPage; i++) {
                     range.push(start + i)

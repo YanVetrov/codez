@@ -13,7 +13,7 @@
             <chartLine/>
             <partners/>
         </div>
-
+        <trans/>
         <machine/>
     </div>
 </template>
@@ -31,10 +31,12 @@
     import chartLine from '~/components/dashboard/chartLine'
     import profit from '~/components/dashboard/profit'
     import partners from '~/components/dashboard/partners'
+    import trans from '~/components/transactions'
 
     export default {
         components: {
             maps,
+            trans,
             chartCol,
             chartLine,
             machine,
@@ -45,5 +47,3 @@
         },
     }
 </script>
-
-

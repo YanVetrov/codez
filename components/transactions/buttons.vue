@@ -1,22 +1,13 @@
 <template>
-    
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12" style="width:100%">
-                        <div class="white-box">
-                            <div class="button-box">
-                                <button class="fcbtn btn btn-success btn-outline btn-1b" @click="actionOrder(id,'ok')">{{$t('save')}}</button>
-                                <button class="fcbtn btn btn-info btn-outline btn-1b" @click="actionOrder(id,'notPaid')">{{$t('clear')}}</button>
-                                <button class="fcbtn btn btn-info btn-outline btn-1b" @click="actionOrder(id,'returnOrder')">{{$t('return')}}</button>
-                                <button class="fcbtn btn btn-danger btn-outline btn-2b" @click="actionOrder(id,'trash')">{{$t('delete')}}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
+                
+                  <div class="table-btn-group">
+                            <a href="/" class="btn-table " @click="actionOrder(id,'trash')"><span class="icon-delete"></span></a>
+                            <a href="/" class="btn-table" @click="actionOrder(id,'ok')"><span class="icon-checked-dash"></span></a>
+                            <a href="/" class="btn-table" @click="actionOrder(id,'returnOrder')"><span class="icon-attention-dash"></span></a>
+                   </div>
 </template>
-
+<style lang='scss' scoped>
+</style>
 <script>
     export default {
         props: ['id'],
