@@ -13,7 +13,7 @@
 
 <script>
 
-    import parsers from '~/components/dashboard/credits';
+    import parsers from '~/components/credits';
     export default {
       components:{
         parsers
