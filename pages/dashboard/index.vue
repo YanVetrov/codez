@@ -15,6 +15,7 @@
         </div>
         <trans/>
         <machine/>
+        <reserve/>
     </div>
 </template>
 
@@ -32,6 +33,7 @@
     import profit from '~/components/dashboard/profit'
     import partners from '~/components/dashboard/partners'
     import trans from '~/components/transactions'
+    import reserve from '~/components/dashboard/reserve'
 
     export default {
         components: {
@@ -44,6 +46,7 @@
             cards,
             profit,
             partners,
+            reserve,
         },
     }
 </script>
