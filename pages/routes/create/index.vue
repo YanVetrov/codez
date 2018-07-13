@@ -17,7 +17,7 @@
 
 <script>
     import Loading from "~/components/loading";
-    import create from "~/components/transactions/create";
+    import create from "~/components/exchangesPending/create";
 
     export default {
         components: {Loading, create},

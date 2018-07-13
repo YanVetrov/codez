@@ -1,21 +1,21 @@
 <template>
     <div class="main">
-        <cards/>
+        <general-statistics-with-filter/>
 
         <div class="dashboard-visitors">
-            <chartCol/>
-            <maps/>
-            <resources/>
+            <chart-visits/>
+            <map-visits/>
+            <statistics-resource-visits/>
         </div>
 
         <div class="dashboard-profit">
-            <profit/>
-            <chartLine/>
-            <partners/>
+            <total-profit/>
+            <chart-profit/>
+            <statistics-activity-partners/>
         </div>
-        <trans/>
-        <machine/>
-        <reserve/>
+        <exchanges-pending/>
+        <server-status/>
+        <reserve-status/>
     </div>
 </template>
 
@@ -24,29 +24,29 @@
 </style>
 
 <script>
-    import maps from '~/components/dashboard/map'
-    import cards from '~/components/dashboard/cards'
-    import resources from '~/components/dashboard/resources'
-    import machine from '~/components/dashboard/machine'
-    import chartCol from '~/components/dashboard/chartCol'
-    import chartLine from '~/components/dashboard/chartLine'
-    import profit from '~/components/dashboard/profit'
-    import partners from '~/components/dashboard/partners'
-    import trans from '~/components/transactions'
-    import reserve from '~/components/dashboard/reserve'
+    import generalStatisticsWithFilter from '~/components/dashboard/generalStatisticsWithFilter';
+    import chartVisits from '~/components/dashboard/chartVisits';
+    import mapVisits from '~/components/dashboard/mapVisits';
+    import statisticsResourceVisits from '~/components/dashboard/statisticsResourceVisits';
+    import totalProfit from '~/components/dashboard/totalProfit';
+    import chartProfit from '~/components/dashboard/chartProfit';
+    import statisticsActivityPartners from '~/components/dashboard/statisticsActivityPartners';
+    import exchangesPending from '~/components/exchangesPending'
+    import serverStatus from '~/components/dashboard/serverStatus'
+    import reserveStatus from '~/components/dashboard/reserveStatus'
 
     export default {
         components: {
-            maps,
-            trans,
-            chartCol,
-            chartLine,
-            machine,
-            resources,
-            cards,
-            profit,
-            partners,
-            reserve,
-        },
+            generalStatisticsWithFilter,
+            chartVisits,
+            mapVisits,
+            statisticsResourceVisits,
+            totalProfit,
+            chartProfit,
+            statisticsActivityPartners,
+            exchangesPending,
+            serverStatus,
+            reserveStatus,
+        }
     }
 </script>
