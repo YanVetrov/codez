@@ -16,7 +16,7 @@
 
 <script>
     import paging from '~/components/pagination';
-    import transactions from '~/components/exchangesPending/trans';
+    import transactions from '~/components/dashboard/exchangesPending/trans';
     export default {
         props: ['transactions', 'page'],
 

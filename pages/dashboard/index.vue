@@ -31,7 +31,7 @@
     import totalProfit from '~/components/dashboard/totalProfit';
     import chartProfit from '~/components/dashboard/chartProfit';
     import statisticsActivityPartners from '~/components/dashboard/statisticsActivityPartners';
-    import exchangesPending from '~/components/exchangesPending'
+    import exchangesPending from '~/components/dashboard/exchangesPending'
     import serverStatus from '~/components/dashboard/serverStatus'
     import reserveStatus from '~/components/dashboard/reserveStatus'
 
