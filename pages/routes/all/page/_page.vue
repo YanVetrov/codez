@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import all from '~/components/transactions'
+import all from '~/components/dashboard/exchangesPending'
   export default {
    components:{
      all
