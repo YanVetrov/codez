@@ -29,6 +29,7 @@ module.exports = {
 
     css: [
         // '~/assets/sass/style.scss',
+        // '~/assets/sass/fonts/fa/fa-light.scss',
         '~/assets/bootstrap.min.css',
         '~/assets/css/animate.css',
         '~/assets/css/style.css',

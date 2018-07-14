@@ -1,19 +1,18 @@
-// @import "~/node_modules/normalize.css/normalize";
+// @import "../../node_modules/normalize.css/normalize";
 
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/helpers";
+@import "utils/fonts";
+@import "utils/button";
+@import "utils/burger";
+@import "utils/icomoon";
+@import "utils/animation";
 
-@import "utils/_variables";
-@import "utils/_mixins";
-@import "utils/_helpers";
-@import "utils/_fonts";
-@import "utils/_button";
-@import "utils/_burger";
-@import "utils/_icomoon";
-@import "utils/_animation";
-
-// * {
-//     box-sizing: border-box;
-//     outline:none;
-// }
+* {
+    box-sizing: border-box;
+    outline:none;
+}
 
 @import "blocks/header";
 @import "blocks/dashboard/dashboard";
@@ -21,4 +20,7 @@
 @import "blocks/table";
 @import "blocks/list-sidebar";
 @import "blocks/social";
+@import "blocks/users-list-toodo";
+@import "blocks/orders";
+@import "blocks/search-block";
 

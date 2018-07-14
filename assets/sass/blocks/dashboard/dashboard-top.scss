@@ -5,6 +5,10 @@
     padding: 1rem .38rem;
     margin-bottom: 18px;
 
+      &.border {
+        overflow: visible;
+      }
+
     ul, li {
       display: flex;
       align-items: center;
