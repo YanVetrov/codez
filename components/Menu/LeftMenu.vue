@@ -164,7 +164,9 @@
                     isShow: false,
                     icon: 'mdi mdi-account-multiple-outline',
                     child: [
+                        { name: 'users', page: '/clients', icon: 'users' },
                         { name: 'partners', page: '/partners', icon: 'chart-line' },
+
                     ]
                 }
 
