@@ -25,22 +25,9 @@
             getUserStatistic() {
                 Promise.all([this.$rest.api('getUserStatistic'), this.$rest.api('getSocialAuthStatistic'), this.$rest.api('getSocialAuthSettings')])
                     .then(response => {
-                        console.log(response);
-                        if (response[0].success === false) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error get users!',
-                                text: response[0].error.message
-                            });
-                            this.$router.back();
-                        }
-                        if (response[0].success === true) {
-                            this.info.statistic = response[0].data
 
-                        }
-                        if (response[1].success === true && response[2].success === true) {
+                        if (response[1].success === true && response[2].success === true&& response[0].success === true) {
+                            this.info.statistic = response[0].data
                             let socialStat = response[1].data;
 
                             const socialInfo = response[2].data
@@ -61,7 +48,7 @@
 
                             this.info.social = socialInfo;
                             this.load = true;
-                            return response
+                            return socialInfo
                         }
                         this.$notify({
                             group: 'main',
