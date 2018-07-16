@@ -27,7 +27,7 @@
                     .then(response => {
 
                         if (response[1].success === true && response[2].success === true&& response[0].success === true) {
-                            this.info.statistic = response[0].data
+                            this.info.statistic = response[0].data;
                             let socialStat = response[1].data;
 
                             const socialInfo = response[2].data
