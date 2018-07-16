@@ -5,6 +5,7 @@
             <litem :country='data'></litem>
         </div>
     </div>
+
 </template>
 <script>
 import litem from '~/components/litem.vue'

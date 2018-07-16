@@ -2,7 +2,7 @@
 
     <div>
         <DataInfo :data="info" v-if="load && info"></DataInfo>
-        
+
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
 </template>
@@ -12,7 +12,7 @@
     import WaitInfo from "./loader.vue";
 
     export default {
-        components: { DataInfo, WaitInfo },
+        components: {DataInfo, WaitInfo},
         data() {
             return {
                 load: false,
@@ -40,33 +40,35 @@
                             this.info.statistic = response[0].data
 
                         }
-                        if (response[1].success === false) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error get users!',
-                                text: response[1].error.message
-                            });
-                            this.$router.back();
-                        }
-                        if (response[1].success === true) {
-                            let arr=[];
-                            let obj = {};
-                            for(let key in response[1].data){
-                                response[2].data.forEach(el=>{
-                                    if(el.id == key){
-                                    obj.total = response[1].data[key];
-                                    obj.name = el.name;
-                                    obj.src = this.$rest.fsPath + el.icon;
-                                    arr.push(obj);
-                                    }
-                                })
-                            }
-                            this.info.social = arr;
+                        if (response[1].success === true && response[2].success === true) {
+                            let socialStat = response[1].data;
 
+                            const socialInfo = response[2].data.map(el => {
+                                if (socialStat[el.id]) {
+                                    return {
+                                        total: socialStat[el.id],
+                                        name: el.name,
+                                        src: this.$rest.fsPath + el.icon,
+
+                                    }
+                                }
+                                return undefined;
+                            }).filter(fel => {
+                                return !!fel
+                            });
+
+                            this.info.social = socialInfo;
+                            this.load = true;
+                            return response
                         }
-                        this.load = true;
+                        this.$notify({
+                            group: 'main',
+                            duration: 5000,
+                            type: 'error',
+                            title: 'Error get users!',
+                            text: response[1].error.message
+                        });
+                        this.$router.back();
 
                     })
                     .catch(err => {
