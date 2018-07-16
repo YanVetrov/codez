@@ -43,19 +43,21 @@
                         if (response[1].success === true && response[2].success === true) {
                             let socialStat = response[1].data;
 
-                            const socialInfo = response[2].data.map(el => {
-                                if (socialStat[el.id]) {
-                                    return {
-                                        total: socialStat[el.id],
-                                        name: el.name,
-                                        src: this.$rest.fsPath + el.icon,
+                            const socialInfo = response[2].data
+                                .map(el => {
+                                    if (socialStat[el.id]) {
+                                        return {
+                                            total: socialStat[el.id],
+                                            name: el.name,
+                                            src: this.$rest.fsPath + el.icon,
 
+                                        }
                                     }
-                                }
-                                return undefined;
-                            }).filter(fel => {
-                                return !!fel
-                            });
+                                    return undefined;
+                                })
+                                .filter(fel => {
+                                    return !!fel
+                                });
 
                             this.info.social = socialInfo;
                             this.load = true;
