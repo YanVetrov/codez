@@ -8,6 +8,8 @@
 @import "utils/burger";
 @import "utils/icomoon";
 @import "utils/animation";
+@import "utils/fa-light";
+@import "utils/fontawesome";
 
 * {
     box-sizing: border-box;
@@ -22,5 +24,6 @@
 @import "blocks/social";
 @import "blocks/users-list-toodo";
 @import "blocks/orders";
+@import "blocks/list-contact";
 @import "blocks/search-block";
 

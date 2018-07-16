@@ -15,29 +15,22 @@
         components: { DataInfo, WaitInfo },
          data() {
             return {
-                pagination: true,
-                status_load: false,
                 current_page: this.$route.params.page,
                 users: [],
                 total_page: [],
-                email: " ",
-                last_name: " ",
-                balance: '',
-                first_name: '',
-                showDetails: false,
-                created: '',
-                id: " ",
-                rate: " ",
                 load:false,
                 errorData:false,
-                info:true,
+                info:{},
 
             }
         },
         methods: {
-            getUserAdmin(page) {
+            getUserAdmin(page,filter) {
                 this.status_load = false;
-                this.$rest.api('getUserAdmin', {page: page || 1, limit: 12})
+                filter?'':filter={};
+                let obj = {page: page || 1, limit: 12,sortType:filter.sortType ||1,search:filter.search||''};
+                console.log(obj);
+                this.$rest.api('getUserAdmin', obj)
                     .then(response => {
                         console.log(response);
                         if (response.success === false) {
@@ -48,13 +41,15 @@
                                 title: 'Error get users!',
                                 text: response.error.message
                             });
-                            this.$router.back();
+                            // this.$router.back();
                         }
                         if (response.success === true) {
                             this.current_page = response.data.count.select_page || 1;
-                            this.info = response.data.users;
+                            this.info.users = response.data.users;
+                            this.info.placehold = 'Поиск по сайту'
+                            this.info.tabs = [{name:'Активные',id:'active'},{name:'Не подтвержденные',id:'notproof'},{name:'Заблокированые',id:'blacklist'},]
                             this.total_page = response.data.count.pages;
-
+                            
                         }
                         this.load = true;
 
@@ -67,7 +62,7 @@
                             title: 'Error get users!',
                             text: 'Server error 500! Please retry.\n' + err
                         });
-                        this.$router.back();
+                        // this.$router.back();
                         this.load = true;
                     });
 
