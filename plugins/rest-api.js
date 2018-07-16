@@ -20,7 +20,7 @@ const Rest = {
     },
     baseUrl: config.baseUrl ,
     apiPath: config.baseUrl + config.servicePath + config.apiPath,
-    fsPath: config.baseUrl + config.servicePath + config.fsPath
+    fsPath: config.baseUrl + config.fsPath
 };
 Vue.use(Rest);
 
