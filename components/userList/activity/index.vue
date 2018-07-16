@@ -15,19 +15,6 @@
         components: { DataInfo, WaitInfo },
          data() {
             return {
-                pagination: true,
-                status_load: false,
-                current_page: this.$route.params.page,
-                users: [],
-                total_page: [],
-                email: " ",
-                last_name: " ",
-                balance: '',
-                first_name: '',
-                showDetails: false,
-                created: '',
-                id: " ",
-                rate: " ",
                 load:false,
                 errorData:false,
                 info:true,
@@ -36,8 +23,7 @@
         },
         methods: {
             getUserAdmin(page) {
-                this.status_load = false;
-                this.$rest.api('getUserAdmin', {page: page || 1, limit: 12})
+                this.$rest.api('getUserOnline', {page: page || 1, limit: 12})
                     .then(response => {
                         console.log(response);
                         if (response.success === false) {
@@ -51,10 +37,7 @@
                             this.$router.back();
                         }
                         if (response.success === true) {
-                            this.current_page = response.data.count.select_page || 1;
-                            this.info = response.data.users;
-                            this.total_page = response.data.count.pages;
-
+                            this.info = response.data.online
                         }
                         this.load = true;
 

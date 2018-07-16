@@ -13,47 +13,57 @@
 
     export default {
         components: { DataInfo, WaitInfo },
-         data() {
+        data() {
             return {
-                pagination: true,
-                status_load: false,
-                current_page: this.$route.params.page,
-                users: [],
-                total_page: [],
-                email: " ",
-                last_name: " ",
-                balance: '',
-                first_name: '',
-                showDetails: false,
-                created: '',
-                id: " ",
-                rate: " ",
-                load:false,
-                errorData:false,
-                info:true,
+                load: false,
+                errorData: false,
+                info: {},
 
             }
         },
         methods: {
-            getUserAdmin(page) {
-                this.status_load = false;
-                this.$rest.api('getUserAdmin', {page: page || 1, limit: 12})
+            getUserStatistic() {
+                Promise.all([this.$rest.api('getUserStatistic'), this.$rest.api('getSocialAuthStatistic'), this.$rest.api('getSocialAuthSettings')])
                     .then(response => {
                         console.log(response);
-                        if (response.success === false) {
+                        if (response[0].success === false) {
                             this.$notify({
                                 group: 'main',
                                 duration: 5000,
                                 type: 'error',
                                 title: 'Error get users!',
-                                text: response.error.message
+                                text: response[0].error.message
                             });
                             this.$router.back();
                         }
-                        if (response.success === true) {
-                            this.current_page = response.data.count.select_page || 1;
-                            this.info = response.data.users;
-                            this.total_page = response.data.count.pages;
+                        if (response[0].success === true) {
+                            this.info.statistic = response[0].data
+
+                        }
+                        if (response[1].success === false) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Error get users!',
+                                text: response[1].error.message
+                            });
+                            this.$router.back();
+                        }
+                        if (response[1].success === true) {
+                            let arr=[];
+                            let obj = {};
+                            for(let key in response[1].data){
+                                response[2].data.forEach(el=>{
+                                    if(el.id == key){
+                                    obj.total = response[1].data[key];
+                                    obj.name = el.name;
+                                    obj.src = this.$rest.fsPath + el.icon;
+                                    arr.push(obj);
+                                    }
+                                })
+                            }
+                            this.info.social = arr;
 
                         }
                         this.load = true;
@@ -74,7 +84,7 @@
             },
         },
         created() {
-            return this.getUserAdmin(this.select_page);
+            return this.getUserStatistic();
         }
     }
 </script>

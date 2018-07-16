@@ -21,6 +21,7 @@
                 load:false,
                 errorData:false,
                 info:{},
+                filter:{},
 
             }
         },

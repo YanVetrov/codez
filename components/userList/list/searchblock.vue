@@ -13,7 +13,7 @@
                         <li class="search-block--input">
                             <div>
                                 <button><span class="icon-search"></span></button>
-                                <input type="search" v-model='search' @keyup.enter='$emit("onenter", $event.target.value)' :placeholder="ph">
+                                <input type="search"  @keyup.enter='$emit("onenter", $event.target.value)' :placeholder="ph">
                             </div>
                         </li>
                 
