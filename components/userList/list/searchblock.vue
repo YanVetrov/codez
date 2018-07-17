@@ -13,14 +13,14 @@
                         <li class="search-block--input">
                             <div>
                                 <button><span class="icon-search"></span></button>
-                                <input type="search"  @keyup.enter='$emit("onenter", $event.target.value)' :placeholder="ph">
+                                <input type="search"  @input='_.debounce($emit("onenter", $event.target.value),1000)' :placeholder="ph">
                             </div>
                         </li>
                 
                         <li class="search-block--select">
                             <div>
                 
-                                <span class="icon-filter"></span>
+                                <span class="icon-filter" @click="_.random(20)"></span>
                 
                                 <div class="search-block--select__">
                                     <select>
