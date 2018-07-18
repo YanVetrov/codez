@@ -1,6 +1,6 @@
 <template>
 
-
+<div class='main'>
     <div class="users-list-toodo-wr">
         
             
@@ -20,7 +20,7 @@
             </div>
         
         </div>
-
+</div>
 
 
 </template>

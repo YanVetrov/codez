@@ -4,7 +4,7 @@
     
         
             
-            <div class="users-list-toodo-main border">
+            <div>
             
                 <tabs :data='data.tabs'
                       @ontab='$parent.getUserAdmin'
