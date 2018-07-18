@@ -4,7 +4,7 @@
     
         
             
-            <div class="list-contact-main border">
+            <div>
             
              <h3 class="title">Список контактов</h3>
                 <tableMain :data='data.users'/>

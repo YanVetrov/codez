@@ -11,10 +11,14 @@
                     <ul>
                 
                         <li class="search-block--input">
+                            
+                            
                             <div>
                                 <button><span class="icon-search"></span></button>
-                                <input type="search"  @input='_.debounce($emit("onenter", $event.target.value),1000)' :placeholder="ph">
+                                <input type="search"  @input='$emit("onenter", $event.target.value)' :placeholder="ph">
                             </div>
+                            
+                            
                         </li>
                 
                         <li class="search-block--select">
@@ -43,7 +47,8 @@
 
 <script>
     export default {
-        props: ['ph'],
+        props: ['ph','classes'],
+        
     }
 </script>
 
