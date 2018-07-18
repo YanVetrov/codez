@@ -7,6 +7,9 @@
     </div>
 </template>
 
+<style lang='scss' scoped>
+    
+</style>
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";

@@ -26,11 +26,9 @@
 
 <script>
     export default {
-        props: ['ph', 'classes'],
-
+        props: ['ph'],
     }
 </script>
 
 <style lang='scss' scoped>
-    /*@import "dashboard/dashboard-top";*/
 </style>

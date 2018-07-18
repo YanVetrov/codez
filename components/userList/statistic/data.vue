@@ -2,7 +2,7 @@
 
 
             
-                                   <div class="sidebar-width border users-list-toodo-sidebar--list">
+                                   <div>
             
                     <statistic :data='data.statistic'/>
             

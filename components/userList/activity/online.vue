@@ -2,7 +2,7 @@
 
 
             
-                <div>
+                <div  class="sidebar-width border users-list-toodo-sidebar--active-block">
             
                     <div class="users-list-toodo-sidebar--active-block__top">
                         <h5 class="title">Активность</h5>

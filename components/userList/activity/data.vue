@@ -2,14 +2,11 @@
 
 
             
-                <div class="sidebar-width border users-list-toodo-sidebar--active-block">
+
                     <online :data='data'/>
-                </div>
+
             
-              
-
-
-
+             
 </template>
 
 <script>
