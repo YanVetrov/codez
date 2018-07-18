@@ -61,6 +61,31 @@
       padding-right: 30px;
       padding-top: 7px;
 
+      @media screen and (min-width:1100px) and (max-width:1360px) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      table {
+        min-width: auto;
+      }
+
+      td {
+
+        padding-left: 15px;
+        padding-right: 15px;
+
+        @media screen and (max-width:1200px) {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+      }
+
       thead {
         tr {
           border-top: none;
@@ -74,12 +99,33 @@
           flex-direction: row;
           justify-content: space-between;
           margin: 0 -10px;
+
+          @media screen and (max-width:1200px) {
+            margin: 0;
+            flex-direction: column;
+          }
         }
 
         li {
           flex: 1 1;
           margin: 5px 10px;
           position: relative;
+
+            @media screen and (max-width:1200px) {
+              margin: 0;
+              display: flex;
+              align-items: center;
+              flex-direction: row-reverse;
+              justify-content: space-between;
+
+                &:last-child {
+                  text-align: right;
+                }
+
+              &:after, &:before {
+                content: none !important;
+              }
+            }
 
             span {
               font-size: 10px;
@@ -93,7 +139,7 @@
               right: -9px;
               top: 25%;
               height: 50%;
-              border-right: 2px dashed #ebecf0;
+              border-right: 3px dotted #ebecf0;
             }
 
 
@@ -102,13 +148,17 @@
           &:last-child {
             margin-left: 15px;
 
+            @media screen and (max-width:1200px) {
+              margin-left: 0;
+            }
+
             &:before {
               content: '';
               position: absolute;
               left: -14px;
               top: 25%;
               height: 50%;
-              border-left: 2px dashed #ebecf0;
+              border-left: 3px dotted #ebecf0;
             }
 
           }
@@ -122,7 +172,6 @@
         p {
           &:first-child {
             line-height: 2.2;
-            margin-top: 7px;
           }
         }
       }
@@ -134,11 +183,24 @@
         &.color {
           font-size: 18px;
           line-height: 1.8;
+
+          @media screen and (max-width:1200px) {
+            line-height: normal;
+            font-size: 15px;
+          }
         }
       }
 
       .name-company {
         font-size: 13px;
+
+        @media screen and (min-width:768px) and (max-width:1300px) {
+          max-width: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+        }
       }
 
       .green {
@@ -154,10 +216,20 @@
 
     .btn-simple--img {
 
+      @media screen and (min-width:1100px) and (max-width:1350px) {
+        font-size: 0;
+        padding: 15px;
+      }
+
       span {
         position: absolute;
         left: 10px;
         top: 7px;
+
+        @media screen and (min-width:1100px) and (max-width:1350px) {
+          left: 5px;
+          top: 5px;
+        }
 
         &:before {
           font-size: 20px;
@@ -187,6 +259,7 @@
     @media screen and (max-width:1100px) {
       display: flex;
       width: 100%;
+      margin: 0;
     }
 
     >div {
@@ -194,6 +267,7 @@
 
       @media screen and (max-width:1100px) {
         flex: 1 1;
+        margin: 30px 15px;
       }
 
     }

@@ -18,7 +18,7 @@
       margin-right: 5px;
     }
 
-    ul {
+/*    ul {
       display: inline-block;
       width: 20px;
     }
@@ -58,7 +58,7 @@
           border-color: #000000;
         }
 
-    }
+    }*/
   }
 
   table {
@@ -93,6 +93,7 @@
     vertical-align: middle;
     padding: 15px 30px;
     white-space: nowrap;
+    position: relative;
 
     @media screen and (max-width: 1300px) {
       padding: 10px 8px;
@@ -121,8 +122,11 @@
     border-radius: 50%;
     background: $lightGrey;
 
-    float: left;
     overflow: hidden;
+
+      @media screen and (max-width:1200px) {
+        margin-right: 5px;
+      }
 
       img {
         width: 100%;
@@ -131,7 +135,8 @@
 
   .company {
     display: inline-block;
-    margin-top: 3px;
+    position: relative;
+    bottom: 3px;
 
       span {
         display: inline-block;

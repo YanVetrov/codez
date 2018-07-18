@@ -13,7 +13,7 @@
             
                                     <div class="company">
                                         <p class="name-company">{{user.first_name}} {{user.last_name}} </p>
-                                        <p>Был вчера в **:**</p>
+                                        <p>Online: {{$moment(user.lastActiveAt).fromNow()}}</p>
                                     </div>
             
                                 </td>
