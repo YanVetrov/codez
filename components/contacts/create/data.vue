@@ -38,7 +38,7 @@
                                     <p>Обозначте контакт</p>
             
                                     <div>
-                                        <input type="text" placeholder="Введите контакт">
+                                        <input type="text" placeholder="Введите контакт" v-model='admin.name'>
                                         <p class="num">1</p>
                                     </div>
             
@@ -53,7 +53,7 @@
                                     <p>Контактые данны</p>
             
                                     <div>
-                                        <input type="text" placeholder="Введите текст">
+                                        <input type="text" placeholder="Введите текст" v-model='admin.value'>
                                         <p class="num">2</p>
                                     </div>
             
@@ -68,7 +68,7 @@
                                     <p>Ссылка</p>
             
                                     <div>
-                                        <input type="text" placeholder="Введитее ссылку">
+                                        <input type="text" placeholder="Введитее ссылку" v-model='admin.link'>
                                         <p class="num">3</p>
                                     </div>
             
@@ -123,7 +123,7 @@
                             </li>
             
                             <li class="text-center">
-                                <button class="btn btn-blue">Добавить контакты</button>
+                                <button class="btn btn-blue" @click='$emit("oncreate",admin)'>Добавить контакты</button>
                             </li>
             
             
@@ -144,6 +144,15 @@
 <script>
     export default {
         props: ['data'],
+        data(){
+            return{
+                admin:{
+                    name:'',
+                    link:'',
+                    value:''
+                }
+            }
+        }
     }
 </script>
 

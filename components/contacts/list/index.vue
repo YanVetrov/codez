@@ -96,23 +96,25 @@
                     })
             },
             deleteAdmin(contact_id) {
+                this.load = false;
                 this.$rest.api('deleteContact', { contact_id })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
-                            this.admins.forEach((el, i) => {
+                            this.admins.users.forEach((el, i) => {
                                 if (el.id == contact_id) {
-                                    this.admins.splice(i, 1);
+                                    this.info.users.splice(i, 1);
                                 }
 
                             })
+                            
                             this.$notify({
                                 group: 'main',
                                 duration: 5000,
                                 type: 'success',
                                 title: `Contact successful deleted`,
                             });
-
+                            this.load=true;
                         }
                         if (!res.success) {
                             this.$notify({
@@ -131,7 +133,7 @@
 
             },
             editAdmin(value, name, contact_id, link) {
-
+                this.load=false;
                 this.$rest.api('editContact', { value, name, contact_id, link })
                     .then(res => {
                         console.log(res);

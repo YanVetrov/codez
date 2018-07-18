@@ -5,7 +5,7 @@
         
             
 
-                                                     <tr>
+                          <tr>
             
                                 <td>
             
@@ -75,7 +75,7 @@
             
                                 <td>
                                     <div class="table-btn-users">
-                                        <a href="/" class="btn btn-simple cart-delete"></a>
+                                        <a  class="btn btn-simple cart-delete" @click.prevent="$emit('ondelete',user._id)"></a>
                                     </div>
                                     <div class="double-b"></div>
                                 </td>

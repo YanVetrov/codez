@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <DataInfo :data="info" v-if="load && info"></DataInfo>
+        <DataInfo :data="info" v-if="load && info" @oncreate='newAdmin($event)'></DataInfo>
         
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
@@ -15,49 +15,48 @@
         components: { DataInfo, WaitInfo },
          data() {
             return {
-                load:false,
+                load:true,
                 errorData:false,
                 info:true,
 
             }
         },
         methods: {
-            getUserAdmin(page) {
-                this.$rest.api('getUserOnline', {page: page || 1, limit: 12})
-                    .then(response => {
-                        console.log(response);
-                        if (response.success === false) {
+            newAdmin(admin) {
+                this.load=false
+                let obj = {}
+                admin.name && admin.name !== '' ? obj.name = admin.name : '';
+                admin.link && admin.link !== '' ? obj.link = admin.link : '';
+                admin.value && admin.value !== '' ? obj.value = admin.value : '';
+                this.$rest.api('addContact', obj)
+                    .then(res => {
+                        console.log(res);
+                        if (res.success) {
                             this.$notify({
-                                group: 'main',
+                                duration: 5000,
+                                type: 'info',
+                                title: 'OK',
+                                text: 'new contact added'
+                            });
+                        }
+                        else {
+                            this.$notify({
                                 duration: 5000,
                                 type: 'error',
-                                title: 'Error get users!',
-                                text: response.error.message
-                            });
-                            this.$router.back();
+                                title: 'Bad',
+                                text: "Something wrong..."
+                            })
                         }
-                        if (response.success === true) {
-                            this.info = response.data.online
-                        }
-                        this.load = true;
 
+
+                        this.load=true
                     })
-                    .catch(err => {
-                        this.$notify({
-                            group: 'main',
-                            duration: 5000,
-                            type: 'error',
-                            title: 'Error get users!',
-                            text: 'Server error 500! Please retry.\n' + err
-                        });
-                        this.$router.back();
-                        this.load = true;
-                    });
+
 
             },
         },
         created() {
-            return this.getUserAdmin(this.select_page);
+            return 1
         }
     }
 </script>

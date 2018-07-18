@@ -39,7 +39,12 @@
             
                         <tbody>
             
-                            <tableItem v-for='user in data' :user='user' :key='user.id' />
+                            <tableItem 
+                            v-for='user in data' 
+                            @ondelete='$parent.$parent.deleteAdmin($event)' 
+                            :user='user' 
+                            :key='user.id' 
+                            />
             
                             <tr class="dashboard-wait--no-proposal">
                                 <td colspan="6">Нет заявок</td>

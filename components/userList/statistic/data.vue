@@ -2,7 +2,7 @@
 
 
             
-                                   <div>
+               <div>
             
                     <statistic :data='data.statistic'/>
             
