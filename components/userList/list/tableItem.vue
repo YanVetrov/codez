@@ -50,7 +50,7 @@
             
                                 <td>
                                     <div class="table-btn-users">
-                                        <a href="/" class="btn btn-simple btn-simple--img"><span class="icon-edit-profile"></span>Профиль</a>
+                                        <a class="btn btn-simple btn-simple--img"><span class="icon-edit-profile"></span>Профиль</a>
                                     </div>
                                 </td>
                             </tr>

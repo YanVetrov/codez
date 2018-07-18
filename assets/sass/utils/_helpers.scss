@@ -26,14 +26,14 @@
     }
 }*/
 
-// %container-padding {
-//     padding: 0 15px;
+%container-padding {
+    padding: 0 15px;
 
-//     @include respond-to(phone) {
-//         padding-left: 10px;
-//         padding-right: 10px;
-//     }
-// }
+    @include respond-to(phone) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
 
 %reset_link {
     text-decoration: none;
@@ -41,13 +41,10 @@
     border: none;
 }
 
-html {
-    font-size: 13px !important;
-}
 html, body {
     min-height: 100vh;
     height: 100%;
-    font-size: 13px !important;
+    font-size: 13px;
 
     @media screen and (max-width:814px) {
         font-size: 12px;
@@ -80,13 +77,15 @@ img {
 
 .main {
     flex: 1 0 auto;
+
+    padding: 35px 15px 35px 35px;
 }
 
 a {
     text-decoration: none;
 }
 
-p, h2, h3, ul, h1, button, div, a, li, span, img {
+p, h2, h3, ul, h1, button, div, a, li, span, img, tr {
     margin: 0;
     padding:0;
 
@@ -116,8 +115,8 @@ p {
 
 .sidebar-width {
     width: 320px;
-    height: 370px;
     overflow: hidden;
+
     border-radius: 10px;
     background-color: $bacBody;
     box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
@@ -127,10 +126,11 @@ p {
     width: 100%;
     font-family: $rubik;
     line-height: 3.43;
-    font-size: 1.08rem;
+    font-size: 14px;
     font-weight: 500;
     color: $dark;
     text-transform: uppercase;
+    margin: 0;
 }
 
 .red {
@@ -160,17 +160,19 @@ ul, ol {
 
 .border {
     border-radius: 10px;
-    overflow: hidden;
     background-color: $bacBody;
     box-shadow: 0 4px 11px 0 rgba(196, 198, 215, 0.21);
+    overflow: hidden;
 }
 
-input, button {
+
+input, button, select {
     border: none;
     outline: none;
+    background: transparent;
 
         &:focus, &:active {
-            border: none;
+            border-color: transparent;
             outline: none;
         }
 }
@@ -179,6 +181,15 @@ button {
     cursor: pointer;
 }
 
+select {
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #555555;
+    font-size: 12px;
+    line-height: 1.5;
+}
 
 
 

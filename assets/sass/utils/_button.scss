@@ -12,6 +12,7 @@
     cursor: pointer;
     white-space: nowrap;
     font-size: 15px;
+    position: relative;
 
     &:hover {
         -webkit-transition: .35s all;
@@ -20,6 +21,76 @@
         -o-transition: .35s all;
         transition: .35s all;
     }
+
+
+    &:before {
+      color: #9899a0;
+      font-family: icomoon!important;
+      position: absolute;
+      font-size: 18px;
+      left: 7px;
+      top: 7px;
+    }
+
+
+
+    &.cart-delete {
+
+      &:before {
+        content: "\e902";
+      }
+
+    }
+
+    &.check-double {
+
+      &:before {
+        content: "\e903";
+      }
+
+    }
+
+    &.type-cur {
+
+      &:before {
+        content: "\e91f";
+      }
+
+    }
+
+    &.refresh-h {
+
+      &:before {
+        content: "\e91e";
+      }
+
+    }
+
+    &__correct {
+
+      &:before {
+        content: "\e90f";
+      }
+
+    }
+
+    &__checked {
+
+      &:before {
+        content: "\e906";
+      }
+
+    }
+
+    &__clean {
+
+      &:before {
+        content: "\e907";
+      }
+
+    }
+
+
 }
 
 .btn-blue {
@@ -31,4 +102,39 @@
       background: #149eff;
       border-color: #149eff;
     }
+}
+
+.btn-simple {
+
+  border: 1px solid #d1d1d3;
+  font-size: 13px;
+  padding: 10px 15px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  color: #9899a0;
+  background-color: transparent;
+
+    &:hover {
+      border-color: #0e83f0;
+      background-color: #0e83f0;
+      color: #ffffff;
+    }
+}
+
+.btn-simple--img {
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: left center;
+
+
+    &:hover {
+      &:before {
+        color: #ffffff;
+      }
+    }
+
+
 }
