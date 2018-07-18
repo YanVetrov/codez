@@ -1,38 +1,20 @@
 <template>
+    <div class="users-list-toodo-main--top">
+        <h3 class="title">Список Пользователей</h3>
 
-
-
-        
-            
-
-            
-                <div class="users-list-toodo-main--top">
-                    <h3 class="title">Список Пользователей</h3>
-            
-                    <ul class="text-center">
-                        <li><span class="users-active-info">Все типы</span></li>
-                        <li v-for='li in data' @click='$emit("ontab",1)' :key='li.id'><span>{{li.name}}</span></li>
-                    </ul>
-                </div>
-            
-                
-
-        
-            
-            
-        
-        
-
-
-
+        <ul class="text-center">
+            <li><span class="users-active-info">Все типы</span></li>
+            <li v-for='li in data' @click='$emit("ontab",1)' :key='li.id'><span>{{li.name}}</span></li>
+        </ul>
+    </div>
 </template>
 
 <script>
-import pagination from '~/components/pagination'
+    import pagination from '~/components/pagination'
+
     export default {
         props: ['data'],
-        components:{pagination}
-        
+        components: {pagination}
     }
 </script>
 

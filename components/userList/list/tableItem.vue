@@ -13,7 +13,7 @@
             
                                     <div class="company">
                                         <p class="name-company">{{user.first_name}} {{user.last_name}} </p>
-                                        <p>Был вчера в <span>10:35</span></p>
+                                        <p>Был вчера в **:**</p>
                                     </div>
             
                                 </td>

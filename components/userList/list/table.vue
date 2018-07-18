@@ -1,97 +1,48 @@
 <template>
+    <div class="table" v-if="data.length >0">
+        <table>
+            <thead>
+            <tr>
+                <td>
+                    <span>Пользователь</span>
+                </td>
+                <td>
+                    <span>E-mail</span>
+                </td>
+                <td>
+                    <span>обмены</span>
+
+                </td>
+                <td>
+                    <span>Регистрация</span>
+                </td>
+                <td>
+                    <span>Баланс</span>
+
+                </td>
+                <td></td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tableItem v-for='user in data' :user='user' :key='user.id'/>
+            </tbody>
 
 
-    
-        
-            
-            
-            
-            
-                <div class="table">
-            
-                    <table>
-            
-                        <thead>
-                            <tr>
-                                <td>
-                                    <span>Пользователь</span>
-            
-                                    <ul>
-                                        <li><a href="/">up</a></li>
-                                        <li><a href="/">down</a></li>
-                                    </ul>
-            
-                                </td>
-                                <td>
-                                    <span>E-mail</span>
-            
-                                    <ul>
-                                        <li><a href="/">up</a></li>
-                                        <li><a href="/">down</a></li>
-                                    </ul>
-            
-                                </td>
-                                <td>
-                                    <span>обменЫ</span>
-            
-                                    <ul>
-                                        <li><a href="/">up</a></li>
-                                        <li><a href="/">down</a></li>
-                                    </ul>
-            
-                                </td>
-                                <td>
-                                    <span>Регистрация</span>
-            
-                                    <ul>
-                                        <li><a href="/">up</a></li>
-                                        <li><a href="/">down</a></li>
-                                    </ul>
-            
-                                </td>
-                                <td>
-                                    <span>Баланс</span>
-            
-                                    <ul>
-                                        <li><a href="/">up</a></li>
-                                        <li><a href="/">down</a></li>
-                                    </ul>
-            
-                                </td>
-                                <td></td>
-                            </tr>
-                        </thead>
-            
-                        <tbody>
-                            
-                            
-                            <tableItem v-for='user in data' :user='user' :key='user.id' />
-            
-                           
-            
-                            <tr class="dashboard-wait--no-proposal">
-                                <td colspan="6">Нет заявок</td>
-                            </tr>
-                        </tbody>
-            
-                    </table>
-            
-                </div>
-            
-            
-        
-       
-
-
-
+        </table>
+    </div>
+    <div v-else>
+        <div style="width: 100%;text-align: center;">Не найдено пользователей</div>
+    </div>
 </template>
 
 <script>
-import tableItem from './tableItem';
+    import tableItem from './tableItem';
+
     export default {
         props: ['data'],
-        components:{tableItem}
-        
+        components: {tableItem}
+
     }
 </script>
 
