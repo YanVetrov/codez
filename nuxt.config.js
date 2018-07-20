@@ -45,7 +45,6 @@ module.exports = {
         {src: "~/plugins/vue-charts.js", ssr: false},
         {src: "~/plugins/vue-notify", ssr: false},
         {src: "~/plugins/lodash.js", ssr: false},
-        {src:"~/plugins/drag.js",ssr:false},
         {src: '~/plugins/vue-core-image-upload.js', ssr: false}
 
     ],

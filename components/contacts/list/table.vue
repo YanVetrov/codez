@@ -38,7 +38,7 @@
                         </thead>
             
                         
-                        <draggable v-model="data" :options="{handle:'.dragg'}" @change="$emit
+                        <draggable v-model="data" :options="{handle:'.dragg',ghostClass:'.ghost'}" @change="$emit
                         ('edit',$event.moved.element,$event.moved.newIndex+0.00001)
                         " 
                         :element='"tbody"'>

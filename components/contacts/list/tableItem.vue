@@ -97,5 +97,10 @@
 </script>
 
 <style lang='scss' scoped>
-    /*@import "dashboard/dashboard-top";*/
+    .double-b {
+	cursor: -webkit-grabbing;
+}
+    .ghost{
+        opacity:0.9;
+    }
 </style>
