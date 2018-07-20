@@ -1,17 +1,6 @@
 <template>
-    <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation" style="    margin-top: 53px;">
         <div class="sidebar-nav slimscrollsidebar">
-            <div class="sidebar-head" @click="$store.dispatch('Menu/close')">
-
-                <h3 >
-          <span class="fa-fw open-close">
-            <i class="ti-close ti-menu"></i>
-          </span>
-                    <span class="hide-menu">{{$t('navigation')}}</span>
-                </h3>
-            </div>
-
-            <div class="user-profile"></div>
             <ul class="nav" id="side-menu">
 
                 <li v-for="(el,i) in menu" :key="i">

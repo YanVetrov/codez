@@ -21,8 +21,9 @@
         <nuxt/>
 
       </div>
-      <footer class="footer text-center"> 2017 &copy; Elena Medvedeva</footer>
+
     </div>
+    <footer class="footer text-center"> 2017 &copy; Elena Medvedeva</footer>
 
   </div>
 </template>
