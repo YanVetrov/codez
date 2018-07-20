@@ -828,10 +828,10 @@ pre {
   width: 100%;
 }
 #page-wrapper {
-  padding: 0px;
+  padding-top: 53px;
   min-height: 568px;
   background: #edf1f5;
-  padding-bottom: 60px;
+  padding-bottom: 10px;
 }
 .page-wrapper {
   padding: 0;
@@ -850,9 +850,11 @@ pre {
   background: #ffffff;
   overflow: hidden;
   padding: 15px 10px 9px;
-  margin-bottom: 0px;
+
+  margin-bottom: 20px;
   margin-left: -25.5px;
   margin-right: -25.5px;
+
 }
 .bg-title h4 {
   text-transform: uppercase;
