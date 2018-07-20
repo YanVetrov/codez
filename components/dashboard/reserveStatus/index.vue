@@ -72,6 +72,30 @@
                                     total: '43543',
                                     type: 'USD'
                                 },
+                                additional: [
+                                    { name: 'PayPal', total: '2342', type: 'USD' },
+                                    { name: 'PayPal', total: '2342', type: 'USD' },
+                                    { name: 'PayPal', total: '2342', type: 'USD' },
+                                    { name: 'PayPal', total: '2342', type: 'USD' },
+                                    { name: 'PayPal', total: '2342', type: 'USD' },
+
+                                ]
+                            }
+                        }, {
+                            img: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/gdax.png',
+                            name: 'PayPal',
+                            type: 'USD',
+                            total: '2344.42',
+                            currency: {
+                                img: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/gdax.png',
+                                amount: {
+                                    total: '23423',
+                                    type: 'USD'
+                                },
+                                end: {
+                                    total: '43543',
+                                    type: 'USD'
+                                },
                                 opt: [
                                     { name: 'PayPal', total: '2342', type: 'USD' },
                                     { name: 'PayPal', total: '2342', type: 'USD' },

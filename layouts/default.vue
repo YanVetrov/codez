@@ -12,7 +12,7 @@
 
             <ol class="breadcrumb">
             
-              <li @click="check()" class="active">{{$route.name}}</li>
+              <li @click="check()" class="active">/router</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,9 @@
 
   </div>
 </template>
-
+<style lang="scss">
+  @import "~/assets/sass/style.scss";
+</style>
 <script>
   import HeaderMenu from "~/components/Menu/HeaderMenu";
   import LeftMenu from "~/components/Menu/LeftMenu";

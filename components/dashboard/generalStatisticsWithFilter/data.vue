@@ -2,7 +2,9 @@
     <div>
         <ul>
             <li>
-                <p class="dashboard-top--img"><img src="~/assets/img/users-dash-red.png" alt=""></p>
+                <p class="dashboard-top--img">
+                    <i class="fal fa-users fa-3x" style="color: #f92e2c;"></i>
+                </p>
 
                 <div class="dashboard-top__progress">
 
@@ -24,7 +26,9 @@
 
             </li>
             <li>
-                <p class="dashboard-top--img"><img src="~/assets/img/refresh-dash-top.png" alt=""></p>
+                <p class="dashboard-top--img">
+                    <i class="fal fa-file-invoice-dollar fa-3x" style="color: #00c292"></i>
+                </p>
 
                 <div class="dashboard-top__progress">
 
@@ -46,7 +50,9 @@
 
             </li>
             <li>
-                <p class="dashboard-top--img"><img src="~/assets/img/users-dash-green.png" alt=""></p>
+                <p class="dashboard-top--img">
+                    <i class="fal fa-signal fa-3x" style="color: #3dede6"></i>
+                </p>
 
                 <div class="dashboard-top__progress">
 
@@ -72,7 +78,7 @@
                 <div class="dashboard-top__calendar-item">
 
                 <span class="dashboard-top__calendar--icon">
-                    <img src="~/assets/img/calendar-new.png" alt="">
+                    <i class="fal fa-calendar-alt" style="font-size:1.3em;color: #2b2b2b"></i>
                 </span>
 
                     <p class="dashboard-top__calendar--date">

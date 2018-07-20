@@ -1,7 +1,7 @@
 const config = require('./_config/app');
 let resolvee = require("path").resolve;
 let proxyConfig = {};
-proxyConfig[config.servicePath + '/'] = { target: config.serviceAPI, pathRewrite: {} };
+proxyConfig[config.servicePath + '/'] = {target: config.serviceAPI, pathRewrite: {}};
 proxyConfig[config.servicePath + '/'].pathRewrite['^' + config.servicePath + '/'] = '/';
 
 module.exports = {
@@ -11,15 +11,14 @@ module.exports = {
     head: {
         title: 'exchanger-admin-web',
         meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+            {charset: 'utf-8'},
+            {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+            {hid: 'description', name: 'description', content: 'Nuxt.js project'}
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
         ]
     },
-
 
 
     /*
@@ -29,8 +28,6 @@ module.exports = {
 
     css: [
         // '~/assets/sass/style.scss',
-        // '~/assets/sass/utils/fa-light.css',
-        // '~/assets/sass/utils/fontawesome.css',
         '~/assets/bootstrap.min.css',
         '~/assets/css/animate.css',
         '~/assets/css/style.css',
@@ -40,15 +37,15 @@ module.exports = {
     ],
     plugins: [
         // '~/plugins/airbrake.js',
-        { src: "~/plugins/i18n" },
-        '~/plugins/rest-api',
-        { src: "~/plugins/vue-animate-number.js", ssr: false },
-        { src: "~/plugins/vue2-editor", ssr: false },
-        { src: '~/plugins/v-select.js', ssr: false },
-        { src: "~/plugins/vue-charts.js", ssr: false },
-        { src: "~/plugins/vue-notify", ssr: false },
-        { src: "~/plugins/lodash.js", ssr: false },
-        { src: '~/plugins/vue-core-image-upload.js', ssr: false }
+        {src: "~/plugins/i18n"},
+        {src: '~/plugins/rest-api'},
+        {src: "~/plugins/vue-animate-number.js", ssr: false},
+        {src: "~/plugins/vue2-editor", ssr: false},
+        {src: '~/plugins/v-select.js', ssr: false},
+        {src: "~/plugins/vue-charts.js", ssr: false},
+        {src: "~/plugins/vue-notify", ssr: false},
+        {src: "~/plugins/lodash.js", ssr: false},
+        {src: '~/plugins/vue-core-image-upload.js', ssr: false}
 
     ],
 
@@ -57,9 +54,9 @@ module.exports = {
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
         '@nuxtjs/moment',
-        ['nuxt-sass-resources-loader', 
-            './assets/sass/style.scss'
-        ]
+        // ['nuxt-sass-resources-loader',
+        //     './assets/sass/style.scss'
+        // ]
     ],
     env: {
         config: config
@@ -74,12 +71,24 @@ module.exports = {
     proxy: proxyConfig,
     build: {
         vendor: 'vue2-editor',
-        extend(config, { isDev, isClient }) {
+        extend(config, {isDev, isClient}) {
             if (isDev && isClient) {
                 config.module.rules.push({
                     enforce: 'pre',
                     test: /\.(js|vue)$/,
                     loader: 'eslint-loader',
+                    exclude: /(node_modules)/
+                });
+                config.module.rules.push({
+                    enforce: 'pre',
+
+                    test: /\.scss$/,
+                    use: [
+                        'vue-style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ],
+
                     exclude: /(node_modules)/
                 })
             }

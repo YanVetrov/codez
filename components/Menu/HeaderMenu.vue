@@ -1,129 +1,111 @@
 <template>
-    <nav class="navbar navbar-default navbar-static-top m-b-0">
-        <div class="navbar-header">
-            <div class="top-left-part">
-                <!-- Logo -->
-                <nuxt-link class="logo" to="/">
 
-                    <span class="hidden-xs">
-                        <img :src="logoUrl" alt="home" class="dark-logo"/>
-                        <img :src="logoUrl" alt="home" class="light-logo"/>
-                     </span>
-                </nuxt-link>
-            </div>
-            <!-- /Logo -->
-            <!-- Search input and Toggle icon -->
+    <header class="header ">
 
-            <ul class="nav navbar-top-links navbar-left">
-                <li><a @click="close()" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
-                <script>
-
-                </script>
-                <li :class="dropdown" @click="messageOpen()">
-                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"> <i
-                            class="mdi mdi-gmail"></i>
-                        <div class="notify"><span class="heartbit"></span> <span class="point"></span></div>
-                    </a>
-                    <ul class="dropdown-menu mailbox animated bounceInDown">
-                        <li>
-                            <div class="drop-title">{{$t('youhave')}} {{messages.total}} {{$t('notifications')}}</div>
-                        </li>
-                        <li>
-                            <div class="message-center">
-                                <a href="#" v-for="mess in messages.box" :key='mess.id'>
-                                    <div class="user-img"><img src="../../static/images/users/pawandeep.jpg" alt="user"
-                                                               class="img-circle">
-                                        <span class="profile-status online pull-right"></span></div>
-                                    <div class="mail-contnet">
-                                        <h5>{{mess.user}}</h5> <span class="mail-desc">{{mess.text.lenght>10?mess.text.slice(0,10)+'...':mess.text}}</span>
-                                        <span class="time">{{mess.time}}</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="text-center" href="javascript:void(0);"> <strong>{{$t('see')}} {{$t('all')}}
-                                {{$t('notifications')}}</strong> <i
-                                    class="fa fa-angle-right"></i> </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- .Task dropdown -->
-
-                <!-- .Megamenu -->
-
-                <!-- /.Megamenu -->
-            </ul>
-            <ul class="nav navbar-top-links navbar-right pull-right">
-
-                <li :class="dropdown2" @click="openProfile()">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-                            src="../../static/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b
-                            class="hidden-xs">{{firstName}}</b><span
-                            class="caret"></span> </a>
-                    <ul class="dropdown-menu dropdown-user animated flipInY">
-                        <li>
-                            <div class="dw-user-box">
-                                <div class="u-img"><img src="../../static/images/users/varun.jpg" alt="user"/></div>
-                                <div class="u-text"><h4>{{firstName}} {{lastName}}</h4>
-                                    <p class="text-muted">{{email}}</p><a href="profile.html"
-                                                                          class="btn btn-rounded btn-danger btn-sm">{{$t('profile')}}</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li v-for='list in profileList' :key="list.id">
-                            <nuxt-link :to="list.link"><i :class="'ti-'+list.icon"></i>{{list.name}}</nuxt-link>
-                        </li>
-                        <li><a href="#"><i class="ti-wallet"></i> {{$t('balance')}}</a></li>
-                        <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                        <li role="separator" class="divider"></li>
-
-                        <li><a href="#"><i class="ti-settings"></i> {{$t('account')}} {{$t('settings')}}</a></li>
-
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> {{$t('logout')}}</a></li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <li :class="dropdown1" @click="openTask">
-                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"> <i
-                            class="fa fa-flag"></i>
-
-                    </a>
-                    <ul class="dropdown-menu mailbox animated bounceInDown">
-                        <li>
-                            <div class="message-center">
-                                <a href='' @click.prevent="localizee('ru')">
-                                    <div class="user-img"><i class='fa fa-flag'></i>
-                                    </div>
-                                    <div class="mail-contnet">
-                                        <h5>RU</h5> <span class="mail-desc">Русский язык</span>
-
-                                    </div>
-                                </a>
-                                <a href='' @click.prevent="localizee('en')">
-                                    <div class="user-img"><i class='fa fa-flag'></i>
-                                    </div>
-                                    <div class="mail-contnet">
-                                        <h5>EN</h5> <span class="mail-desc">English language</span>
-
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-
-                <!-- /.dropdown -->
-            </ul>
+        <div class="logo">
+            <nuxt-link to="/">
+                <img :src="logoUrl" alt="Logo"/>
+            </nuxt-link>
         </div>
-        <!-- /.navbar-header -->
-        <!-- /.navbar-top-links -->
-        <!-- /.navbar-static-side -->
-    </nav>
+
+        <div class="header__main">
+
+            <div class="header-list">
+
+                <ul>
+                    <li>
+                        <a href="/" class="header-list-active">
+
+                            <i class="fal fa-comment-alt"></i>
+
+                            <span class="count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/" class="header-list-active">
+                            <i class="fal fa-usd-circle"></i>
+
+                            <span class="count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/">
+                            <i class="fal fa-user"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="header__item">
+
+                <div class="master-bloc">
+                    <div class="master-bloc-date">
+                        <div class="master-bloc-date-photo">
+                            <div class="user-bloc-date-photo-item"><img src="img/sadness-face.svg" alt=""></div>
+                        </div>
+                        <div class="master-bloc-date-info">
+                            <p>{{firstName}} {{lastName}}</p>
+                            <span>{{email}}</span>
+
+                        </div>
+                        <!--<em class="caret caret-open"></em>-->
+                        <em class="caret"></em>
+                    </div>
+
+                    <!--<ul class="master-bloc-list master-bloc-list-open">-->
+                    <ul class="master-bloc-list">
+
+                        <li><a href="/">Редактировать профиль</a></li>
+                        <li><a href="/">История действий</a></li>
+                        <li><a href="/">{{$t('logout')}}</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="setting-block">
+
+                    <span class="setting-icon"><i class="fal fa-sliders-h"></i></span>
+
+                    <!--<ul class="setting-bloc-list setting-bloc-list-open">-->
+                    <ul class="setting-bloc-list">
+
+                        <li><a href="/">Редактировать профиль <i class="fal fa-pencil"></i> </a></li>
+                        <li><a href="/">История действий <i class="fal fa-history"></i> </a></li>
+                        <li><a href="/">Выход <i class="fal fa-sign-out"></i></a></li>
+                        <li>
+                            <div class="switch-block ">
+
+                                <div class="switch__">
+                                    <p>Тех.работы</p>
+                                    <span>Закрыть сайт на тех.работы</span>
+                                </div>
+
+                                <div class="switch-site">
+
+                                <span class="switch switch-switcher">
+                                    <input type="radio" id="item1-state-off" name="item1" value="-1" checked>
+                                    <input type="radio" id="item1-state-on" name="item1" value="1">
+                                    <i></i>
+                                </span>
+
+                                </div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </header>
 </template>
 
 <script>
@@ -191,5 +173,7 @@
 </script>
 
 
-<style scoped>
+<style lang='scss' scoped>
+    /*@import "dashboard/dashboard-top";*/
 </style>
+

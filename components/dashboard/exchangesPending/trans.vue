@@ -8,57 +8,21 @@
                     <td><span>ID</span></td>
                     <td>
                         <span>Date</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td>
                         <span>Get</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td>
                         <span>Give</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td>
                         <span>{{$t('comission')}}</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td>
                         <span>Occupation</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td>
                         <span>State</span>
-
-                        <ul>
-                            <li><a href="/">up</a></li>
-                            <li><a href="/">down</a></li>
-                        </ul>
-
                     </td>
                     <td></td>
                 </tr>

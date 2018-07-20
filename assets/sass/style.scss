@@ -1,5 +1,7 @@
 // @import "../../node_modules/normalize.css/normalize";
 
+@import "utils/fa-light.scss";
+@import "utils/fontawesome.scss";
 @import "utils/variables";
 @import "utils/mixins";
 @import "utils/helpers";
@@ -8,12 +10,13 @@
 @import "utils/burger";
 @import "utils/icomoon";
 @import "utils/animation";
-// @import "utils/fa-light.css";
-// @import "utils/fontawesome.css";
 
 * {
-    box-sizing: border-box;
-    outline:none;
+  box-sizing: border-box;
+  outline: none;
+}
+body{
+  background: #31323c !important;
 }
 
 @import "blocks/header";
@@ -27,6 +30,6 @@
 @import "blocks/list-contact";
 @import "blocks/search-block";
 
-.sidebar-width{
-    height:auto;
+.sidebar-width {
+  height: auto;
 }

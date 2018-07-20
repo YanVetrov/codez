@@ -28,8 +28,10 @@
       padding-bottom: 15px;
 
       li {
+        cursor: pointer;
         width: 20%;
-        min-width: 290px;
+        min-width: 260px;
+        max-width: 300px;
         padding: 5px 20px;
         flex: 1 1;
 
@@ -37,7 +39,8 @@
         img {
           width: 38px;
           height: 38px;
-          opacity: .35;
+          border-radius:50% ;
+          opacity: 1;
         }
 
         a {

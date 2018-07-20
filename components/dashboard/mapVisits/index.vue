@@ -29,7 +29,7 @@
                             el.countries.forEach(el => {
                                 arr1.push([el.country.toLocaleLowerCase(), el.count]);
 
-                            })
+                            });
                             el.fromUrl.forEach(el => {
                                 el.date = date;
                                 arr.push(el)

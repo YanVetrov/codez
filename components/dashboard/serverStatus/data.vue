@@ -10,7 +10,7 @@
 
                     <div class="dashboard-server-item--top">
 
-                        <span><img src="~/assets/img/laptop-dash.png" alt=""></span>
+                        <span><i class="fal fa-server fa-2x" style="color: #65b340"></i></span>
                         <strong>{{$t('cpu')}}</strong>
 
                     </div>
@@ -22,7 +22,8 @@
                             <span><animate-number :from="0" :to="(100-data.cpu.used)"></animate-number>%</span>
                         </li>
 
-                        <li class="dashboard-server-item--main-total" style="width: 45%; margin: auto 0;text-align: right">
+                        <li class="dashboard-server-item--main-total"
+                            style="width: 45%; margin: auto 0;text-align: right">
                             <p>{{data.cpu.name}}</p>
                             <strong>Cores:{{data.cpu.core}}</strong>
                         </li>
@@ -45,7 +46,9 @@
 
                     <div class="dashboard-server-item--top">
 
-                        <span><img src="~/assets/img/memory-dash.png" alt=""></span>
+                        <span>
+                            <i class="fal fa-memory fa-2x" style="color: #ff5857"></i>
+                        </span>
                         <strong>{{$t('mem')}}</strong>
 
                     </div>
@@ -83,7 +86,7 @@
 
                     <div class="dashboard-server-item--top">
 
-                        <span><img src="~/assets/img/hard-dash.png" alt=""></span>
+                        <span><i class="fal fa-hdd fa-2x" style="color: #178dc1"></i></span>
                         <strong>{{$t('hdd')}}</strong>
 
                     </div>
@@ -120,7 +123,7 @@
 
                     <div class="dashboard-server-item--top">
 
-                        <span><img src="~/assets/img/uptime-dash.png" alt=""></span>
+                        <span><i class="fal fa-plug fa-2x" style="color: #ea9e33"></i></span>
                         <strong>{{$t('uptime')}}</strong>
 
                     </div>
@@ -128,7 +131,7 @@
                     <ul class="dashboard-server-item--main">
 
                         <li class="dashboard-server-item--main-img">
-                            <img src="~/assets/img/ping-dash.png" alt="">
+                            <i class="fab fa-linux fa-6x" style="padding: 22px 7px; color: #cccccc"></i>
                         </li>
 
                         <li class="dashboard-server-item--main-uptime">
@@ -148,7 +151,6 @@
 
                     <div class="dashboard-server-item--bot">
 
-                        <p>Status: OK</p>
                         <div class="dashboard-server--line">
                             <span class="blue line-uptime" :style="{width:'100%'}"></span>
                         </div>
