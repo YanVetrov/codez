@@ -38,18 +38,18 @@
                         </thead>
             
                         
-                        <draggable v-model="data" :options="{handle:'.dragg',ghostClass:'.ghost'}" @change="$emit
-                        ('edit',$event.moved.element,$event.moved.newIndex+0.00001)
-                        " 
+                        <draggable v-model="users" :options="{handle:'.dragg',ghostClass:'.ghost'}" @change="$emit('sort',users)" 
                         :element='"tbody"'>
                             <tableItem 
-                            v-for='user in data' 
+                            v-for='user in users' 
                             @delete='$emit("delete",$event)' 
                             @edit='$emit("edit",$event)'
                             :user='user' 
                             :key='user.id' 
                             />
-            </draggable>
+                        </draggable>
+                            
+                            
                             <tr class="dashboard-wait--no-proposal">
                                 <td colspan="6">Нет заявок</td>
                             </tr>
@@ -72,7 +72,12 @@ import tableItem from './tableItem';
 import draggable from 'vuedraggable'
     export default {
         props: ['data'],
-        components:{tableItem,draggable}
+        components:{tableItem,draggable},
+        data(){
+            return{
+                users:this.data
+            }
+        }
         
     }
 </script>

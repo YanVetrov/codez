@@ -10,6 +10,7 @@
                 <tableMain :data='data.users'
                 @edit="$parent.editAdmin($event)"
                 @delete='$parent.deleteAdmin($event)'
+                @sort='$parent.sortAdmin($event)'
                 />
             
             </div>
