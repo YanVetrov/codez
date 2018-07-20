@@ -4,8 +4,8 @@
     
         
             
-
-                          <tr>
+                
+                          <tr :ident="user._id">
             
                                 <td>
             
@@ -23,7 +23,7 @@
             
                                        <label>
             
-                                           <input type="text" placeholder="нет контакта" :value='user.value'>
+                                           <input type="text" placeholder="нет контакта" v-model='user.value' @blur="$emit('edit',user)">
             
                                            <span class="btn btn__correct"></span>
             
@@ -50,7 +50,7 @@
             
                                         <label>
             
-                                            <input type="text" placeholder="нет ссылки" :value='user.link?user.link:""'>
+                                            <input type="text" placeholder="нет ссылки" v-model='user.link' @blur="$emit('edit',user)">
             
                                             <span class="btn btn__correct"></span>
             
@@ -73,7 +73,7 @@
                                     <p class="color green">25%</p>
                                 </td>
             
-                                <td>
+                                <td class="dragg">
                                     <div class="table-btn-users">
                                         <a  class="btn btn-simple cart-delete" @click.prevent="$emit('ondelete',user._id)"></a>
                                     </div>

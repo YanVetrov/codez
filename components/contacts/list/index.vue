@@ -28,43 +28,6 @@
             }
         },
        methods: {
-
-            newAdmin() {
-                this.load=false;
-                let obj = {};
-                this.name && this.name !== '' ? obj.name = this.name : '';
-                this.link && this.link !== '' ? obj.link = this.link : '';
-                this.value && this.value !== '' ? obj.value = this.value : '';
-                this.$rest.api('addContact', obj)
-                    .then(res => {
-                        console.log(res);
-                        if (res.success) {
-                            this.admins.push(obj);
-                            this.$notify({
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'new contact added'
-                            });
-                            this.show = false;
-
-
-                        }
-                        else {
-                            this.$notify({
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Bad',
-                                text: "Something wrong..."
-                            })
-                        }
-
-
-                        this.load=true;
-                    })
-
-
-            },
             getAdmins(page) {
                 this.load=false;
                 this.$rest.api('getContacts', { page, limit: 10 })
@@ -96,7 +59,7 @@
                     })
             },
             deleteAdmin(contact_id) {
-                this.load = false;
+                
                 this.$rest.api('deleteContact', { contact_id })
                     .then(res => {
                         console.log(res);
@@ -114,7 +77,7 @@
                                 type: 'success',
                                 title: `Contact successful deleted`,
                             });
-                            this.load=true;
+                            
                         }
                         if (!res.success) {
                             this.$notify({
@@ -125,16 +88,18 @@
                                 text: res.error.message,
                             });
                         }
-                        this.load=true;
+                        return this.getAdmins();
                     })
                     .catch(err => {
-                        this.load=true;
+                        return this.getAdmins();
                     })
 
             },
-            editAdmin(value, name, contact_id, link) {
-                this.load=false;
-                this.$rest.api('editContact', { value, name, contact_id, link })
+            editAdmin(obj,newIndex) {
+                console.log(obj)
+                newIndex?obj.positionSort=newIndex:'';
+                obj.contact_id = obj._id
+                this.$rest.api('editContact', obj)
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -144,6 +109,7 @@
                                 type: 'success',
                                 title: `Contact successful edited`,
                             });
+                            
 
                         }
                         if (!res.success) {
@@ -154,7 +120,9 @@
                                 title: 'Something wrong...',
                                 text: res.error.message,
                             });
+                            
                         }
+                        return this.getAdmins();
                     })
 
             }
