@@ -20,13 +20,14 @@
         </div>
 
 
-
     </div>
 
 </template>
+
 <style lang="scss">
     @import "~/assets/sass/style.scss";
 </style>
+
 <script>
     import HeaderMenu from "~/components/Menu/HeaderMenu";
     import LeftMenu from "~/components/Menu/LeftMenu";

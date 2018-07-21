@@ -32,8 +32,6 @@ module.exports = {
         // '~/assets/css/animate.css',
         // '~/assets/css/style.css',
         // '~/assets/css/default.css',
-
-
     ],
     plugins: [
         // '~/plugins/airbrake.js',
