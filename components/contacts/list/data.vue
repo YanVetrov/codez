@@ -7,13 +7,11 @@
             <div>
             
              <h3 class="title">Список контактов</h3>
-                <tableMain :data='data.users'/>
-            
-                
-                <pagination           
-                :currentPage="page.current_page"
-                :totalPages="page.total_page"
-                @page-changed="$parent.getAdmins"/>
+                <tableMain :data='data.users'
+                @edit="$parent.editAdmin($event)"
+                @delete='$parent.deleteAdmin($event)'
+                @sort='$parent.sortAdmin($event)'
+                />
             
             </div>
         

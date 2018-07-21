@@ -7,7 +7,6 @@
     </div>
 </template>
 <style lang='scss' scoped>
-    
 </style>
 <script>
     import DataInfo from "./data.vue";
@@ -15,64 +14,24 @@
 
     export default {
         components: { DataInfo, WaitInfo },
-         data() {
+        data() {
             return {
                 current_page: this.$route.params.page,
                 users: [],
                 total_page: [],
-                load:false,
-                errorData:false,
-                info:{},
-                filter:{},
+                load: false,
+                errorData: false,
+                info: {},
+                filter: {},
 
             }
         },
-       methods: {
-
-            newAdmin() {
-                this.load=false;
-                let obj = {};
-                this.name && this.name !== '' ? obj.name = this.name : '';
-                this.link && this.link !== '' ? obj.link = this.link : '';
-                this.value && this.value !== '' ? obj.value = this.value : '';
-                this.$rest.api('addContact', obj)
-                    .then(res => {
-                        console.log(res);
-                        if (res.success) {
-                            this.admins.push(obj);
-                            this.$notify({
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'new contact added'
-                            });
-                            this.show = false;
-
-
-                        }
-                        else {
-                            this.$notify({
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Bad',
-                                text: "Something wrong..."
-                            })
-                        }
-
-
-                        this.load=true;
-                    })
-
-
-            },
+        methods: {
             getAdmins(page) {
-                this.load=false;
+                this.load = false;
                 this.$rest.api('getContacts', { page, limit: 10 })
                     .then(res => {
                         if (res.success) {
-                            res.data.contacts.forEach(el => {
-                                el.edit = false;
-                            })
                             this.info.users = res.data.contacts;
                             this.current_page = res.data.count.select_page || 1;
                             this.total_page = res.data.count.pages || 1;
@@ -88,15 +47,15 @@
                             });
                             this.$router.back();
                         }
-                        this.load=true;
+                        this.load = true;
 
                     })
                     .catch(err => {
-                        this.load=true;
+                        this.load = true;
                     })
             },
             deleteAdmin(contact_id) {
-                this.load = false;
+
                 this.$rest.api('deleteContact', { contact_id })
                     .then(res => {
                         console.log(res);
@@ -107,14 +66,14 @@
                                 }
 
                             })
-                            
+
                             this.$notify({
                                 group: 'main',
                                 duration: 5000,
                                 type: 'success',
                                 title: `Contact successful deleted`,
                             });
-                            this.load=true;
+
                         }
                         if (!res.success) {
                             this.$notify({
@@ -125,16 +84,18 @@
                                 text: res.error.message,
                             });
                         }
-                        this.load=true;
+                        return this.getAdmins();
                     })
                     .catch(err => {
-                        this.load=true;
+                        return this.getAdmins();
                     })
 
             },
-            editAdmin(value, name, contact_id, link) {
-                this.load=false;
-                this.$rest.api('editContact', { value, name, contact_id, link })
+            editAdmin(obj, newIndex) {
+                console.log(obj)
+                newIndex ? obj.positionSort = newIndex : '';
+                obj.contact_id = obj._id
+                this.$rest.api('editContact', obj)
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -145,6 +106,7 @@
                                 title: `Contact successful edited`,
                             });
 
+
                         }
                         if (!res.success) {
                             this.$notify({
@@ -154,7 +116,45 @@
                                 title: 'Something wrong...',
                                 text: res.error.message,
                             });
+                            return this.getAdmins();
                         }
+                        
+                    })
+
+            },
+            sortAdmin(arr) {
+                let newArr=[]
+                let obj={}
+                arr.forEach((el,i)=>{
+                    obj.id=el._id;
+                    obj.positionSort=i+1;
+                    newArr.push(obj);
+                })
+                console.log(newArr)
+                this.$rest.api('sortContact', newArr)
+                    .then(res => {
+                        console.log(res);
+                        if (res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'success',
+                                title: `Contact successful edited`,
+                            });
+
+
+                        }
+                        if (!res.success) {
+                            this.$notify({
+                                group: 'main',
+                                duration: 5000,
+                                type: 'error',
+                                title: 'Something wrong...',
+                                text: res.error.message,
+                            });
+                             return this.getAdmins();
+                        }
+                       
                     })
 
             }
