@@ -1,0 +1,161 @@
+
+.left-menu {
+  flex: none;
+  width: 210px;
+  background-color: #252b4e;
+  display: flex;
+  flex-direction: column;
+
+    &--category {
+      background-color: #212647;
+
+      span {
+        padding: 15px 15px;
+        color: #ffffff;
+        opacity: 1;
+        font-size: 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        line-height: 1.5;
+        text-transform: uppercase;
+
+      }
+    }
+
+    &--sub-category {
+      background-color: #252b4e;
+
+      border-top: 1px solid #212647;
+      border-bottom: 1px solid #212647;
+
+        a {
+          position: relative;
+        }
+
+        >a {
+          .fa-angle-right {
+            position: absolute;
+            right: 0;
+            top: 15px;
+
+            -webkit-transition: .35s all;
+            -moz-transition: .35s all;
+            -ms-transition: .35s all;
+            -o-transition: .35s all;
+            transition: .35s all;
+          }
+
+          &.active {
+            .fa-angle-right {
+              transform: rotate(90deg);
+            }
+          }
+        }
+
+        i, a {
+          opacity: .5;
+        }
+
+        i {
+          margin-right: 15px;
+        }
+
+        a.active, ul.in {
+          opacity: 1;
+          background-color: #2c3255;
+
+            i {
+              opacity: 1;
+            }
+        }
+    }
+
+    a {
+      padding: 15px 15px;
+      color: #ffffff;
+      opacity: .5;
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      line-height: 1.5;
+      text-transform: uppercase;
+
+      &:hover {
+        opacity: 1;
+
+        i {
+          opacity: 1;
+        }
+      }
+    }
+
+
+
+    &-list {
+
+      &__sub {
+        display: none;
+        padding: 0 15px;
+
+          li {
+            border-bottom: 1px solid #272d4d;
+            border-top: 1px solid #272d4d;
+            padding-left: 10px;
+
+              &:before {
+
+              }
+
+              &:last-child {
+                border-bottom: none;
+              }
+          }
+
+          a {
+            padding-left: 0;
+            position: relative;
+
+              &:before {
+                content: '';
+                position: absolute;
+                left: -10px;
+                top: 21px;
+                width: 4px;
+                height: 4px;
+                background-color: #70748c;
+              }
+
+            &.active, &:hover {
+              &:before {
+                background-color: #58e69a;
+              }
+            }
+          }
+
+          &.in {
+            display: block;
+          }
+      }
+    }
+
+    i {
+      line-height: 1;
+      font-size: 18px;
+    }
+
+    .fa-sliders-h {
+      color: #58e69a;
+    }
+  
+    .fa-bug {
+      color: #f9b655;
+    }
+
+    .fa-briefcase {
+      color: #117ce6;
+    }
+  
+}

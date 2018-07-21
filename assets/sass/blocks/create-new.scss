@@ -1,0 +1,235 @@
+
+.new {
+
+  &-create {
+
+    &-wr {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      .title {
+        border-bottom: 1px solid #f5f6f7;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 5px;
+      }
+    }
+
+  }
+
+  &-main {
+    flex: 1 0;
+    margin-bottom: 15px;
+    align-self: baseline;
+
+    >div {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    &--name {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    &--viz {
+      min-height: 23rem;
+    }
+
+    &-selects, &-selects--categ-item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &-selects {
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      &--categ, &--lang {
+
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        >p {
+          color: #9899a0;
+          font-size: 13px;
+          display: inline-block;
+        }
+      }
+
+      &--categ {
+
+        .border-shadow {
+          min-width: 290px;
+          margin-right: 20px;
+          padding: 0;
+
+          span {
+            position: absolute;
+            right: 17px;
+            top: 17px;
+            pointer-events: none;
+          }
+        }
+
+        select {
+          line-height: 48px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        button {
+          text-transform: uppercase;
+          color: #89898c;
+          font-size: 12px;
+          line-height: normal;
+          display: flex;
+          align-items: center;
+
+          -webkit-transition: .35s all;
+          -moz-transition: .35s all;
+          -ms-transition: .35s all;
+          -o-transition: .35s all;
+          transition: .35s all;
+
+          i {
+            margin-right: 10px;
+            color: #0e83f0;
+            font-size: 20px;
+
+
+            -webkit-transition: .35s all;
+            -moz-transition: .35s all;
+            -ms-transition: .35s all;
+            -o-transition: .35s all;
+            transition: .35s all;
+          }
+
+          &:hover {
+            color: #000;
+
+            i {
+              color: #0008ff;
+            }
+          }
+        }
+
+      }
+
+    }
+
+
+  }
+
+  &-sidebar {
+
+    margin: 0 15px;
+
+    >div {
+      margin: 0 0 15px 15px;
+
+      &.faq-sidebar--prompt {
+        margin-top: 30px;
+      }
+    }
+
+    &--create-btn {
+      padding: 25px;
+
+      a, span {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      a {
+        color: #0f89ff;
+
+        &:hover {
+          color: #0008ff;
+
+          span:before {
+            color: #0008ff;
+          }
+        }
+      }
+
+      span {
+        color: #2f323e;
+      }
+    }
+
+    &--prompt {
+
+      padding: 18px 20px 20px 25px;
+
+      .prompt-title {
+        font-size: 14px;
+        color: #2f323e;
+        text-transform: uppercase;
+        margin: 0 ;
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        i {
+          font-size: 26px;
+          color: #f3f4f5;
+          font-weight: 900;
+        }
+      }
+
+      p {
+        line-height: 1.38;
+        color: #9899a0;
+        font-size: 13px;
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 20px;
+      }
+
+      li {
+        margin: 5px;
+      }
+
+      a {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid #9899a0;
+        position: relative;
+
+        &.prompt-active {
+          border-color: #0e83f0;
+
+          &:after {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 4px;
+            height: 4px;
+            background: #0e83f0;
+            border-radius: 50%;
+          }
+        }
+
+        &:hover {
+          border-color: #0e83f0;
+        }
+      }
+
+    }
+  }
+
+}
