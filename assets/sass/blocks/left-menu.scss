@@ -35,7 +35,7 @@
         }
 
         >a {
-          .fa-angle-right {
+          .i-show-status {
             position: absolute;
             right: 0;
             top: 15px;
@@ -81,7 +81,7 @@
       flex-direction: row;
       width: 100%;
       line-height: 1.5;
-      text-transform: uppercase;
+      //text-transform: uppercase;
 
       &:hover {
         opacity: 1;
@@ -95,7 +95,9 @@
 
 
     &-list {
-
+      overflow: scroll;
+      height: 100vh;
+      padding-bottom: 25px;
       &__sub {
         display: none;
         padding: 0 15px;
@@ -103,7 +105,7 @@
           li {
             border-bottom: 1px solid #272d4d;
             border-top: 1px solid #272d4d;
-            padding-left: 10px;
+            padding-left: 20px;
 
               &:before {
 
@@ -125,6 +127,7 @@
                 top: 21px;
                 width: 4px;
                 height: 4px;
+                border-radius: 50%;
                 background-color: #70748c;
               }
 
@@ -146,16 +149,5 @@
       font-size: 18px;
     }
 
-    .fa-sliders-h {
-      color: #58e69a;
-    }
-  
-    .fa-bug {
-      color: #f9b655;
-    }
-
-    .fa-briefcase {
-      color: #117ce6;
-    }
   
 }

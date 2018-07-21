@@ -1,49 +1,40 @@
 <template>
-    <div class="navbar-default sidebar" role="navigation" style="    margin-top: 53px;">
-        <div class="sidebar-nav slimscrollsidebar">
-            <ul class="nav" id="side-menu">
+    <div class="left-menu">
 
-                <li v-for="(el,i) in menu" :key="i">
+        <ul class="left-menu-list">
+
+            <li v-for="(el,i) in menu" :key="i" :class="(!!el.title)?'left-menu--category':'left-menu--sub-category'">
+                <template v-if="!!el.title">
+                    <span>
+                        {{typeof $t(el.name)=='string'?""+$t(el.title):""+el.title}}
+                        <i :class="'fal '+el.icon" :style="'color: '+el.color"></i>
+                    </span>
+                </template>
+                <template v-else>
                     <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
                                @click.native="el.child && el.child.length === 0 || (el.isShow = !el.isShow)"
-                               class="waves-effect"
+                               class=""
                                active-class="active">
-                        <i class="mdi fa-fw" :class="'mdi-'+el.icon" data-icon="v"></i>
-                        <span class="hide-menu">
-              {{typeof $t(el.name)=='string'?$t(el.name):el.name}}
-              <span v-if="el.child && el.child.length > 0" class="fa arrow"></span>
-            </span>
+
+                        <i :class="'fal '+el.icon"></i>
+                        {{typeof $t(el.name)==='string'? $t(el.name):el.name}}
+                        <template v-if="el.child && el.child.length > 0">
+                            <i v-if="!!el.isShow" class="i-show-status fal fa-angle-down"></i>
+                            <i v-else class="i-show-status fal fa-angle-right"></i>
+                        </template>
                     </nuxt-link>
-                    <ul class="nav nav-second-level collapse" :class="{'in': el.isShow}">
+
+                    <ul class="left-menu-list__sub" v-if="el.child && el.child.length > 0" :class="{'in': el.isShow}">
                         <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
                             <nuxt-link :to="el.page+elc.page" active-class="active">
-                                <i class="mdi fa-fw" :class="'mdi-'+elc.icon" data-icon="v"></i>
-                                <span class="hide-menu">{{typeof $t(elc.pr)=='string'?$t(elc.pr):elc.pr}} {{typeof $t(elc.name)=='string'?$t(elc.name):elc.name}}</span>
-
+                                {{typeof $t(elc.name)==='string'?$t(elc.name):elc.name}}
                             </nuxt-link>
                         </li>
-
                     </ul>
-                </li>
-                <li class="devider"></li>
+                </template>
+            </li>
+        </ul>
 
-                <li>
-                    <nuxt-link to="/logout/" class="waves-effect"><i class="mdi mdi-logout fa-fw"></i> <span
-                            class="hide-menu">{{$t('logout')}}</span>
-                    </nuxt-link>
-                </li>
-                <li class="devider"></li>
-
-                <li>
-                    <nuxt-link to="/api/" class="waves-effect"><i class="fa fa-circle-o text-success"></i> <span
-                            class="hide-menu">API</span></nuxt-link>
-                </li>
-                <li>
-                    <nuxt-link to="/faq/" class="waves-effect"><i class="fa fa-circle-o text-success"></i> <span
-                            class="hide-menu">FAQ</span></nuxt-link>
-                </li>
-            </ul>
-        </div>
     </div>
 </template>
 
@@ -52,175 +43,120 @@
     // https://materialdesignicons.com/
     export default {
         data() {
-            return{ 
-                menu:[{
-                name: 'dash',
-                isShow: false,
-                page: '/dashboard',
-                icon: 'view-dashboard',
-                child: []
-            }, {
-                name: 'news',
-                isShow: false,
-                page: '/news',
-                icon: 'newspaper',
-                child: [
-                    { name: 'create', page: '/create', icon: 'playlist-plus' },
-                    { name: 'news', pr:'all', page: '/page', icon: 'format-list-bulleted-type' },
-                ]
+
+            let exchanger_menu = [{
+                title: 'exchanger',
+                icon: 'fa-file-invoice-dollar',
+                color: '#f9b655'
             }, {
                 name: 'currencies',
                 isShow: false,
                 page: '/currency',
-                icon: 'currency-usd',
+                icon: 'fa-usd-circle',
                 child: [
-                    { name: 'currencies', pr:'all', page: '/page', icon: 'format-list-numbers' },
-                    { name: 'create', page: '/create', icon: 'plus' },
+                    {name: 'currencies', page: '/page', icon: 'format-list-numbers'},
+                    {name: 'create', page: '/create', icon: 'plus'},
                 ]
-            },
-                {
+            }, {
+                name: 'routes',
+                page: '/routes',
+                isShow: false,
+                icon: 'fa-route',
+                child: [
+                    {name: 'routes', page: '/all', icon: 'routes'},
+                    {name: 'create', page: '/create', icon: 'routes'},
+                ]
+            }, {
+                name: 'parsers',
+                page: '/parsers',
+                isShow: false,
+                icon: 'fa-broadcast-tower',
+                child: []
+            }];
+
+
+            return {
+                menu: [{
+                    title: 'dash',
+                    icon: 'fa-sliders-h',
+                    color: '#117ce6'
+                }, {
+                    name: 'dash',
+                    isShow: false,
+                    page: '/dashboard',
+                    icon: 'fa-cubes',
+                    child: []
+                }, {
+                    name: 'news',
+                    isShow: false,
+                    page: '/news',
+                    icon: 'fa-newspaper',
+                    child: [
+                        {name: 'create', page: '/create', icon: 'playlist-plus'},
+                        {name: 'news', page: '/page', icon: 'format-list-bulleted-type'},
+                    ]
+                }, {
                     name: 'settings',
                     isShow: false,
                     page: '/settings',
-                    icon: 'settings',
+                    icon: 'fa-cogs',
                     child: [
 
-                        { name: 'history', page: '/history', icon: 'history' },
-                        { name: 'Auth', page: '/auth', icon: 'history' },
-                        { name: 'admins', page: '/admins', icon: 'lock' },
-                        { name: 'design', page: '/apperance', icon: 'brush' },
-                        { name: 'Partners', page: '/partners', icon: 'history' }
+                        {name: 'history', page: '/history'},
+                        {name: 'Auth', page: '/auth'},
+                        {name: 'admins', page: '/admins'},
+                        {name: 'design', page: '/apperance'},
+                        {name: 'Partners', page: '/partners'}
 
                     ]
-                },
-                {
+                }, {
                     name: 'reviews',
                     isShow: false,
                     page: '/reviews',
-                    icon: 'mdi mdi-comment-multiple-outline',
+                    icon: 'fa-comments',
                     child: [
-                        { name: 'reviews',pr:'all', page: '/page', icon: 'format-list-numbers' },
-                        { name: 'create', page: '/create', icon: 'playlist-plus' },
+                        {name: 'reviews', page: '/page'},
+                        {name: 'create', page: '/create'},
                     ]
-                },
-                {
-                    name: 'rules',
-                    page: '/rules',
-                    isShow: false,
-                    icon: 'book-open-variant',
-                    child: [
-                        { name: 'rules',pr:'all', page: '/rules', icon: 'routes' },
-                        { name: 'create', page: '/create', icon: 'routes' },
-                    ]
-                },
-                {
+                }, {
                     name: 'Faq',
                     page: '/faq',
                     isShow: false,
-                    icon: 'book-open-variant',
+                    icon: 'fa-question',
                     child: [
-                        { name: 'FAQ',pr:'all', page: '/faq', icon: 'routes' },
-                        { name: 'create', page: '/create', icon: 'routes' },
+                        {name: 'FAQ', page: '/faq', icon: 'routes'},
+                        {name: 'create', page: '/create', icon: 'routes'},
                     ]
-                },
-                {
-                    name: 'parsers',
-                    page: '/parsers',
+                }, {
+                    name: 'rules',
+                    page: '/rules',
                     isShow: false,
-                    icon: 'book-open-variant',
-                    child: []
-                },
-                {
+                    icon: 'fa-book',
+                    child: [
+                        {name: 'rules', page: '/rules', icon: 'routes'},
+                        {name: 'create', page: '/create', icon: 'routes'},
+                    ]
+                }, {
                     name: 'contacts',
                     page: '/contacts',
                     isShow: false,
-                    icon: 'book-open-variant',
+                    icon: 'fa-phone',
                     child: []
-                },
-                {
-                    name: 'routes',
-                    page: '/routes',
-                    isShow: false,
-                    icon: 'routes',
-                    child: [
-                        { name: 'routes',pr:'all', page: '/all', icon: 'routes' },
-                        { name: 'create', page: '/create', icon: 'routes' },
-                    ]
-                },
-                {
+                }, {
                     name: 'users',
                     page: '/users',
                     isShow: false,
-                    icon: 'mdi mdi-account-multiple-outline',
+                    icon: 'fa-user-edit',
                     child: [
-                        { name: 'users', page: '/clients', icon: 'users' },
-                        { name: 'partners', page: '/partners', icon: 'chart-line' },
+                        {name: 'users', page: '/clients', icon: 'users'},
+                        {name: 'partners', page: '/partners', icon: 'chart-line'},
 
                     ]
-                }
+                },
+                    ...exchanger_menu
+                ]
 
-            ]
-                
             }
         },
     }
 </script>
-
-<style>
-    @media screen and (max-width:600px) {
-        .col-lg-1,
-        .col-lg-10,
-        .col-lg-11,
-        .col-lg-12,
-        .col-lg-2,
-        .col-lg-3,
-        .col-lg-4,
-        .col-lg-5,
-        .col-lg-6,
-        .col-lg-7,
-        .col-lg-8,
-        .col-lg-9,
-        .col-md-1,
-        .col-md-10,
-        .col-md-11,
-        .col-md-12,
-        .col-md-2,
-        .col-md-3,
-        .col-md-4,
-        .col-md-5,
-        .col-md-6,
-        .col-md-7,
-        .col-md-8,
-        .col-md-9,
-        .col-sm-1,
-        .col-sm-10,
-        .col-sm-11,
-        .col-sm-12,
-        .col-sm-2,
-        .col-sm-3,
-        .col-sm-4,
-        .col-sm-5,
-        .col-sm-6,
-        .col-sm-7,
-        .col-sm-8,
-        .col-sm-9,
-        .col-xs-1,
-        .col-xs-10,
-        .col-xs-11,
-        .col-xs-12,
-        .col-xs-2,
-        .col-xs-3,
-        .col-xs-4,
-        .col-xs-5,
-        .col-xs-6,
-        .col-xs-7,
-        .col-xs-8,
-        .col-xs-9 {
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .sidebar {
-            z-index: 9999;
-        }
-    }
-</style>

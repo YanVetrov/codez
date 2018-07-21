@@ -28,10 +28,10 @@ module.exports = {
 
     css: [
         // '~/assets/sass/style.scss',
-        '~/assets/bootstrap.min.css',
-        '~/assets/css/animate.css',
-        '~/assets/css/style.css',
-        '~/assets/css/default.css',
+        // '~/assets/bootstrap.min.css',
+        // '~/assets/css/animate.css',
+        // '~/assets/css/style.css',
+        // '~/assets/css/default.css',
 
 
     ],
