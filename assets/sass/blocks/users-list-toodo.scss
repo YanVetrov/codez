@@ -294,7 +294,7 @@
 
       &__list--wr {
         overflow-y: auto;
-        max-height: 320px;
+        max-height: 420px;
       }
 
       &__list {
@@ -437,7 +437,7 @@
         position: relative;
         font-size: 14px;
         color: $grey;
-        padding-bottom: 15px;
+        padding-bottom: 5px;
         border-bottom: 2px solid #f3f4f5;
         width: 115px;
         white-space: nowrap;
@@ -537,7 +537,8 @@
 }
 
 .count {
-  font-size: 24px;
   color: $dark;
   font-family: $comfortaa;
+  font-size: 30px;
+  margin-top: 6px;
 }

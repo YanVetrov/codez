@@ -1,32 +1,29 @@
 <template>
 
+    <ul class="users-list-toodo-sidebar--list__client">
+        <li>
+            <span>
+                <i class="fal fa-users fa-3x" style="color: #188fff;"></i>
+            </span>
+            <p class="progress">
 
-            
-                          
-            
-                    <ul class="users-list-toodo-sidebar--list__client">
-                        <li>
-                            <span><img src="~/assets/img/users-two-blue.png" alt=""></span>
-                            <p class="progress">
-                                Клиентов
-                                <span class="line blue"></span>
-                            </p>
-                            <p class="count">{{data.active}}</p>
-                        </li>
-                        <li>
-                            <span><img src="~/assets/img/sadness-face.svg" alt=""></span>
-                            <p class="progress">
-                                Заблокировано
-                                <span class="line red"></span>
-                            </p>
-                            <p class="count">{{data.blocked}}</p>
-                        </li>
-                    </ul>
-            
-                    
+                {{$t('page.user.statistic.clients')}}
 
-
-
+                <span class="line blue"></span>
+            </p>
+            <p class="count">{{data.active}}</p>
+        </li>
+        <li>
+            <span>
+                <i class="fal fa-user-lock fa-3x" style="color: #ff7675;"></i>
+            </span>
+            <p class="progress">
+                {{$t('page.user.statistic.blocked')}}
+                <span class="line red"></span>
+            </p>
+            <p class="count">{{data.blocked}}</p>
+        </li>
+    </ul>
 </template>
 
 <script>

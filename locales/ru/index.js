@@ -1,8 +1,11 @@
 import menu from './menu'
+import user from './page/user'
 
 export default {
     "menu": menu,
-
+    "page":{
+        "user":user
+    },
     "breadcrumb": {
         "tutorial": "Инструкция"
     },

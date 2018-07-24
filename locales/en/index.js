@@ -1,10 +1,15 @@
 import menu from './menu'
+import user from './page/user'
 
 export default {
     "menu":menu,
     "breadcrumb": {
         "tutorial": "Tutorial"
     },
+    "page":{
+      user:user
+    },
+
     "Daily stat": "Daily stat",
     "country": "Country",
     "average salary": "Average salary",
