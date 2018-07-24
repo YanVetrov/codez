@@ -21,9 +21,7 @@ module.exports = {
 
     loading: '~/components/loading.vue',
 
-    css: [
-
-    ],
+    css: [],
     plugins: [
         // '~/plugins/airbrake.js',
         {src: "~/plugins/i18n"},
@@ -33,7 +31,6 @@ module.exports = {
         {src: '~/plugins/v-select.js', ssr: false},
         {src: "~/plugins/vue-charts.js", ssr: false},
         {src: "~/plugins/vue-notify", ssr: false},
-        {src: "~/plugins/lodash.js", ssr: false},
         {src: '~/plugins/vue-core-image-upload.js', ssr: false}
 
     ],
@@ -55,6 +52,12 @@ module.exports = {
 
     proxy: proxyConfig,
     build: {
+        analyze: {
+            analyzerMode: 'server',
+            analyzerHost: '0.0.0.0',
+            analyzerPort: '9999',
+            openAnalyzer: true
+        },
         vendor: 'vue2-editor',
         extend(config, {isDev, isClient}) {
             if (isDev && isClient) {
