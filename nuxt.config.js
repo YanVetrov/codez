@@ -1,5 +1,4 @@
 const config = require('./_config/app');
-let resolvee = require("path").resolve;
 let proxyConfig = {};
 proxyConfig[config.servicePath + '/'] = {target: config.serviceAPI, pathRewrite: {}};
 proxyConfig[config.servicePath + '/'].pathRewrite['^' + config.servicePath + '/'] = '/';
@@ -13,25 +12,17 @@ module.exports = {
         meta: [
             {charset: 'utf-8'},
             {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-            {hid: 'description', name: 'description', content: 'Nuxt.js project'}
+            {hid: 'description', name: 'description', content: 'Admin panel'}
         ],
         link: [
             {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
         ]
     },
 
-
-    /*
-     ** Customize the progress bar colors
-     */
     loading: '~/components/loading.vue',
 
     css: [
-        // '~/assets/sass/style.scss',
-        // '~/assets/bootstrap.min.css',
-        // '~/assets/css/animate.css',
-        // '~/assets/css/style.css',
-        // '~/assets/css/default.css',
+
     ],
     plugins: [
         // '~/plugins/airbrake.js',
@@ -59,13 +50,9 @@ module.exports = {
     env: {
         config: config
     },
-    /*
-     ** Axios module configuration
-     */
-    axios: {
-        // See https://github.com/nuxt-community/axios-module#options
-    },
+    axios: {},
     moment: {},
+
     proxy: proxyConfig,
     build: {
         vendor: 'vue2-editor',

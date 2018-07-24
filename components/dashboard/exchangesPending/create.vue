@@ -13,28 +13,28 @@
                                 <th>{{$t('ln')}}</th>
                                 <th>IP</th>
                                 <th>{{$t('currency')}}1 -></th>
-                                <th> -> {{$t('currency')}}2 </th>
+                                <th> -> {{$t('currency')}}2</th>
                                 <th>{{$t('action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr v-for="admin in routes" :key="admin.id">
                                 <td><img
-                                            :src="'https://exchanger_001.proexchanger.net/service/fs'+admin.avatar"
-                                            alt="user" class="img-circle"/> </td>
+                                        :src="'https://exchanger_001.proexchanger.net/service/fs'+admin.avatar"
+                                        alt="user" class="img-circle"/></td>
                                 <td>
                                     <a :href="admin.link">{{admin.first_name}}</a>
                                 </td>
                                 <td>{{admin.last_name}}</td>
                                 <td>{{admin.ip}}</td>
                                 <td><span class="label label-info">{{admin.currency1}}</span></td>
-                                
+
                                 <td><span class="label label-info">{{admin.currency2}}</span></td>
                                 <td>
                                     <button type="button" @click="deleteRoute(admin.id)"
                                             class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
-                                           ><i class="ti-close"
-                                             ></i>
+                                    ><i class="ti-close"
+                                    ></i>
                                     </button>
                                 </td>
                             </tr>
@@ -45,7 +45,7 @@
                                 <td colspan="7">
                                     <div class="text-right">
                                         <paging :currentPage="current_page" :totalPages="total_page"
-                                                @page-changed="newAdmin"/>
+                                                @page-changed="WARNING_CALL_newAdmin"/>
                                     </div>
                                 </td>
                             </tr>
@@ -62,7 +62,7 @@
     import paging from '~/components/pagination';
 
     export default {
-        components: { paging },
+        components: {paging},
         data() {
             return {
                 total_page: 1,
@@ -87,7 +87,7 @@
 
             getVerification(page) {
                 this.$root.$emit('loading', true);
-                this.$rest.api('getVerification', { page, limit: 10 })
+                this.$rest.api('getVerification', {page, limit: 10})
                     .then(res => {
                         if (res.success) {
                             this.routes = res.data.routes;
@@ -121,7 +121,7 @@
                                     this.routes.splice(i, 1);
                                 }
 
-                            })
+                            });
                             this.$notify({
                                 group: 'main',
                                 duration: 5000,
@@ -141,16 +141,17 @@
                         }
                         this.$root.$emit('loading', false);
                     })
+            }, WARNING_CALL_newAdmin() {
+                console.error('WARNING_CALL_newAdmin this function dont work (yan@gmail.com)')
 
-            },
-            mounted(){
-                
-                return this.getVerification();
-                
             }
-
+        },
+        mounted() {
+            return this.getVerification();
 
         }
+
+
     }
 </script>
 

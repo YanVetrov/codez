@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import FlagIcon from "@/components/_utils/flag.vue"
+    import FlagIcon from "@/components/_utils/flag"
 
     export default {
         props: ['actionText', 'ip', 'isoCountry'],
