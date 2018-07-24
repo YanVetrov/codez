@@ -1,26 +1,17 @@
 <template>
-
-
-            
-               <div>
-            
-                    <statistic :data='data.statistic'/>
-            
-                   <social :data='data.social' />
-            
-                </div>
-
-
-
-
+    <div>
+        <statistic :data='data.statistic'/>
+        <social :data='data.social'/>
+    </div>
 </template>
 
 <script>
-import statistic from './statistic';
-import social from './social';
+    import statistic from './statistic';
+    import social from './social';
+
     export default {
         props: ['data'],
-        components:{social,statistic}
+        components: {social, statistic}
     }
 </script>
 
