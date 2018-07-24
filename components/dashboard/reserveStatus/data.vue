@@ -12,7 +12,6 @@
 <script>
     import litem from './litem'
     export default {
-        name: "data",
         props: ['data'],
         components:{litem},
     }

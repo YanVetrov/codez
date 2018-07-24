@@ -106,7 +106,6 @@
 
 <script>
     export default {
-        name: "data",
         props: ['data']
     }
 </script>

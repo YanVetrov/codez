@@ -1,5 +1,10 @@
-{
-    "hello": "Hello",
+import menu from './menu'
+
+export default {
+    "menu":menu,
+    "breadcrumb": {
+        "tutorial": "Tutorial"
+    },
     "Daily stat": "Daily stat",
     "country": "Country",
     "average salary": "Average salary",
@@ -29,7 +34,6 @@
     "entries": "Entries",
     "users": "Users",
     "user": "User",
-    "name": "Name",
     "link": "Link",
     "created": "Created",
     "nick": "Nick",
@@ -166,7 +170,7 @@
         "title":"Sign in",
         "msg":"Enter your details below"
     },
-        "createNews":{
+    "createNews":{
         "success":"Successful published",
         "more":"Create one more",
         "create":"Creating news",

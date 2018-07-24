@@ -7,12 +7,12 @@
         <div class="breadcrumb--r">
 
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Dashboard</a></li>
+                <li><nuxt-link to="/dashboard">Dashboard</nuxt-link></li>
+                <li>Dashboard</li>
             </ul>
 
             <div class="breadcrumb-item">
-                <a href="/"><i class="fal fa-film"></i> Инструкция</a>
+                <a href="/"><i class="fal fa-film"></i> {{$t('breadcrumb.tutorial')}}</a>
             </div>
 
         </div>

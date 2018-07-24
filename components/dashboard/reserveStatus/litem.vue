@@ -14,7 +14,6 @@
 <script>
 import modal from './modal'
     export default {
-        name: "data",
         props: ['img','name','type','total','modal'],
         components:{modal},
         data(){return{modalState:false}}

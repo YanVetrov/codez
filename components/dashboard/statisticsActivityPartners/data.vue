@@ -10,7 +10,6 @@
 <script>
 import litem from '~/components/litem.vue'
     export default {
-        name: "data",
         props: ['data'],
         components:{litem}
     }

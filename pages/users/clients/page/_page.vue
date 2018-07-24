@@ -13,7 +13,7 @@
             
             <div class="users-list-toodo-sidebar">
             
-                <activity/>
+                <online/>
             
                <statistic/>
             
@@ -26,12 +26,12 @@
 </template>
 
 <script>
-    import activity from '~/components/userList/activity';
+    import online from '~/components/userList/online';
     import statistic from '~/components/userList/statistic';
     import list from '~/components/userList/list';
     export default {
         props: ['data'],
-        components:{activity,statistic,list},
+        components:{online,statistic,list},
     }
 </script>
 
