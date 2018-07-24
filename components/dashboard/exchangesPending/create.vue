@@ -141,7 +141,8 @@
                         }
                         this.$root.$emit('loading', false);
                     })
-            }, WARNING_CALL_newAdmin() {
+            },
+            WARNING_CALL_newAdmin() {
                 console.error('WARNING_CALL_newAdmin this function dont work (yan@gmail.com)')
 
             }
