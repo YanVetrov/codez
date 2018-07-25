@@ -9,7 +9,7 @@
             
                                 <td>
             
-                                    <span class="icon-company"><img src="img/bank.svg" alt=""></span>
+                                    <span class="icon-company"><img src="~/assets/img/bank.svg" alt=""></span>
             
                                 </td>
             
@@ -26,16 +26,6 @@
                                            <input type="text" placeholder="нет контакта" v-model='user.value' @blur="$emit('edit',user)">
             
                                            <span class="btn btn__correct"></span>
-            
-                                           <ul>
-                                               <li>
-                                                   <button class="btn btn__checked"></button>
-                                               </li>
-                                               <li>
-                                                   <button class="btn btn__clean"></button>
-                                               </li>
-                                           </ul>
-            
                                        </label>
             
             
@@ -46,22 +36,13 @@
             
                                 <td class="user-data">
             
-                                    <div class="correct-input correcting">
+                                    <div class="correct-input">
             
                                         <label>
             
                                             <input type="text" placeholder="нет ссылки" v-model='user.link' @blur="$emit('edit',user)">
             
                                             <span class="btn btn__correct"></span>
-            
-                                            <ul>
-                                                <li>
-                                                    <button class="btn btn__checked"></button>
-                                                </li>
-                                                <li>
-                                                    <button class="btn btn__clean"></button>
-                                                </li>
-                                            </ul>
             
                                         </label>
             
