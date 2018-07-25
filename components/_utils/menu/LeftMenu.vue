@@ -45,90 +45,103 @@
         data() {
 
             let exchanger_menu = [{
-                title: 'exchanger',
+                title: 'menu.exchanger',
                 icon: 'fa-file-invoice-dollar',
                 color: '#f9b655'
             }, {
-                name: 'currencies',
+                name: 'menu.orders',
+                isShow: false,
+                page: '/orders',
+                icon: 'fa-file-invoice-dollar',
+                child: []
+            }, {
+                name: 'menu.currencies',
                 isShow: false,
                 page: '/currency',
                 icon: 'fa-usd-circle',
                 child: [
-                    {name: 'currencies', page: '/page', icon: 'format-list-numbers'},
-                    {name: 'create', page: '/create', icon: 'plus'},
+                    {name: 'menu.listCurrencies', page: '/page', icon: 'format-list-numbers'},
+                    {name: 'menu.createCurrency', page: '/create', icon: 'plus'},
                 ]
             }, {
-                name: 'routes',
+                name: 'menu.routes',
                 page: '/routes',
                 isShow: false,
                 icon: 'fa-route',
                 child: [
-                    {name: 'routes', page: '/all', icon: 'routes'},
-                    {name: 'create', page: '/create', icon: 'routes'},
+                    {name: 'menu.listRoutes', page: '/all', icon: 'routes'},
+                    {name: 'menu.createRoutes', page: '/create', icon: 'routes'},
                 ]
             }, {
-                name: 'parsers',
+                name: 'menu.parsers',
                 page: '/parsers',
                 isShow: false,
                 icon: 'fa-broadcast-tower',
                 child: []
+            }, {
+                name: 'menu.merchantsAndApi',
+                page: '/merchantsAndApi',
+                isShow: false,
+                icon: 'fa-shopping-cart',
+                child: []
             }];
+            let main_menu = [{
+                title: 'menu.general',
+                icon: 'fa-sliders-h',
+                color: '#117ce6'
 
-
-            return {
-                menu: [{
-                    title: 'dash',
-                    icon: 'fa-sliders-h',
-                    color: '#117ce6'
-                }, {
-                    name: 'dash',
+            },
+                {
+                    name: 'menu.dashboard',
                     isShow: false,
                     page: '/dashboard',
                     icon: 'fa-cubes',
                     child: []
-                }, {
-                    name: 'news',
+                },
+                {
+                    name: 'menu.reviews',
+                    isShow: false,
+                    page: '/reviews',
+                    icon: 'fa-comments',
+                    child: []
+                },
+                {
+                    name: 'menu.news',
                     isShow: false,
                     page: '/news',
                     icon: 'fa-newspaper',
                     child: [
-                        {name: 'create', page: '/create', icon: 'playlist-plus'},
-                        {name: 'news', page: '/page', icon: 'format-list-bulleted-type'},
-                    ]
-                }, {
-                    name: 'settings',
-                    isShow: false,
-                    page: '/settings',
-                    icon: 'fa-cogs',
-                    child: [
-
-                        {name: 'history', page: '/history'},
-                        {name: 'Auth', page: '/auth'},
-                        {name: 'admins', page: '/admins'},
-                        {name: 'design', page: '/apperance'},
-                        {name: 'Partners', page: '/partners'}
+                        {name: 'menu.listNews', page: '/page'},
+                        {name: 'menu.createNews', page: '/create'},
 
                     ]
                 }, {
-                    name: 'reviews',
-                    isShow: false,
-                    page: '/reviews',
-                    icon: 'fa-comments',
-                    child: [
-                        {name: 'reviews', page: '/page'},
-                        {name: 'create', page: '/create'},
-                    ]
-                }, {
-                    name: 'Faq',
+                    name: 'menu.faq',
                     page: '/faq',
                     isShow: false,
                     icon: 'fa-question',
                     child: [
-                        {name: 'FAQ', page: '/faq', icon: 'routes'},
-                        {name: 'create', page: '/create', icon: 'routes'},
+                        {name: 'menu.listFaq', page: '/faq', icon: 'routes'},
+                        {name: 'menu.createFaq', page: '/create', icon: 'routes'},
                     ]
                 }, {
-                    name: 'rules',
+                    name: 'menu.users',
+                    page: '/users',
+                    isShow: false,
+                    icon: 'fa-user-edit',
+                    child: [
+                        {name: 'menu.clients', page: '/clients', icon: 'users'},
+                        {name: 'menu.partners', page: '/partners', icon: 'chart-line'},
+
+                    ]
+                }, {
+                    name: 'menu.blockPartners',
+                    page: '/partners',
+                    isShow: false,
+                    icon: 'fa-handshake',
+                    child: []
+                }, {
+                    name: 'menu.rules',
                     page: '/rules',
                     isShow: false,
                     icon: 'fa-book',
@@ -137,23 +150,58 @@
                         {name: 'create', page: '/create', icon: 'routes'},
                     ]
                 }, {
-                    name: 'contacts',
+                    name: 'menu.contacts',
                     page: '/contacts',
                     isShow: false,
                     icon: 'fa-phone',
                     child: []
-                }, {
-                    name: 'users',
-                    page: '/users',
-                    isShow: false,
-                    icon: 'fa-user-edit',
-                    child: [
-                        {name: 'users', page: '/clients', icon: 'users'},
-                        {name: 'partners', page: '/partners', icon: 'chart-line'},
-
-                    ]
                 },
-                    ...exchanger_menu
+            ];
+
+            const admin_menu = [{
+                title: 'menu.adminSite',
+                icon: 'fa-toolbox',
+                color: '#40ec12'
+            }, {
+                name: 'menu.appearance',
+                isShow: false,
+                page: '/appearance',
+                icon: 'fa-pencil-ruler',
+                child: []
+            }, {
+                name: 'menu.history',
+                isShow: false,
+                page: '/history',
+                icon: 'fa-history',
+                child: []
+            }, {
+                name: 'menu.admins',
+                isShow: false,
+                page: '/admins',
+                icon: 'fa-user-secret',
+                child: []
+            },{
+                name: 'menu.authSystem',
+                isShow: false,
+                page: '/authSystem',
+                icon: 'fa-sign-in',
+                child: []
+            }, {
+                name: 'menu.otherSettings',
+                isShow: false,
+                page: '/settings',
+                icon: 'fa-cogs',
+                child: [
+                    {name: '404', page: '/404'},
+                ]
+            }];
+
+
+            return {
+                menu: [
+                    ...main_menu,
+                    ...exchanger_menu,
+                    ...admin_menu
                 ]
 
             }

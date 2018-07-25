@@ -8,14 +8,14 @@
         </select>
         <button class="fcbtn btn btn-info btn-1b" @click="getAdminHistory" style="margin:5px"><i
                 class='fa fa-search'></i></button>
-<div class='white-box'>
-        <history :history="history"></history>
-        <pagination
-                :currentPage="current_page"
-                :totalPages="total_page"
-                @page-changed="getAdminHistory"
-        />
-</div>
+        <div class='white-box'>
+            <history :history="history"></history>
+            <pagination
+                    :currentPage="current_page"
+                    :totalPages="total_page"
+                    @page-changed="getAdminHistory"
+            />
+        </div>
     </div>
 </template>
 
@@ -65,10 +65,7 @@
                     })
             },
         },
-        components: {
-            history,
-            paging
-        },
+        components: {history},
         mounted() {
             return this.getAdminHistory();
         }
