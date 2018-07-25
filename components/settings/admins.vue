@@ -1,6 +1,6 @@
 <template>
     <div class="component-valut">
-        <loading type="block" :status_load="status_load"/>
+        <loader type="block" :status_load="status_load"/>
         <ImageUploader field="image"
                        class="uploader-image"
                        @crop-success="cropSuccess"
@@ -242,10 +242,8 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
 
     export default {
-        components: { Loading },
         data() {
             return {
                 form: {

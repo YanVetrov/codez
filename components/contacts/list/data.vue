@@ -1,36 +1,22 @@
 <template>
+    <div>
+        <h3 class="title">Список контактов</h3>
+        <tableMain :data='data.users'
+                   @edit="$parent.editAdmin($event)"
+                   @delete='$parent.deleteAdmin($event)'
+                   @sort='$parent.sortAdmin($event)'
+        />
 
-
-    
-        
-            
-            <div>
-            
-             <h3 class="title">Список контактов</h3>
-                <tableMain :data='data.users'
-                @edit="$parent.editAdmin($event)"
-                @delete='$parent.deleteAdmin($event)'
-                @sort='$parent.sortAdmin($event)'
-                />
-            
-            </div>
-        
-            
-            
-        
-       
-
-
-
+    </div>
 </template>
 
 <script>
-import pagination from '~/components/_utils/pagination/index'
-import tableMain from './table';
+    import tableMain from './table';
+
     export default {
-        props: ['data','page'],
-        components:{pagination,tableMain}
-        
+        props: ['data', 'page'],
+        components: {tableMain}
+
     }
 </script>
 

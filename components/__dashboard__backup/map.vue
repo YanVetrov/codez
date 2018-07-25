@@ -1,24 +1,21 @@
 <template>
     <div class="dashboard-visitors--country sidebar-width">
-        <loading type="block" :status_load="status_load"/>
+        <loader type="block" :status_load="status_load"/>
         <h5 class="title">Посещения</h5>
 
-    <highmaps :options='options'></highmaps>
+        <highmaps :options='options'></highmaps>
 
     </div>
 </template>
 <style lang='scss' scoped>
- /*@import "dashboard/dashboard-visitors";*/
+    /*@import "dashboard/dashboard-visitors";*/
 </style>
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
-
 
         data() {
             return {
-                status_load:false,
+                status_load: false,
                 options: {
                     chart: {},
                     title: {
@@ -40,7 +37,7 @@
                             "copyright": "Copyright (c) 2015 Highsoft AS, Based on data from Natural Earth",
                             "copyrightShort": "Natural Earth",
                             "copyrightUrl": "http://www.naturalearthdata.com",
-                            "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG:54003" } },
+                            "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG:54003"}},
                             "hc-transform": {
                                 "default": {
                                     "crs": "+proj=mill +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R_A +datum=WGS84 +units=m +no_defs",
@@ -16485,7 +16482,7 @@
                         dataLabels: {
                             enabled: true,
                             color: '#FFFFFF',
-                            formatter: function() {
+                            formatter: function () {
                                 if (this.point.value) {
                                     return this.point.name;
                                 }
@@ -16506,23 +16503,23 @@
                 lists: [
                     {}, {}, {}, {}
                 ],
-                dailySales: { total: "124", percent: "24" },
-                weeklySales: { total: "524", percent: "44" },
-                mounthlySales: { total: "20", percent: "4" },
-                yearlySales: { total: "2234", percent: "64" },
-                weeklyTraffic: { percent: "15", overall: "24.34", monthly: "55.33", day: "5.50" },
-                mounthlyTraffic: { percent: "15", overall: "24.34", monthly: "55.33", day: "5.50" },
+                dailySales: {total: "124", percent: "24"},
+                weeklySales: {total: "524", percent: "44"},
+                mounthlySales: {total: "20", percent: "4"},
+                yearlySales: {total: "2234", percent: "64"},
+                weeklyTraffic: {percent: "15", overall: "24.34", monthly: "55.33", day: "5.50"},
+                mounthlyTraffic: {percent: "15", overall: "24.34", monthly: "55.33", day: "5.50"},
                 visitCountries: [
-                    { name: 'India', percent: '15', total: '235' },
-                    { name: 'India', percent: '15', total: '235' },
-                    { name: 'India', percent: '15', total: '235' },
-                    { name: 'India', percent: '15', total: '235' },
-                    { name: 'India', percent: '15', total: '235' },
+                    {name: 'India', percent: '15', total: '235'},
+                    {name: 'India', percent: '15', total: '235'},
+                    {name: 'India', percent: '15', total: '235'},
+                    {name: 'India', percent: '15', total: '235'},
+                    {name: 'India', percent: '15', total: '235'},
                 ],
-                newClients: { total: '255' },
-                newProjects: { total: '255' },
-                newInvoices: { total: '255' },
-                openProjects: { total: '255' },
+                newClients: {total: '255'},
+                newProjects: {total: '255'},
+                newInvoices: {total: '255'},
+                openProjects: {total: '255'},
                 transactions: [],
                 Stat: [],
 
@@ -16530,7 +16527,7 @@
             }
         },
         mounted() {
-            
+
             this.$rest.api('getStatisticClient').then(res => {
 
                 let main = res.data.visitors;
@@ -16552,7 +16549,7 @@
                 });
                 this.options.series[0].data = arr1;
                 this.Stat = arr;
-                this.status_load=true;
+                this.status_load = true;
 
             })
         },

@@ -26,6 +26,8 @@ module.exports = {
         // '~/plugins/airbrake.js',
         {src: "~/plugins/i18n"},
         {src: '~/plugins/rest-api'},
+        {src: '~/plugins/vue-pagination.js'},
+        {src: '~/plugins/vue-loader.js'},
         {src: "~/plugins/vue-animate-number.js", ssr: false},
         {src: "~/plugins/vue2-editor", ssr: false},
         {src: '~/plugins/v-select.js', ssr: false},
@@ -52,12 +54,12 @@ module.exports = {
 
     proxy: proxyConfig,
     build: {
-        analyze: {
-            analyzerMode: 'server',
-            analyzerHost: '0.0.0.0',
-            analyzerPort: '9999',
-            openAnalyzer: true
-        },
+        // analyze: {
+        //     analyzerMode: 'server',
+        //     analyzerHost: '0.0.0.0',
+        //     analyzerPort: '9999',
+        //     openAnalyzer: true
+        // },
         vendor: 'vue2-editor',
         extend(config, {isDev, isClient}) {
             if (isDev && isClient) {

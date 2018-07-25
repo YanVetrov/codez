@@ -4,7 +4,7 @@
     <div class="dashboard-wait-wr border">
         <h5 class="title">Обмены в ожидании</h5>
         <transactions :transactions="transactions" ></transactions>
-         <paging
+         <pagination
           :currentPage="page.current_page"
           :totalPages="page.total_page"
           @page-changed="getTransactions"
@@ -15,12 +15,11 @@
 </template>
 
 <script>
-    import paging from '~/components/_utils/pagination/index';
     import transactions from '~/components/dashboard/exchangesPending/trans';
     export default {
         props: ['transactions', 'page'],
 
-        components: { paging, transactions },
+        components: { transactions },
         methods: {
             getTransactions(page) {
                 let filters = {};

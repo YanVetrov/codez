@@ -94,7 +94,7 @@
                                 </transition>
                                 <td colspan="7">
                                     <div class="text-right">
-                                        <paging :currentPage="current_page" :totalPages="total_page"
+                                        <pagination :currentPage="current_page" :totalPages="total_page"
                                                 @page-changed="getAdmins"/>
                                     </div>
                                 </td>
@@ -109,10 +109,7 @@
 </template>
 
 <script>
-    import paging from '~/components/_utils/pagination/index';
-
     export default {
-        components: { paging },
         data() {
             return {
                 total_page: 1,

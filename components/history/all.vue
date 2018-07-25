@@ -10,7 +10,7 @@
                 class='fa fa-search'></i></button>
 <div class='white-box'>
         <history :history="history"></history>
-        <paging
+        <pagination
                 :currentPage="current_page"
                 :totalPages="total_page"
                 @page-changed="getAdminHistory"
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-    import paging from '~/components/_utils/pagination/index';
     import history from '~/components/history/history';
 
     export default {

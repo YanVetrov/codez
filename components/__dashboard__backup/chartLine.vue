@@ -1,25 +1,20 @@
 <template>
-
-
     <div class="dashboard-profit--chart border">
-        <loading type="block" :status_load="status_load"/>
-    <highstock :options="options"></highstock>
+        <loader type="block" :status_load="status_load"/>
+        <highstock :options="options"></highstock>
     </div>
-
 </template>
 <style lang='scss' scoped>
- /*@import "dashboard/dashboard-profit";*/
+    /*@import "dashboard/dashboard-profit";*/
 </style>
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
-        mounted(){
-          this.status_load=true;  
+        mounted() {
+            this.status_load = true;
         },
         data() {
             return {
-                status_load:false,
+                status_load: false,
                 options: {
                     chart: {
                         type: 'areaspline'

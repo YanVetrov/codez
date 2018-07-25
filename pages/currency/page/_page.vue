@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="white-box">
-            <loading type="block" :status_load="status_load"/>
+            <loader type="block" :status_load="status_load"/>
 
         </div>
 
@@ -10,11 +10,8 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-
 
     export default {
-        components: {Loading},
 
         data() {
             return {

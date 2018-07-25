@@ -19,14 +19,13 @@
 </template>
 
 <script>
-    import pagination from '~/components/_utils/pagination/index'
     import tabs from './tabs';
     import search from './searchblock';
     import tableMain from './table';
 
     export default {
         props: ['data', 'page'],
-        components: {pagination, tableMain, tabs, search}
+        components: { tableMain, tabs, search}
 
     }
 </script>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="white-box">
             <notifications group="review_create" classes="news-create-notifications" class="news-notify"/>
-            <loading type="block" :status_load="status_load "/>
+            <loader type="block" :status_load="status_load "/>
             <div class="row" v-if="afterEdit === false">
                 <label>ИМЯ:</label>
                 <input type="text" class="form-control form-control-line" v-model="first_name">
@@ -36,10 +36,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
-
         data() {
             return {
                 status_load: true,

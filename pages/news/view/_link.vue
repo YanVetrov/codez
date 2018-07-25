@@ -19,7 +19,7 @@
             <div class="white-box box_m" v-for="(el,i) in comment "
                  :key="i">
                 <span>
-                        <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
+                        <i class="icon-calender"></i> {{$moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
                     </span>
                 <h5>Имя :{{el.name_author}}</h5>
                 <div>
@@ -35,11 +35,8 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-    import moment from 'moment'
-
     export default {
-        components: {Loading},
+        components: {},
 
         data() {
             return {
@@ -49,7 +46,6 @@
                 news_title: '',
                 news_id: '',
                 comment: '',
-                moment: moment,
                 name: '',
                 message: '',
 

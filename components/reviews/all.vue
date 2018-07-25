@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class='white-box' v-for="(el,i) in reviews" :key="i">
-            <loading type="block" :status_load="status_load"/>
+            <loader type="block" :status_load="status_load"/>
             <div class="head line">
                 <div class='lay'>ID</div>
                 <div class='lay'>{{$t('user')}}</div>
@@ -18,7 +18,7 @@
                     <div class='av'></div>
                     {{el.name}}
                 </div>
-                <div class='lay'>{{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}</div>
+                <div class='lay'>{{$moment(el.createdAt).format('DD.MM.YY в HH:mm')}}</div>
                 <div class='lay'>{{el.email}}</div>
                 <div class='lay'>177.234.55.23</div>
                 <div class='lay'>{{el._id}}</div>
@@ -46,17 +46,12 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-    import moment from 'moment';
-    import pagination from '~/components/_utils/pagination/index'
 
     export default {
-        components: {pagination, Loading,},
         data() {
             return {
                 status_load: true,
                 reviews: [],
-                moment: moment,
                 total_page: [],
                 current_page: this.$route.params.page,
                 showHide: 'Show',
@@ -109,8 +104,8 @@
                 this.$rest.api('getStatisticClient').then(res => {
                     console.log(res)
                 })
-                if (e.target.previousSibling.style.height == '80px') {
-                    e.target.previousSibling.style.height = 'auto'
+                if (e.target.previousSibling.style.height === '80px') {
+                    e.target.previousSibling.style.height = 'auto';
                     this.showHide = 'Hide'
                 }
                 else {

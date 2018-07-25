@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="white-box">
                 <notifications group="review_create" classes="reviews-create-notifications" class="reviews-notify"/>
-                <loading type="block" :status_load="status_load "/>
+                <loader type="block" :status_load="status_load "/>
                 <div class="row" v-if="afterPost === false">
                     <label><h3>{{$t('create')}}</h3></label>
                     <div>
@@ -42,11 +42,7 @@
 
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-
     export default {
-        components: {Loading},
-
         data() {
             return {
                 status_load: true,

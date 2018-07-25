@@ -1,7 +1,7 @@
 <template>
     
 <div class="dashboard-server">
-  <loading type="block" :status_load="status_load"/>
+  <loader type="block" :status_load="status_load"/>
     <div class="dashboard-server-wr border">
         <h5 class="title">Загрузка сервера</h5>
 
@@ -155,9 +155,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
         data() {
             return {
               status_load:false,

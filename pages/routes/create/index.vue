@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="white-box" style="padding: 0;">
-            <loading type="block" :status_load="status_load"/>
+            <loader type="block" :status_load="status_load"/>
             <div class="component-valut">
 
                 <div class="component-valut_wr">
@@ -16,11 +16,10 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
     import create from "~/components/dashboard/exchangesPending/create";
 
     export default {
-        components: {Loading, create},
+        components: {create},
         data() {
             return {
                 status_load: true,

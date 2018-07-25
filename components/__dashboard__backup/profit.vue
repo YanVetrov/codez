@@ -1,7 +1,7 @@
 <template>
-    
+
     <div class="dashboard-profit__list sidebar-width">
-<loading type="block" :status_load="status_load"/>
+        <loader type="block" :status_load="status_load"/>
         <ul>
             <li>
                 <div class="dashboard-profit__list--item">
@@ -32,17 +32,15 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
-       data(){
-         return{
-           status_load:false,
-         }
-       },
-       mounted(){
-         this.status_load=true;
-       }
+        data() {
+            return {
+                status_load: false,
+            }
+        },
+        mounted() {
+            this.status_load = true;
+        }
 
     }
 
@@ -50,6 +48,6 @@
 </script>
 
 <style lang='scss' scoped>
- /*@import "dashboard/dashboard-profit";*/
+    /*@import "dashboard/dashboard-profit";*/
 </style>
 

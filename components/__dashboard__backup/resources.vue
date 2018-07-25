@@ -18,9 +18,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-      components:{Loading},
         data() {
             return {
                 status_load:true,

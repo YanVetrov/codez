@@ -2,7 +2,7 @@
 
 
     <div class="dashboard-profit--active-partner sidebar-width">
-        <loading type="block" :status_load="status_load"/>
+        <loader type="block" :status_load="status_load"/>
         <h5 class="title">{{$t('visits')}}</h5>
         <div class="list-sidebar-wr">
             <ul class="list-sidebar">
@@ -32,9 +32,7 @@
  /*@import "dashboard/dashboard-profit";*/
 </style>
 <script>
-    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Loading},
         data() {
             return {
                 status_load:false,

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="white-box">
-            <loading type="block" :status_load="status_load"/>
+            <loader type="block" :status_load="status_load"/>
             <h2 class="search2"> {{$t('search')}} </h2>
             <div><i class="icon-magnifier search"></i>
                 <input type="text" class="form-control search2" :placeholder="$t('search')">
@@ -22,7 +22,7 @@
                 <div class="white-box">
                     <div class="text-muted">
                     <span class="m-r-10">
-                        <i class="icon-calender"></i> {{moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
+                        <i class="icon-calender"></i> {{$moment(el.createdAt).format('DD.MM.YY в HH:mm')}}
                     </span>
                     </div>
                     <h3 class="m-t-20 m-b-20 news-title">{{el.title}} </h3>
@@ -49,13 +49,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-    import moment from 'moment'
-    import pagination from '~/components/_utils/pagination/index'
-
-
     export default {
-        components: {Loading, pagination},
         data() {
             return {
                 pagination: true,
@@ -63,7 +57,6 @@
                 current_page: this.$route.params.page,
                 news: [],
                 total_page: [],
-                moment: moment,
                 perPage:this.$route.params.limit
             }
         },

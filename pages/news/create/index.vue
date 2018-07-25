@@ -12,7 +12,7 @@
 
             <div v-else class="white-box">
                 <notifications group="news_create" classes="news-create-notifications" class="news-notify"/>
-                <loading type="block" :status_load="status_load"/>
+                <loader type="block" :status_load="status_load"/>
                 <h3 class="box-title">{{$t('createNews.create')}} </h3>
                 <p class="text-muted m-b-30 font-12">{{$t('createNews.info')}}</p>
 
@@ -63,10 +63,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/_utils/loader/index";
-
     export default {
-        components: {Loading},
         data() {
             return {
 

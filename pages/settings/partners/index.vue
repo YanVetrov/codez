@@ -16,16 +16,11 @@
         </div>
         <pagination :currentPage="current_page"
                     :totalPages="total_page"
-                    @page-changed="getPartnersAll">
-        </pagination>
+                    @page-changed="getPartnersAll"/>
     </div>
 </template>
 <script>
-    import Loading from "~/components/_utils/loader/index";
-    import pagination from '~/components/_utils/pagination/index';
-
     export default {
-        components: {Loading, pagination},
         props:[
             'url'
         ],
