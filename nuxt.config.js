@@ -19,7 +19,7 @@ module.exports = {
         ]
     },
 
-    loading: '~/components/loading.vue',
+    loading: '~/components/_utils/loader/index.vue',
 
     css: [],
     plugins: [

@@ -109,13 +109,12 @@
 </template>
 
 <script>
-    const config = require('../../_config/app');
 
     export default {
         data() {
             return {
                 dropdown2: 'dropdown',
-                logoUrl: config.fsPath + '/img/logo/res/logo.png',
+                logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
                 dropdown1: 'dropdown',
                 dropdown3: 'dropdown',
                 dropdown: 'dropdown',

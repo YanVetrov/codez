@@ -5,7 +5,7 @@
         <div class="white-box">
             <nuxt-link :to="this.$route.path.replace(/\/$/,'')+'/create'">{{$t('create')}}</nuxt-link>
             <div v-for="(el,i) in partners" :key="i">
-                <td style="width: 100px;text-align:center"><img :src="config.fsPath +el.image.files.medium.url" style="height: 30px"/></td>
+                <td style="width: 100px;text-align:center"><img :src="$rest.fsPath +el.image.files.medium.url" style="height: 30px"/></td>
                 <td><input v-model='el.title'/></td>
                 <td><input v-model='el.link'/></td>
 
@@ -22,7 +22,6 @@
 </template>
 <script>
     import Loading from "~/components/_utils/loader/index";
-    import config from "~/_config/app.json";
     import pagination from '~/components/_utils/pagination/index';
 
     export default {
@@ -32,7 +31,6 @@
         ],
         data() {
             return {
-                config,
                 status_load: true,
                 partners: [],
                 total_page: [],

@@ -167,14 +167,6 @@ export default {
         "acceptInfo":"Accept step information",
         "verifInfo":"Guide for verification"
     },
-    "signIn":{
-        "incorrect":"Incorrect login or password",
-        "remember":"Remember me",
-        "log":"Log in",
-        "forgot":"Forgot your password?",
-        "title":"Sign in",
-        "msg":"Enter your details below"
-    },
     "createNews":{
         "success":"Successful published",
         "more":"Create one more",
