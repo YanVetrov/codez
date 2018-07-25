@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import pagination from '~/components/pagination'
+import pagination from '~/components/_utils/pagination/index'
 import tableMain from './table';
     export default {
         props: ['data','page'],

@@ -49,9 +49,9 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
     import moment from 'moment'
-    import pagination from '~/components/pagination'
+    import pagination from '~/components/_utils/pagination/index'
 
 
     export default {

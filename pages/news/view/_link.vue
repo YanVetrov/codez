@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
     import moment from 'moment'
 
     export default {

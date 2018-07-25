@@ -21,7 +21,7 @@
             <div class="row" v-else>
                 <div class="white-box " style="text-align: center">
                     <div class="col-md-12">
-                        <succses_page/>
+                        Success
                         {{text}}
                     </div>
                     <nuxt-link class="btn btn-outline btn-rounded btn-info " :to="'/users/partners/'">Вернуться
@@ -36,11 +36,9 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
-    import Succses_page from "@/components/success_page";
-
+    import Loading from "~/components/_utils/loader/index";
     export default {
-        components: {Succses_page, Loading},
+        components: {Loading},
 
         data() {
             return {

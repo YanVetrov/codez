@@ -59,7 +59,7 @@
 </template>
 
 <script>
-    import paging from '~/components/pagination';
+    import paging from '~/components/_utils/pagination/index';
 
     export default {
         components: {paging},

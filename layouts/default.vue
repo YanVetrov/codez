@@ -29,9 +29,9 @@
 </style>
 
 <script>
-    import HeaderMenu from "~/components/Menu/HeaderMenu";
-    import LeftMenu from "~/components/Menu/LeftMenu";
-    import breadcrumb from "~/components/Menu/breadcrumb";
+    import HeaderMenu from "~/components/_utils/menu/HeaderMenu";
+    import LeftMenu from "~/components/_utils/menu/LeftMenu";
+    import breadcrumb from "~/components/_utils/breadcrumb";
 
     export default {
         methods: {

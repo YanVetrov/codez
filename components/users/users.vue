@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
 
     export default {
         props: ['el'],

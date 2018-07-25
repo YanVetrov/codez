@@ -21,9 +21,9 @@
     </div>
 </template>
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
     import config from "~/_config/app.json";
-    import pagination from '~/components/pagination';
+    import pagination from '~/components/_utils/pagination/index';
 
     export default {
         components: {Loading, pagination},

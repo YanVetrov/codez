@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
     import create from "~/components/dashboard/exchangesPending/create";
 
     export default {

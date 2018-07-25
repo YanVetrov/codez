@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import paging from '~/components/pagination';
+    import paging from '~/components/_utils/pagination/index';
     import history from '~/components/history/history';
 
     export default {

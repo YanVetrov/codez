@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Loading from "~/components/loading";
+    import Loading from "~/components/_utils/loader/index";
     import Create_currency from "~/components/Сurrency/create";
 
     export default {

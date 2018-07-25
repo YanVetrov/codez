@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import pagination from '~/components/pagination'
+    import pagination from '~/components/_utils/pagination/index'
     import tabs from './tabs';
     import search from './searchblock';
     import tableMain from './table';

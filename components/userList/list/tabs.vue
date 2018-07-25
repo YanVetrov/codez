@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import pagination from '~/components/pagination'
+    import pagination from '~/components/_utils/pagination/index'
 
     export default {
         props: ['data'],
