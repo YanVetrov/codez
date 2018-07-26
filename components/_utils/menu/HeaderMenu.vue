@@ -41,9 +41,12 @@
             <div class="header__item">
 
                 <div class="master-bloc">
-                    <div class="master-bloc-date">
+                    <div class="master-bloc-date" @click="openProfileMenu">
                         <div class="master-bloc-date-photo">
-                            <div class="user-bloc-date-photo-item"><img src="img/sadness-face.svg" alt=""></div>
+                            <div class="user-bloc-date-photo-item">
+                                <i class="fal fa-user-circle user-icon-ff"></i>
+                                <!--<img src="img/sadness-face.svg" alt="">-->
+                            </div>
                         </div>
                         <div class="master-bloc-date-info">
                             <p>{{firstName}} {{lastName}}</p>
@@ -55,11 +58,29 @@
                     </div>
 
                     <!--<ul class="master-bloc-list master-bloc-list-open">-->
-                    <ul class="master-bloc-list">
+                    <ul :class="dropdownProfileMenu">
+                        <li>
+                            <div class="switch-block ">
 
-                        <li><a href="/">Редактировать профиль</a></li>
-                        <li><a href="/">История действий</a></li>
-                        <li><a href="/">{{$t('logout')}}</a></li>
+                                <div class="switch__">
+                                    <p>Стутус оператора</p>
+                                    <span>Онлайн оператора</span>
+                                </div>
+
+                                <div class="switch-site">
+
+                                <span class="switch switch-switcher">
+                                    <input type="radio" name="notifyAdmin" value="-1">
+                                    <input type="radio" name="notifyAdmin" value="1" checked>
+                                    <i></i>
+                                </span>
+
+                                </div>
+
+                            </div>
+                        </li>
+                        <li><nuxt-link :to="'/admins/edit/'+id">Редактировать профиль <i class="fal fa-user-edit"></i></nuxt-link></li>
+                        <li><nuxt-link to="/logout">{{$t('logout')}} <i class="fal fa-sign-out"></i></nuxt-link></li>
 
                     </ul>
 
@@ -67,14 +88,10 @@
 
                 <div class="setting-block">
 
-                    <span class="setting-icon"><i class="fal fa-sliders-h"></i></span>
+                    <span class="setting-icon" @click="openSettingMenu"><i class="fal fa-sliders-h"></i></span>
 
-                    <!--<ul class="setting-bloc-list setting-bloc-list-open">-->
-                    <ul class="setting-bloc-list">
-
-                        <li><a href="/">Редактировать профиль <i class="fal fa-pencil"></i> </a></li>
-                        <li><a href="/">История действий <i class="fal fa-history"></i> </a></li>
-                        <li><a href="/">Выход <i class="fal fa-sign-out"></i></a></li>
+                    <ul :class="dropdownSettingMenu">
+                        <li><nuxt-link to="/history">История действий <i class="fal fa-history"></i></nuxt-link></li>
                         <li>
                             <div class="switch-block ">
 
@@ -86,8 +103,28 @@
                                 <div class="switch-site">
 
                                 <span class="switch switch-switcher">
-                                    <input type="radio" id="item1-state-off" name="item1" value="-1" checked>
-                                    <input type="radio" id="item1-state-on" name="item1" value="1">
+                                    <input type="radio" name="activeSite" value="-1" checked>
+                                    <input type="radio" name="activeSite" value="1">
+                                    <i></i>
+                                </span>
+
+                                </div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="switch-block ">
+
+                                <div class="switch__">
+                                    <p>Отключить файл XML</p>
+                                    <span>Отключить файл курсов для листинга в мониторингах </span>
+                                </div>
+
+                                <div class="switch-site">
+
+                                <span class="switch switch-switcher">
+                                    <input type="radio" name="xmlStatus" value="-1" checked>
+                                    <input type="radio" name="xmlStatus" value="1" >
                                     <i></i>
                                 </span>
 
@@ -113,28 +150,16 @@
     export default {
         data() {
             return {
-                dropdown2: 'dropdown',
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
-                dropdown1: 'dropdown',
-                dropdown3: 'dropdown',
-                dropdown: 'dropdown',
-                profileList: [
-                    {name: 'My profile', icon: 'user', link: '/profile'}
-                ],
-                messages: {
-                    total: '5',
-                    box: [
-                        {text: "Привет!!", time: "22:30", user: "Шик"},
-                        {text: "Привет!!", time: "22:30", user: "Шик"},
-                        {text: "Привет!!", time: "22:30", user: "Шик"},
-                        {text: "Привет!!", time: "22:30", user: "Шик"},
-                        {text: "Привет!!", time: "22:30", user: "Шик"},
-                    ]
-                },
+                dropdownSettingMenu: 'setting-bloc-list',
+                dropdownLocalesMenu: 'master-bloc-list',
+                dropdownProfileMenu: 'locales-bloc-list',
 
-                firstName: '',
-                lastName: '',
-                email: ''
+
+                firstName: this.$store.getters['admin/checkAdmin'].first_name,
+                lastName: this.$store.getters['admin/checkAdmin'].last_name,
+                email: this.$store.getters['admin/checkAdmin'].email,
+                id: this.$store.getters['admin/checkAdmin']._id
             }
         },
         mounted() {
@@ -142,6 +167,7 @@
                 this.firstName = data.fn;
                 this.lastName = data.ln;
                 this.email = data.email;
+                this.id = data._id;
 
             })
         },
@@ -150,22 +176,26 @@
                 this.$store.dispatch('Menu/close');
 
             },
-            messageOpen(e) {
-                let n = 'dropdown';
-                this.dropdown === n ? this.dropdown = `${n} open` : this.dropdown = n;
+
+            openLocalesMenu(e) {
+                let n = 'locales-bloc-list';
+                this.dropdownLocalesMenu === n ? this.dropdownLocalesMenu = `${n}-open` : this.dropdownLocalesMenu = n;
             },
-            openTask(e) {
-                let n = 'dropdown';
-                this.dropdown1 === n ? this.dropdown1 = `${n} open` : this.dropdown1 = n;
+            openProfileMenu(e) {
+                let n = 'master-bloc-list';
+                this.dropdownProfileMenu === n ? this.dropdownProfileMenu = `${n}-open` : this.dropdownProfileMenu = n;
+                this.dropdownSettingMenu = 'setting-bloc-list';
             },
-            openProfile(e) {
-                let n = 'dropdown';
-                this.dropdown2 === n ? this.dropdown2 = `${n} open` : this.dropdown2 = n;
+            openSettingMenu(e) {
+                let n = 'setting-bloc-list';
+                this.dropdownSettingMenu === n ? this.dropdownSettingMenu = `${n}-open` : this.dropdownSettingMenu = n;
+                this.dropdownProfileMenu = 'master-bloc-list';
             },
 
             localizee(lang) {
                 this.$root.$i18n.locale = lang;
                 this.$store.dispatch('lang', lang);
+
             }
         }
     }
