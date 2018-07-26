@@ -32,14 +32,21 @@
             </tr>
             </thead>
 
-            <draggable v-model="users" :options="{handle:'.dragg',ghostClass:'.ghost'}" @change="$emit('sort',users)"
+            <draggable v-model="contacts" :options="{handle:'.dragg',ghostClass:'.ghost'}"
+                       @change="$emit('sort',contacts)"
                        :element='"tbody"'>
                 <tableItem
-                        v-for='user in users'
+                        v-for='item in contacts'
                         @delete='$emit("delete",$event)'
                         @edit='$emit("edit",$event)'
-                        :user='user'
-                        :key='user.id'
+                        :_id="item._id"
+                        :name="item.name"
+                        :link="item.link"
+                        :value="item.value"
+                        :imageSrc="item.images.small"
+                        :size="item.size"
+
+                        :key='item.id'
                 />
             </draggable>
 
@@ -60,7 +67,30 @@
         components: {tableItem, draggable},
         data() {
             return {
-                users: this.data
+                contacts: this.data.map((item) => {
+                    let images = {};
+                    if (item && item.image && item.image.files) {
+                        for (let key in item.image.files) {
+                            if (item.image.files.hasOwnProperty(key)) {
+                                if (item.image.files[key].type && item.image.files[key].url) {
+                                    images[item.image.files[key].type] = item.image.files[key].url
+                                }
+                            }
+                        }
+                    }
+                    return {
+                        _id: item._id,
+                        name: item.name,
+                        link: item.link,
+                        value: item.value,
+                        size: item.size,
+                        positionSort: item.positionSort,
+                        images,
+                        active: true,
+                        updatedAt: item.updatedAt,
+                        createdAt: item.createdAt,
+                    }
+                })
             }
         }
 

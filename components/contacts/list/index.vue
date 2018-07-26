@@ -27,7 +27,7 @@
             }
         },
         methods: {
-            getAdmins(page) {
+            getContacts(page) {
                 this.load = false;
                 this.$rest.api('getContacts', { page, limit: 10 })
                     .then(res => {
@@ -84,10 +84,10 @@
                                 text: res.error.message,
                             });
                         }
-                        return this.getAdmins();
+                        return this.getContacts();
                     })
                     .catch(err => {
-                        return this.getAdmins();
+                        return this.getContacts();
                     })
 
             },
@@ -116,7 +116,7 @@
                                 title: 'Something wrong...',
                                 text: res.error.message,
                             });
-                            return this.getAdmins();
+                            return this.getContacts();
                         }
                         
                     })
@@ -152,7 +152,7 @@
                                 title: 'Something wrong...',
                                 text: res.error.message,
                             });
-                             return this.getAdmins();
+                             return this.getContacts();
                         }
                        
                     })
@@ -162,7 +162,7 @@
 
         },
         mounted() {
-            return this.getAdmins();
+            return this.getContacts();
         }
     }
 </script>

@@ -1,18 +1,18 @@
 <template>
-    <tr :ident="user._id">
+    <tr :ident="_id">
         <td>
-            <span class="icon-company"><img src="~/assets/img/bank.svg" alt=""></span>
+            <span class="icon-company"><img :src="$rest.fsPath+imageSrc" alt=""></span>
         </td>
 
         <td>
-            <p>{{user.name}}</p>
+            <p>{{name}}</p>
         </td>
 
         <td>
 
             <div class="correct-input">
                 <label>
-                    <input type="text" placeholder="нет контакта" v-model='user.value' @blur="$emit('edit',user)">
+                    <input type="text" placeholder="нет контакта" v-model='value' @blur="$emit('edit',{value:value})">
                     <span class="btn btn__correct"></span>
                 </label>
             </div>
@@ -22,19 +22,19 @@
         <td class="user-data">
             <div class="correct-input">
                 <label>
-                    <input type="text" placeholder="нет ссылки" v-model='user.link' @blur="$emit('edit',user)">
+                    <input type="text" placeholder="нет ссылки" v-model='link' @blur="$emit('edit',{link:link})">
                     <span class="btn btn__correct"></span>
                 </label>
             </div>
         </td>
 
         <td>
-            <p class="color green">25%</p>
+            <p class="color green">{{(100/12 *size).toFixed(0)}} %</p>
         </td>
 
         <td class="dragg">
             <div class="table-btn-users">
-                <a class="btn btn-simple cart-delete" @click.prevent="$emit('ondelete',user._id)"></a>
+                <a class="btn btn-simple cart-delete" @click.prevent="$emit('delete',_id)"></a>
             </div>
             <div class="double-b"></div>
         </td>
@@ -45,7 +45,14 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: {
+            _id: {type: String, required: true},
+            name: {type: String, required: true},
+            link: {type: String, required: false},
+            value: {type: String, required: false},
+            imageSrc: {type: String, required: true},
+            size: {type: Number, required: true},
+        },
     }
 </script>
 
