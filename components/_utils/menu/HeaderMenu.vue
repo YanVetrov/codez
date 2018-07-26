@@ -44,8 +44,7 @@
                     <div class="master-bloc-date" @click="openProfileMenu">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
-                                <i class="fal fa-user-circle user-icon-ff"></i>
-                                <!--<img src="img/sadness-face.svg" alt="">-->
+                                <img :src="$identicon.create(id)" alt="">
                             </div>
                         </div>
                         <div class="master-bloc-date-info">
@@ -149,23 +148,24 @@
 
     export default {
         data() {
+            const userAdmin = this.$store.getters['admin/checkAdmin'];
+
             return {
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
                 dropdownSettingMenu: 'setting-bloc-list',
                 dropdownLocalesMenu: 'master-bloc-list',
                 dropdownProfileMenu: 'locales-bloc-list',
 
-
-                firstName: this.$store.getters['admin/checkAdmin'].first_name,
-                lastName: this.$store.getters['admin/checkAdmin'].last_name,
-                email: this.$store.getters['admin/checkAdmin'].email,
-                id: this.$store.getters['admin/checkAdmin']._id
+                firstName: userAdmin.first_name,
+                lastName: userAdmin.last_name,
+                email: userAdmin.email,
+                id:userAdmin._id
             }
         },
         mounted() {
             this.$root.$on('userInfo', (data) => {
-                this.firstName = data.fn;
-                this.lastName = data.ln;
+                this.firstName = data.firstName;
+                this.lastName = data.lastName;
                 this.email = data.email;
                 this.id = data._id;
 

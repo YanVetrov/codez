@@ -45,15 +45,15 @@
                 .then(res => {
                     if (res.success) {
                         this.$store.dispatch('admin/admin', res.data);
-                        let d = res.data,
-                            fn = d.first_name,
-                            ln = d.last_name,
-                            email = d.email,
-                            obj = {fn, ln, email}
-                        this.$root.$emit('userInfo', obj)
-                        console.log(obj)
+
+                        this.$root.$emit('userInfo', {
+                            _id: res.data._id,
+                            email: res.data.email,
+                            lastName: res.data.first_name,
+                            firstName: res.data.last_name
+                        });
                     }
-                    res.success ? '' : this.$router.push('/signin');
+                    return res.success ? '' : this.$router.push('/signin');
 
                 })
                 .catch(err => {
@@ -71,8 +71,7 @@
             $route() {
                 this.$rest.api('isAuthUser')
                     .then(res => {
-                        res.success ? '' : this.$router.push('/signin');
-                        console.log(res);
+                        return res.success ? '' : this.$router.push('/signin');
                     })
             }
         },
