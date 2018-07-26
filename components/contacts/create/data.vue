@@ -2,6 +2,14 @@
 
 
     <div class="list-contact-sidebar">
+        <img-uploader
+                type="contacts"
+                :width="100"
+                :height="100"
+                :show="show"
+                @change-imageBase64="changeImageBase64"
+                @change-imageId="changeШmageId"
+        />
 
         <div class="sidebar-width border list-contact-sidebar--new-block">
 
@@ -11,9 +19,9 @@
 
                 <div class="list-contact-sidebar--upload-wr">
 
-                    <div class="list-contact-sidebar--upload__input">
+                    <div class="list-contact-sidebar--upload__input" @click="show = !show">
 
-                        <img v-if="imageSrc && imageSrc !==''" :src="imageSrc" alt="">
+                        <img v-if="imgDataUrl && imgDataUrl !==''" :src="imgDataUrl" alt="">
 
                     </div>
 
@@ -79,29 +87,19 @@
 
                         <label class="contact__">
 
-                            <p>Размер контакта</p>
+                            <p>Размер блока (из 100%)</p>
 
                             <div>
-                                <!--<input type="text" placeholder="Введите контакт">-->
                                 <select>
-                                    <option>25 %</option>
-                                    <option>50 %</option>
-                                    <option>75 %</option>
-                                    <option>100 %</option>
+                                    <option value="3">25 %</option>
+                                    <option value="6">50 %</option>
+                                    <option value="9">75 %</option>
+                                    <option value="12">100 %</option>
                                 </select>
                                 <p class="num">4</p>
 
                                 <i class="fal fa-sort-down"></i>
 
-
-                                <!-- <ul>
-                                     <li>
-                                         <button class="blue">+</button>
-                                     </li>
-                                     <li>
-                                         <button>-</button>
-                                     </li>
-                                 </ul>-->
                             </div>
 
                         </label>
@@ -142,12 +140,23 @@
         props: ['data'],
         data() {
             return {
+                show: false,
+                imgDataUrl: '',
                 admin: {
                     name: '',
                     link: '',
-                    imageSrc: '',
+                    imageId: '',
                     value: ''
                 }
+            }
+        },
+
+        methods: {
+            changeImageBase64(v) {
+                this.imgDataUrl = v;
+            },
+            changeШmageId(v) {
+                this.admin.imageId = v;
             }
         }
     }
