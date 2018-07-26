@@ -8,7 +8,7 @@
                 :height="100"
                 :show="show"
                 @change-imageBase64="changeImageBase64"
-                @change-imageId="changeШmageId"
+                @change-imageId="changeImageId"
         />
 
         <div class="sidebar-width border list-contact-sidebar--new-block">
@@ -90,7 +90,7 @@
                             <p>Размер блока (из 100%)</p>
 
                             <div>
-                                <select>
+                                <select v-model='admin.size'>
                                     <option value="3">25 %</option>
                                     <option value="6">50 %</option>
                                     <option value="9">75 %</option>
@@ -146,6 +146,7 @@
                     name: '',
                     link: '',
                     imageId: '',
+                    size: 6,
                     value: ''
                 }
             }
@@ -155,8 +156,9 @@
             changeImageBase64(v) {
                 this.imgDataUrl = v;
             },
-            changeШmageId(v) {
+            changeImageId(v) {
                 this.admin.imageId = v;
+                this.show = false;
             }
         }
     }
