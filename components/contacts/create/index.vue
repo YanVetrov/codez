@@ -2,7 +2,7 @@
 
     <div>
         <DataInfo :data="info" v-if="load && info" @oncreate='newAdmin($event)'></DataInfo>
-        
+
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
 </template>
@@ -12,21 +12,23 @@
     import WaitInfo from "./loader.vue";
 
     export default {
-        components: { DataInfo, WaitInfo },
-         data() {
+        components: {DataInfo, WaitInfo},
+        data() {
             return {
-                load:true,
-                errorData:false,
-                info:true,
+                load: true,
+                errorData: false,
+                info: true,
 
             }
         },
         methods: {
             newAdmin(admin) {
-                this.load=false
-                let obj = {}
+                this.load = false;
+                let obj = {};
                 admin.name && admin.name !== '' ? obj.name = admin.name : '';
                 admin.link && admin.link !== '' ? obj.link = admin.link : '';
+                admin.imageId && admin.imageId !== '' ? obj.imageId = admin.imageId : '';
+                admin.size && admin.size !== '' ? obj.size = admin.size : '';
                 admin.value && admin.value !== '' ? obj.value = admin.value : '';
                 this.$rest.api('addContact', obj)
                     .then(res => {
@@ -49,14 +51,11 @@
                         }
 
 
-                        this.load=true
+                        this.load = true
                     })
 
 
             },
-        },
-        created() {
-            return 1
         }
     }
 </script>
