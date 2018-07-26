@@ -50,7 +50,7 @@
             
                                 <td>
                                     <div class="table-btn-users">
-                                        <a class="btn btn-simple btn-simple--img"><span class="icon-edit-profile"></span>Профиль</a>
+                                        <a class="btn btn-simple " style="padding-left: 40px"><i class="fal fa-address-card" style="margin-right: 5px;font-size: 16px;    position: absolute; margin-left: -25px;"></i> Профиль</a>
                                     </div>
                                 </td>
                             </tr>

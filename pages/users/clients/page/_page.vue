@@ -1,26 +1,18 @@
 <template>
 
-<div class='main'>
-    <div class="users-list-toodo-wr">
-        
-            
-            
-            
-                <list/>
-            
-            
-        
-            
+    <div class='main'>
+        <div class="users-list-toodo-wr">
+            <list/>
             <div class="users-list-toodo-sidebar">
-            
+
                 <online/>
-            
-               <statistic/>
-            
+
+                <statistic/>
+
             </div>
-        
+
         </div>
-</div>
+    </div>
 
 
 </template>
@@ -29,9 +21,10 @@
     import online from '~/components/userList/online';
     import statistic from '~/components/userList/statistic';
     import list from '~/components/userList/list';
+
     export default {
         props: ['data'],
-        components:{online,statistic,list},
+        components: {online, statistic, list},
     }
 </script>
 

@@ -28,6 +28,7 @@ module.exports = {
         {src: '~/plugins/rest-api'},
         {src: '~/plugins/vue-pagination.js'},
         {src: '~/plugins/vue-loader.js'},
+        {src: '~/plugins/vue-modal.js'},
         {src: "~/plugins/vue-animate-number.js", ssr: false},
         {src: "~/plugins/vue2-editor", ssr: false},
         {src: '~/plugins/v-select.js', ssr: false},

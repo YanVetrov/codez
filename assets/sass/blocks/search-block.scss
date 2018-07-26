@@ -72,14 +72,19 @@ $borderRight: 1px solid #ebecf0;
   ::-ms-input-placeholder {
     color: #9899a0;
   }
-  
+  .icon-search{
+    i.fal {
+      color: #0e83f0;
+      font-size: 18px;
+    }
+  }
   .icon-filter {
     display: inline-block;
     border-right: $borderRight;
     padding-right: 15px;
     margin-right: 20px;
     
-      &:before {
+      i.fal {
         color: #0e83f0;
         font-size: 22px;
       }
