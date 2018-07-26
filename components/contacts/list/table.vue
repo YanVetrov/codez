@@ -43,7 +43,7 @@
                         :name="item.name"
                         :link="item.link"
                         :value="item.value"
-                        :imageSrc="item.images.small"
+                        :imageSrc="item.images.big"
                         :size="item.size"
 
                         :key='item.id'

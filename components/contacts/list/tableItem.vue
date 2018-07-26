@@ -12,7 +12,8 @@
 
             <div class="correct-input">
                 <label>
-                    <input type="text" placeholder="нет контакта" v-model='value' @blur="$emit('edit',{value:value})">
+                    <input type="text" placeholder="нет контакта" v-model='value'
+                           @blur="$emit('edit',{value:value,contact_id:_id})">
                     <span class="btn btn__correct"></span>
                 </label>
             </div>
@@ -22,7 +23,8 @@
         <td class="user-data">
             <div class="correct-input">
                 <label>
-                    <input type="text" placeholder="нет ссылки" v-model='link' @blur="$emit('edit',{link:link})">
+                    <input type="text" placeholder="нет ссылки" v-model='link'
+                           @blur="$emit('edit',{link:link,contact_id:_id})">
                     <span class="btn btn__correct"></span>
                 </label>
             </div>
@@ -57,11 +59,5 @@
 </script>
 
 <style lang='scss' scoped>
-    .double-b {
-        cursor: -webkit-grabbing;
-    }
 
-    .ghost {
-        opacity: 0.9;
-    }
 </style>
