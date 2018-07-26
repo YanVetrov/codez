@@ -13,7 +13,7 @@
 
         <div class="sidebar-width border list-contact-sidebar--new-block">
 
-            <h5 class="title">Новый контакт</h5>
+            <h5 class="title">{{$t('page.contacts.create.newContact')}}</h5>
 
             <div class="list-contact-sidebar--upload">
 
@@ -26,8 +26,8 @@
                     </div>
 
                     <div class="list-contact-sidebar--upload__info">
-                        <p class="color blue">Загрузить Изображение</p>
-                        <span>логотип соц.сети или иконку</span>
+                        <p class="color blue">{{$t('page.contacts.create.imageContact')}}</p>
+                        <span>{{$t('page.contacts.create.helpImage')}}</span>
                     </div>
 
                 </div>
@@ -42,10 +42,10 @@
 
                         <label>
 
-                            <p>Обозначте контакт</p>
+                            <p>{{$t('page.contacts.create.nameSystem')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введите контакт" v-model='admin.name'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterSystem')" v-model='admin.name'>
                                 <p class="num">1</p>
                             </div>
 
@@ -57,10 +57,10 @@
 
                         <label>
 
-                            <p>Контактые данны</p>
+                            <p>{{$t('page.contacts.create.value')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введите текст" v-model='admin.value'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterValue')" v-model='admin.value'>
                                 <p class="num">2</p>
                             </div>
 
@@ -72,10 +72,10 @@
 
                         <label>
 
-                            <p>Ссылка</p>
+                            <p>{{$t('page.contacts.create.link')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введитее ссылку" v-model='admin.link'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterLink')" v-model='admin.link'>
                                 <p class="num">3</p>
                             </div>
 
@@ -87,7 +87,7 @@
 
                         <label class="contact__">
 
-                            <p>Размер блока (из 100%)</p>
+                            <p>{{$t('page.contacts.create.sizeBlock')}}</p>
 
                             <div>
                                 <select v-model='admin.size'>
@@ -114,13 +114,11 @@
                                     <i class="fal fa-mouse-pointer"></i>
             
                                 </span>
-                        <p>Для того чтобы отредактировать
-                            контак, просто нажмите на текст
-                            который нужно измеить </p>
+                        <p>{{$t('page.contacts.create.helpText')}}</p>
                     </li>
 
                     <li class="text-center">
-                        <button class="btn btn-blue" @click='$emit("oncreate",admin)'>Добавить контакты</button>
+                        <button class="btn btn-blue" @click='$emit("oncreate",admin)'>{{$t('page.contacts.create.btnAddContact')}}</button>
                     </li>
 
 
@@ -163,9 +161,3 @@
         }
     }
 </script>
-
-<style lang='scss' scoped>
-    .sidebar-width {
-        height: auto;
-    }
-</style>

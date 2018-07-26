@@ -2,7 +2,7 @@
 
     <div class="list-contact-main border">
         <DataInfo :data="info" :page='{total_page,current_page}' v-if="load && info"></DataInfo>
-        
+
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
 </template>
@@ -13,7 +13,7 @@
     import WaitInfo from "./loader.vue";
 
     export default {
-        components: { DataInfo, WaitInfo },
+        components: {DataInfo, WaitInfo},
         data() {
             return {
                 current_page: this.$route.params.page,
@@ -29,7 +29,7 @@
         methods: {
             getContacts(page) {
                 this.load = false;
-                this.$rest.api('getContacts', { page, limit: 10 })
+                this.$rest.api('getContacts', {page, limit: 10})
                     .then(res => {
                         if (res.success) {
                             this.info.users = res.data.contacts;
@@ -56,7 +56,7 @@
             },
             deleteAdmin(contact_id) {
 
-                this.$rest.api('deleteContact', { contact_id })
+                this.$rest.api('deleteContact', {contact_id})
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -92,9 +92,8 @@
 
             },
             editAdmin(obj, newIndex) {
-                console.log(obj)
                 newIndex ? obj.positionSort = newIndex : '';
-                obj.contact_id = obj._id
+                obj.contact_id = obj._id;
                 this.$rest.api('editContact', obj)
                     .then(res => {
                         console.log(res);
@@ -118,20 +117,16 @@
                             });
                             return this.getContacts();
                         }
-                        
+
                     })
 
             },
             sortAdmin(arr) {
-                let newArr=[]
-                let obj={}
-                arr.forEach((el,i)=>{
-                    obj.id=el._id;
-                    obj.positionSort=i+1;
-                    newArr.push(obj);
-                })
-                console.log(newArr)
-                this.$rest.api('sortContact', newArr)
+                const contacts = arr.map((el, i) => {
+                    return {id: el._id, positionSort: i + 1};
+                });
+
+                return this.$rest.api('sortContact', {contacts})
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -152,9 +147,9 @@
                                 title: 'Something wrong...',
                                 text: res.error.message,
                             });
-                             return this.getContacts();
+                            return this.getContacts();
                         }
-                       
+
                     })
 
             }

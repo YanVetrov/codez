@@ -1,13 +1,17 @@
 import menu from './menu'
 import user from './page/user'
+import contacts from './page/contacts'
+import routes from './routes'
 
 export default {
-    "menu": menu,
-    "page":{
-        "user":user
+    menu,
+    "page": {
+        user,
+        contacts
     },
     "breadcrumb": {
-        "tutorial": "Инструкция"
+        "tutorial": "Инструкция",
+        routes
     },
     "Daily stat": "Дневной охват",
     "country": "Страна",
@@ -166,7 +170,7 @@ export default {
         "acceptInfo": "Информация на шаге подтверждения",
         "verifInfo": "Инструкция по верификации"
     },
-    
+
     "createNews": {
         "success": "Успешно опубликовано ",
         "more": "Создать еще одну новость",
