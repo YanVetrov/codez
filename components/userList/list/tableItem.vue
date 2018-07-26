@@ -1,68 +1,53 @@
 <template>
+    <tr>
+        <td>
+            <span class="icon-company"><img src="~/assets/img/bank.svg" alt=""></span>
+
+            <div class="company">
+                <p class="name-company">{{user.first_name}} {{user.last_name}} </p>
+                <p>Online: {{$moment(user.lastActiveAt).fromNow()}}</p>
+            </div>
+
+        </td>
+
+        <td>
+            <p>{{user.email}}</p>
+        </td>
+
+        <td>
+
+            <ul>
+                <li>
+                    <p class="color blue">{{user.exchangesTotal}}</p>
+                    <p><span>Всего</span></p>
+                </li>
+                <li>
+                    <p class="color green">{{user.exchangesSuccess}}</p>
+                    <p><span>Успешно</span></p>
+                </li>
+            </ul>
 
 
-    
-        
-            
+        </td>
 
-                            <tr>
-            
-                                <td>
-            
-                                    <span class="icon-company"><img src="~/assets/img/bank.svg" alt=""></span>
-            
-                                    <div class="company">
-                                        <p class="name-company">{{user.first_name}} {{user.last_name}} </p>
-                                        <p>Online: {{$moment(user.lastActiveAt).fromNow()}}</p>
-                                    </div>
-            
-                                </td>
-            
-                                <td>
-                                    <p>{{user.email}}</p>
-                                </td>
-            
-                                <td>
-            
-                                    <ul>
-                                        <li>
-                                            <p class="color blue">{{user.exchangesTotal}}</p>
-                                            <p><span>Всего</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="color green">{{user.exchangesSuccess}}</p>
-                                            <p><span>Успешно</span></p>
-                                        </li>
-                                    </ul>
-            
-            
-                                </td>
-            
-                                <td class="user-data">
-                                    <p>{{user.createdAt.split('T')[0]}} </p>
-                                    <p>в 14:25 ч</p>
-                                </td>
-            
-                                <td>
-                                    <p class="color green">{{user.balance}} <span>USD</span></p>
-                                    <p>Партнерские <span>{{user.partner}}</span></p>
-                                </td>
-            
-                                <td>
-                                    <div class="table-btn-users">
-                                        <a class="btn btn-simple " style="padding-left: 40px"><i class="fal fa-address-card" style="margin-right: 5px;font-size: 16px;    position: absolute; margin-left: -25px;"></i> Профиль</a>
-                                    </div>
-                                </td>
-                            </tr>
-            
+        <td class="user-data">
+            <p>{{user.createdAt.split('T')[0]}} </p>
+            <p>в 14:25 ч</p>
+        </td>
 
-            
-            
-        
-       
+        <td>
+            <p class="color green">{{user.balance}} <span>USD</span></p>
+            <p>Партнерские <span>{{user.partner}}</span></p>
+        </td>
 
-
-
+        <td>
+            <div class="table-btn-users">
+                <a class="btn btn-simple " style="padding-left: 40px"><i class="fal fa-address-card"
+                                                                         style="margin-right: 5px;font-size: 16px;    position: absolute; margin-left: -25px;"></i>
+                    Профиль</a>
+            </div>
+        </td>
+    </tr>
 </template>
 
 <script>
