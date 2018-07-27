@@ -29,8 +29,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/">
-                            <i class="fal fa-user"></i>
+                        <a style="cursor: pointer" @click="localizee('en')">
+                            <i class="fal fa-language"></i>
                         </a>
                     </li>
                 </ul>
@@ -44,12 +44,12 @@
                     <div class="master-bloc-date" @click="openProfileMenu">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
-                                <img :src="$identicon.create(id)" alt="">
+                                <img :src="$identicon.create(user.id)" alt="">
                             </div>
                         </div>
                         <div class="master-bloc-date-info">
-                            <p>{{firstName}} {{lastName}}</p>
-                            <span>{{email}}</span>
+                            <p style="line-height: 1.1;">{{user.firstName}} {{user.lastName}}</p>
+                            <span>{{user.email}}</span>
 
                         </div>
                         <!--<em class="caret caret-open"></em>-->
@@ -60,14 +60,11 @@
                     <ul :class="dropdownProfileMenu">
                         <li>
                             <div class="switch-block ">
-
                                 <div class="switch__">
                                     <p>Стутус оператора</p>
                                     <span>Онлайн оператора</span>
                                 </div>
-
                                 <div class="switch-site">
-
                                 <span class="switch switch-switcher">
                                     <input type="radio" name="notifyAdmin" value="-1">
                                     <input type="radio" name="notifyAdmin" value="1" checked>
@@ -78,8 +75,13 @@
 
                             </div>
                         </li>
-                        <li><nuxt-link :to="'/admins/edit/'+id">Редактировать профиль <i class="fal fa-user-edit"></i></nuxt-link></li>
-                        <li><nuxt-link to="/logout">{{$t('logout')}} <i class="fal fa-sign-out"></i></nuxt-link></li>
+                        <li>
+                            <nuxt-link :to="'/admins/edit/'+user.id">Редактировать профиль <i class="fal fa-user-edit"></i>
+                            </nuxt-link>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer" @click="logout">{{$t('logout')}} <i class="fal fa-sign-out"></i></a>
+                        </li>
 
                     </ul>
 
@@ -90,7 +92,9 @@
                     <span class="setting-icon" @click="openSettingMenu"><i class="fal fa-sliders-h"></i></span>
 
                     <ul :class="dropdownSettingMenu">
-                        <li><nuxt-link to="/history">История действий <i class="fal fa-history"></i></nuxt-link></li>
+                        <li>
+                            <nuxt-link to="/history">История действий <i class="fal fa-history"></i></nuxt-link>
+                        </li>
                         <li>
                             <div class="switch-block ">
 
@@ -123,7 +127,7 @@
 
                                 <span class="switch switch-switcher">
                                     <input type="radio" name="xmlStatus" value="-1" checked>
-                                    <input type="radio" name="xmlStatus" value="1" >
+                                    <input type="radio" name="xmlStatus" value="1">
                                     <i></i>
                                 </span>
 
@@ -148,7 +152,7 @@
 
     export default {
         data() {
-            const userAdmin = this.$store.getters['admin/checkAdmin'];
+            let userAdmin = this.$store.getters['auth/checkAdmin'];
 
             return {
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
@@ -156,22 +160,33 @@
                 dropdownLocalesMenu: 'master-bloc-list',
                 dropdownProfileMenu: 'locales-bloc-list',
 
-                firstName: userAdmin.first_name,
-                lastName: userAdmin.last_name,
-                email: userAdmin.email,
-                id:userAdmin._id
+            }
+        },
+        computed: {
+            user() {
+                return {
+                    firstName: this.$store.getters['auth/checkAdmin'].first_name,
+                    lastName: this.$store.getters['auth/checkAdmin'].last_name,
+                    email: this.$store.getters['auth/checkAdmin'].email,
+                    id: this.$store.getters['auth/checkAdmin']._id
+                }
             }
         },
         mounted() {
-            this.$root.$on('userInfo', (data) => {
-                this.firstName = data.firstName;
-                this.lastName = data.lastName;
-                this.email = data.email;
-                this.id = data._id;
-
-            })
+            // this.$root.$on('userInfo', (data) => {
+            //     this.firstName = data.firstName;
+            //     this.lastName = data.lastName;
+            //     this.email = data.email;
+            //     this.id = data._id;
+            //
+            // })
         },
         methods: {
+            logout() {
+                this.$rest('destroySession').then(() => {
+                    // this.$store.dispatch('auth/destroyUser');
+                })
+            },
             close() {
                 this.$store.dispatch('Menu/close');
 
@@ -193,8 +208,8 @@
             },
 
             localizee(lang) {
+                this.$store.dispatch('local/change', lang);
                 this.$root.$i18n.locale = lang;
-                this.$store.dispatch('lang', lang);
 
             }
         }

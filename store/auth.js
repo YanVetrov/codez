@@ -3,14 +3,21 @@ export const state = () => ({
 });
 
 export const mutations = {
-    ADMIN(state, user) {
+    setAuth(state, user) {
         state.user = user;
+    },
+    deleteUser(state) {
+        state.user = {};
+
     }
 };
 
 export const actions = {
-    admin({ commit }, user) {
-        commit('ADMIN', user);
+    signIn({commit}, user) {
+        commit('setAuth', user);
+    },
+    destroyUser({commit}) {
+        commit('deleteUser');
     }
 };
 

@@ -36,7 +36,7 @@
     export default {
         methods: {
             check() {
-                console.log(this.$store.getters['admin/checkAdmin'])
+                console.log(this.$store.getters['auth/checkAdmin'])
             }
         },
         mounted() {
@@ -44,14 +44,14 @@
                 .api('isAuthUser')
                 .then(res => {
                     if (res.success) {
-                        this.$store.dispatch('admin/admin', res.data);
+                        this.$store.dispatch('auth/signIn', res.data);
 
-                        this.$root.$emit('userInfo', {
-                            _id: res.data._id,
-                            email: res.data.email,
-                            lastName: res.data.first_name,
-                            firstName: res.data.last_name
-                        });
+                        // this.$root.$emit('userInfo', {
+                        //     _id: res.data._id,
+                        //     email: res.data.email,
+                        //     lastName: res.data.first_name,
+                        //     firstName: res.data.last_name
+                        // });
                     }
                     return res.success ? '' : this.$router.push('/signin');
 

@@ -29,9 +29,6 @@
             updateData() {
                 return Promise.resolve()
                     .then(() => {
-                        return new Promise(resolve => setTimeout(resolve, 5000))
-                    })
-                    .then(() => {
 
                         return [{
                             img: 'https://exchanger_001.proexchanger.net/service/fs/img/parsers/gdax.png',

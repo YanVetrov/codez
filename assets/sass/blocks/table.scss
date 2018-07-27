@@ -3,7 +3,7 @@
 
   width: 100%;
 
-  overflow: scroll;
+  //overflow: scroll;
 
   thead {
     td {
@@ -101,9 +101,12 @@
 
   }
 
+
   tbody {
     td {
       color: $colorTable;
+      padding: 3px 30px;
+
     }
 
     p {

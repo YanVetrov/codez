@@ -43,7 +43,7 @@
             this.$rest.api('isAuthUser')
                 .then(res => {
                     if (res.success) {
-                        this.$store.dispatch('admin/admin', res.data);
+                        this.$store.dispatch('auth/signIn', res.data);
                         this.$router.push('dashboard');
                     }
                 })
@@ -56,8 +56,8 @@
                     .then(res => {
                         console.log(res);
                         if (res.success) {
-                            this.$root.$emit('loading',false)
-                            return this.$store.dispatch('admin/admin', res.data);
+                            this.$root.$emit('loading',false);
+                            return this.$store.dispatch('auth/signIn', res.data);
                         }
                         else {
                             this.valid = false;

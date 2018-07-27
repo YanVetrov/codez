@@ -29,9 +29,6 @@
             updateData() {
                 return Promise.resolve()
                     .then(() => {
-                        return new Promise(resolve => setTimeout(resolve, 5000))
-                    })
-                    .then(() => {
 
                         return {
                             chart: {

@@ -24,6 +24,7 @@ module.exports = {
     css: [],
     plugins: [
         // '~/plugins/airbrake.js',
+        {src: "~/plugins/vue-storage.js", ssr: false},
         {src: "~/plugins/i18n"},
         {src: '~/plugins/rest-api'},
         {src: '~/plugins/vue-pagination.js'},

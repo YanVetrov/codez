@@ -31,8 +31,8 @@
         </td>
 
         <td class="user-data">
-            <p>{{user.createdAt.split('T')[0]}} </p>
-            <p>в 14:25 ч</p>
+            <p>{{$moment(user.createdAt).format('DD MMM YYYY')}} </p>
+            <p>{{$moment(user.createdAt).format('HH:mm')}}</p>
         </td>
 
         <td>
@@ -42,9 +42,11 @@
 
         <td>
             <div class="table-btn-users">
-                <a class="btn btn-simple " style="padding-left: 40px"><i class="fal fa-address-card"
-                                                                         style="margin-right: 5px;font-size: 16px;    position: absolute; margin-left: -25px;"></i>
-                    Профиль</a>
+                <a class="btn btn-simple " style="padding-left: 40px">
+                    <i class="fal fa-address-card"
+                       style="margin-right: 5px;font-size: 16px;position: absolute; margin-left: -25px;"></i>
+                    Профиль
+                </a>
             </div>
         </td>
     </tr>
@@ -56,6 +58,3 @@
     }
 </script>
 
-<style lang='scss' scoped>
-    /*@import "dashboard/dashboard-top";*/
-</style>
