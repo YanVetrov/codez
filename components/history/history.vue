@@ -1,7 +1,6 @@
 <template>
     <table>
         <tbody>
-
         <component v-bind:is="getTypeAction(action.method).componentName"
                    :method="action.method"
                    :date="action.createdAt"

@@ -61,27 +61,29 @@
     import history from '~/components/history/history';
 
     export default {
+        components: {history, search},
+
         data() {
+            console.log(this.$route.params.page);
             return {
                 filterProps: [{name: 'Все типы', value: 'all'}, {name: 'Авторизации', value: 'auth'}],
-                operName: '',
-                currency: '',
-                current_page: '',
-                total_page: '',
+                current_page: this.$route.params.page,
+                total_page: 1,
                 filterParam: {},
                 history: [],
             }
         },
         methods: {
             getAdminHistory(page) {
-                this.$root.$emit('loading', true);
-                let obj = {};
-                this.operName.trim() !== '' ? obj.operName = this.operName : '';
-                this.currency !== '' ? obj.currency = this.currency : '';
-                this.filterParam = obj;
-                this.$rest.api('getAdminHistory', obj)
+                if (page !== this.current_page) return this.$router.replace({
+                    name: this.$route.name,
+                    params: {page}
+                });
+                this.current_page = page || 1;
+
+                this.$rest.api('getAdminHistory', {page})
                     .then(res => {
-                        console.log(res)
+                        console.log(res);
                         this.$root.$emit('loading', false);
                         if (res.success) {
                             this.current_page = res.data.count.select_page || 1;
@@ -104,20 +106,10 @@
                     })
             },
         },
-        components: {history, search},
         mounted() {
-            return this.getAdminHistory();
+            return this.getAdminHistory(this.current_page);
         }
 
     }
 </script>
 
-<style scoped>
-    input {
-        margin: 15px;
-        border: 1px;
-        border-radius: 20px;
-        padding: 4px;
-        color: grey;
-    }
-</style>

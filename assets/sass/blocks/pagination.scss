@@ -28,7 +28,7 @@ $sizePagin: 28px;
     font-size: 14px;
     color: $darkGrey;
 
-    &.pagination-current, &:hover {
+    &.active, &:hover {
       color: $white;
       background: $bacBlue;
     }

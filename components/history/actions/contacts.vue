@@ -1,6 +1,6 @@
 <template>
 
-    <tr>
+    <tr v-if="param && param.name">
 
         <date-info :date="date"/>
 
@@ -17,7 +17,6 @@
             <div class="df">
 
                 <p class="name">Контакты <i class="fal fa-angle-right"></i></p>
-
                 <p v-if="method === 'addContact'">Администратор добавил контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
                 <p v-if="method === 'editContact'">Администратор отредактировал контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
                 <p v-if="method === 'deleteContact'">Администратор удалил контакт <b>{{response.contacts.name}}</b></p>
@@ -41,10 +40,13 @@
             method: {type: String, required: true},
             date: {type: String, required: true},
             response: {type: Object},
-            param: {type: Object, required: true},
+            param: {type: Object},
             network: {type: Object, required: true},
             user: {type: Object, required: true}
         },
 
     }
+
+
 </script>
+
