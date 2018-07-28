@@ -4,9 +4,11 @@
         <td class="bg middle">
             <div class="ip">
 
-                <span class="lang"><img src="img/sadness-face.svg" alt=""></span>
-                <p> [{{network.counterCode}}]- {{network.ip}}</p>
-                <span class="icon-laptop"></span>
+                <span class="lang">
+                    <flag-icon :iso="network.counterCode"/>
+                </span>
+                <p> {{network.ip}}</p>
+                <i class="fal fa-location-arrow"></i>
             </div>
         </td>
 
@@ -14,7 +16,10 @@
 </template>
 
 <script>
+    import FlagIcon from "@/components/_utils/flag"
+
     export default {
+        components:{FlagIcon},
         props: ['network']
     }
 </script>

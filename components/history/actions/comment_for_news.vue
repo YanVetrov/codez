@@ -4,9 +4,9 @@
 
         <date-info :date="date"/>
 
-        <td class="small">
+        <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+            <span class="icon-company img-border"><i class="fal fa-comment-alt-dots"></i></span>
 
         </td>
 

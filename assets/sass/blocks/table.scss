@@ -113,6 +113,7 @@
   }
 
   .icon-company {
+    color: #ffffff;
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -121,15 +122,16 @@
     -moz-border-radius: 50%;
     border-radius: 50%;
     background: $lightGrey;
-
+    text-align: center;
+    padding: 6px;
     overflow: hidden;
 
     @media screen and (max-width:1200px) {
       margin-right: 5px;
     }
 
-    img {
-      width: 100%;
+    i {
+      font-size: 11pt;
     }
   }
 

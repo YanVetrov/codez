@@ -1,8 +1,8 @@
 <template>
     <td class="small">
 
-        <p class="time">{{$moment(date).format('HH:mm')}}</p>
-        <span>{{$moment(date).format('DD.MM.YY')}}</span>
+        <p class="time">{{$moment(date).format('DD MMM')}}</p>
+        <span>{{$moment(date).format('YYYY, HH:mm')}}</span>
 
     </td>
 </template>

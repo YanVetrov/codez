@@ -4,9 +4,11 @@
 
         <date-info :date="date"/>
 
-        <td class="small">
+        <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+            <span v-if="method === 'addContact'" class="icon-company img-border" style="background: #3ecb34;"><i class="fal fa-link"></i></span>
+            <span v-if="method === 'editContact'" class="icon-company img-border" style="background: #1383f4;"><i class="fal fa-link"></i></span>
+            <span  v-if="method === 'deleteContact'" class="icon-company img-border" style="background: #f1881d;"><i class="fal fa-link"></i></span>
 
         </td>
 
@@ -15,24 +17,14 @@
             <div class="df">
 
                 <p class="name">Контакты <i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'addContact'">Администратор добавил контакт
-                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                    Имя: {{param.name}}
-                    Ссылка:{{param.link}}
-                </p>
-                <p v-if="method === 'editContact'">Администратор отредактировал контакт
-                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                    Имя: {{param.name}}
-                    Ссылка:{{param.link}}</p>
-                <p v-if="method === 'deleteContact'">Администратор удалил контакт
-                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                    Имя: {{response.contacts.name}}
-                    Ссылка:{{response.contacts.link}}
-                </p>
+
+                <p v-if="method === 'addContact'">Администратор добавил контакт {{param.name}} Ссылка: {{param.link}}</p>
+                <p v-if="method === 'editContact'">Администратор отредактировал контакт {{param.name}} Ссылка: {{param.link}}</p>
+                <p v-if="method === 'deleteContact'">Администратор удалил контакт {{response.contacts.name}}</p>
             </div>
 
         </td>
-        <userInfo :user="user" />
+        <userInfo :user="user"/>
         <ip-info :network="network"/>
 
     </tr>
@@ -44,12 +36,15 @@
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo,ipInfo, dateInfo},
-        props: ['method', 'date', 'response', 'param', 'network', 'user'],
+        components: {userInfo, ipInfo, dateInfo},
+        props: {
+            method: {type: String, required: true},
+            date: {type: String, required: true},
+            response: {type: Object},
+            param: {type: Object, required: true},
+            network: {type: Object, required: true},
+            user: {type: Object, required: true}
+        },
 
     }
 </script>
-
-<style scoped>
-
-</style>
