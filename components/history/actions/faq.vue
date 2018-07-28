@@ -1,29 +1,38 @@
 <template>
-    <div>
-        <div class="timeline-heading">
+    <tr>
 
-            <h4 class="timeline-title" v-if="method === 'createFaq'">Создан вопрос </h4>
-            <h4 class="timeline-title" v-if="method === 'deleteFaq'">Удален вопрос </h4>
-            <p>
-                <dateInfo :date="date"/>
-            </p>
-            <p>
-                <userInfo :user="user" :network="network"/>
-            </p>
-        </div>
-        <div class="timeline-body">
-            <p v-if="method === 'createFaq'">Администратор опубликовал вопрос: {{response.title}}</p>
-            <p v-if="method === 'deleteFaq'">Администратор удалил вопрос: {{response.faq.title}} </p>
-        </div>
-    </div>
+        <date-info :date="date"/>
+
+        <td class="small">
+
+            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+
+        </td>
+
+        <td class="bg bg-ar">
+
+            <div class="df">
+
+                <p class="name">FAQ<i class="fal fa-angle-right"></i></p>
+                <p v-if="method === 'createFaq'">Администратор опубликовал вопрос: {{response.title}}</p>
+                <p v-if="method === 'deleteFaq'">Администратор удалил вопрос: {{response.faq.title}} </p>
+            </div>
+
+        </td>
+
+        <userInfo :user="user"/>
+        <ip-info :network="network"/>
+
+    </tr>
 </template>
 
 <script>
+    import ipInfo from './subcomponents/ipInfo.vue';
     import userInfo from './subcomponents/userInfo.vue';
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo, dateInfo,},
+        components: {userInfo, dateInfo, ipInfo},
         props: ['method', 'date', 'response', 'param', 'network', 'user', ],
 
     }

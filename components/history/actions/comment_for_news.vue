@@ -14,7 +14,7 @@
 
             <div class="df">
 
-                <p class="name" v-if="method === 'deleteCommentNews'">Отзыв к новосте удален <i class="fal fa-angle-right"></i></p>
+                <p class="name">Отзыв новости <i class="fal fa-angle-right"></i></p>
                 <p  v-if="method === 'deleteCommentNews'">Администратор удалил коменнтарий к новосте: "{{response.news.title}}"</p>
 
             </div>
@@ -34,7 +34,7 @@
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo, dateInfo,ipInfo,},
+        components: {userInfo, dateInfo,ipInfo},
         props: ['method', 'date', 'response', 'param', 'network', 'user',],
 
     }

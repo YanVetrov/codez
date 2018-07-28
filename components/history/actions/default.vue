@@ -1,30 +1,41 @@
 <template>
-    <div>
-        <div class="timeline-heading">
-            <h4 class="timeline-title">{{method}}</h4>
-            <p>
-                <dateInfo :date="date"/>
-            </p>
-            <p>
-                <userInfo :user="user" :network="network"/>
-            </p>
-        </div>
-        <div class="timeline-body">
-            <p>
-                Params:
-                <br>
-                {{JSON.stringify(param)}}
-            </p>
-        </div>
-    </div>
+
+    <tr>
+
+        <date-info :date="date"/>
+
+        <td class="small">
+
+            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+
+        </td>
+
+        <td class="bg bg-ar">
+
+            <div class="df">
+
+                <p class="name">{{method}} <i class="fal fa-angle-right"></i></p>
+                <p>
+                    Params:
+                    <br>
+                    {{JSON.stringify(param)}}
+                </p>
+            </div>
+
+        </td>
+        <userInfo :user="user" />
+        <ip-info :network="network"/>
+
+    </tr>
 </template>
 
 <script>
+    import ipInfo from './subcomponents/ipInfo.vue';
     import userInfo from './subcomponents/userInfo.vue';
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo, dateInfo},
+        components: {userInfo, dateInfo,ipInfo},
         props: ['method', 'date', 'response', 'param', 'network', 'user'],
 
     }
