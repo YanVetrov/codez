@@ -1,0 +1,374 @@
+
+.list-currency {
+
+  &-main {
+
+    .title {
+      padding-left: 30px;
+      padding-right: 30px;
+      border-bottom: 1px solid #f5f6f7;
+    }
+
+    .name {
+      font-size: 16px;
+      color: #353535;
+      font-family: $comfortaa;
+
+      @media screen and (max-width:1270px) {
+        font-size: 10px;
+      }
+    }
+    
+    .currency-type {
+      color: #65666e;
+    }
+
+    .btn-payment {
+      padding: 3px 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+
+      color: #ffffff;
+
+      &--auto {
+        background: #458cff;
+      }
+
+      &--hand {
+        background: #ff5f45;
+      }
+
+
+    }
+
+    .course {
+      color: #353535;
+    }
+
+    .table {
+      padding: 0 20px;
+
+
+      table {
+        @media screen and (max-width:1270px) {
+          min-width: auto;
+        }
+      }
+
+      thead  {
+        span {
+          margin-right: 0;
+          font-size: 12px;
+
+          @media screen and (max-width:1270px) {
+            font-size: 10px;
+          }
+        }
+      }
+
+      @media screen and (max-width:1330px) {
+        padding: 0 25px;
+      }
+
+      @media screen and (max-width:1270px) {
+        padding: 0;
+      }
+
+      td {
+        padding: 15px 10px;
+
+        @media screen and (max-width:1330px) {
+          padding: 10px 3px;
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        white-space: normal;
+      }
+
+      .icon-company {
+        margin-right: 0;
+      }
+
+      .correct-input {
+          position: relative;
+
+          input {
+            background-color: #ffffff;
+            border: solid 1px #f2f4f5;
+
+            border-radius: 6px;
+            width: 100%;
+            padding: 12px 50px 12px 15px;
+            font-family: Comfortaa,cursive;
+            font-size: 13px;
+
+            &:focus, &:active {
+              box-shadow: 0 1px 6px 0 rgba(186, 186, 186, 0.28);
+            }
+
+            @media screen and (max-width:1270px) {
+              padding: 12px 35px 12px 10px;
+            }
+
+          }
+
+          input:focus + .btn__correct{
+            right: -25px;
+            opacity: 0;
+          }
+
+          input:focus + ul {
+            opacity: 1;
+            right: 10px;
+          }
+
+          ul {
+            position: absolute;
+            opacity: 0;
+            right: -45px;
+            bottom: 10px;
+            width: auto;
+
+            display: flex;
+            align-items: center;
+
+            li {
+              margin: 0;
+
+              &:first-child {
+
+                border-right: 1px solid #f5f6f7;
+                margin-right: 5px;
+                padding-right: 5px;
+              }
+            }
+
+          }
+
+          .btn {
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 15px;
+            padding: 0;
+
+
+            &:before {
+              font-size: 12px;
+              left: 0;
+              top: 0;
+            }
+
+            &:hover {
+              color: #000;
+              border-color: transparent;
+            }
+
+            &__correct {
+              top: 12px;
+              position: absolute;
+              right: 10px;
+            }
+          }
+        }
+
+      .small {
+        @media screen and (max-width:1405px) {
+          width: 70px;
+        }
+        @media screen and (max-width:1270px) {
+          width: 55px;
+        }
+        @media screen and (max-width:1180px) {
+          width: 40px;
+        }
+      }
+
+      .middle {
+        @media screen and (max-width:1405px) {
+          width: 150px;
+        }
+        @media screen and (max-width:1270px) {
+          width: 70px;
+        }
+      }
+
+      .sm-middle {
+        @media screen and (max-width:1405px) {
+          width: 90px;
+        }
+      }
+
+      .big-middle {
+        @media screen and (max-width:1405px) {
+          width: 110px;
+        }
+      }
+
+    }
+
+    .switch-switcher{
+      width: 90px;
+
+      >input[type=radio], >input[type=radio] + i  {
+        width: 35px;
+      }
+
+      >input[type=radio] + i:before {
+        left: 0;
+      }
+
+      >input[type=radio]:checked + i:before {
+        left: 15px;
+        background-color: #ff5f45;
+      }
+
+      >input[type=radio]:checked + i, >input[type=radio] + i {
+        background-color: #e6e6e6;
+      }
+
+    }
+
+  }
+
+  &--btn-group {
+
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin:0 5px;
+
+        &:before {
+          color: inherit;
+          -webkit-transition: 0s all;
+          -moz-transition: 0s all;
+          -ms-transition: 0s all;
+          -o-transition: 0s all;
+          transition: 0s all;
+        }
+
+      &-simple--img {
+
+        @media screen and (max-width:1270px) {
+          font-size: 0;
+          padding: 18px 18px;
+
+            &:before {
+              left: 9px;
+              top: 9px;
+            }
+
+        }
+
+        &:before {
+          content: "\e915";
+          color: #0e83f0;
+        }
+
+        &:hover {
+          &:before {
+            color: #ffffff;
+          }
+        }
+
+      }
+    }
+
+    .cart-delete {
+      padding: 18px 18px;
+
+        &:before {
+          left: 9px;
+          top: 9px;
+        }
+    }
+
+    .double-b {
+      right: 0;
+    }
+
+  }
+
+}
+
+.model {
+  display: flex;
+  align-items: center;
+
+    .btn {
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #f7f9fa;
+      border: 1px solid #f5f6f7;
+      flex: none;
+      padding: 0;
+      margin-right: 7px;
+
+        i {
+          color: #c2c2c2;
+        }
+      
+        &:hover {
+          background: #458cff;
+
+            i {
+              color: #ffffff;
+            }
+        }
+    }
+
+    &--block {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding: 5px 10px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background: #f7f9fa;
+      position: relative;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 30%;
+          left: -14px;
+          border: 7px solid transparent;
+          border-right: 7px solid #f7f9fa;
+        }
+      
+        p {
+          color: #bbbcc4;
+        }
+
+        span {
+          color: #353535;
+        }
+
+        p, span {
+          font-size: 11px;
+
+          @media screen and (max-width:1270px) {
+            font-size: 9px;
+          }
+        }
+
+      &-item {
+        flex: 1 1;
+      }
+    }
+
+    &--bank {
+      margin-left: 5px;
+      img {
+        width: 15px;
+      }
+    }
+}

@@ -24,11 +24,17 @@
 @import "blocks/orders";
 @import "blocks/create-faq";
 @import "blocks/create-new";
+@import "blocks/review";
 @import "blocks/list-contact";
 @import "blocks/list-partner";
 @import "blocks/search-block";
+@import "blocks/catalog-parser";
+@import "blocks/catalog-news";
+@import "blocks/list-currency";
+@import "blocks/action";
+@import "blocks/setting-social-main";
+@import "blocks/list-verification";
 @import "blocks/switch";
-
 .sidebar-width {
   height: auto;
 }

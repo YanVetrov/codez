@@ -1,0 +1,122 @@
+
+.setting-social {
+
+  &-main {
+
+    .title {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .icon-company {
+      width: 48px;
+      height: 48px;
+    }
+
+    .small {
+      width: 70px;
+    }
+    
+    .table {
+
+      table {
+        @media screen and (max-width: 1300px) {
+          min-width: auto;
+        }
+      }
+
+      tbody {
+        span {
+          font-size: 14px;
+          color: #353535;
+          font-family: $comfortaa;
+        }
+      }
+      
+      i {
+        color: #0e83f0;
+      }
+    }
+
+    .setting-social--btn-group {
+      .btn {
+        margin: 0 5px;
+        font-size: 13px;
+        padding: 11px 18px;
+
+          &:hover {
+            i {
+              color: #ffffff;
+            }
+          }
+      }
+      i {
+        &:before {
+          font-size: 18px;
+          position: absolute;
+          left: 10px;
+          top: 9px;
+        }
+      }
+
+      .double-b {
+        right: 0;
+      }
+    }
+
+    .switch-switcher {
+      width: 130px;
+
+      >input[type=radio], >input[type=radio] + i  {
+        width: 35px;
+      }
+
+      >input[type=radio] + i:before {
+        left: 0;
+      }
+
+      >input[type=radio]:checked + i:before {
+        left: 15px;
+        background-color: #ff5f45;
+      }
+
+      >input[type=radio]:checked + i, >input[type=radio] + i {
+        background-color: #e6e6e6;
+      }
+
+      label {
+        color: #ff5f45;
+        font-size: 12px;
+      }
+
+      >input[type=radio]~.label-on {
+        color: #62ae2a;
+      }
+
+    }
+
+  }
+
+}
+
+.social-input {
+
+  position: relative;
+
+  input {
+    background-color: #fff;
+    border: 1px solid #f2f4f5;
+    border-radius: 6px;
+    width: 100%;
+    padding: 12px 50px 12px 30px;
+    font-family: Comfortaa,cursive;
+    font-size: 13px;
+  }
+
+  i {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+  }
+
+}
