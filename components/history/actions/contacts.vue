@@ -1,41 +1,50 @@
 <template>
-    <div>
-        <div class="timeline-heading">
-            <h4 class="timeline-title" v-if="method === 'addContact'">Добавлен контакт</h4>
-            <h4 class="timeline-title" v-if="method === 'editContact'">Отредактирован контакт</h4>
-            <h4 class="timeline-title" v-if="method === 'deleteContact'"> Удален контакт</h4>
-            <p>
-                <dateInfo :date="date"/>
-            </p>
-            <p>
-                <userInfo :user="user" :network="network"/>
-            </p>
-        </div>
-        <div class="timeline-body">
-            <p v-if="method === 'addContact'">Администратор добавил контакт
-              {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{param.name}}
-                Ссылка:{{param.link}}
-            </p>
-            <p v-if="method === 'editContact'">Администратор отредактировал контакт
-                {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{param.name}}
-                Ссылка:{{param.link}}</p>
-            <p v-if="method === 'deleteContact'">Администратор удалил контакт
-                {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{response.contacts.name}}
-                Ссылка:{{response.contacts.link}}
-            </p>
-        </div>
-    </div>
+
+    <tr>
+
+        <date-info :date="date"/>
+
+        <td class="small">
+
+            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+
+        </td>
+
+        <td class="bg bg-ar">
+
+            <div class="df">
+
+                <p class="name">Контакты <i class="fal fa-angle-right"></i></p>
+                <p v-if="method === 'addContact'">Администратор добавил контакт
+                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
+                    Имя: {{param.name}}
+                    Ссылка:{{param.link}}
+                </p>
+                <p v-if="method === 'editContact'">Администратор отредактировал контакт
+                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
+                    Имя: {{param.name}}
+                    Ссылка:{{param.link}}</p>
+                <p v-if="method === 'deleteContact'">Администратор удалил контакт
+                    {{$moment(date).format('DD.MM.YY в HH:mm')}}
+                    Имя: {{response.contacts.name}}
+                    Ссылка:{{response.contacts.link}}
+                </p>
+            </div>
+
+        </td>
+        <userInfo :user="user" />
+        <ip-info :network="network"/>
+
+    </tr>
 </template>
 
 <script>
     import userInfo from './subcomponents/userInfo.vue';
+    import ipInfo from './subcomponents/ipInfo.vue';
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo, dateInfo},
+        components: {userInfo,ipInfo, dateInfo},
         props: ['method', 'date', 'response', 'param', 'network', 'user'],
 
     }

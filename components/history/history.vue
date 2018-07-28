@@ -1,27 +1,20 @@
 <template>
-    <div class="col-md-24">
-        <div class="white-box">
-            <ul class="timeline">
-                <li class="timeline-inverted" v-for="action in history" :key="action.id">
-                    <div class="timeline-badge info"><i class="fa" :class="'fa-'+getTypeAction(action.method).icon"></i>
-                    </div>
-                    <div class="timeline-panel">
+    <table>
+        <tbody>
 
-                        <component v-bind:is="getTypeAction(action.method).componentName"
-                                   :method="action.method"
-                                   :date="action.createdAt"
-                                   :param="action.param"
-                                   :network="action.network"
-                                   :user="action.user"
-                                   :response="action.response"/>
-                    </div>
-                </li>
-            </ul>
-            <div class="text-right">
+        <component v-bind:is="getTypeAction(action.method).componentName"
+                   :method="action.method"
+                   :date="action.createdAt"
+                   :param="action.param"
+                   :network="action.network"
+                   :user="action.user"
+                   :response="action.response"
+                   v-for="(action,i) in history"
+                   :key="i"
+        />
+        </tbody>
 
-            </div>
-        </div>
-    </div>
+    </table>
 
 </template>
 
