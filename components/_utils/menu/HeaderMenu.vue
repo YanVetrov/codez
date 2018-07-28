@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li>
-                        <a style="cursor: pointer" @click="localizee('en')">
+                        <a style="cursor: pointer" @click="localizee('ru')">
                             <i class="fal fa-language"></i>
                         </a>
                     </li>

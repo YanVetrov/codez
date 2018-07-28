@@ -18,9 +18,9 @@
 
                 <p class="name">Контакты <i class="fal fa-angle-right"></i></p>
 
-                <p v-if="method === 'addContact'">Администратор добавил контакт {{param.name}} Ссылка: {{param.link}}</p>
-                <p v-if="method === 'editContact'">Администратор отредактировал контакт {{param.name}} Ссылка: {{param.link}}</p>
-                <p v-if="method === 'deleteContact'">Администратор удалил контакт {{response.contacts.name}}</p>
+                <p v-if="method === 'addContact'">Администратор добавил контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
+                <p v-if="method === 'editContact'">Администратор отредактировал контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
+                <p v-if="method === 'deleteContact'">Администратор удалил контакт <b>{{response.contacts.name}}</b></p>
             </div>
 
         </td>
