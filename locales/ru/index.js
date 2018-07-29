@@ -2,8 +2,11 @@ import menu from './menu'
 import user from './page/user'
 import contacts from './page/contacts'
 import routes from './routes'
+import lang from '../langs'
 
 export default {
+
+    lang,
     menu,
     "page": {
         user,

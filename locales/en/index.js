@@ -1,7 +1,9 @@
 import menu from './menu'
 import user from './page/user'
+import lang from '../langs'
 
 export default {
+    lang,
     "menu":menu,
     "breadcrumb": {
         "tutorial": "Tutorial"

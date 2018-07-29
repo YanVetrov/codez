@@ -385,7 +385,7 @@
       width: 250px;
       right: 0;
       top: -400px;
-
+      display: block;
       opacity: 0;
       visibility: hidden;
       z-index: 0;
@@ -412,6 +412,7 @@
       top: 110%;
       z-index: 11;
       margin-top: 6px;
+      display: block;
     }
 
     li {
@@ -480,6 +481,100 @@
     }
   }
 
+}
+
+.locales {
+
+  &-block {
+    width: 38px;
+    padding: 0;
+    position: relative;
+    border-left: 1px solid #272d4f;
+    .flag-icon {
+      cursor: pointer;
+
+      width: 34.8px;
+      height: 2rem;
+      border-radius: 5px;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+    ul {
+      background: #252b4e;
+      position: absolute;
+      width: 150px;
+      right: -14px;
+      top: -400px;
+      display: block;
+
+      opacity: 0;
+      visibility: hidden;
+      z-index: 0;
+
+      -webkit-transition: .35s all;
+      -moz-transition: .35s all;
+      -ms-transition: .35s all;
+      -o-transition: .35s all;
+      transition: .35s all;
+
+      &:after {
+        content: '';
+        position: absolute; /* Абсолютное позиционирование */
+        right: 15px;
+        top: -20px; /* Положение треугольника */
+        border: 10px solid transparent; /* Прозрачные границы */
+        border-bottom: 10px solid #252b4e; /* Добавляем треугольник */
+      }
+
+      &.locales-block-list-open {
+        opacity: 1;
+        visibility: visible;
+        top: 110%;
+        z-index: 11;
+        margin-top: 35px;
+
+        li {
+          overflow: hidden;
+          margin: 0;
+          border-bottom: 1px solid #212647;
+
+          &:last-child {
+            border-bottom: 2px solid #0f89ff;
+          }
+
+          a {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #8c90a6;
+
+            i {
+              &::before {
+                font-size: 16px;
+              }
+            }
+
+            &:hover {
+              color: #ffffff;
+              -webkit-transition: .35s all;
+              -moz-transition: .35s all;
+              -ms-transition: .35s all;
+              -o-transition: .35s all;
+              transition: .35s all;
+
+            }
+          }
+
+        }
+      }
+
+    }
+  }
 }
 
 .switch-site {
