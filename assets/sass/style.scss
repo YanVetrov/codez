@@ -34,6 +34,10 @@
 @import "blocks/action";
 @import "blocks/setting-social-main";
 @import "blocks/list-verification";
+
+@import "blocks/create-currency/create-currency-head";
+@import "blocks/create-currency/create-currency";
+@import "blocks/create-currency/create-currency-sidebar";
 @import "blocks/switch";
 .sidebar-width {
   height: auto;

@@ -1,0 +1,152 @@
+
+.create-currency{
+
+  &-sidebar {
+    width: 270px;
+    flex: none;
+    background: #fafbfc;
+    border-right: 1px solid #f5f6f7;
+    padding: 5px 30px 20px;
+
+      &--title {
+        text-transform: uppercase;
+        color: rgba(47, 50, 62, 0.75);
+        line-height: 3.69;
+        margin: 10px 0;
+      }
+
+    >p {
+      margin: 10px auto;
+      overflow: hidden;
+      border-radius: 50%;
+
+      width: 100px;
+      height: 100px;
+
+        img {
+          width: 100%;
+          margin: auto;
+        }
+    }
+
+      &--tools {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #ffffff;
+        box-shadow: 0 1px 0 0 #ebecf0;
+
+        margin-top: 45px;
+
+        li {
+          flex: 1 1;
+          margin: 0 5px;
+        }
+
+        .btn {
+          padding: 10px 5px;
+          width: 100%;
+
+            &:hover {
+              color: #0f89ff;
+            }
+        }
+
+        i {
+          color: #0f89ff;
+        }
+
+      }
+
+    &__main {
+
+      background: white;
+
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding: 15px;
+      border-bottom: 1px solid #f5f6f7;
+      
+        p {
+          font-size: 11px;
+          color: #9899a0;
+          position: relative;
+        }
+
+
+        >span {
+          font-size: 20px;
+
+            img {
+              width: 20px;
+            }
+        }
+
+      &--info {
+        border-left: 1px solid #ebecf0;
+        padding-left: 10px;
+        margin-left: 20px;
+        flex: 1 1;
+
+        span {
+          font-size: 13px;
+          color: #353535;
+        }
+
+        i {
+          position: absolute;
+          right: 10px;
+          top: 0;
+          pointer-events: none;
+        }
+        
+        select {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__bot {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+
+        i {
+          font-size: 23px;
+        }
+
+      >div {
+        margin-left: 20px;
+      }
+      
+      p {
+        color: #9899a0;
+        line-height: 1;
+        margin-bottom: 5px;
+      }
+      
+      span {
+        color: #353535;
+      }
+    }
+
+    &__next {
+
+      margin-top: 50px;
+
+        .btn {
+          padding: 15px 15px;
+          line-height: 1.1;
+          font-size: 13px;
+          text-transform: uppercase;
+          width: 100%;
+        }
+    }
+  }
+
+}
