@@ -191,7 +191,7 @@
 
         -webkit-transition: .35s all;
         -moz-transition: .35s all;
-        -ms-transition: .35s all;
+
         -o-transition: .35s all;
         transition: .35s all;
       }
@@ -213,7 +213,6 @@
 
         -webkit-transition: .35s all;
         -moz-transition: .35s all;
-        -ms-transition: .35s all;
         -o-transition: .35s all;
         transition: .35s all;
       }
@@ -286,7 +285,7 @@
 
       -webkit-transition: .35s all;
       -moz-transition: .35s all;
-      -ms-transition: .35s all;
+
       -o-transition: .35s all;
       transition: .35s all;
 
@@ -351,7 +350,7 @@
         &:hover {
           -webkit-transition: .35s all;
           -moz-transition: .35s all;
-          -ms-transition: .35s all;
+
           -o-transition: .35s all;
           transition: .35s all;
 
@@ -392,7 +391,6 @@
 
       -webkit-transition: .35s all;
       -moz-transition: .35s all;
-      -ms-transition: .35s all;
       -o-transition: .35s all;
       transition: .35s all;
 
@@ -442,7 +440,6 @@
           color: #ffffff;
           -webkit-transition: .35s all;
           -moz-transition: .35s all;
-          -ms-transition: .35s all;
           -o-transition: .35s all;
           transition: .35s all;
 
@@ -486,15 +483,15 @@
 .locales {
 
   &-block {
-    width: 38px;
+    width: 60px;
     padding: 0;
     position: relative;
     border-left: 1px solid #272d4f;
     .flag-icon {
       cursor: pointer;
 
-      width: 34.8px;
-      height: 2rem;
+      width: 26.8px;
+      height: 1.5rem;
       border-radius: 5px;
 
       &:hover {
@@ -505,7 +502,7 @@
       background: #252b4e;
       position: absolute;
       width: 150px;
-      right: -14px;
+      right: 15px;
       top: -400px;
       display: block;
 
@@ -515,14 +512,13 @@
 
       -webkit-transition: .35s all;
       -moz-transition: .35s all;
-      -ms-transition: .35s all;
       -o-transition: .35s all;
       transition: .35s all;
 
       &:after {
         content: '';
         position: absolute; /* Абсолютное позиционирование */
-        right: 15px;
+        right: 20px;
         top: -20px; /* Положение треугольника */
         border: 10px solid transparent; /* Прозрачные границы */
         border-bottom: 10px solid #252b4e; /* Добавляем треугольник */
@@ -533,7 +529,7 @@
         visibility: visible;
         top: 110%;
         z-index: 11;
-        margin-top: 35px;
+        margin-top: 17px;
 
         li {
           overflow: hidden;
@@ -563,7 +559,6 @@
               color: #ffffff;
               -webkit-transition: .35s all;
               -moz-transition: .35s all;
-              -ms-transition: .35s all;
               -o-transition: .35s all;
               transition: .35s all;
 
