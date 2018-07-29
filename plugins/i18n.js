@@ -4,7 +4,6 @@ import conf from '@/locales/config.js'
 
 
 export default ({app, store, params}) => {
-    console.log('store.getters[\'local/locale\']',store.getters['local/locale'])
     app.i18n = new VueI18n({
         locale: store.getters['local/locale'],
         fallbackLocale: conf.defaultLang,

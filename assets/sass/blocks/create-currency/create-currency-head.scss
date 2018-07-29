@@ -1,0 +1,142 @@
+
+.create-currency {
+
+  &-head {
+    background: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-bottom: 1px solid #f5f6f7;
+
+    &--list {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding: 10px 0 10px 30px;
+      margin-right: 110px;
+      border-right: 1px solid #f5f6f7;
+      overflow: hidden;
+
+        li {
+          position: relative;
+
+            &:after {
+              content: '';
+              position: absolute;
+              height: 1px;
+              background: #f5f6f7;
+              top: 50%;
+              left: 27.5%;
+              width: 70%;
+            }
+
+        /*  &:last-child {
+            &:after {
+              content: none;
+            }
+          }*/
+        }
+    }
+
+    &--item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      text-align: center;
+
+      span {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+        //background: #0e83f0;
+        background: #d8d8d8;
+        line-height: 2.4;
+        color: #000000;
+        font-size: 13px;
+
+          &.complete {
+            font-size: 0;
+            background: #0e83f0;
+            color: #ffffff;
+
+            font-family: Font Awesome\ 5 Pro;
+            font-weight: 300;
+
+              &:before {
+                content: "\f560";
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.9;
+              }
+
+          }
+
+          &.active {
+            background: #0e83f0;
+            color: #ffffff;
+          }
+      }
+
+      p {
+        font-size: 14px;
+        color: #2f323e;
+        padding-left: 10px;
+        padding-right: 10px;
+        background: white;
+        z-index: 1;
+        white-space: nowrap;
+      }
+
+    }
+
+    li {
+      flex: 1 1;
+      text-align: center;
+    }
+
+    &--switch {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      position: absolute;
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 110px;
+
+        li {
+          padding-left: 5px;
+          padding-right: 5px;
+
+          &:first-child {
+            border-right: 1px solid #f5f6f7;
+          }
+
+        }
+
+      a {
+        display: inline-block;
+        padding: 0 15px;
+
+          &:hover {
+            i {
+              color: #7d7e82;
+            }
+          }
+      }
+
+      i {
+        font-size: 25px;
+        color: #cacaca;
+      }
+    }
+
+  }
+
+}

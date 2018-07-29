@@ -1,8 +1,10 @@
 <template>
-    <small class="text-muted">
-        <i class="fa fa-clock-o"></i>
-        {{$moment(date).format('DD.MM.YY в HH:mm')}}
-    </small>
+    <td class="small">
+
+        <p class="time">{{$moment(date).format('DD MMM')}}</p>
+        <span>{{$moment(date).format('YYYY, HH:mm')}}</span>
+
+    </td>
 </template>
 
 <script>

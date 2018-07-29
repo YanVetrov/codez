@@ -22,23 +22,36 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/" class="header-list-active">
+                        <a href="/" class="header-list">
                             <i class="fal fa-usd-circle"></i>
 
                             <span class="count">1</span>
                         </a>
                     </li>
-                    <li>
-                        <a style="cursor: pointer" @click="localizee('en')">
-                            <i class="fal fa-language"></i>
-                        </a>
-                    </li>
+
                 </ul>
 
             </div>
 
 
             <div class="header__item">
+
+                <div class="locales-block">
+                    <div class="locales-block-date" @click="openLocalesMenu">
+                        <flag-icon :iso="$t('lang.flag.'+$root.$i18n.locale)"/>
+                    </div>
+
+                    <ul :class="dropdownLocalesMenu">
+                        <li>
+                            <a style="cursor: pointer" @click="changeLang('en')">{{$t('lang.en')}}</a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer" @click="changeLang('ru')">{{$t('lang.ru')}}</a>
+                        </li>
+
+                    </ul>
+
+                </div>
 
                 <div class="master-bloc">
                     <div class="master-bloc-date" @click="openProfileMenu">
@@ -66,8 +79,8 @@
                                 </div>
                                 <div class="switch-site">
                                 <span class="switch switch-switcher">
-                                    <input type="radio" name="notifyAdmin" value="-1">
-                                    <input type="radio" name="notifyAdmin" value="1" checked>
+                                    <input type="radio" name="notifyAdmin" value="-1" title="">
+                                    <input type="radio" name="notifyAdmin" value="1"  title="" checked>
                                     <i></i>
                                 </span>
 
@@ -76,7 +89,8 @@
                             </div>
                         </li>
                         <li>
-                            <nuxt-link :to="'/admins/edit/'+user.id">Редактировать профиль <i class="fal fa-user-edit"></i>
+                            <nuxt-link :to="'/admins/edit/'+user.id">Редактировать профиль <i
+                                    class="fal fa-user-edit"></i>
                             </nuxt-link>
                         </li>
                         <li>
@@ -106,8 +120,8 @@
                                 <div class="switch-site">
 
                                 <span class="switch switch-switcher">
-                                    <input type="radio" name="activeSite" value="-1" checked>
-                                    <input type="radio" name="activeSite" value="1">
+                                    <input type="radio" name="activeSite" value="-1" title="" checked>
+                                    <input type="radio" name="activeSite" value="1" title="">
                                     <i></i>
                                 </span>
 
@@ -126,8 +140,8 @@
                                 <div class="switch-site">
 
                                 <span class="switch switch-switcher">
-                                    <input type="radio" name="xmlStatus" value="-1" checked>
-                                    <input type="radio" name="xmlStatus" value="1">
+                                    <input type="radio" name="xmlStatus" value="-1" title="" checked>
+                                    <input type="radio" name="xmlStatus" value="1" title="">
                                     <i></i>
                                 </span>
 
@@ -149,17 +163,16 @@
 </template>
 
 <script>
+    import FlagIcon from "@/components/_utils/flag"
 
     export default {
+        components: {FlagIcon},
         data() {
-            let userAdmin = this.$store.getters['auth/checkAdmin'];
-
             return {
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
                 dropdownSettingMenu: 'setting-bloc-list',
-                dropdownLocalesMenu: 'master-bloc-list',
-                dropdownProfileMenu: 'locales-bloc-list',
-
+                dropdownLocalesMenu: 'locales-block-list',
+                dropdownProfileMenu: 'master-bloc-list',
             }
         },
         computed: {
@@ -172,44 +185,40 @@
                 }
             }
         },
-        mounted() {
-            // this.$root.$on('userInfo', (data) => {
-            //     this.firstName = data.firstName;
-            //     this.lastName = data.lastName;
-            //     this.email = data.email;
-            //     this.id = data._id;
-            //
-            // })
-        },
         methods: {
             logout() {
                 this.$rest('destroySession').then(() => {
-                    // this.$store.dispatch('auth/destroyUser');
+                    this.$store.dispatch('auth/destroyUser');
                 })
             },
-            close() {
-                this.$store.dispatch('Menu/close');
 
-            },
-
-            openLocalesMenu(e) {
-                let n = 'locales-bloc-list';
+            openLocalesMenu() {
+                let n = 'locales-block-list';
                 this.dropdownLocalesMenu === n ? this.dropdownLocalesMenu = `${n}-open` : this.dropdownLocalesMenu = n;
+                this.dropdownSettingMenu = 'setting-bloc-list';
+                this.dropdownProfileMenu = 'master-bloc-list';
             },
-            openProfileMenu(e) {
+            openProfileMenu() {
                 let n = 'master-bloc-list';
                 this.dropdownProfileMenu === n ? this.dropdownProfileMenu = `${n}-open` : this.dropdownProfileMenu = n;
                 this.dropdownSettingMenu = 'setting-bloc-list';
+                this.dropdownLocalesMenu = 'locales-block-list';
+
             },
-            openSettingMenu(e) {
+            openSettingMenu() {
                 let n = 'setting-bloc-list';
                 this.dropdownSettingMenu === n ? this.dropdownSettingMenu = `${n}-open` : this.dropdownSettingMenu = n;
                 this.dropdownProfileMenu = 'master-bloc-list';
+                this.dropdownLocalesMenu = 'locales-block-list';
+
+
             },
 
-            localizee(lang) {
+            changeLang(lang) {
                 this.$store.dispatch('local/change', lang);
                 this.$root.$i18n.locale = lang;
+                this.dropdownLocalesMenu = 'locales-block-list';
+
 
             }
         }

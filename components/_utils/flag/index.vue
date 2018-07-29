@@ -10,7 +10,7 @@
 
     export default {
         props: {
-            iso: {type: String, default: null},
+            iso: {type: String, default: null, required: true},
             title: {type: String, default: null},
             squared: {type: Boolean, default: false},
         },

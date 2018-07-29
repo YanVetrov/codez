@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Identicon from 'identicon.js'
+import Identicon from './identicon.js/identicon.js'
 import md5 from 'md5';
 
 const Rest = {

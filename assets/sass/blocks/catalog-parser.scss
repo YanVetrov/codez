@@ -1,0 +1,161 @@
+
+.parser {
+
+  &-wr {
+
+  }
+
+  .title {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  &-list {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+
+    @media screen and (max-width:1365px) {
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width:1135px) {
+      justify-content: center;
+    }
+
+    >li {
+        min-width: 220px;
+        max-width: 360px;
+        flex: 1 auto;
+        padding: 20px 30px;
+        background: white;
+        border-right: 1px solid rgba(190, 196, 208, 0.16);
+        border-bottom: 1px solid rgba(190, 196, 208, 0.16);
+
+        @media screen and (max-width:1420px) {
+          padding: 15px;
+        }
+
+        @media screen and (max-width:1200px) {
+          width: 290px;
+          flex: none;
+        }
+      }
+
+  }
+
+  &-item {
+
+    &--top {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+        >img {
+          width: 100%;
+        }
+
+        &__btn-group {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+      li {
+        flex: 1 1;
+      }
+    }
+    
+    &--tittle {
+      color: #2f323e;
+      font-size: 24px;
+      line-height: 1.43;
+      margin-top: 25px;
+
+        &__sub {
+          font-size: 14px;
+          color: #b8b8b8;
+          margin-bottom: 10px;
+        }
+    }
+
+    &--main-list {
+      margin-bottom: 15px;
+
+      li {
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f1f2;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+        >div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row;
+
+        }
+
+        p, span {
+          font-size: 13px;
+        }
+
+        .parser-item--main-list-ref {
+          >span {
+            font-size: 30px;
+          }
+        }
+
+        span {
+          color: #b8b8b8;
+        }
+        p {
+          color: #80818a;
+        }
+
+        .color {
+          color: #83c353;
+          font-size: 24px;
+          line-height: 2;
+        }
+      }
+
+      &-act {
+        span {
+          flex: 0;
+        }
+      }
+
+      &-ref {
+        >div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+      }
+
+    }
+
+    &__bot {
+
+      .btn {
+        padding-top: 17px;
+        padding-bottom: 17px;
+        width: 100%;
+      }
+    }
+
+  }
+
+
+}

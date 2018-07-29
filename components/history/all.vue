@@ -1,48 +1,89 @@
 <template>
-    <div class="row">
-        {{$t('operation')}}
-        <input type="text" placeholder="example: 412423423" name="heh" v-model="operName"/>
-        <select v-model="currency">
-            <option disabled>{{$t('currency')}}</option>
-            <option>{{$t('currency')}} 1</option>
-        </select>
-        <button class="fcbtn btn btn-info btn-1b" @click="getAdminHistory" style="margin:5px"><i
-                class='fa fa-search'></i></button>
-        <div class='white-box'>
-            <history :history="history"></history>
-            <pagination
-                    :currentPage="current_page"
-                    :totalPages="total_page"
-                    @page-changed="getAdminHistory"
-            />
+    <div class="action-wr">
+        <div class="action-main border">
+
+            <div class="action-main--top">
+
+                <h3 class="title">ЗАЯВКАМИ на обмен</h3>
+
+            </div>
+
+            <search placeholder="Search text..." :filter="filterProps"></search>
+
+
+            <div class="table table-head">
+
+                <table>
+
+                    <thead>
+                    <tr>
+
+                        <td class="small">
+                            <span>Data</span>
+                        </td>
+                        <td class="small"></td>
+                        <td></td>
+                        <td class="user">
+                            <span>USER</span>
+                        </td>
+                        <td class="middle">
+                            <span>IP INFO</span>
+                        </td>
+
+                    </tr>
+                    </thead>
+
+                </table>
+
+            </div>
+
+            <div class="table">
+
+
+                <history :history="history"/>
+
+                <pagination
+                        :currentPage="current_page"
+                        :totalPages="total_page"
+                        @page-changed="getAdminHistory"
+                />
+
+            </div>
+
         </div>
     </div>
+
+
 </template>
 
 <script>
+    import search from '~/components/_utils/search';
     import history from '~/components/history/history';
 
     export default {
+        components: {history, search},
+
         data() {
+            console.log(this.$route.params.page);
             return {
-                operName: '',
-                currency: '',
-                current_page: '',
-                total_page: '',
+                filterProps: [{name: 'Все типы', value: 'all'}, {name: 'Авторизации', value: 'auth'}],
+                current_page: this.$route.params.page,
+                total_page: 1,
                 filterParam: {},
                 history: [],
             }
         },
         methods: {
             getAdminHistory(page) {
-                this.$root.$emit('loading', true);
-                let obj = {};
-                this.operName.trim() !== '' ? obj.operName = this.operName : '';
-                this.currency !== '' ? obj.currency = this.currency : '';
-                this.filterParam = obj;
-                this.$rest.api('getAdminHistory', obj)
+                if (page !== this.current_page) return this.$router.replace({
+                    name: this.$route.name,
+                    params: {page}
+                });
+                this.current_page = page || 1;
+
+                this.$rest.api('getAdminHistory', {page})
                     .then(res => {
-                        console.log(res)
+                        console.log(res);
                         this.$root.$emit('loading', false);
                         if (res.success) {
                             this.current_page = res.data.count.select_page || 1;
@@ -65,20 +106,10 @@
                     })
             },
         },
-        components: {history},
         mounted() {
-            return this.getAdminHistory();
+            return this.getAdminHistory(this.current_page);
         }
 
     }
 </script>
 
-<style scoped>
-    input {
-        margin: 15px;
-        border: 1px;
-        border-radius: 20px;
-        padding: 4px;
-        color: grey;
-    }
-</style>

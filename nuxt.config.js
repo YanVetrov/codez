@@ -63,7 +63,7 @@ module.exports = {
         //     analyzerPort: '9999',
         //     openAnalyzer: true
         // },
-        vendor: 'vue2-editor',
+        vendor: ['vue2-editor'],
         extend(config, {isDev, isClient}) {
             if (isDev && isClient) {
                 config.module.rules.push({

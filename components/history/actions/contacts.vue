@@ -1,46 +1,52 @@
 <template>
-    <div>
-        <div class="timeline-heading">
-            <h4 class="timeline-title" v-if="method === 'addContact'">Добавлен контакт</h4>
-            <h4 class="timeline-title" v-if="method === 'editContact'">Отредактирован контакт</h4>
-            <h4 class="timeline-title" v-if="method === 'deleteContact'"> Удален контакт</h4>
-            <p>
-                <dateInfo :date="date"/>
-            </p>
-            <p>
-                <userInfo :user="user" :network="network"/>
-            </p>
-        </div>
-        <div class="timeline-body">
-            <p v-if="method === 'addContact'">Администратор добавил контакт
-              {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{param.name}}
-                Ссылка:{{param.link}}
-            </p>
-            <p v-if="method === 'editContact'">Администратор отредактировал контакт
-                {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{param.name}}
-                Ссылка:{{param.link}}</p>
-            <p v-if="method === 'deleteContact'">Администратор удалил контакт
-                {{$moment(date).format('DD.MM.YY в HH:mm')}}
-                Имя: {{response.contacts.name}}
-                Ссылка:{{response.contacts.link}}
-            </p>
-        </div>
-    </div>
+
+    <tr v-if="param && param.name">
+
+        <date-info :date="date"/>
+
+        <td class="small-ico">
+
+            <span v-if="method === 'addContact'" class="icon-company img-border" style="background: #3ecb34;"><i class="fal fa-link"></i></span>
+            <span v-if="method === 'editContact'" class="icon-company img-border" style="background: #1383f4;"><i class="fal fa-link"></i></span>
+            <span  v-if="method === 'deleteContact'" class="icon-company img-border" style="background: #f1881d;"><i class="fal fa-link"></i></span>
+
+        </td>
+
+        <td class="bg bg-ar">
+
+            <div class="df">
+
+                <p class="name">Контакты <i class="fal fa-angle-right"></i></p>
+                <p v-if="method === 'addContact'">Администратор добавил контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
+                <p v-if="method === 'editContact'">Администратор отредактировал контакт <b>{{param.name}}</b> Ссылка: {{param.link}}</p>
+                <p v-if="method === 'deleteContact'">Администратор удалил контакт <b>{{response.contacts.name}}</b></p>
+            </div>
+
+        </td>
+        <userInfo :user="user"/>
+        <ip-info :network="network"/>
+
+    </tr>
 </template>
 
 <script>
     import userInfo from './subcomponents/userInfo.vue';
+    import ipInfo from './subcomponents/ipInfo.vue';
     import dateInfo from './subcomponents/dateInfo.vue';
 
     export default {
-        components: {userInfo, dateInfo},
-        props: ['method', 'date', 'response', 'param', 'network', 'user'],
+        components: {userInfo, ipInfo, dateInfo},
+        props: {
+            method: {type: String, required: true},
+            date: {type: String, required: true},
+            response: {type: Object},
+            param: {type: Object},
+            network: {type: Object, required: true},
+            user: {type: Object, required: true}
+        },
 
     }
+
+
 </script>
 
-<style scoped>
-
-</style>

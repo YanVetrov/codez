@@ -6,8 +6,8 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li v-for="(page, i) in paginationRange" :key="i" :class="activePage(page)">
-            <a href="#" @click.prevent="pageChanged(page)">{{ page }}</a>
+        <li v-for="(page, i) in paginationRange" :key="i" >
+            <a :class="activePage(page)" href="#" @click.prevent="pageChanged(page)">{{ page }}</a>
         </li>
         <li>
             <a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Next">
