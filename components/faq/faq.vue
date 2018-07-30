@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex'
   export default {
 
     data() {
@@ -49,9 +49,9 @@ import {mapGetters} from 'vuex'
     computed: {
 
       ...mapGetters({
-        faqs:'faq/getFaq',
-        langs:'faq/getLangs',
-        groups:'faq/getGroups'
+        faqs: 'faq/getFaq',
+        langs: 'faq/getLangs',
+        groups: 'faq/getGroups'
       })
 
     },
@@ -117,10 +117,9 @@ import {mapGetters} from 'vuex'
           })
       }
     },
-    // mounted(){
-    //   this.faqs = this.$store.getters['faq/getFaq'];
-    //   this.langs = this.$store.getters['faq/getLangs'];
-    //   this.groups = this.$store.getters['faq/getGroups'];
-    // }
+    mounted() {
+      this.$store.dispatch('faq/getFaqFull')
+
+    }
   }
 </script>

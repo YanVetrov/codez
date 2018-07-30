@@ -11,7 +11,7 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-    import {mapGetters} from 'vuex';
+    import { mapGetters } from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
         data() {
@@ -25,6 +25,10 @@
                 load: 'contacts/getLoad',
                 errorData: 'contacts/getError',
             })
+
+        },
+        created() {
+            this.$store.dispatch('contacts/getContacts')
 
         },
         methods: {
