@@ -35,11 +35,11 @@
 
     export default {
         created() {
-            this.$store.dispatch('contacts/getContacts');
             this.$store.dispatch('statisticResource/getStatisticClient')
             this.$store.dispatch('serverStatus/getServerStatus')
             this.$store.dispatch('exchangesPending/adminGetOrders')
-            this.$store.dispatch('faq/getFaqFull')
+            // this.$store.dispatch('contacts/getContacts')
+            // this.$store.dispatch('faq/getFaqFull')
         },
         methods: {
             check() {
