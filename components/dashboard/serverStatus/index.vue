@@ -10,16 +10,21 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-
+    import {mapGetters} from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
         data() {
             return {
-                info: false,
-                load: false,
-                errorData: false,
 
             }
+        },
+        computed: {
+            ...mapGetters({
+                info: 'serverStatus/getData',
+                load: 'serverStatus/getLoad',
+                errorData: 'serverStatus/getError',
+            })
+
         },
 
         created() {
@@ -27,14 +32,7 @@
         },
         methods: {
             getServerStatus() {
-                 this.$rest.api('getServerStatus')
-                    .then(res => {
-                        this.info = res.data;
-                        this.load = true;
-
-                    }).catch((err) => {
-                        this.errorData = { message: 'Error load data' }
-                    });
+               this.$store.dispatch('serverStatus/getServerStatus')
             }
         }
     }

@@ -15,7 +15,7 @@
         <br/>
         <div v-html="faq.content"></div>
         <br/>
-        <vue-editor v-model='faq.content' v-if="!faq.active" />
+        <!--<vue-editor v-model='faq.content' v-if="!faq.active" />-->
         <br/>
         <nuxt-link :to="faq._id.toString()"><button>{{$t('edit')}}</button></nuxt-link>
         <button @click="save(faq._id)">{{$t('delete')}}</button>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
   export default {
 
     data() {
@@ -41,13 +41,19 @@
         id: '',
         current_page: 1,
         total_page: 1,
-        faqs: [],
         filter: { search: '', group: '', lang: '' },
-        langs: [],
-        groups: [],
 
 
       }
+    },
+    computed: {
+
+      ...mapGetters({
+        faqs:'faq/getFaq',
+        langs:'faq/getLangs',
+        groups:'faq/getGroups'
+      })
+
     },
     methods: {
       save(id) {
@@ -111,9 +117,13 @@
           })
       }
     },
-    mounted() {
-      return this.getFaq()
-
-    }
+    created() {
+      this.$store.dispatch('faq/getFaqFull')
+    },
+    // mounted(){
+    //   this.faqs = this.$store.getters['faq/getFaq'];
+    //   this.langs = this.$store.getters['faq/getLangs'];
+    //   this.groups = this.$store.getters['faq/getGroups'];
+    // }
   }
 </script>
