@@ -26,10 +26,6 @@
             })
 
         },
-
-        created() {
-            this.getServerStatus();
-        },
         methods: {
             getServerStatus() {
                this.$store.dispatch('serverStatus/getServerStatus')

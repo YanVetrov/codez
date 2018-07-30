@@ -35,10 +35,6 @@
 
             },
         },
-        mounted() {
-
-            return this.getTransactions();
-        },
 
     }
 </script>

@@ -10,54 +10,21 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-
+    import {mapGetters} from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
-        data() {
-            return {
-                info: false,
-                load: false,
-                errorData: false,
+        computed: {
+            ...mapGetters({
+                info: 'statisticResource/getData',
+                load: 'statisticResource/getLoad',
+                errorData: 'statisticResource/getError',
+            })
 
-            }
         },
-        
 
-        created() {
-            this.updateData();
-        },
         methods: {
-            updateData() {
-                this.$rest.api('getStatisticClient')
-                    .then(res => {
-                        let main = res.data.visitors;
-                        let obj = {};
-                        let arr = [];
-                        main.forEach(el => {
-                            el.fromUrl.forEach(el => {
-                                let count = el.count;
-                                let url = el.url;
-                                obj[url] ? obj[url] = parseInt(obj[url]) + count : obj[url] = count;
-                            })
-                        });
-                        let total = 0;
-                        for (let k in obj) {
-                            let objj = {};
-                            objj.url = k;
-                            objj.count = obj[k];
-                            total += obj[k];
-                            arr.push(objj);
-                        }
-                        arr.forEach(el => {
-                            el.percent = Math.ceil((parseFloat(el.count * 100 / total)) * 10) / 10
-                        })
-                        console.log(arr);
-                        this.info = arr;
-                        this.load = true;
-                    })
-                    .catch((err) => {
-                        this.errorData = { message: 'Error load data' }
-                    });
+            getStatisticClient() {
+                this.$store.dispatch('statisticResource/getStatisticClient')
             }
         }
     }

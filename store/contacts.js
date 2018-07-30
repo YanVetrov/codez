@@ -1,11 +1,10 @@
 import api from '../storeConfig.js'
 
+
 export const state = () => ({
     info: false,
-    errorData: false,
     load: false,
-    current_page: 1,
-    total_page: 1,
+    errorData: false,
 });
 
 export const mutations = {
@@ -17,28 +16,20 @@ export const mutations = {
     },
     changeLoad(state, load) {
         state.load = load;
-    },
-    changeTotalPages(state, pages) {
-        state.total_page = pages
-    },
-    changeCurrentPage(state, page) {
-        state.current_page = page
-    },
+    }
 
 };
 
 export const actions = {
-    adminGetOrders({ commit }, data) {
-        api('adminGetOrders', data)
+    getContacts({ commit }) {
+        api('getContacts')
             .then(res => {
                 commit('changeLoad', true);
                 if (res.success) {
-                    commit('changeData', res.data.transactions);
-                    // commit('changeCurrentPage', res.data.count.select_page);
-                    // commit('changeTotalPages', res.data.count.pages);
-                    
+                    commit('changeData', res.data.contacts);
+
                 }
-                
+
             })
     }
 };
@@ -52,10 +43,4 @@ export const getters = {
     getError(state) {
         return state.errorData
     },
-    getCurrentPage(state) {
-        return state.current_page
-    },
-    getTotalPages(state) {
-        return state.total_page
-    }
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="title">Список контактов</h3>
-        <tableMain :data='data.users'
+        <tableMain :data='data'
                    @edit="$parent.editAdmin($event)"
                    @delete='$parent.deleteAdmin($event)'
                    @sort='$parent.sortAdmin($event)'

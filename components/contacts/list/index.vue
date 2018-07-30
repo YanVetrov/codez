@@ -11,61 +11,32 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-
+    import {mapGetters} from 'vuex';
     export default {
-        components: {DataInfo, WaitInfo},
+        components: { DataInfo, WaitInfo },
         data() {
             return {
-                current_page: this.$route.params.page,
-                users: [],
-                total_page: [],
-                load: false,
-                errorData: false,
-                info: {},
-                filter: {},
 
             }
         },
+        computed: {
+            ...mapGetters({
+                info: 'contacts/getData',
+                load: 'contacts/getLoad',
+                errorData: 'contacts/getError',
+            })
+
+        },
         methods: {
             getContacts(page) {
-                this.load = false;
-                this.$rest.api('getContacts', {page, limit: 10})
-                    .then(res => {
-                        if (res.success) {
-                            this.info.users = res.data.contacts;
-                            this.current_page = res.data.count.select_page || 1;
-                            this.total_page = res.data.count.pages || 1;
-
-                        }
-                        if (!res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error get admins!',
-                                text: res.error.message,
-                            });
-                            this.$router.back();
-                        }
-                        this.load = true;
-
-                    })
-                    .catch(err => {
-                        this.load = true;
-                    })
+                this.$store.dispatch('contacts/getContacts')
             },
             deleteAdmin(contact_id) {
 
-                this.$rest.api('deleteContact', {contact_id})
+                this.$rest.api('deleteContact', { contact_id })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
-                            this.admins.users.forEach((el, i) => {
-                                if (el.id == contact_id) {
-                                    this.info.users.splice(i, 1);
-                                }
-
-                            })
 
                             this.$notify({
                                 group: 'main',
@@ -123,10 +94,10 @@
             },
             sortAdmin(arr) {
                 const contacts = arr.map((el, i) => {
-                    return {id: el._id, positionSort: i + 1};
+                    return { id: el._id, positionSort: i + 1 };
                 });
 
-                return this.$rest.api('sortContact', {contacts})
+                return this.$rest.api('sortContact', { contacts })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -156,8 +127,5 @@
 
 
         },
-        mounted() {
-            return this.getContacts();
-        }
     }
 </script>

@@ -117,9 +117,6 @@ import {mapGetters} from 'vuex'
           })
       }
     },
-    created() {
-      this.$store.dispatch('faq/getFaqFull')
-    },
     // mounted(){
     //   this.faqs = this.$store.getters['faq/getFaq'];
     //   this.langs = this.$store.getters['faq/getLangs'];
