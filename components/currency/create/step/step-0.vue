@@ -33,7 +33,7 @@
 
                 <div class="create-currency-sidebar__item--info">
                     <span>Платежная система</span>
-                    <p>Alfa bank LLC</p>
+                    <input placeholder="Paypal"/>
                 </div>
 
             </div>
@@ -44,7 +44,8 @@
 
                 <div class="create-currency-sidebar__item--info">
                     <span>Тип валюты</span>
-                    <p>USD</p>
+                    <input placeholder="USD"/>
+
                 </div>
 
             </div>
