@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import all from '~/components/reviews/all'
+import all from '~/components/review'
   export default {
    components:{
      all
@@ -13,3 +13,5 @@ import all from '~/components/reviews/all'
 </script>
 
 
+<style lang='scss' scoped>
+</style>

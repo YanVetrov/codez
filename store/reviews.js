@@ -28,17 +28,28 @@ export const mutations = {
 };
 
 export const actions = {
-    adminGetOrders({ commit }, data) {
-        api('adminGetOrders', data)
-            .then(res => {
+    getReviews({ commit }, data) {
+        commit('changeLoad', false);
+        api('getReviews', data || { page: 1, limit: 12 })
+            .then(response => {
+                console.log(response.data);
                 commit('changeLoad', true);
-                if (res.success) {
-                    commit('changeData', res.data.transactions);
-                    // commit('changeCurrentPage', res.data.count.select_page);
-                    // commit('changeTotalPages', res.data.count.pages);
+                if (response.success === true) {
+                    
+                    commit('changeData', response.data.reviews)
+                    commit('changeCurrentPage', response.data.count.select_page || 1)
 
+                    commit('changeTotalPages', response.data.count.pages)
                 }
 
+
+            })
+    },
+    deleteReview({ commit }, id) {
+        api('deleteReview', { review_id: id })
+            .then(response => {
+                console.log(response);
+                return this.getReviews();
             })
     }
 };
