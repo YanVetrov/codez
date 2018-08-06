@@ -1,4 +1,3 @@
-import api from '../storeConfig.js'
 
 export const state = () => ({
     info: false,
@@ -22,7 +21,7 @@ export const mutations = {
 export const actions = {
     getAllParsers({ commit }, data) {
         commit('changeLoad', false);
-        api('getAllParsers', data || { page: 1, limit: 12 })
+        this.app.$rest.api('getAllParsers', data || { page: 1, limit: 12 })
             .then(response => {
                 console.log(response.data);
                 commit('changeLoad', true);

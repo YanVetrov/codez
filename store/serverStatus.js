@@ -1,5 +1,3 @@
-import api from '../storeConfig.js'
-
 
 export const state = () => ({
     info: false,
@@ -22,7 +20,7 @@ export const mutations = {
 
 export const actions = {
     getServerStatus({ commit }) {
-        api('getServerStatus')
+        this.app.$rest.api('getServerStatus')
             .then(res => {
                 commit('changeLoad', true);
                 if (res.success) {

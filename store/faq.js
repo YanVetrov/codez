@@ -1,4 +1,3 @@
-import api from '../storeConfig.js'
 
 
 export const state = () => ({
@@ -25,11 +24,11 @@ export const mutations = {
 
 export const actions = {
     getFaqFull({ commit }) {
-        Promise.all([api('getFaqFull', { group: '' }), api('getFaqGroup'), api('getAllLang')])
+        Promise.all([this.app.$rest.api('getFaqFull', { group: '' }), this.app.$rest.api('getFaqGroup'), this.app.$rest.api('getAllLang')])
             .then(res => {
-                commit('changeFaq', res[0].data.faq)
-                commit('changeGroups', res[1].data.faqGroups)
-                commit('changeLangs', res[2].data.lang)
+                commit('changeFaq', res[0].data.faq);
+                commit('changeGroups', res[1].data.faqGroups);
+                commit('changeLangs', res[2].data.lang);
                
                 
             })

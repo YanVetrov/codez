@@ -1,5 +1,3 @@
-import api from '../storeConfig.js'
-
 
 export const state = () => ({
     news: null,
@@ -23,26 +21,26 @@ export const mutations = {
 
 export const actions = {
     getNewsFull({ commit }) {
-        Promise.all([api('getNewsFull'), api('getAllLang')])
+        Promise.all([this.app.$rest.api('getNewsFull'), this.app.$rest.api('getAllLang')])
             .then(res => {
                 commit('changeData', res[0].data.news)
                 commit('changeLangs', res[1].data.lang)
             })
     },
     getOneNews({ commit }, news_id) {
-        api('getOneNews', { news_id })
+        this.app.$rest.api('getOneNews', { news_id })
             .then(res => {
                 commit('changeOneNews', res.data.news)
             })
     },
     createNews({ commit }, news) {
-        return api('createNews', news)
+        return this.app.$rest.api('createNews', news)
             .then(res => {
                 return res;
             })
     },
     deleteNews({ commit }, news_id) {
-        return api('deleteNews', { news_id })
+        return this.app.$rest.api('deleteNews', { news_id })
             .then(res => {
                 return res;
             })

@@ -1,5 +1,3 @@
-import api from '../storeConfig.js'
-
 export const state = () => ({
     info: false,
     errorData: false,
@@ -22,7 +20,7 @@ export const mutations = {
 
 export const actions = {
     getStatisticClient({ commit }) {
-        api('getStatisticClient')
+        this.app.$rest.api('getStatisticClient')
             .then(res => {
                         let main = res.data.visitors;
                         let obj = {};

@@ -25,5 +25,5 @@ const Rest = {
 Vue.use(Rest);
 
 export default ({app}) => {
-    app.rest = Rest
+    app.$rest = Rest
 }

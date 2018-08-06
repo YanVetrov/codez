@@ -1,11 +1,11 @@
 <template>
 <div class="review-wr">
-    
+
         <DataInfo :data="info" :page='{total_page,current_page}' v-if="load && info"></DataInfo>
-        
+
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
-    
+
 </template>
 <style lang='scss' scoped>
 </style>

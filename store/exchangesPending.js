@@ -1,4 +1,3 @@
-import api from '../storeConfig.js'
 
 export const state = () => ({
     info: false,
@@ -29,7 +28,7 @@ export const mutations = {
 
 export const actions = {
     adminGetOrders({ commit }, data) {
-        api('adminGetOrders', data)
+        this.app.$rest.api('adminGetOrders', data)
             .then(res => {
                 commit('changeLoad', true);
                 if (res.success) {
