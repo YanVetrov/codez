@@ -1,69 +1,73 @@
 <template>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="white-box " style="text-align: center" v-if="afterPost === true">
-                <img src='~/static/images/ok.svg' width="250px" height="250px">
-                <h2> {{$t('createNews.success')}} </h2>
-                <button type="button" class=" btn-outline btn-primary btn-1e" @click="backToCreateNews()">
-                    {{$t('createNews.more')}}
-                </button>
-            </div>
+    <!--<div class="row">-->
+    <!--    <div class="col-md-12">-->
+    <!--        <div class="white-box " style="text-align: center" v-if="afterPost === true">-->
+    <!--            <img src='~/static/images/ok.svg' width="250px" height="250px">-->
+    <!--            <h2> {{$t('createNews.success')}} </h2>-->
+    <!--            <button type="button" class=" btn-outline btn-primary btn-1e" @click="backToCreateNews()">-->
+    <!--                {{$t('createNews.more')}}-->
+    <!--            </button>-->
+    <!--        </div>-->
 
 
-            <div v-else class="white-box">
-                <notifications group="news_create" classes="news-create-notifications" class="news-notify"/>
-                <loader type="block" :status_load="status_load"/>
-                <h3 class="box-title">{{$t('createNews.create')}} </h3>
-                <p class="text-muted m-b-30 font-12">{{$t('createNews.info')}}</p>
+    <!--        <div v-else class="white-box">-->
+    <!--            <notifications group="news_create" classes="news-create-notifications" class="news-notify"/>-->
+    <!--            <loader type="block" :status_load="status_load"/>-->
+    <!--            <h3 class="box-title">{{$t('createNews.create')}} </h3>-->
+    <!--            <p class="text-muted m-b-30 font-12">{{$t('createNews.info')}}</p>-->
 
-                <div>
-                    <label>{{$t('createNews.img')}}</label>
-                    <a class="btn" @click="toggleShow">{{$t('createNews.upload')}}</a>
-                    <ImageUploader field="image"
-                                   class="uploader-image"
-                                   @crop-success="cropSuccess"
-                                   @crop-upload-success="cropUploadSuccess"
-                                   @crop-upload-fail="cropUploadFail"
-                                   v-model="show"
-                                   :width="360"
-                                   :height="150"
-                                   langType="en"
-                                   :noRotate="false"
-                                   :noCircle="true"
-                                   :noSquare="true"
-                                   :url="$rest.apiPath+'uploadImage/'"
-                                   :params="params"
-                                   :headers="headers"
-                                   img-format="png"></ImageUploader>
-                    <br>
-                    <img :src="imgDataUrl">
+    <!--            <div>-->
+    <!--                <label>{{$t('createNews.img')}}</label>-->
+    <!--                <a class="btn" @click="toggleShow">{{$t('createNews.upload')}}</a>-->
+    <!--                <ImageUploader field="image"-->
+    <!--                               class="uploader-image"-->
+    <!--                               @crop-success="cropSuccess"-->
+    <!--                               @crop-upload-success="cropUploadSuccess"-->
+    <!--                               @crop-upload-fail="cropUploadFail"-->
+    <!--                               v-model="show"-->
+    <!--                               :width="360"-->
+    <!--                               :height="150"-->
+    <!--                               langType="en"-->
+    <!--                               :noRotate="false"-->
+    <!--                               :noCircle="true"-->
+    <!--                               :noSquare="true"-->
+    <!--                               :url="$rest.apiPath+'uploadImage/'"-->
+    <!--                               :params="params"-->
+    <!--                               :headers="headers"-->
+    <!--                               img-format="png"></ImageUploader>-->
+    <!--                <br>-->
+    <!--                <img :src="imgDataUrl">-->
 
-                </div>
-                <br>
+    <!--            </div>-->
+    <!--            <br>-->
 
-                <label for="label001">{{$t('createNews.title')}}</label>
-                <input id='label001' type="text" class="form-control form-control-line" placeholder="..."
-                       v-model="title">
+    <!--            <label for="label001">{{$t('createNews.title')}}</label>-->
+    <!--            <input id='label001' type="text" class="form-control form-control-line" placeholder="..."-->
+    <!--                   v-model="title">-->
 
-                <div id="app" class="form-group" style="margin-top: 20px">
-                    <label>{{$t('createNews.text')}}</label>
-                    <vue-editor v-model="content"></vue-editor>
-                </div>
+    <!--            <div id="app" class="form-group" style="margin-top: 20px">-->
+    <!--                <label>{{$t('createNews.text')}}</label>-->
+    <!--                <vue-editor v-model="content"></vue-editor>-->
+    <!--            </div>-->
 
 
-                <div class="btn-group">
-                    <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="createNews()">
-                        {{$t('send')}}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--            <div class="btn-group">-->
+    <!--                <button type="button" class="fcbtn btn btn-outline btn-primary btn-1e" @click="createNews()">-->
+    <!--                    {{$t('send')}}-->
+    <!--                </button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <news />
 
 </template>
 
 <script>
+import news from '~/components/news/create'
     export default {
+        components:{news},
         data() {
             return {
 
