@@ -2,8 +2,7 @@
   <nuxt/>
 </template>
 
-<script>
 
-
-</script>
-
+<style lang="scss">
+  @import "~/assets/sass/module_autorization.scss";
+</style>
