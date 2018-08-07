@@ -26,7 +26,10 @@
                                :style='{borderColor:valid?"":"red"}' v-model="password" type="password" required=""
                                placeholder="*****">
                     </label>
-                    <button class="btnauth" @click="checkLogin" type="button">Enter</button>
+                    <button class="btnauth" @click="checkLogin" type="button" :disabled="loader" :class="{loader:loader}">
+                        Enter
+                        <i class="fal fa-spinner-third fa-spin" v-show="loader" style="margin-left: 10px"></i>
+                    </button>
                 </form>
 
             </div>
@@ -61,7 +64,10 @@
                         <div class="modal-switch__text">Remember this computer for 30 days</div>
                     </label>
 
-                    <button class="btnauth" type="button" @click="checkLogin">Confirm</button>
+                    <button class="btnauth" type="button" @click="checkLogin" :disabled="loader" :class="{loader:loader}">
+                        Confirm
+                        <i class="fal fa-spinner-third fa-spin" v-show="loader" style="margin-left: 10px"></i>
+                    </button>
                 </form>
 
             </div>
@@ -81,6 +87,7 @@
                 code: '123456',
                 showComponent: 'login',
                 valid: true,
+                loader: false,
             }
         },
         mounted() {
@@ -94,7 +101,8 @@
         },
         methods: {
             checkLogin() {
-                this.$root.$emit('loading', true);
+                this.loader = true;
+
                 return this.$rest
                     .api('loginUseEmail', {email: this.email, password: this.password, code: this.code})
                     .then(res => {
@@ -114,11 +122,12 @@
                         return Promise.reject(res.error);
                     })
                     .then(() => {
-                        this.$root.$emit('loading', false);
+                        this.loader = false;
 
                     })
                     .catch(err => {
-                        this.$root.$emit('loading', false);
+                        this.loader = false;
+
                         return console.error(err);
                     })
 
