@@ -84,7 +84,7 @@
             return {
                 email: 'yan@gmail.com',
                 password: 'qweqwe',
-                code: '123456',
+                code: undefined,
                 showComponent: 'login',
                 valid: true,
                 loader: false,

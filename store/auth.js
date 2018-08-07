@@ -16,8 +16,12 @@ export const actions = {
     signIn({commit}, user) {
         commit('setAuth', user);
     },
-    destroyUser({commit}) {
-        commit('deleteUser');
+    destroyUser({commit}, cb) {
+        this.app.$rest.api('destroySession')
+            .then(res => {
+                commit('deleteUser');
+                cb && cb();
+            });
     }
 };
 

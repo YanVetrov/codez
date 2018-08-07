@@ -80,7 +80,7 @@
                                 <div class="switch-site">
                                 <span class="switch switch-switcher">
                                     <input type="radio" name="notifyAdmin" value="-1" title="">
-                                    <input type="radio" name="notifyAdmin" value="1"  title="" checked>
+                                    <input type="radio" name="notifyAdmin" value="1" title="" checked>
                                     <i></i>
                                 </span>
 
@@ -186,10 +186,10 @@
             }
         },
         methods: {
+
             logout() {
-                this.$rest('destroySession').then(() => {
-                    this.$store.dispatch('auth/destroyUser');
-                })
+                this.$store.dispatch('auth/destroyUser', () => this.$router.push('/signin'));
+
             },
 
             openLocalesMenu() {
