@@ -76,9 +76,9 @@
         layout: 'login',
         data() {
             return {
-                email: 'test1@gmail.com',
+                email: 'yan@gmail.com',
                 password: 'qweqwe',
-                code: undefined,
+                code: '12345',
                 showComponent: 'login',
                 valid: true,
             }
