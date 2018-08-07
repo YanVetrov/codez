@@ -78,7 +78,7 @@
             return {
                 email: 'test1@gmail.com',
                 password: 'qweqwe',
-                code: '',
+                code: undefined,
                 showComponent: 'login',
                 valid: true,
             }
