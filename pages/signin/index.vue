@@ -78,7 +78,7 @@
             return {
                 email: 'yan@gmail.com',
                 password: 'qweqwe',
-                code: '12345',
+                code: '123456',
                 showComponent: 'login',
                 valid: true,
             }
