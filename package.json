@@ -2,14 +2,8 @@
   "name": "exchanger-admin-web",
   "version": "1.0.1",
   "description": "Nuxt.js project",
-  "author": "elena <lenatrox@gmail.com>",
+  "author": "Bogdan Medvedev",
   "private": true,
-  "config": {
-    "nuxt": {
-      "port": 3000,
-      "host": "0.0.0.0"
-    }
-  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
