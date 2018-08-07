@@ -130,11 +130,10 @@
 
         </div>
 
-        <div class="create-currency-main--foot">
+        <div class="create-currency-main--foot flex-end">
 
-            <button class="btn btn-simple">Назад</button>
 
-            <button class="btn btn-blue">Сохранить и продолжить</button>
+            <button class="btn btn-blue" @click="$emit('next')">Продолжить</button>
 
         </div>
 
@@ -145,11 +144,11 @@
 
 <script>
     export default {
-        props: ['data', 'step'],
+        props: {
+            step: {type: Number, required: true}
+        },
         data() {
             return {}
         },
-
-        methods: {}
     }
 </script>

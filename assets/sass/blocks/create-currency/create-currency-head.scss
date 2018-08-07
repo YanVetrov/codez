@@ -18,25 +18,25 @@
       border-right: 1px solid #f5f6f7;
       overflow: hidden;
 
-        li {
-          position: relative;
+      li {
+        position: relative;
 
-            &:after {
-              content: '';
-              position: absolute;
-              height: 1px;
-              background: #f5f6f7;
-              top: 50%;
-              left: 27.5%;
-              width: 70%;
-            }
+        &:after {
+          content: '';
+          position: absolute;
+          height: 1px;
+          background: #f5f6f7;
+          top: 50%;
+          left: 27.5%;
+          width: 70%;
+        }
 
         /*  &:last-child {
             &:after {
               content: none;
             }
           }*/
-        }
+      }
     }
 
     &--item {
@@ -59,28 +59,32 @@
         color: #000000;
         font-size: 13px;
 
-          &.complete {
-            font-size: 0;
-            background: #0e83f0;
-            color: #ffffff;
-
-            font-family: Font Awesome\ 5 Pro;
-            font-weight: 300;
-
-              &:before {
-                content: "\f560";
-                color: #fff;
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 1.9;
-              }
+        &.complete {
+          font-size: 0;
+          cursor: pointer;
+          background: #0e83f0;
+          color: #ffffff;
+          &:hover {
+            background: #0f96fb;
 
           }
+          font-family: Font Awesome\ 5 Pro;
+          font-weight: 300;
 
-          &.active {
-            background: #0e83f0;
-            color: #ffffff;
+          &:before {
+            content: "\f560";
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.9;
           }
+
+        }
+
+        &.active {
+          background: #0e83f0;
+          color: #ffffff;
+        }
       }
 
       p {
@@ -110,25 +114,25 @@
       top: 0;
       width: 110px;
 
-        li {
-          padding-left: 5px;
-          padding-right: 5px;
+      li {
+        padding-left: 5px;
+        padding-right: 5px;
 
-          &:first-child {
-            border-right: 1px solid #f5f6f7;
-          }
-
+        &:first-child {
+          border-right: 1px solid #f5f6f7;
         }
+
+      }
 
       a {
         display: inline-block;
         padding: 0 15px;
 
-          &:hover {
-            i {
-              color: #7d7e82;
-            }
+        &:hover {
+          i {
+            color: #7d7e82;
           }
+        }
       }
 
       i {

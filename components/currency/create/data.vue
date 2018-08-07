@@ -2,17 +2,33 @@
     <div class="create-currency">
 
 
-        <header-step :step="step"/>
+        <header-step :step="step" @setStep="setStep"/>
 
         <div class="create-currency-block">
 
 
-            <step0 :step="step" @saveStep0="saveStep0"/>
+            <step0
+                    :step="step"
+                    @next="$parent.step0($event)"
+                    @back="$parent.setBackStep(step-1)"
+            />
 
 
-            <step1 v-if="step <= 1" :step="step"/>
-            <step2 v-if="step === 2" :step="step"/>
-            <step3 v-if="step === 3" :step="step"/>
+            <step1 v-if="step <= 1"
+                   :step="step"
+                   @next="$parent.step1($event)"
+                   @back="$parent.setBackStep(step-1)"
+            />
+            <step2 v-if="step === 2"
+                   :step="step"
+                   @next="$parent.step2($event)"
+                   @back="$parent.setBackStep(step-1)"
+            />
+            <step3 v-if="step === 3"
+                   :step="step"
+                   @next="$parent.step3($event)"
+                   @back="$parent.setBackStep(step-1)"
+            />
 
         </div>
 
@@ -29,19 +45,24 @@
     import step3 from './step/step-3';
 
     export default {
-        components: {headerStep,step0,step1, step2, step3},
-        props: ['data'],
+        components: {headerStep, step0, step1, step2, step3},
+        // model:{},
+        props: {
+            step: {type: Number, required: true},
+            // general
+
+        },
         data() {
             return {
-                step: 0
+                name:'',
+                type:'',
+                xml:'',
             }
         },
-
-        methods: {
-            saveStep0(){
-                this.step = 1;
-            }
-        },
-
+        methods:{
+          setStep(step){
+              this.$parent.setBackStep(step)
+          }
+        }
     }
 </script>

@@ -1,10 +1,7 @@
 <template>
-
     <div class="create-currency-sidebar">
 
         <h4 class="create-currency-sidebar--title text-center">Логотип системы</h4>
-
-        <!--<p><img src="#"/></p>-->
 
         <div class="create-currency-sidebar__bot" style="    text-align: center;">
 
@@ -33,7 +30,7 @@
 
                 <div class="create-currency-sidebar__item--info">
                     <span>Платежная система</span>
-                    <input placeholder="Paypal"/>
+                    <input placeholder="Paypal" v-model="$parent.name"/>
                 </div>
 
             </div>
@@ -44,7 +41,7 @@
 
                 <div class="create-currency-sidebar__item--info">
                     <span>Тип валюты</span>
-                    <input placeholder="USD"/>
+                    <input placeholder="USD" v-model="$parent.type"/>
 
                 </div>
 
@@ -59,7 +56,7 @@
 
                     <p>
 
-                        <select>
+                        <select v-model="$parent.xml">
                             <option>Выбрать</option>
                             <option>Выбрать 1</option>
                             <option>Выбрать 2</option>
@@ -85,7 +82,7 @@
         </div>
 
         <div class="create-currency-sidebar__next">
-            <button class="btn btn-blue" @click="$emit('saveStep0')" v-if="step === 0">продолжить далее</button>
+            <button class="btn btn-blue" @click="$emit('next')" v-if="step === 0">продолжить далее</button>
         </div>
 
 
@@ -95,11 +92,13 @@
 
 <script>
     export default {
-        props: ['data', 'step'],
-        data() {
-            return {}
+        props: {
+            step: {type: Number, required: true},
         },
+        data() {
+            return {
 
-        methods: {}
+            }
+        }
     }
 </script>

@@ -24,10 +24,11 @@
 
         </div>
 
-        <div class="create-currency-main--foot flex-end">
+        <div class="create-currency-main--foot">
 
-            <button class="btn btn-blue">Сохранить</button>
+            <button class="btn btn-simple" @click="$emit('back')">Назад</button>
 
+            <button class="btn btn-blue" @click="$emit('next')">Сохранить </button>
         </div>
 
     </div>
@@ -35,11 +36,11 @@
 
 <script>
     export default {
-        props: ['data'],
+        props: {
+            step: {type: Number, required: true}
+        },
         data() {
             return {}
-        },
-
-        methods: {}
+        }
     }
 </script>

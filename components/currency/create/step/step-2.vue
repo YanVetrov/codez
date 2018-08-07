@@ -162,9 +162,9 @@
 
         <div class="create-currency-main--foot">
 
-            <button class="btn btn-simple">Назад</button>
+            <button class="btn btn-simple" @click="$emit('back')">Назад</button>
 
-            <button class="btn btn-blue">Сохранить и продолжить</button>
+            <button class="btn btn-blue" @click="$emit('next')">Сохранить и продолжить</button>
 
         </div>
 
@@ -174,11 +174,11 @@
 
 <script>
     export default {
-        props: ['data'],
+        props: {
+            step: {type: Number, required: true}
+        },
         data() {
             return {}
         },
-
-        methods: {}
     }
 </script>
