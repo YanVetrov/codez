@@ -13,7 +13,13 @@
 
         <ul class="create-currency-sidebar--tools">
             <li>
-                <button class="btn"><i class="fal fa-cloud-upload"></i> Загрузить лого</button>
+                <button class="btn" @click="upload=!upload" ><i class="fal fa-cloud-upload"></i> Загрузить лого</button>
+                <imageUploader 
+                :show="upload"                
+                type="currencies"
+                :width="100"
+                :height="100"
+                 />
             </li>
             <!--  <li>
                   <button class="btn"><i class="fal fa-times-circle"></i> Удалить</button>
@@ -91,13 +97,15 @@
 </template>
 
 <script>
+    import imageUploader from '~/components/_utils/imageUploader'
     export default {
+        components:{imageUploader},
         props: {
             step: {type: Number, required: true},
         },
         data() {
             return {
-
+                upload:false,
             }
         }
     }

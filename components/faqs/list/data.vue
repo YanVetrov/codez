@@ -1,39 +1,35 @@
 <template>
+    <div class="question border">
+        <h3 class="title">Вопрос и ответ </h3>
+        <search
+        :langs="langs"
+        @search="$parent.search = $event"
+        @lang="$parent.lang=$event"
+        />
+
+        <tips :groups='groups' @group="$parent.group = $event"/>
+        <tableMain :data='data' @delete="$parent.deleteFaq($event)"/>
 
 
-    
-        
-            
-            <div>
-            
-             <h3 class="title">Список контактов</h3>
-                <tableMain :data='data.users'
-                @edit="$parent.editAdmin($event)"
-                @delete='$parent.deleteAdmin($event)'
-                @sort='$parent.sortAdmin($event)'
-                />
-            
-            </div>
-        
-            
-            
-        
-       
-
-
-
+        <pagination :currentPage="page.current_page"
+                    :totalPages="page.total_page"
+                    @page-changed="$parent.getFaqFull"/>
+        <nuxt-link class="btn btn-blue" to="/faq/create">Создать новый</nuxt-link>
+    </div>
+   
 </template>
 
 <script>
-import pagination from '~/components/pagination'
-import tableMain from './table';
+    import search from './searchblock';
+    import tableMain from './table';
+    import tips from './tips'
+
     export default {
-        props: ['data','page'],
-        components:{pagination,tableMain}
-        
+        props: ['data', 'langs','groups', 'page'],
+        components: { tableMain, tips, search }
+
     }
 </script>
 
 <style lang='scss' scoped>
-    /*@import "dashboard/dashboard-top";*/
 </style>

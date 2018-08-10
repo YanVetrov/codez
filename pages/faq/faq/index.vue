@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import faq from '~/components/faq/faq'
+import faq from '~/components/faqs/list'
   export default {
     components:{
       faq

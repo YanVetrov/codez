@@ -1,0 +1,74 @@
+
+.profile {
+
+  &-main {
+
+    &-head {
+      flex: 0 0;
+
+
+
+      ul {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        /*border-top-right-radius: 10px;
+        border-top-left-radius: 10px;*/
+        overflow: hidden;
+      }
+
+      li {
+        flex: 1 1;
+        background: #fbfbfb;
+        cursor: pointer;
+        border-right: 1px solid #f5f6f7;
+        border-bottom: 1px solid #f5f6f7;
+
+        @media screen and (max-width:1200px) {
+          flex: 1 0 auto;
+        }
+
+        &:last-child {
+            border-right: none;
+          }
+        
+        &.active, &:hover {
+          background: white;
+          
+            span {
+              color: #2f323e;
+            }
+        }
+      }
+
+      span {
+        text-transform: uppercase;
+        white-space: nowrap;
+        font-size: 14px;
+        color: rgba(47, 50, 62, 0.75);
+        display: inline-block;
+        padding: 25px 30px;
+        font-weight: 500;
+
+        @media screen and (max-width:1440px) {
+          padding: 25px 10px;
+        }
+
+        @media screen and (max-width:1280px) {
+          font-size: 12px;
+        }
+
+        @media screen and (max-width:1200px) {
+          font-size: 9px;
+        }
+      }
+
+    }
+
+  }
+
+}

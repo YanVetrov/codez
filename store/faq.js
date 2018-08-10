@@ -1,10 +1,14 @@
-
-
 export const state = () => ({
-    faq: null,
+    faq: false,
     langs: null,
     groups: null,
-    isActive:false,
+    load: false,
+    isActive: false,
+    total_pages: 1,
+    current_page: 1,
+    lang:'',
+    group:'',
+    search:'',
 });
 
 export const mutations = {
@@ -17,25 +21,55 @@ export const mutations = {
     changeLangs(state, langs) {
         state.langs = langs;
     },
-    changeUpdate(state,update){
-      state.isActive = update  
+    changeUpdate(state, update) {
+        state.isActive = update
+    },
+    changeLoad(state, load) {
+        state.load = load
+    },
+    changePages(state, current,total) {
+        state.current_page = current;
+        state.total_pages = total;
+    },
+    changeError(state, data) {
+        state.errorData = data
+    },
+    changeLang(state,lang){
+        state.lang = lang
+    },
+    changeGroup(state,group){
+        state.group = group
+    },
+    changeSearch(state,search){
+        state.search = search
     }
 };
 
 export const actions = {
-    getFaqFull({ commit }) {
-        Promise.all([this.app.$rest.api('getFaqFull', { group: '' }), this.app.$rest.api('getFaqGroup'), this.app.$rest.api('getAllLang')])
+    getFaqFull({ commit },filter) {
+        // commit('changeLoad', false);
+        Promise.all([this.app.$rest.api('getFaqFull', filter), this.app.$rest.api('getFaqGroup'), this.app.$rest.api('getAllLang')])
             .then(res => {
-                commit('changeFaq', res[0].data.faq);
+                commit('changeLoad', true);
+                commit('changeFaq', res[0].data);
                 commit('changeGroups', res[1].data.faqGroups);
                 commit('changeLangs', res[2].data.lang);
-               
-                
+                console.log(res[0])
+
+
+            })
+    },
+    deleteFaq({ commit, dispatch }, id) {
+        this.app.$rest.api('deleteFaq', { id })
+            .then(res => {
+                console.log(res);
+                dispatch('getFaqFull');
             })
     }
 };
+
 export const getters = {
-    getFaq(state) {
+    getData(state) {
         return state.faq
     },
     getLangs(state) {
@@ -43,5 +77,14 @@ export const getters = {
     },
     getGroups(state) {
         return state.groups
+    },
+    getLoad(state) {
+        return state.load
+    },
+    getCurrentPage(state) {
+        return state.current_page
+    },
+    getTotalPages(state) {
+        return state.total_pages
     }
 }

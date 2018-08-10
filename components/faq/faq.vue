@@ -105,6 +105,7 @@
               el.active = true;
             })
             this.faqs = res.data.faq;
+            console.log(res);
           })
         this.$rest.api('getAllLang')
           .then(res => {

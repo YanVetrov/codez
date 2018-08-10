@@ -1,84 +1,43 @@
 <template>
-
-
-    
-        
-            
-            
-            
-            <div class="table">
-            
-                    <table>
-            
-                        <thead>
-                            <tr>
-                                <td>
-                                    <span>Иконка</span>
-            
-                                </td>
-                                <td>
-                                    <span>Имя</span>
-                                </td>
-                                <td>
-                                    <span>Контакт</span>
-            
-                                </td>
-                                <td>
-                                    <span>Ссылка</span>
-            
-                                </td>
-                                <td>
-                                    <span>размер</span>
-            
-                                </td>
-                                <td>
-                                    <span>Действие</span>
-                                </td>
-                            </tr>
-                        </thead>
-            
-                        
-                        <draggable v-model="users" :options="{handle:'.dragg',ghostClass:'.ghost'}" @change="$emit('sort',users)" 
-                        :element='"tbody"'>
-                            <tableItem 
-                            v-for='user in users' 
-                            @delete='$emit("delete",$event)' 
-                            @edit='$emit("edit",$event)'
-                            :user='user' 
-                            :key='user.id' 
-                            />
-                        </draggable>
-                            
-                            
-                            <tr class="dashboard-wait--no-proposal">
-                                <td colspan="6">Нет заявок</td>
-                            </tr>
-                        
-            
-                    </table>
-            
-                </div>
-            
-            
-        
-       
-
-
-
+                    <div class="table">
+                
+                        <table>
+                
+                            <tbody>
+                
+                            <tableItem @delete="$emit('delete',$event)" v-for="faq in data.faq" :faq="faq" v-if="data.faq.length>0" :key="faq._id"/>
+                
+                
+                                <tr class="dashboard-wait--no-proposal" v-else>
+                                    <td colspan="1"> <div class="dashboard-wait--no-proposal-wr">
+                                        <div class="dashboard-wait--no-proposal-item">
+                                            <p>
+                                                <i class="fal fa-question"></i>
+                                            </p>
+                                        </div>
+                                        <div class="dashboard-wait--no-proposal-txt">
+                                            <p class="title">Простите мы не нашли</p>
+                                            <span>пользователей по вашему запросу</span>
+                                            <strong>VASA</strong>
+                                        </div>
+                                    </div></td>
+                                </tr>
+                
+                            </tbody>
+                
+                        </table>
+                
+                    </div>
 </template>
 
 <script>
-import tableItem from './tableItem';
-import draggable from 'vuedraggable'
+    import tableItem from './tableItem';
+    import tableReview from './tableReview';
+
     export default {
         props: ['data'],
-        components:{tableItem,draggable},
-        data(){
-            return{
-                users:this.data
-            }
-        }
-        
+        components: {tableItem,tableReview}
+
     }
 </script>
 

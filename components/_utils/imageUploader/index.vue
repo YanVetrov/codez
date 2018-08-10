@@ -26,7 +26,7 @@
             type: {type: String, required: true},
             width: {type: Number, required: true},
             height: {type: Number, required: true},
-            show: {type: Boolean, default: true},
+            show: {type: Boolean, default: false},
         },
         data() {
             return {
@@ -55,7 +55,7 @@
         methods: {
 
             toggleShow() {
-                this.show = !this.show;
+                this.$emit('close');
             },
             cropSuccess(imageBase64) {
                 console.log('cropSuccess=>');
