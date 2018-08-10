@@ -4,8 +4,10 @@
                         <table>
                 
                             <tbody>
-                
-                            <tableItem @delete="$emit('delete',$event)" v-for="faq in data.faq" :faq="faq" v-if="data.faq.length>0" :key="faq._id"/>
+                            <template v-if="data.faq.length>0">
+                            <tableItem @delete="$emit('delete',$event)" v-for="faq in data.faq" :faq="faq" :key="faq._id"/>    
+                            </template>
+                            
                 
                 
                                 <tr class="dashboard-wait--no-proposal" v-else>
