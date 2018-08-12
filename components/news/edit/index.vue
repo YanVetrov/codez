@@ -2,10 +2,11 @@
 
     <div>
         <DataInfo 
-        :data='info'
+        :data='oneNews'
         v-if="load"
-        @publish="editFaq($event)"
-        @delete="deleteFaq($event)"
+        :langs="langs"
+        @publish="editNews($event)"
+        @delete="deleteNews($event)"
         >
         </DataInfo>
         
@@ -16,96 +17,36 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-
+    import {mapGetters,mapActions} from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
         data() {
             return {
-                info: {},
-                load: false,
-                errorData: false,
-
-
             }
+        },
+        computed:{
+          ...mapGetters({
+              info:'news/getData',
+              oneNews:'news/getOneNews',
+              load:'news/getLoad',
+              errorData:'news/getError',
+              langs:'news/getLangs'
+          })  
         },
         methods: {
-            editFaq(obj) {
-                obj.id=obj._id;
-                obj.lang=obj.lang.split('-')[1];
-                this.load = false
-                this.$rest.api('editFaq', obj)
-                    .then(res => {
-                        if (res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'Faq successful edited'
-                            })
-                        }
-                        if (!res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error ...',
-                                text: res.error.message,
-                            })
-                        }
-                        this.load = true
-                    })
-                    .catch(err => {
-                        this.load = true
-                    })
-
-
-            },
-            deleteFaq(id) {
-                this.load = false
-                this.$rest.api('deleteFaq', {id})
-                    .then(res => {
-                        if (res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'Faq successful deleted'
-                            })
-                        }
-                        if (!res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error ...',
-                                text: res.error.message,
-                            })
-                        }
-                        this.load = true
-                    })
-                    .catch(err => {
-                        this.load = true
-                    })
-
-
-            },
-            update() {
-                let id = this.$route.params.id
-                Promise.all([this.$rest.api('getFaqGroup'), this.$rest.api('getAllLang'),this.$rest.api('getOneFaq', { id })])
-                    .then(res => {
-                        this.info.groups = res[0].data.faqGroups
-                        this.info.langs = res[1].data.lang;
-                        this.info.faq = res[2].data;
-                        this.info.faq.canDelete = true;
-                        this.load = true;
-                    })
-            }
+            ...mapActions({
+                getNewsFull:'news/getNewsFull',
+                getOneNews:'news/getOneNews',
+                deleteNews:'news/deleteNews',
+                editNews:'news/editNews',
+                createNews:'news/createNews',
+                getAllLangs:'news/getAllLangs'
+            })
         },
 
-        created() {
-            this.update();
+        mounted() {
+            this.getOneNews(this.$route.params.id)
+            this.getAllLangs();
         }
 
     }

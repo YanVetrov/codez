@@ -6,12 +6,16 @@
             
             <div>
             
-             <h3 class="title">Список контактов</h3>
-                <tableMain :data='data.users'
-                @edit="$parent.editAdmin($event)"
-                @delete='$parent.deleteAdmin($event)'
-                @sort='$parent.sortAdmin($event)'
+             <h3 class="title">Каталог новостей</h3>
+                     <search
+        @search="$parent.search = $event"
+        @sort="$parent.sort=$event"
+        />
+                <tableMain :news='data'
+                @delete="$parent.deleteNews($event)"
                 />
+                
+                <pagination/>
             
             </div>
         
@@ -25,12 +29,13 @@
 </template>
 
 <script>
-import pagination from '~/components/pagination'
-import tableMain from './table';
+    import pagination from '~/components/_utils/pagination'
+    import tableMain from './table';
+    import search from './searchblock'
     export default {
-        props: ['data','page'],
-        components:{pagination,tableMain}
-        
+        props: ['data', 'page'],
+        components: { pagination, tableMain, search }
+
     }
 </script>
 

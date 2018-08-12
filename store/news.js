@@ -1,15 +1,18 @@
-
 export const state = () => ({
     news: null,
     oneNews: false,
     langs: null,
     groups: null,
     isActive: false,
+    load: true,
+    errorData: false,
+    total_pages: 1,
+    current_page: 1,
 });
 
 export const mutations = {
-    changeData(state, info) {
-        state.info = info;
+    changeData(state, news) {
+        state.news = news;
     },
     changeOneNews(state, info) {
         state.oneNews = info;
@@ -20,38 +23,69 @@ export const mutations = {
 };
 
 export const actions = {
-    getNewsFull({ commit }) {
-        Promise.all([this.app.$rest.api('getNewsFull'), this.app.$rest.api('getAllLang')])
+    getAllLangs({ commit }) {
+        this.app.$rest.api('getAllLang')
             .then(res => {
-                commit('changeData', res[0].data.news)
-                commit('changeLangs', res[1].data.lang)
+                commit('changeLangs', res.data.lang)
             })
     },
-    getOneNews({ commit }, news_id) {
-        this.app.$rest.api('getOneNews', { news_id })
+    getNewsFull({ commit },filter) {
+        this.app.$rest.api('getNewsFull',filter)
             .then(res => {
-                commit('changeOneNews', res.data.news)
+                commit('changeData', res.data)
+            })
+    },
+    getOneNews({ commit }, id) {
+        this.app.$rest.api('getOneNews', { id })
+            .then(res => {
+                commit('changeOneNews', res.data)
+                console.log(res)
             })
     },
     createNews({ commit }, news) {
+        news.news_id = news._id
+        news.lang = news.lang.split('-')[0];
+        news.imageId = news.imageid;
+        console.log(news)
         return this.app.$rest.api('createNews', news)
             .then(res => {
+                console.log(res)
                 return res;
             })
     },
-    deleteNews({ commit }, news_id) {
-        return this.app.$rest.api('deleteNews', { news_id })
+    editNews({ commit }, news) {
+        news.news_id = news._id
+        news.lang = news.lang.split('-')[0];
+        news.imageId = news.imageid;
+        return this.app.$rest.api('editNews', news)
             .then(res => {
+                console.log(res)
+                return res;
+            })
+    },
+    deleteNews({ commit }, id) {
+        return this.app.$rest.api('deleteNews', { id })
+            .then(res => {
+                console.log(res)
                 return res;
             })
     },
 };
 export const getters = {
     getData(state) {
-        return state.info
+        return state.news
+    },
+    getOneNews(state) {
+        return state.oneNews
     },
     getLangs(state) {
         return state.langs
+    },
+    getLoad(state) {
+        return state.load
+    },
+    getError(state) {
+        return state.errorData
     },
     getOneNews(state) {
         return state.oneNews

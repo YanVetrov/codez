@@ -3,9 +3,9 @@
                 <div class="new-main border">
                 
                     <h5 class="title">Добавление новости</h5>
-                
                     <div class="new-main--name border-shadow">
-                        <input type="text" placeholder="Введите заголовок">
+                        
+                        <input type="text" placeholder="Введите заголовок" v-model="news.title">
                 
                         <div class="new-main--name__select">
                 
@@ -22,7 +22,9 @@
                 
                     </div>
                 
-                    <div class="new-main--viz"></div>
+                    <div class="new-main--viz">
+                        <vue-editor v-model='news.content'></vue-editor>
+                    </div>
                 
                     <div class="new-main-selects">
                         <div class="new-main-selects--categ">
@@ -40,10 +42,10 @@
                 
                         <div class="new-main-selects--avat">
                             <p>Аватарка</p>
-                
+                            <imageUploader :show="show" type="contacts" :height="100" :width="100" @close="show=false" @change-imageId="news.imageid=$event"/>
                             <div>
                 
-                                <button class="btn btn-simple btn-simple--img">загрузить</button>
+                                <button class="btn btn-simple btn-simple--img" @click="show=!show">загрузить</button>
                 
                             </div>
                 
@@ -56,7 +58,7 @@
                 
                                 <i class="fal fa-calendar-check"></i>
                 
-                                <p class="new-main-selects--date__">16 Марта 2019</p>
+                                <p class="new-main-selects--date__">{{$moment(news.createdAt).format('DD.MM.YY в HH:mm')||Date.now}}</p>
                 
                                 <span class="ar icon-drop-down"></span>
                 
@@ -74,10 +76,8 @@
                 
                                 <div class="languages">
                 
-                                    <select>
-                                        <option><a href="/">Русский</a></option>
-                                        <option><a href="/">Eng</a></option>
-                                        <option><a href="/">Chukchi</a></option>
+                                    <select v-model="news.lang">
+                                        <option v-for="lang in langs" :key="lang.name"><a>{{lang.lang}}-{{lang.name}}</a></option>
                                     </select>
                 
                                 </div>
@@ -92,7 +92,7 @@
                         <button class="btn btn-simple del">Назад</button>
                 
                         <div class="faq-main--group-btn__">
-                            <button class="btn btn-blue">Опубликовать</button>
+                            <button class="btn btn-blue" @click="$emit('publish', news)">Опубликовать</button>
                         </div>
                     </div>
                 
@@ -105,13 +105,21 @@
 
 <script>
     import buttons from './buttons'
+    import imageUploader from '~/components/_utils/imageUploader'
     export default {
-        components:{buttons},
-        props: ['groups','langs','faq'],
+        components:{buttons,imageUploader},
+        props: ['langs','data'],
         data(){
             return{
-                faqs:this.faq
+                news:this.data,
+                show:false
             }
+        },
+        mounted(){
+          setTimeout(()=>{this.news = this.data},500)  
+        },
+        beforeMount(){
+            this.news={}
         }
     }
 </script>
