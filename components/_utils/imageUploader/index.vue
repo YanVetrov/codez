@@ -4,6 +4,7 @@
                    @crop-success="cropSuccess"
                    @crop-upload-success="cropUploadSuccess"
                    @crop-upload-fail="cropUploadFail"
+                   @input="$emit('close')"
                    v-model="show"
                    :width="width"
                    :height="height"
