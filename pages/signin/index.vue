@@ -12,18 +12,25 @@
             <div class="modal-main bg-stars">
 
                 <form action="#" onsubmit="return false;checkLogin();">
+                    
+                    <div style="height:20px;">
+                        <transition name='fade-trans'>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">Invalid login or password</div>
+                        </transition>
+                    </div>
+                    
                     <label>
                         <i class="fal fa-envelope"></i>
                         <!--<i class="fal fa-envelope-square"></i>-->
                         <input @keyup.enter="checkLogin" class="form-control" @focus='clearValid'
-                               :style='{borderColor:valid?"":"red"}' type="text" v-model="email" required=""
+                               :style='{borderColor:valid?"":"#ed4c40"}' type="text" v-model="email" required=""
                                placeholder="Email">
                     </label>
 
                     <label>
                         <i class="fal fa-key"></i>
                         <input @keyup.enter="checkLogin" class="form-control" @focus='clearValid'
-                               :style='{borderColor:valid?"":"red"}' v-model="password" type="password" required=""
+                               :style='{borderColor:valid?"":"#ed4c40"}' v-model="password" type="password" required=""
                                placeholder="*****">
                     </label>
                     <button class="btnauth" @click="checkLogin" type="button" :disabled="loader" :class="{loader:loader}">
@@ -43,7 +50,11 @@
             </h3>
 
             <div class="modal-main">
-
+                    <div style="height:20px;">
+                        <transition name='fade-trans'>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">Invalid authenticator code</div>
+                        </transition>
+                    </div>
                 <div class="modal-main--at">
 
                     <div class="fal fa-shield">
@@ -56,7 +67,8 @@
                 <form onsubmit="return false;checkLogin();" action="#">
                     <label>
                         <i class="fal fa-envelope-square"></i>
-                        <input type="text" placeholder="*** ***" v-model="code">
+                        <input type="text" placeholder="*** ***" v-model="code" @focus='clearValid'
+                               :style='{borderColor:valid?"":"#ed4c40"}'>
                     </label>
 
                     <label class="modal-switch">
@@ -87,6 +99,7 @@
                 code: undefined,
                 showComponent: 'login',
                 valid: true,
+                validCode: true,
                 loader: false,
             }
         },
@@ -104,7 +117,7 @@
                 this.loader = true;
 
                 return this.$rest
-                    .api('loginUseEmail', {email: this.email, password: this.password, code: this.code})
+                    .api('loginUseEmail', { email: this.email, password: this.password, code: this.code })
                     .then(res => {
                         if (res.success) {
                             this.$store.dispatch('auth/signIn', res.data);
@@ -113,6 +126,9 @@
                         else {
                             console.log(res);
                             if (res && res.error && res.error.errorCode === 6231533598118172) {
+                                if (this.showComponent == '2fa') {
+                                    return this.valid = false;
+                                }
                                 this.showComponent = '2fa';
                                 return;
                             }
@@ -138,3 +154,16 @@
         }
     }
 </script>
+
+<style>
+    .fade-trans-enter-active,
+    .fade-trans-leave-active {
+        transition: all .5s;
+    }
+
+    .fade-trans-enter,
+    .fade-trans-leave-to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+</style>
