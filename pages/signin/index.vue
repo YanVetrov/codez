@@ -109,8 +109,8 @@
             this.$rest.api('isAuthUser')
                 .then(res => {
                     if (res.success) {
-                        // this.$store.dispatch('auth/signIn', res.data);
-                        // this.$router.push('dashboard');
+                        this.$store.dispatch('auth/signIn', res.data);
+                        this.$router.push('dashboard');
                     }
                 })
         },
