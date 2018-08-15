@@ -15,7 +15,7 @@
                     
                     <div style="height:20px;">
                         <transition name='fade-trans'>
-                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">Invalid login or password</div>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Invalid authenticator code'}}</div>
                         </transition>
                     </div>
                     
@@ -47,12 +47,13 @@
 
             <h3 class="modal-block--title">
                 Enter a verification code
+                <a @click="back">BACK</a>
             </h3>
 
             <div class="modal-main">
                     <div style="height:20px;">
                         <transition name='fade-trans'>
-                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">Invalid authenticator code</div>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Invalid authenticator code'}}</div>
                         </transition>
                     </div>
                 <div class="modal-main--at">
@@ -101,14 +102,15 @@
                 valid: true,
                 validCode: true,
                 loader: false,
+                message: false,
             }
         },
         mounted() {
             this.$rest.api('isAuthUser')
                 .then(res => {
                     if (res.success) {
-                        this.$store.dispatch('auth/signIn', res.data);
-                        this.$router.push('dashboard');
+                        // this.$store.dispatch('auth/signIn', res.data);
+                        // this.$router.push('dashboard');
                     }
                 })
         },
@@ -125,6 +127,9 @@
                         }
                         else {
                             console.log(res);
+                            if (res.error.errorCode === 63426324) {
+                                this.message = res.error.message.split('.')[0];
+                            }
                             if (res && res.error && res.error.errorCode === 6231533598118172) {
                                 if (this.showComponent == '2fa') {
                                     return this.valid = false;
@@ -135,7 +140,7 @@
                             this.valid = false;
 
                         }
-                        return Promise.reject(res.error);
+                        // return Promise.reject(res.error);
                     })
                     .then(() => {
                         this.loader = false;
@@ -144,12 +149,17 @@
                     .catch(err => {
                         this.loader = false;
 
-                        return console.error(err);
+                        // return console.error(err);
                     })
 
             },
             clearValid() {
                 this.valid = true;
+                this.message = false;
+            },
+            back() {
+                this.showComponent = 'login'
+                this.clearValid();
             }
         }
     }
