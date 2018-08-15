@@ -3,11 +3,12 @@
         <h3 class="title">Вопрос и ответ </h3>
         <search
         :langs="langs"
+        :lang="$parent.lang"
         @search="$parent.search = $event"
         @lang="$parent.lang=$event"
         />
 
-        <tips :groups='groups' @group="$parent.group = $event"/>
+        <tips :groups='groups' @group="$parent.group = $event" :lang="$parent.lang"/>
         <tableMain :data='data' @delete="$parent.deleteFaq($event)"/>
 
 

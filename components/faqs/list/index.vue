@@ -18,7 +18,7 @@
         components: { DataInfo, WaitInfo },
         data() {
             return {
-                lang: '',
+                lang: this.$root.$i18n.locale,
                 search: '',
                 group: '',
             }

@@ -7,7 +7,7 @@
                             </a>
                             
                         </li>
-                        <li v-for="group in groups" :key="group.id" v-if="$root.$i18n.locale == group.lang" >
+                        <li v-for="group in groups" :key="group.id" v-if="lang == group.lang" >
                             <a @click="$emit('group',group.groupName)" :class="group.groupName==$parent.$parent.group?'active':''">
                                 <i class="fal fa-caret-square-right"> </i> 
                                 {{group.groupName}}
@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ['groups']
+        props: ['groups','lang']
     }
 </script>
 

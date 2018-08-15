@@ -40,7 +40,7 @@
                                 <div class="languages">
                 
                                     <select @change="$emit('lang',$event.target.value.split('-')[0])">
-                                        <option v-for="opt in langs" :key="opt.lang">{{opt.lang}}-{{opt.name}}</option>
+                                        <option v-for="opt in langs" :key="opt.lang" :selected="lang==opt.lang?true:false">{{opt.lang}}-{{opt.name}}</option>
                                     </select>
                 
                                 </div>
@@ -55,12 +55,12 @@
 
 <script>
     export default {
-        props: ['ph','langs'],
+        props: ['ph','langs','lang'],
         methods:{
             check(e){
                 console.log(e)
             }
-        }
+        },
     }
 </script>
 
