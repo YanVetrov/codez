@@ -1,7 +1,7 @@
 <template>
 
 <div class="faq-main border">
-    <h5 class="title">{{faqs.title}}</h5>
+    <h5 class="title">Создание Faq</h5>
 
     <div class="faq-main--name border-shadow">
         <input type="text" v-model='faq.title' placeholder="Заголовок вопрос">
@@ -17,15 +17,17 @@
 
             <div class="faq-main-selects--categ-item">
 
-                <div class="border-shadow">
-                    <select v-model='faqs.group'>
+                <div class="border-shadow" >
+                    <select v-model='faqs.group' v-if="!newgroup">
                         <option v-for='group in groups' :key='group.id'>{{group.groupName}}</option>
                     </select>
+                    <input v-model="newFaqGroup" v-else type='text' placeholder="Введите новую группу" />
 
                     <span class="icon-drop-down"></span>
                 </div>
 
-                <button><i class="fal fa-plus-circle"></i> Создать категорию</button>
+                <button @click="newgroup=!newgroup"><i v-if="!newgroup" class="fal fa-plus-circle"></i> {{newgroup?'Отмена':'Cоздать новую группу'}}</button>
+                <button @click="pushGroup" v-if="newgroup"><i class="fal fa-plus-circle"></i> Добавить</button>
 
             </div>
 
@@ -68,7 +70,17 @@
         props: ['groups','langs','faq'],
         data(){
             return{
-                faqs:this.faq
+                faqs:this.faq,
+                groupss:this.groups,
+                newgroup:false,
+                newFaqGroup:'',
+            }
+        },
+        methods:{
+            pushGroup(){
+                this.faqs.group = this.newFaqGroup;
+                this.groupss.push({groupName:this.newFaqGroup});
+                this.newgroup=false;
             }
         }
     }

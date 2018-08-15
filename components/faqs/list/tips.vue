@@ -3,11 +3,11 @@
                          <li>
                             <a @click="$emit('group','')">
                                 <i class="fal fa-caret-square-right"> </i> 
-                                очистить
+                                Все
                             </a>
                             
                         </li>
-                        <li v-for="group in groups" :key="group.id" >
+                        <li v-for="group in groups" :key="group.id" v-if="$root.$i18n.locale == group.lang" >
                             <a @click="$emit('group',group.groupName)" :class="group.groupName==$parent.$parent.group?'active':''">
                                 <i class="fal fa-caret-square-right"> </i> 
                                 {{group.groupName}}
