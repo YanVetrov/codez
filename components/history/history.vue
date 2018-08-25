@@ -2,13 +2,14 @@
     <table>
         <tbody>
         <component v-bind:is="getTypeAction(action.method).componentName"
-                   :method="action.method"
-                   :date="action.createdAt"
-                   :param="action.param"
-                   :network="action.network"
-                   :user="action.user"
-                   :response="action.response"
                    v-for="(action,i) in history"
+                   :method="history.method"
+                   :date="action.createdAt"
+                   :param="action.param || 'smeh'"
+                   :user="action.user || 'kolya'"
+                   :network="action.network"
+                   :response="action.response"
+                   
                    :key="i"
         />
         </tbody>

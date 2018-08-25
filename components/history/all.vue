@@ -89,6 +89,7 @@
                             this.current_page = res.data.count.select_page || 1;
                             this.history = res.data.history;
                             this.total_page = res.data.count.pages;
+                            
 
                         }
                         else {

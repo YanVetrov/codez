@@ -1,7 +1,7 @@
 <template>
     <tr :ident="_id">
         <td>
-            <span class="icon-company"><img :src="$rest.fsPath+imageSrc" alt=""></span>
+            <span class="fal fa-company"><img :src="$rest.fsPath+imageSrc" alt=""></span>
         </td>
 
         <td>

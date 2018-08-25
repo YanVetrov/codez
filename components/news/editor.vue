@@ -16,7 +16,7 @@
                                 <option>Категория новости4</option>
                             </select>
                 
-                            <span class="ar icon-drop-down"></span>
+                            <span class="ar fal fa-drop-down"></span>
                 
                         </div>
                 
@@ -60,7 +60,7 @@
                 
                                 <p class="new-main-selects--date__">{{$moment(news.createdAt).format('DD.MM.YY в HH:mm')||Date.now}}</p>
                 
-                                <span class="ar icon-drop-down"></span>
+                                <span class="ar fal fa-drop-down"></span>
                 
                             </div>
                 
@@ -72,7 +72,7 @@
                 
                             <div class="border-shadow">
                 
-                                <span class="icon-earth"></span>
+                                <span class="fal fa-earth"></span>
                 
                                 <div class="languages">
                 
@@ -82,7 +82,7 @@
                 
                                 </div>
                 
-                                <span class="ar icon-drop-down"></span>
+                                <span class="ar fal fa-drop-down"></span>
                 
                             </div>
                         </div>

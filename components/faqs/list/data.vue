@@ -6,6 +6,7 @@
         :lang="$parent.lang"
         @search="$parent.search = $event"
         @lang="$parent.lang=$event"
+        @sort="$parent.sort=$event"
         />
 
         <tips :groups='groups' @group="$parent.group = $event" :lang="$parent.lang"/>

@@ -7,7 +7,7 @@
 
         <p class="ip">IP {{ip}}</p>
 
-        <span class="device"><span class="icon-laptop"></span></span>
+        <span class="device"><span class="fal fa-laptop"></span></span>
 
         <div class="active-change">
             <p class="active-change__">{{actionText}}</p>

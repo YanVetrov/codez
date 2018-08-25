@@ -3,13 +3,13 @@
         <ul>
             <li class="search-block--input">
                 <div>
-                    <button><span class="icon-search"><i class="fal fa-search"></i></span></button>
+                    <button><span class="fal fa-search"></span></button>
                     <input type="search" @input='$emit("onenter", $event.target.value)' :placeholder="ph">
                 </div>
             </li>
             <li class="search-block--select">
                 <div>
-                    <span class="icon-filter" @click="_.random(20)"><i class="fal fa-filter"></i></span>
+                    <span class="fal fa-filter" @click="_.random(20)"></span>
                     <div class="search-block--select__">
                         <select>
                             <option @click='$emit("onselect",1)'>Сначала новые</option>

@@ -21,6 +21,7 @@
                 lang: this.$root.$i18n.locale,
                 search: '',
                 group: '',
+                sort: Number,
             }
         },
         computed: {
@@ -43,18 +44,21 @@
         },
         watch: {
             search() {
-                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group })
+                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group, sortBy: { createdAt: +this.sort } })
             },
             lang() {
-                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group })
+                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group, sortBy: { createdAt: +this.sort } })
             },
             group() {
-                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group })
+                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group, sortBy: { createdAt: +this.sort } })
+            },
+            sort() {
+                return this.getFaqFull({ lang: this.lang, search: this.search, group: this.group, sortBy: { createdAt: +this.sort } })
             }
         },
 
         mounted() {
-            this.getFaqFull({ lang: this.lang, search: this.search, group: this.group });
+            this.getFaqFull({ lang: this.lang, search: this.search, group: this.group, sortBy: { createdAt: +this.sort } });
         },
     }
 </script>

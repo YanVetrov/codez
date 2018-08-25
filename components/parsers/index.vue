@@ -1,7 +1,7 @@
 <template>
 <div class="parser-wr">
     
-        <DataInfo :data="info" :page='{total_page,current_page}' v-if="load && info"></DataInfo>
+        <DataInfo :data="info"  v-if="load && info"></DataInfo>
         
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
