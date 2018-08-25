@@ -1,21 +1,24 @@
 <template>
-    <ImageUploader field="image"
-                   class="uploader-image"
-                   @crop-success="cropSuccess"
-                   @crop-upload-success="cropUploadSuccess"
-                   @crop-upload-fail="cropUploadFail"
-                   @input="$emit('close')"
-                   v-model="show"
-                   :width="width"
-                   :height="height"
-                   langType="en"
-                   :noRotate="false"
-                   :noCircle="true"
-                   :noSquare="true"
-                   :url="$rest.apiPath+'uploadImage/'"
-                   :params="params"
-                   :headers="headers"
-                   img-format="png"></ImageUploader>
+    <no-ssr>
+        <ImageUploader
+                field="image"
+                class="uploader-image"
+                @crop-success="cropSuccess"
+                @crop-upload-success="cropUploadSuccess"
+                @crop-upload-fail="cropUploadFail"
+                @input="$emit('close')"
+                v-model="show"
+                :width="width"
+                :height="height"
+                langType="en"
+                :noRotate="false"
+                :noCircle="true"
+                :noSquare="true"
+                :url="$rest.apiPath+'uploadImage/'"
+                :params="params"
+                :headers="headers"
+                img-format="png"/>
+    </no-ssr>
 </template>
 
 <script>

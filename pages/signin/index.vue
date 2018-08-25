@@ -15,7 +15,7 @@
                     
                     <div style="height:20px;">
                         <transition name='fade-trans'>
-                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Invalid authenticator code'}}</div>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Error login'}}</div>
                         </transition>
                     </div>
                     
@@ -130,6 +130,9 @@
                             if (res.error.errorCode === 63426324) {
                                 this.message = res.error.message.split('.')[0];
                             }
+                            if (res.error.errorCode === 241351) {
+                                this.message = 'Error email or password';
+                            }
                             if (res && res.error && res.error.errorCode === 6231533598118172) {
                                 if (this.showComponent == '2fa') {
                                     return this.valid = false;
@@ -158,7 +161,7 @@
                 this.message = false;
             },
             back() {
-                this.showComponent = 'login'
+                this.showComponent = 'login';
                 this.clearValid();
             }
         }

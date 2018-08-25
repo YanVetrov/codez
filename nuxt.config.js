@@ -36,7 +36,8 @@ module.exports = {
         {src: '~/plugins/v-select.js', ssr: false},
         {src: "~/plugins/vue-charts.js", ssr: false},
         {src: "~/plugins/vue-notify", ssr: false},
-        {src: '~/plugins/vue-core-image-upload.js', ssr: false}
+        {src: '~/plugins/vue-core-image-upload.js', ssr: false},
+
 
     ],
 
