@@ -54,7 +54,7 @@ export const actions = {
                 commit('changeFaq', res[0].data);
                 commit('changeGroups', res[1].data.faqGroups);
                 commit('changeLangs', res[2].data.lang);
-                console.log(res[0])
+                console.log(res[0].data.faq)
 
 
             })

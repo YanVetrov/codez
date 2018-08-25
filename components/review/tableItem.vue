@@ -7,7 +7,7 @@
                 
                                 <td>
                 
-                                    <span class="icon-company"><img src="img/bank.svg" alt=""></span>
+                                    <span class="fal fa-company"><img src="img/bank.svg" alt=""></span>
                 
                                     <div class="company">
                                         <p class="name-company">{{user.name}}</p>

@@ -9,7 +9,7 @@
             
                                 <td>
             
-                                    <span class="icon-company"><img src="img/bank.svg" alt=""></span>
+                                    <span class="fal fa-company"><img src="img/bank.svg" alt=""></span>
             
                                 </td>
             

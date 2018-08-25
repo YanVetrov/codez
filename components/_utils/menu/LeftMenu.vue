@@ -1,5 +1,6 @@
 <template>
-    <div class="left-menu">
+    <transition name="slide-left">
+    <div class="left-menu" v-show="menuActive">
 
         <ul class="left-menu-list">
 
@@ -10,7 +11,7 @@
                         <i :class="'fal '+el.icon" :style="'color: '+el.color"></i>
                     </span>
                 </template>
-                <template v-else>
+<template v-else>
                     <nuxt-link :to="el.page" :event="el.child.length === 0 ?'click': ''"
                                @click.native="el.child && el.child.length === 0 || (el.isShow = !el.isShow)"
                                class=""
@@ -22,20 +23,21 @@
                             <i v-if="!!el.isShow" class="i-show-status fal fa-angle-down"></i>
                             <i v-else class="i-show-status fal fa-angle-right"></i>
                         </template>
-                    </nuxt-link>
+</nuxt-link>
 
-                    <ul class="left-menu-list__sub" v-if="el.child && el.child.length > 0" :class="{'in': el.isShow}">
-                        <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
-                            <nuxt-link :to="el.page+elc.page" active-class="active">
-                                {{typeof $t(elc.name)==='string'?$t(elc.name):elc.name}}
-                            </nuxt-link>
-                        </li>
-                    </ul>
-                </template>
-            </li>
-        </ul>
+<ul class="left-menu-list__sub" v-if="el.child && el.child.length > 0" :class="{'in': el.isShow}">
+    <li v-if="el.child&&el.child.length >0" v-for="(elc,i1) in el.child " :key="i1">
+        <nuxt-link :to="el.page+elc.page" active-class="active">
+            {{typeof $t(elc.name)==='string'?$t(elc.name):elc.name}}
+        </nuxt-link>
+    </li>
+</ul>
+</template>
+</li>
+</ul>
 
-    </div>
+</div>
+</transition>
 </template>
 
 
@@ -60,8 +62,8 @@
                 page: '/currency',
                 icon: 'fa-usd-circle',
                 child: [
-                    {name: 'menu.listCurrencies', page: '/page', icon: 'format-list-numbers'},
-                    {name: 'menu.createCurrency', page: '/create', icon: 'plus'},
+                    { name: 'menu.listCurrencies', page: '/page', icon: 'format-list-numbers' },
+                    { name: 'menu.createCurrency', page: '/create', icon: 'plus' },
                 ]
             }, {
                 name: 'menu.routes',
@@ -69,8 +71,8 @@
                 isShow: false,
                 icon: 'fa-route',
                 child: [
-                    {name: 'menu.listRoutes', page: '/all', icon: 'routes'},
-                    {name: 'menu.createRoutes', page: '/create', icon: 'routes'},
+                    { name: 'menu.listRoutes', page: '/all', icon: 'routes' },
+                    { name: 'menu.createRoutes', page: '/create', icon: 'routes' },
                 ]
             }, {
                 name: 'menu.parsers',
@@ -86,11 +88,11 @@
                 child: []
             }];
             let main_menu = [{
-                title: 'menu.general',
-                icon: 'fa-sliders-h',
-                color: '#117ce6'
+                    title: 'menu.general',
+                    icon: 'fa-sliders-h',
+                    color: '#117ce6'
 
-            },
+                },
                 {
                     name: 'menu.dashboard',
                     isShow: false,
@@ -111,8 +113,8 @@
                     page: '/news',
                     icon: 'fa-newspaper',
                     child: [
-                        {name: 'menu.listNews', page: '/page'},
-                        {name: 'menu.createNews', page: '/create'},
+                        { name: 'menu.listNews', page: '/page' },
+                        { name: 'menu.createNews', page: '/create' },
 
                     ]
                 }, {
@@ -121,8 +123,8 @@
                     isShow: false,
                     icon: 'fa-question',
                     child: [
-                        {name: 'menu.listFaq', page: '/faq', icon: 'routes'},
-                        {name: 'menu.createFaq', page: '/create', icon: 'routes'},
+                        { name: 'menu.listFaq', page: '/faq', icon: 'routes' },
+                        { name: 'menu.createFaq', page: '/create', icon: 'routes' },
                     ]
                 }, {
                     name: 'menu.users',
@@ -130,8 +132,8 @@
                     isShow: false,
                     icon: 'fa-user-edit',
                     child: [
-                        {name: 'menu.clients', page: '/clients', icon: 'users'},
-                        {name: 'menu.partners', page: '/partners', icon: 'chart-line'},
+                        { name: 'menu.clients', page: '/clients', icon: 'users' },
+                        { name: 'menu.partners', page: '/partners', icon: 'chart-line' },
 
                     ]
                 }, {
@@ -146,8 +148,8 @@
                     isShow: false,
                     icon: 'fa-book',
                     child: [
-                        {name: 'rules', page: '/rules', icon: 'routes'},
-                        {name: 'create', page: '/create', icon: 'routes'},
+                        { name: 'rules', page: '/rules', icon: 'routes' },
+                        { name: 'create', page: '/create', icon: 'routes' },
                     ]
                 }, {
                     name: 'menu.contacts',
@@ -180,7 +182,7 @@
                 page: '/admins',
                 icon: 'fa-user-secret',
                 child: []
-            },{
+            }, {
                 name: 'menu.authSystem',
                 isShow: false,
                 page: '/authSystem',
@@ -192,7 +194,7 @@
                 page: '/settings',
                 icon: 'fa-cogs',
                 child: [
-                    {name: '404', page: '/404'},
+                    { name: '404', page: '/404' },
                 ]
             }];
 
@@ -206,5 +208,24 @@
 
             }
         },
+        computed: {
+            menuActive() {
+                return this.$store.getters['Menu/close']
+            }
+        }
     }
 </script>
+
+<style scoped>
+    .slide-left-enter-active,
+    .slide-left-leave-active{
+        transition: all .3s ease;
+    }
+    .slide-left-enter,
+    .slide-left-leave-to
+        {
+        transform: translateX(-200px);
+        /*margin-left:-200px;*/
+        opacity: 0;
+    }
+</style>

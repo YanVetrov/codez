@@ -35,7 +35,7 @@
                                                     <span>Обновление:</span>
                                                     <p>{{$moment(parser.lastUpdateAt).format('DD.MM.YY в HH:mm')}}</p>
                                                 </div>
-                                                <span class="icon-refresh-history"></span>
+                                                <span class="fal fa-refresh-history"></span>
                                             </div>
                                         </li>
                                     </ul>

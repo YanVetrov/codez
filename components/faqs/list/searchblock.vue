@@ -8,7 +8,7 @@
                         
                                 <li class="search-block--input">
                                     <div>
-                                        <button><span class="icon-search"></span></button>
+                                        <button><span class="fal fa-search"></span></button>
                                         <input type="search" placeholder="Поиск по списку" @input="$emit('search',$event.target.value)">
                                     </div>
                                 </li>
@@ -16,12 +16,12 @@
                                 <li class="search-block--select">
                                     <div>
                         
-                                        <span class="icon-filter"></span>
+                                        <span class="fal fa-filter"></span>
                         
                                         <div class="search-block--select__">
-                                            <select>
-                                                <option>Сначала новые</option>
-                                                <option>По имени  A-Z</option>
+                                            <select v-model="selected" @change='$emit("sort",selected)'>
+                                                <option value="1" selected="true">Сначала новые</option>
+                                                <option value="-1">Сначала старые</option>
                                             </select>
                                         </div>
                         
@@ -35,7 +35,7 @@
                 
                             <div class="border-shadow">
                 
-                                <span class="icon-earth"></span>
+                                <span class="fal fa-earth"></span>
                 
                                 <div class="languages">
                 
@@ -44,7 +44,7 @@
                                     </select>
                 
                                 </div>
-                                <span class="ar icon-drop-down"></span>
+                                <span class="ar fal fa-drop-down"></span>
                 
                 
                             </div>
@@ -56,9 +56,9 @@
 <script>
     export default {
         props: ['ph','langs','lang'],
-        methods:{
-            check(e){
-                console.log(e)
+        data(){
+            return{
+                selected:'',
             }
         },
     }

@@ -75,7 +75,7 @@
                         <ul>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-clock"></span>
+                                    <span class="fal fa-clock"></span>
                                     Дата и время
                                 </span>
                 
@@ -83,7 +83,7 @@
                             </li>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-economy-percentage-symbol-with-up-arrow"></span>
+                                    <span class="fal fa-economy-percentage-symbol-with-up-arrow"></span>
                                     Партнеру:
                                 </span>
                 
@@ -91,7 +91,7 @@
                             </li>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-line-chart"></span>
+                                    <span class="fal fa-line-chart"></span>
                                     Ваша прибыль:
                                 </span>
                 
@@ -119,7 +119,7 @@
                         <ul>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-laptop"></span>
+                                    <span class="fal fa-laptop"></span>
                                     Данные IP
                                 </span>
                 
@@ -127,7 +127,7 @@
                             </li>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-profile"></span>
+                                    <span class="fal fa-profile"></span>
                                     User ID:
                                 </span>
                 
@@ -135,7 +135,7 @@
                             </li>
                             <li>
                                 <span class="orders-sidebar--info__icon">
-                                    <span class="icon-id-card"></span>
+                                    <span class="fal fa-id-card"></span>
                                     ID партнера:
                                 </span>
                 

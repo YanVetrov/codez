@@ -7,28 +7,27 @@
                 :width="100"
                 :height="100"
                 :show="show"
-                @change-imageBase64="imgDataUrl=$event"
-                @change-imageId="partner.imageId=$event"
-                @close="show=false"
+                @change-imageBase64="changeImageBase64"
+                @change-imageId="changeImageId"
         />
 
         <div class="sidebar-width border list-contact-sidebar--new-block">
 
-            <h5 class="title">Добавить партнера</h5>
+            <h5 class="title">{{$t('page.contacts.create.newContact')}}</h5>
 
             <div class="list-contact-sidebar--upload">
 
                 <div class="list-contact-sidebar--upload-wr">
 
-                    <div class="list-contact-sidebar--upload__input" @click.self="show = true">
+                    <div class="list-contact-sidebar--upload__input" @click="show = !show">
 
                         <img v-if="imgDataUrl && imgDataUrl !==''" :src="imgDataUrl" alt="">
 
                     </div>
 
                     <div class="list-contact-sidebar--upload__info">
-                        <p class="color blue">Загрузить изображение</p>
-                        <span>Логотип партнера 250x80 пикселей</span>
+                        <p class="color blue">{{$t('page.contacts.create.imageContact')}}</p>
+                        <span>{{$t('page.contacts.create.helpImage')}}</span>
                     </div>
 
                 </div>
@@ -43,10 +42,10 @@
 
                         <label>
 
-                            <p>Имя партнера</p>
+                            <p>{{$t('page.contacts.create.nameSystem')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введите партнера" v-model='partner.title'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterSystem')" v-model='admin.name'>
                                 <p class="num">1</p>
                             </div>
 
@@ -58,10 +57,10 @@
 
                         <label>
 
-                            <p>Ссылка партнера</p>
+                            <p>{{$t('page.contacts.create.value')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введите ссылку" v-model='partner.value'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterValue')" v-model='admin.value'>
                                 <p class="num">2</p>
                             </div>
 
@@ -73,10 +72,10 @@
 
                         <label>
 
-                            <p>Краткое описание</p>
+                            <p>{{$t('page.contacts.create.link')}}</p>
 
                             <div>
-                                <input type="text" placeholder="Введите описание" v-model='partner.link'>
+                                <input type="text" :placeholder="$t('page.contacts.create.enterLink')" v-model='admin.link'>
                                 <p class="num">3</p>
                             </div>
 
@@ -88,10 +87,10 @@
 
                         <label class="contact__">
 
-                            <p>Приоритет партнёра</p>
+                            <p>{{$t('page.contacts.create.sizeBlock')}}</p>
 
                             <div>
-                                <select v-model='partner.size'>
+                                <select v-model='admin.size'>
                                     <option value="3">25 %</option>
                                     <option value="6">50 %</option>
                                     <option value="9">75 %</option>
@@ -108,18 +107,18 @@
                     </li>
 
                     <li class="list-contact-sidebar--block__list--info">
-                               
+                                <span>
             
-                                        <i class="fal fa-priority"></i>
-                
-                                        <i class="fal fa-reputation"></i>
-            <p>
-                           Приоритет определяет позицию партнера в списке и блоке
-Наши партнеры</p>
+                                    <i class="fal fa-i-cursor"></i>
+            
+                                    <i class="fal fa-mouse-pointer"></i>
+            
+                                </span>
+                        <p>{{$t('page.contacts.create.helpText')}}</p>
                     </li>
 
                     <li class="text-center">
-                        <button class="btn btn-blue" @click='$emit("oncreate",partner)'>Добавить партнера</button>
+                        <button class="btn btn-blue" @click='$emit("oncreate",admin)'>{{$t('page.contacts.create.btnAddContact')}}</button>
                     </li>
 
 
@@ -141,8 +140,8 @@
             return {
                 show: false,
                 imgDataUrl: '',
-                partner: {
-                    title: '',
+                admin: {
+                    name: '',
                     link: '',
                     imageId: '',
                     size: 6,
@@ -150,5 +149,15 @@
                 }
             }
         },
+
+        methods: {
+            changeImageBase64(v) {
+                this.imgDataUrl = v;
+            },
+            changeImageId(v) {
+                this.admin.imageId = v;
+                this.show = false;
+            }
+        }
     }
 </script>

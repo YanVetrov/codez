@@ -5,7 +5,7 @@
                 
                                 <li class="search-block--input">
                                     <div>
-                                        <button><span class="icon-search"></span></button>
+                                        <button><span class="fal fa-search"></span></button>
                                         <input type="search" placeholder="Поиск по имени">
                                     </div>
                                 </li>
@@ -18,7 +18,7 @@
                 
                                 <li class="search-block--input">
                                     <div>
-                                        <button><span class="icon-search"></span></button>
+                                        <button><span class="fal fa-search"></span></button>
                                         <input type="search" placeholder="Поиск по id">
                                     </div>
                                 </li>
@@ -31,7 +31,7 @@
                 
                                 <li class="search-block--input">
                                     <div>
-                                        <button><span class="icon-search"></span></button>
+                                        <button><span class="fal fa-search"></span></button>
                                         <input type="search" placeholder="Поиск по IP">
                                     </div>
                                 </li>
@@ -39,7 +39,7 @@
                                 <li class="search-block--select">
                                     <div>
                 
-                                        <span class="icon-filter"></span>
+                                        <span class="fal fa-filter"></span>
                 
                                         <div class="search-block--select__">
                                             <select>
