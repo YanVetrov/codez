@@ -2,7 +2,7 @@
 
     <header class="header ">
 
-        <div class="logo">
+        <div class="logo" v-if="menuActive">
             <nuxt-link to="/">
                 <img :src="logoUrl" alt="Logo"/>
             </nuxt-link>
@@ -13,6 +13,12 @@
             <div class="header-list">
 
                 <ul>
+                    <li>
+                        <a @click="switchMenu" class="header-list">
+
+                            <i class="fal fa-list"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="/" class="header-list-active">
 
@@ -183,6 +189,9 @@
                     email: this.$store.getters['auth/checkAdmin'].email,
                     id: this.$store.getters['auth/checkAdmin']._id
                 }
+            },
+            menuActive(){
+                return this.$store.getters['Menu/close']
             }
         },
         methods: {
@@ -190,6 +199,9 @@
             logout() {
                 this.$store.dispatch('auth/destroyUser', () => this.$router.push('/signin'));
 
+            },
+            switchMenu(){
+                this.$store.commit('Menu/CLOSE')
             },
 
             openLocalesMenu() {
