@@ -30,7 +30,7 @@ export const actions = {
             })
     },
     getNewsFull({ commit },filter) {
-        this.app.$rest.api('getNewsFull',filter)
+        this.app.$rest.api('getNewsBasic',filter)
             .then(res => {
                 commit('changeData', res.data)
             })

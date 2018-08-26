@@ -29,6 +29,7 @@
     "nuxt": "^1.4.1",
     "nuxt-sass-resources-loader": "^2.0.2",
     "postcss-flexboxfixer": "0.0.5",
+    "striptags": "^3.1.1",
     "vue": "^2.5.16",
     "vue-animate-number": "^0.4.2",
     "vue-highcharts": "0.0.10",
