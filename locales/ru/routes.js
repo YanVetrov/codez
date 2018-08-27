@@ -2,6 +2,7 @@ export default {
     "error": "Ошибка",
     "dashboard": "Главная",
     "users-clients": "Клиенты",
+    "news-edit-id": "Редактирование новости",
     "reviews": "Отзывы",
     "news": "Новости",
     "news-create": "Создание новости",
