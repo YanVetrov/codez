@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import rules from '~/components/rules/rules'
+import rules from '~/components/rule/list'
   export default {
     components:{
       rules
