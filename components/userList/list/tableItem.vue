@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>
-            <span class="fal fa-company"><img :src="$identicon.create(user._id)" alt=""></span>
+            <span class="icon-company"><img :src="$identicon.create(user._id)" alt=""></span>
 
             <div class="company">
                 <p class="name-company">{{user.first_name}} {{user.last_name}} </p>

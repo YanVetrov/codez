@@ -1,5 +1,5 @@
 export const state = () => ({
-  close: false,
+  close: true,
   lvl:false,
 });
 
