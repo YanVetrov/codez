@@ -29,7 +29,7 @@ export const mutations = {
 export const actions = {
     getReviews({ commit }, data) {
         commit('changeLoad', false);
-        this.app.$rest.api('getReviews', data || { page: 1, limit: 12 })
+        this.app.$rest.api('public/reviews/get', data || { page: 1, limit: 12 })
             .then(response => {
                 console.log(response.data);
                 commit('changeLoad', true);
@@ -45,7 +45,7 @@ export const actions = {
             })
     },
     deleteReview({ commit }, id) {
-        this.app.$rest.api('deleteReview', { review_id: id })
+        this.app.$rest.api('admin/reviews/delete', { review_id: id })
             .then(response => {
                 console.log(response);
                 return this.getReviews();

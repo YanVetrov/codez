@@ -30,7 +30,7 @@
         methods: {
             save(obj) {
                 this.load = false
-                this.$rest.api('createFaq', obj)
+                this.$rest.api('admin/faq/create', obj)
                     .then(res => {
                         if (res.success) {
                             this.$notify({
@@ -59,7 +59,7 @@
 
             },
             update() {
-                Promise.all([this.$rest.api('getFaqGroup'), this.$rest.api('getAllLang')])
+                Promise.all([this.$rest.api('public/faq/get/group'), this.$rest.api('public/server/lang/all')])
                     .then(res => {
                         this.info.groups = res[0].data.faqGroups
                         this.info.langs = res[1].data.lang;

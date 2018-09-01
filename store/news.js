@@ -30,13 +30,13 @@ export const actions = {
             })
     },
     getNewsFull({ commit },filter) {
-        this.app.$rest.api('getNewsBasic',filter)
+        this.app.$rest.api('public/news/list/full',filter)
             .then(res => {
                 commit('changeData', res.data)
             })
     },
     getOneNews({ commit }, id) {
-        this.app.$rest.api('getOneNews', { id })
+        this.app.$rest.api('public/news/get/one', { id })
             .then(res => {
                 commit('changeOneNews', res.data)
                 console.log(res)
@@ -47,7 +47,7 @@ export const actions = {
         news.lang = news.lang.split('-')[0];
         news.imageId = news.imageid;
         console.log(news)
-        return this.app.$rest.api('createNews', news)
+        return this.app.$rest.api('admin/news/create', news)
             .then(res => {
                 console.log(res)
                 return res;
@@ -57,14 +57,14 @@ export const actions = {
         news.news_id = news._id
         news.lang = news.lang.split('-')[0];
         news.imageId = news.imageid;
-        return this.app.$rest.api('editNews', news)
+        return this.app.$rest.api('admin/news/edit', news)
             .then(res => {
                 console.log(res)
                 return res;
             })
     },
     deleteNews({ commit }, id) {
-        return this.app.$rest.api('deleteNews', { id })
+        return this.app.$rest.api('admin/news/delete', { id })
             .then(res => {
                 console.log(res)
                 return res;

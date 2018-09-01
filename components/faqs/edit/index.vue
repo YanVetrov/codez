@@ -63,7 +63,7 @@
             },
             deleteFaq(id) {
                 this.load = false
-                this.$rest.api('deleteFaq', {id})
+                this.$rest.api('admin/faq/delete', {id})
                     .then(res => {
                         if (res.success) {
                             this.$notify({
@@ -93,7 +93,7 @@
             },
             update() {
                 let id = this.$route.params.id
-                Promise.all([this.$rest.api('getFaqGroup'), this.$rest.api('getAllLang'),this.$rest.api('getOneFaq', { id })])
+                Promise.all([this.$rest.api('public/faq/get/group'), this.$rest.api('public/server/lang/all'),this.$rest.api('public/faq/get/one', { id })])
                     .then(res => {
                         this.info.groups = res[0].data.faqGroups
                         this.info.langs = res[1].data.lang;

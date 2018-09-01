@@ -20,7 +20,7 @@ export const mutations = {
 
 export const actions = {
     getStatisticClient({ commit }) {
-        this.app.$rest.api('getStatisticClient')
+        this.app.$rest.api('admin/visits/statistic/get')
             .then(res => {
                         let main = res.data.visitors;
                         let obj = {};

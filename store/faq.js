@@ -48,7 +48,7 @@ export const mutations = {
 export const actions = {
     getFaqFull({ commit },filter) {
         // commit('changeLoad', false);
-        Promise.all([this.app.$rest.api('getFaqFull', filter), this.app.$rest.api('getFaqGroup'), this.app.$rest.api('public/server/lang/all')])
+        Promise.all([this.app.$rest.api('public/faq/get/list', filter), this.app.$rest.api('public/faq/get/group'), this.app.$rest.api('public/server/lang/all')])
             .then(res => {
                 commit('changeLoad', true);
                 commit('changeFaq', res[0].data);
@@ -60,7 +60,7 @@ export const actions = {
             })
     },
     deleteFaq({ commit, dispatch }, id) {
-        this.app.$rest.api('deleteFaq', { id })
+        this.app.$rest.api('admin/faq/delete', { id })
             .then(res => {
                 console.log(res);
                 dispatch('getFaqFull');

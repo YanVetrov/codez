@@ -22,14 +22,14 @@ export const mutations = {
 
 export const actions = {
     getTitleRules({ commit }, filter) {
-        this.app.$rest.api('getTitleRules')
+        this.app.$rest.api('public/rule/list')
             .then(res => {
                 console.log(res)
                 commit('changeData', res.data.rules)
             })
     },
     getRule({ commit }, id) {
-        this.app.$rest.api('getRule', { id })
+        this.app.$rest.api('public/rule/get', { id })
             .then(res => {
                 commit('changeRule', res.data.rule)
                 console.log(res)
@@ -37,7 +37,7 @@ export const actions = {
     },
     createRules({ commit }, rule) {
         rule.sortNumber=1
-        return this.app.$rest.api('createRules', rule)
+        return this.app.$rest.api('admin/rule/create', rule)
             .then(res => {
                 console.log(res)
                 return res;
@@ -46,14 +46,14 @@ export const actions = {
     editRule({ commit }, rule) {
         let {_id} = rule;
         rule.id = _id
-        return this.app.$rest.api('editRule', rule)
+        return this.app.$rest.api('admin/rule/edit', rule)
             .then(res => {
                 console.log(res)
                 return res;
             })
     },
     deleteRule({ commit }, id) {
-        return this.app.$rest.api('deleteRule', { id })
+        return this.app.$rest.api('admin/rule/delete', { id })
             .then(res => {
                 console.log(res)
                 return res;
