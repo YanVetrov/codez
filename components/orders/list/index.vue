@@ -1,7 +1,7 @@
 <template>
 
   <div>
-        <DataInfo :data="info.transactions" :page='{}' v-if="load && info"></DataInfo>
+        <DataInfo :data="info.transactions" :page='{}' :sidebar='sidebar' v-if="load && info"></DataInfo>
 
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
@@ -14,6 +14,11 @@
     import { mapGetters, mapActions } from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
+        props:{
+          sidebar:{
+              default:true
+          }  
+        },
         data() {
             return {
 

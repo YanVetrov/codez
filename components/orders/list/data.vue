@@ -15,7 +15,7 @@
     <pagination/>
 
     </div>
-    <sidebar :order="data[0]" />
+    <sidebar :order="data[0]" v-if='sidebar' />
     
     
     </div>
@@ -28,7 +28,7 @@
     import sidebar from './sidebar';
 
     export default {
-        props: ['data', 'page'],
+        props: ['data', 'page','sidebar'],
         components: { tableMain,pagination,search,sidebar }
 
     }
