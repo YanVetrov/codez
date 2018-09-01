@@ -76,7 +76,7 @@
         },
         watch: {
             $route() {
-                this.$rest.api('isAuthUser')
+                this.$rest.api('admin/auth/session/get')
                     .then(res => {
                         return res.success ? '' : this.$router.push('/signin');
                     })

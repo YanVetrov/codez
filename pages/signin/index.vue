@@ -106,7 +106,7 @@
             }
         },
         mounted() {
-            this.$rest.api('isAuthUser')
+            this.$rest.api('admin/auth/session/get')
                 .then(res => {
                     if (res.success) {
                         this.$store.dispatch('auth/signIn', res.data);
