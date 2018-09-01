@@ -1,12 +1,5 @@
 # exchanger-admin-web
 npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
-npm i nuxt-sass-resources-loader
 > Nuxt.js project
 
 ## Build Setup
