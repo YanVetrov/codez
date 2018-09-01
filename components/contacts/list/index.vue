@@ -37,7 +37,7 @@
             },
             deleteAdmin(contact_id) {
 
-                this.$rest.api('deleteContact', { contact_id })
+                this.$rest.api('admin/contacts/delete', { contact_id })
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -69,7 +69,7 @@
             editAdmin(obj, newIndex) {
                 newIndex ? obj.positionSort = newIndex : '';
                 obj.contact_id = obj._id;
-                this.$rest.api('editContact', obj)
+                this.$rest.api('admin/contacts/edit', obj)
                     .then(res => {
                         console.log(res);
                         if (res.success) {
@@ -101,7 +101,7 @@
                     return { id: el._id, positionSort: i + 1 };
                 });
 
-                return this.$rest.api('sortContact', { contacts })
+                return this.$rest.api('admin/contacts/sort', { contacts })
                     .then(res => {
                         console.log(res);
                         if (res.success) {

@@ -30,7 +30,7 @@
                 admin.imageId && admin.imageId !== '' ? obj.imageId = admin.imageId : '';
                 admin.size && admin.size !== '' ? obj.size = admin.size : '';
                 admin.value && admin.value !== '' ? obj.value = admin.value : '';
-                this.$rest.api('addContact', obj)
+                this.$rest.api('admin/contact/create', obj)
                     .then(res => {
                         console.log(res);
                         if (res.success) {

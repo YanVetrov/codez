@@ -20,7 +20,7 @@ export const mutations = {
 
 export const actions = {
     getContacts({ commit }) {
-        this.app.$rest.api('getContacts')
+        this.app.$rest.api('public/contacts/list')
             .then(res => {
                 commit('changeLoad', true);
                 if (res.success) {
