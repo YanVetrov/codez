@@ -17,7 +17,7 @@ export const actions = {
         commit('setAuth', user);
     },
     destroyUser({commit}, cb) {
-        this.app.$rest.api('destroySession')
+        this.app.$rest.api('admin/auth/session/destroy')
             .then(res => {
                 commit('deleteUser');
                 cb && cb();

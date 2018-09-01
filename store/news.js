@@ -24,7 +24,7 @@ export const mutations = {
 
 export const actions = {
     getAllLangs({ commit }) {
-        this.app.$rest.api('getAllLang')
+        this.app.$rest.api('public/server/lang/all')
             .then(res => {
                 commit('changeLangs', res.data.lang)
             })

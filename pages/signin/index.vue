@@ -119,7 +119,7 @@
                 this.loader = true;
 
                 return this.$rest
-                    .api('loginUseEmail', { email: this.email, password: this.password, code: this.code })
+                    .api('admin/auth/sign-in', { email: this.email, password: this.password, code: this.code })
                     .then(res => {
                         if (res.success) {
                             this.$store.dispatch('auth/signIn', res.data);

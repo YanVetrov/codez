@@ -81,7 +81,7 @@
                 });
                 this.current_page = page || 1;
 
-                this.$rest.api('getAdminHistory', {page})
+                this.$rest.api('admin/timeline/get', {page})
                     .then(res => {
                         console.log(res);
                         this.$root.$emit('loading', false);
