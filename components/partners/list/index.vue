@@ -16,7 +16,8 @@
         components: { DataInfo, WaitInfo },
         data() {
             return {
-
+                num:[
+                    {},{},{}]
             }
         },
         computed: {
