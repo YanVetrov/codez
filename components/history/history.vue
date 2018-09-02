@@ -83,7 +83,7 @@
                 if (!!this.type[method]) {
                     return this.type[method];
                 } else {
-                    return {componentName: "default", icon: 'settings'}
+                    return {componentName: "actionNews", icon: 'settings'}
                 }
             }
         },

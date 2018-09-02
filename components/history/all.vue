@@ -59,58 +59,33 @@
 <script>
     import search from '~/components/_utils/search';
     import history from '~/components/history/history';
-
+    import { mapGetters, mapActions } from 'vuex';
     export default {
-        components: {history, search},
+        components: { history, search },
 
         data() {
             console.log(this.$route.params.page);
             return {
-                filterProps: [{name: 'Все типы', value: 'all'}, {name: 'Авторизации', value: 'auth'}],
-                current_page: this.$route.params.page,
-                total_page: 1,
                 filterParam: {},
-                history: [],
             }
+
+        },
+        computed: {
+            ...mapGetters({
+                total_page:'history/getTotalPages',
+                current_page:'history/getCurrentPage',
+                history:'history/getData',
+                filterProps:'history/getFilter',
+            })
         },
         methods: {
-            getAdminHistory(page) {
-                if (page !== this.current_page) return this.$router.replace({
-                    name: this.$route.name,
-                    params: {page}
-                });
-                this.current_page = page || 1;
-
-                this.$rest.api('admin/timeline/get', {page})
-                    .then(res => {
-                        console.log(res);
-                        this.$root.$emit('loading', false);
-                        if (res.success) {
-                            this.current_page = res.data.count.select_page || 1;
-                            this.history = res.data.history;
-                            this.total_page = res.data.count.pages;
-                            
-
-                        }
-                        else {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error get history!',
-                                text: res.error.message,
-                            });
-
-                            this.$router.back();
-                        }
-
-                    })
-            },
+            ...mapActions({
+                getAdminHistory:'history/getHistory'
+            })
         },
         mounted() {
-            return this.getAdminHistory(this.current_page);
+            return this.getAdminHistory();
         }
 
     }
 </script>
-
