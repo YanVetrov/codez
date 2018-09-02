@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <!--<notifications group="partner_create" classes="partner-create-notifications" class="partner-notify"/>-->
-        <!--<loading type="block" :status_load="status_load "/>-->
+        <!--<loader type="block" :status_load="status_load "/>-->
         <div class="white-box">
             <a @click="back()">Back</a>
 
@@ -39,7 +39,6 @@
 
 <script>
     export default {
-        // components: {Loading},
         data() {
             return {
                 title: '',

@@ -6,10 +6,8 @@
 </template>
 
 <script>
-    import loader from '../loading.vue'
     export default {
-        props: ['errorData'],
-        components:{loader}
+        props: ['errorData']
     }
 
 

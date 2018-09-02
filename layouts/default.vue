@@ -1,27 +1,18 @@
 <template>
     <div class="container-body">
-
         <HeaderMenu/>
-
         <div class="wrapper">
             <LeftMenu/>
             <div class="main">
                 <breadcrumb/>
-
-
                 <div class="main__">
                     <notifications position="top center" style="padding: 40px" group="main"/>
                     <nuxt/>
                     <footer class="footer text-center"> 2017 &copy; Elena Medvedeva</footer>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-
 </template>
 
 <style lang="scss">
@@ -35,37 +26,30 @@
 
     export default {
         created() {
-            this.$store.dispatch('statisticResource/getStatisticClient')
-            this.$store.dispatch('serverStatus/getServerStatus')
-            this.$store.dispatch('exchangesPending/adminGetOrders')
+            this.$store.dispatch('statisticResource/getStatisticClient');
+            this.$store.dispatch('serverStatus/getServerStatus');
+            this.$store.dispatch('exchangesPending/adminGetOrders');
             // this.$store.dispatch('contacts/getContacts')
             // this.$store.dispatch('faq/getFaqFull')
         },
         methods: {
-            check() {
-                console.log(this.$store.getters['auth/checkAdmin'])
+            checkSession() {
+                return this.$rest
+                    .api('admin/auth/session/get')
+                    .then(res => {
+                        if (res.success) {
+                            this.$store.dispatch('auth/signIn', res.data);
+                        }
+                        return res.success ? '' : this.$router.push('/signin');
+
+                    })
+                    .catch(err => {
+                        this.$router.push('/signin')
+                    });
             }
         },
         mounted() {
-            this.$rest
-                .api('admin/auth/session/get')
-                .then(res => {
-                    if (res.success) {
-                        this.$store.dispatch('auth/signIn', res.data);
-
-                        // this.$root.$emit('userInfo', {
-                        //     _id: res.data._id,
-                        //     email: res.data.email,
-                        //     lastName: res.data.first_name,
-                        //     firstName: res.data.last_name
-                        // });
-                    }
-                    return res.success ? '' : this.$router.push('/signin');
-
-                })
-                .catch(err => {
-
-                })
+            return this.checkSession()
         },
         head() {
             return {
@@ -76,10 +60,7 @@
         },
         watch: {
             $route() {
-                this.$rest.api('admin/auth/session/get')
-                    .then(res => {
-                        return res.success ? '' : this.$router.push('/signin');
-                    })
+                return this.checkSession();
             }
         },
         components: {
