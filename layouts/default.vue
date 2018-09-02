@@ -8,8 +8,9 @@
                 <div class="main__">
                     <notifications position="top center" style="padding: 40px" group="main"/>
                     <nuxt/>
-                    <footer class="footer text-center"> 2017 &copy; Elena Medvedeva</footer>
+                    <footer-bar/>
                 </div>
+
             </div>
         </div>
     </div>
@@ -21,6 +22,7 @@
 
 <script>
     import HeaderMenu from "~/components/_utils/menu/HeaderMenu";
+    import FooterBar from "~/components/_utils/footer";
     import LeftMenu from "~/components/_utils/menu/LeftMenu";
     import breadcrumb from "~/components/_utils/breadcrumb";
 
@@ -67,6 +69,7 @@
         components: {
             HeaderMenu,
             breadcrumb,
+            FooterBar,
             LeftMenu
         }
     }
