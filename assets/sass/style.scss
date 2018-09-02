@@ -12,6 +12,7 @@
   box-sizing: border-box;
   outline: none;
 }
+
 @import "blocks/header";
 @import "blocks/breadcrumb";
 @import "blocks/left-menu";
@@ -44,4 +45,33 @@
 @import "blocks/switch";
 .sidebar-width {
   height: auto;
+}
+
+footer.footer {
+  margin: 30px -35px -30px -35px;
+  padding: 30px;
+  background-color: #ffffff;
+  text-align: left;
+
+  ul {
+    float: right;
+    width: 50%;
+    text-align: right;
+    li {
+      display: inline-block;
+      margin: 0 15px;
+
+      a {
+        padding: 0 5px;
+        color: #666666;
+        text-decoration: none;
+        &:hover {
+          color: #383838;
+          text-decoration: underline;
+
+        }
+      }
+
+    }
+  }
 }
