@@ -26,6 +26,7 @@
 
     export default {
         created() {
+
             this.$store.dispatch('statisticResource/getStatisticClient');
             this.$store.dispatch('serverStatus/getServerStatus');
             this.$store.dispatch('exchangesPending/adminGetOrders');

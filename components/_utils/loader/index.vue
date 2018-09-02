@@ -14,12 +14,15 @@
         },
         data() {
             return {
-                loading: false,
+                loading: true,
 
             }
         },
         created() {
-            this.$root.$on('loading', state => this.loading = state)
+
+            this.$root.$on('loading', state => {
+                this.loading = state;
+            })
         },
         methods: {
             start() {
@@ -33,6 +36,9 @@
 </script>
 
 <style scoped>
+    .page-wrapper {
+        height: 100vh;
+    }
 
     @keyframes lds-eclipse {
         0% {
@@ -68,7 +74,8 @@
         position: relative;
 
     }
-    .lds-css.ng-scope{
+
+    .lds-css.ng-scope {
         display: flex;
         align-items: center;
         justify-content: center;

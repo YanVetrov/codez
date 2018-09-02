@@ -1,8 +1,8 @@
 <template>
-
     <div class="modal-wr">
+        <loader type="page" v-if="loaderPage"/>
 
-        <div class="modal-personal-room modal-block" v-show="showComponent ==='login'">
+        <div class="modal-personal-room modal-block" v-show="showComponent ==='login'" v-else>
 
             <h3 class="modal-block--title">
                 Sign-in control panel
@@ -12,13 +12,13 @@
             <div class="modal-main bg-stars">
 
                 <form action="#" onsubmit="return false;checkLogin();">
-                    
+
                     <div style="height:20px;">
                         <transition name='fade-trans'>
-                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Error login'}}</div>
+                            <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Error login'}}</div>
                         </transition>
                     </div>
-                    
+
                     <label>
                         <i class="fal fa-envelope"></i>
                         <!--<i class="fal fa-envelope-square"></i>-->
@@ -33,7 +33,8 @@
                                :style='{borderColor:valid?"":"#ed4c40"}' v-model="password" type="password" required=""
                                placeholder="*****">
                     </label>
-                    <button class="btnauth" @click="checkLogin" type="button" :disabled="loader" :class="{loader:loader}">
+                    <button class="btnauth" @click="checkLogin" type="button" :disabled="loader"
+                            :class="{loader:loader}">
                         Enter
                         <i class="fal fa-spinner-third fa-spin" v-show="loader" style="margin-left: 10px"></i>
                     </button>
@@ -51,11 +52,13 @@
             </h3>
 
             <div class="modal-main">
-                    <div style="height:20px;">
-                        <transition name='fade-trans'>
-                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">{{message || 'Invalid authenticator code'}}</div>
-                        </transition>
-                    </div>
+                <div style="height:20px;">
+                    <transition name='fade-trans'>
+                        <div v-if="!valid" style="color:#ed4c40;font-weight:bold">
+                            {{message || 'Invalid authenticator code'}}
+                        </div>
+                    </transition>
+                </div>
                 <div class="modal-main--at">
 
                     <div class="fal fa-shield">
@@ -77,7 +80,8 @@
                         <div class="modal-switch__text">Remember this computer for 30 days</div>
                     </label>
 
-                    <button class="btnauth" type="button" @click="checkLogin" :disabled="loader" :class="{loader:loader}">
+                    <button class="btnauth" type="button" @click="checkLogin" :disabled="loader"
+                            :class="{loader:loader}">
                         Confirm
                         <i class="fal fa-spinner-third fa-spin" v-show="loader" style="margin-left: 10px"></i>
                     </button>
@@ -101,6 +105,7 @@
                 showComponent: 'login',
                 valid: true,
                 validCode: true,
+                loaderPage: true,
                 loader: false,
                 message: false,
             }
@@ -112,6 +117,11 @@
                         this.$store.dispatch('auth/signIn', res.data);
                         this.$router.push('dashboard');
                     }
+                    this.loaderPage = false;
+
+                })
+                .catch(() => {
+                    this.loaderPage = false;
                 })
         },
         methods: {
@@ -119,7 +129,7 @@
                 this.loader = true;
 
                 return this.$rest
-                    .api('admin/auth/sign-in', { email: this.email, password: this.password, code: this.code })
+                    .api('admin/auth/sign-in', {email: this.email, password: this.password, code: this.code})
                     .then(res => {
                         if (res.success) {
                             this.$store.dispatch('auth/signIn', res.data);
@@ -168,15 +178,3 @@
     }
 </script>
 
-<style>
-    .fade-trans-enter-active,
-    .fade-trans-leave-active {
-        transition: all .5s;
-    }
-
-    .fade-trans-enter,
-    .fade-trans-leave-to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-</style>

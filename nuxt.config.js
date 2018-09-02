@@ -19,7 +19,10 @@ module.exports = {
         ]
     },
 
-    loading: '~/components/_utils/loader/index.vue',
+    loading: {
+        color: '#006cf0',
+        height: '5px'
+    },
 
     css: [],
     plugins: [

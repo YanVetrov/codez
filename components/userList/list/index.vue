@@ -2,12 +2,12 @@
 
     <div class="users-list-toodo-main border">
         <DataInfo :data="info" :page='{total_page,current_page}' v-if="load && info"></DataInfo>
-        
+
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
 </template>
 <style lang='scss' scoped>
-    
+
 </style>
 <script>
     import DataInfo from "./data.vue";
@@ -30,7 +30,7 @@
         methods: {
             getUserAdmin(page,filter) {
                 this.status_load = false;
-                filter?'':filter={};
+                filter ? '' : filter = {};
                 let obj = {page: page || 1, limit: 12,sortType:filter.sortType ||1,search:filter.search||''};
                 console.log(obj);
                 this.$rest.api('getUserAdmin', obj)
@@ -52,7 +52,7 @@
                             this.info.placehold = 'Поиск по сайту'
                             this.info.tabs = [{name:'Активные',id:'active'},{name:'Не подтвержденные',id:'notproof'},{name:'Заблокированые',id:'blacklist'},]
                             this.total_page = response.data.count.pages;
-                            
+
                         }
                         this.load = true;
 
