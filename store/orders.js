@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
     adminGetOrders({ commit }, data) {
-        this.app.$rest.api('adminGetOrders', data || { page: 1, limit: 10 })
+        this.app.$rest.api('admin/exchanger/order/list', data || { page: 1, limit: 10 })
             .then(res => {
                 console.log(res)
                 commit('changeLoad', true);

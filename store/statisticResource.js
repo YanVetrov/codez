@@ -19,37 +19,37 @@ export const mutations = {
 };
 
 export const actions = {
-    getStatisticClient({ commit }) {
+    getStatisticClient({commit}) {
         this.app.$rest.api('admin/visits/statistic/get')
             .then(res => {
-                        let main = res.data.visitors;
-                        let obj = {};
-                        let arr = [];
-                        main.forEach(el => {
-                            el.fromUrl.forEach(el => {
-                                let count = el.count;
-                                let url = el.url;
-                                obj[url] ? obj[url] = parseInt(obj[url]) + count : obj[url] = count;
-                            })
-                        });
-                        let total = 0;
-                        for (let k in obj) {
-                            let objj = {};
-                            objj.url = k;
-                            objj.count = obj[k];
-                            total += obj[k];
-                            arr.push(objj);
-                        }
-                        arr.forEach(el => {
-                            el.percent = Math.ceil((parseFloat(el.count * 100 / total)) * 10) / 10
-                        })
-                        console.log(arr);
-                        commit('changeData',arr);
-                        commit('changeLoad',true);
+                let main = res.data.visitors;
+                let obj = {};
+                let arr = [];
+                main.forEach(el => {
+                    el.fromUrl.forEach(el => {
+                        let count = el.count;
+                        let url = el.url;
+                        obj[url] ? obj[url] = parseInt(obj[url]) + count : obj[url] = count;
                     })
-                    .catch((err) => {
-                        commit('changeError',{ message: 'Error load data' })
-                    });
+                });
+                let total = 0;
+                for (let k in obj) {
+                    let objj = {};
+                    objj.url = k;
+                    objj.count = obj[k];
+                    total += obj[k];
+                    arr.push(objj);
+                }
+                arr.forEach(el => {
+                    el.percent = Math.ceil((parseFloat(el.count * 100 / total)) * 10) / 10
+                })
+                console.log(arr);
+                commit('changeData', arr);
+                commit('changeLoad', true);
+            })
+            .catch((err) => {
+                commit('changeError', {message: 'Error load data'})
+            });
     }
 };
 export const getters = {
@@ -62,4 +62,4 @@ export const getters = {
     getError(state) {
         return state.errorData
     }
-}
+};

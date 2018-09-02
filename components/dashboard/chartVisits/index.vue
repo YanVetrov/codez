@@ -69,7 +69,7 @@
         },
         methods: {
             updateData() {
-                this.$rest.api('getStatisticClient').then(res => {
+                this.$rest.api('admin/visits/statistic/get').then(res => {
 
                     let main = res.data.visitors;
                     let arr = [];

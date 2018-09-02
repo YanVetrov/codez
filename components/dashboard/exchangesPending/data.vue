@@ -30,10 +30,10 @@
                 this.filterId && this.filterId !== '' ? filters.id = this.filterId : '';
                 this.filterParam = filters;
                 let pages = { page, limit: 10 },
-                    obj = { filters, pages }
-                this.$rest.api('adminGetOrders', obj)
+                    obj = { filters, pages };
+                this.$rest.api('admin/exchanger/order/list', obj)
                     .then(res => {
-                        console.log(res)
+                        console.log(res);
                         if (res.success === true) {
                             this.info = res.data.transactions;
                             this.current_page = res.data.count.select_page || 1;

@@ -101,7 +101,7 @@
                     })
             },
             heigh(e) {
-                this.$rest.api('getStatisticClient').then(res => {
+                this.$rest.api('admin/visits/statistic/get').then(res => {
                     console.log(res)
                 })
                 if (e.target.previousSibling.style.height === '80px') {

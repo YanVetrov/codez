@@ -41,7 +41,7 @@
         },
         mounted() {
        
-               this.$rest.api('getStatisticClient')
+               this.$rest.api('admin/visits/statistic/get')
           .then(res => {         
               let main = res.data.visitors;
               let obj={};
