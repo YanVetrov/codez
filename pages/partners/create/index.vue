@@ -21,7 +21,7 @@
                            :noRotate="false"
                            :noCircle="true"
                            :noSquare="true"
-                           :url="$rest.apiPath+'uploadImage/'"
+                           :url="$rest.apiPath+'admin/files/upload/image/'"
                            :params="params"
                            :headers="headers"
                            img-format="png"></ImageUploader>
