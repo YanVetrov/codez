@@ -28,7 +28,7 @@ export const mutations = {
 
 export const actions = {
     adminGetOrders({ commit }, data) {
-        this.app.$rest.api('adminGetOrders', data)
+        this.app.$rest.api('admin/exchanger/order/list', data)
             .then(res => {
                 commit('changeLoad', true);
                 if (res.success) {
