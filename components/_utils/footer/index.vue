@@ -1,5 +1,4 @@
 <template>
-
     <footer class="footer text-center">
         <span style="float: left;width: 45%;">ProExchanger.net All rights reserved.</span>
         <ul class="list-unstyled">
