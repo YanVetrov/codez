@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <buttons @publish="$emit('publish',faqs)" @delete='$emit("delete",faqs.id)' :canDelete='faq.canDelete' />
+    <buttons @publish="$emit('publish',faqs)" @delete='$emit("delete",faqs.id)' :canDelete='true' />
 
 </div>
               

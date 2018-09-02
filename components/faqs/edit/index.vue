@@ -93,12 +93,13 @@
             },
             update() {
                 let id = this.$route.params.id
+                console.log({id})
                 Promise.all([this.$rest.api('public/faq/get/group'), this.$rest.api('public/server/lang/all'),this.$rest.api('public/faq/get/one', { id })])
                     .then(res => {
+                        console.log(res)
                         this.info.groups = res[0].data.faqGroups
                         this.info.langs = res[1].data.lang;
                         this.info.faq = res[2].data;
-                        this.info.faq.canDelete = true;
                         this.load = true;
                     })
             }

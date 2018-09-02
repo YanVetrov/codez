@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
     getPartnersAll({ commit }, data) {
-        this.app.$rest.api('getPartnersAll', data || { page: 1, limit: 10 })
+        this.app.$rest.api('public/partners-block/list', data || { page: 1, limit: 10 })
             .then(res => {
                 console.log(res)
                 commit('changeLoad', true);
@@ -32,7 +32,7 @@ export const actions = {
     },
     deletePartner({ commit, dispatch }, partner) {
         console.log(partner)
-        this.app.$rest.api('deletePartner', {partner_id:partner})
+        this.app.$rest.api('admin/partners-block/delete', {partner_id:partner})
             .then(res => {
                 console.log(res)
                 dispatch('getPartnersAll', { page: 1, limit: 10 })
@@ -41,7 +41,7 @@ export const actions = {
     },
     createPartner({ commit, dispatch }, partner) {
         console.log(partner)
-        this.app.$rest.api('createPartner', partner)
+        this.app.$rest.api('admin/partners-block/create', partner)
             .then(res => {
                 console.log(res)
                 dispatch('getPartnersAll', { page: 1, limit: 10 })
@@ -50,7 +50,7 @@ export const actions = {
     },
     editPartner({ commit, dispatch }, partner) {
         console.log(partner)
-        this.app.$rest.api('editPartner', partner)
+        this.app.$rest.api('admin/partners-block/edit', partner)
             .then(res => {
                 console.log(res)
                 dispatch('getPartnersAll', { page: 1, limit: 10 })
