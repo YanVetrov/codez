@@ -4,7 +4,7 @@
 
         <div class="logo" v-if="menuActive">
             <nuxt-link to="/">
-                <img :src="logoUrl" alt="Logo"/>
+                <img :src="logoUrl" alt="Logo" @error="logoUrl = 'https://proexchanger.net/assets/img/logo/logo_fff.svg'"/>
             </nuxt-link>
         </div>
 
