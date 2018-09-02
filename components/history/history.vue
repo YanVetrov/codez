@@ -94,69 +94,69 @@
 </script>
 
 
-<style scoped>
-    .history-block {
-        color: #666;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        margin-top: 15px;
-    }
+<!--<style>-->
+    <!--.history-block {-->
+        <!--color: #666;-->
+        <!--width: 100%;-->
+        <!--display: flex;-->
+        <!--flex-direction: row;-->
+        <!--margin-top: 15px;-->
+    <!--}-->
 
-    .history-info {
-        border-radius: 3px;
-        width: 95%;
-        display: flex;
-        flex-direction: column;
-        background: rgba(245, 245, 245, 1);
-        padding: 15px;
+    <!--.history-info {-->
+        <!--border-radius: 3px;-->
+        <!--width: 95%;-->
+        <!--display: flex;-->
+        <!--flex-direction: column;-->
+        <!--background: rgba(245, 245, 245, 1);-->
+        <!--padding: 15px;-->
 
-    }
+    <!--}-->
 
-    .history-title {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        border-bottom: 1px solid #CCC;
-        padding: 5px;
+    <!--.history-title {-->
+        <!--display: flex;-->
+        <!--flex-direction: row;-->
+        <!--justify-content: space-between;-->
+        <!--border-bottom: 1px solid #CCC;-->
+        <!--padding: 5px;-->
 
-    }
+    <!--}-->
 
-    .history-operation {
-        padding: 5px;
+    <!--.history-operation {-->
+        <!--padding: 5px;-->
 
-    }
+    <!--}-->
 
-    .history-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5%;
-    }
+    <!--.history-icon {-->
+        <!--display: flex;-->
+        <!--justify-content: center;-->
+        <!--align-items: center;-->
+        <!--width: 5%;-->
+    <!--}-->
 
-    .date {
-        padding: 15px;
-        position: relative;
-        top: -50%;
-        font-size: 8px;
-    }
+    <!--.date {-->
+        <!--padding: 15px;-->
+        <!--position: relative;-->
+        <!--top: -50%;-->
+        <!--font-size: 8px;-->
+    <!--}-->
 
-    .timeline::before {
-        left: 15px;
-    }
+    <!--.timeline::before {-->
+        <!--left: 15px;-->
+    <!--}-->
 
-    .timeline > li.timeline-inverted > .timeline-panel {
-        float: none;
-        left: 50px;
-    }
+    <!--.timeline > li.timeline-inverted > .timeline-panel {-->
+        <!--float: none;-->
+        <!--left: 50px;-->
+    <!--}-->
 
-    .timeline > li > .timeline-panel {
-        float: none;
-        position: relative;
-        width: 100%;
-    }
+    <!--.timeline > li > .timeline-panel {-->
+        <!--float: none;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+    <!--}-->
 
-    .timeline > li > .timeline-badge {
-        left: 15px;
-    }
-</style>
+    <!--.timeline > li > .timeline-badge {-->
+        <!--left: 15px;-->
+    <!--}-->
+<!--</style>-->

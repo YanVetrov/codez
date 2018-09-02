@@ -1,20 +1,16 @@
 <template>
     <div class="review-wr">
-
-        <DataInfo :data="info" :page='{total_page,current_page}' v-if="load && info"></DataInfo>
-
-        <WaitInfo :errorData="errorData" v-else></WaitInfo>
+        <DataInfo :data="info" :page='{total_page,current_page}' :load="load"></DataInfo>
     </div>
 
 </template>
 <script>
     import DataInfo from "./data.vue";
-    import WaitInfo from "./loader.vue";
     import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
 
     export default {
-        components: {DataInfo, WaitInfo},
+        components: {DataInfo},
         computed: {
             ...mapGetters({
                 info: 'reviews/getData',

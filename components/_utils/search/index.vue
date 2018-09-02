@@ -13,7 +13,7 @@
                     <span class="icon-filter" @click="_.random(20)"><i class="fal fa-filter"></i></span>
                     <div class="search-block--select__">
                         <select v-model="filterValue" @change="filterChange">
-                            <option disabled value="all" v-if="filter.length===0">Don`t have filter.</option>
+                            <option disabled value="all" v-if="filter.length===0" selected>Don`t have filter.</option>
                             <option :value="el.value" v-for="(el,i) in filter" :key="i">
                                 {{el.name}}
                             </option>
@@ -30,7 +30,7 @@
 <script>
     export default {
         props: {
-            placeholder: {type: String, required: true},
+            placeholder: {type: String, default: 'Search...'},
             filter: {type: Array, required: true}
         },
         data() {

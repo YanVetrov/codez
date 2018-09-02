@@ -1,4 +1,3 @@
-
 export const state = () => ({
     info: false,
     errorData: false,
@@ -27,28 +26,27 @@ export const mutations = {
 };
 
 export const actions = {
-    getReviews({ commit }, data) {
+    getReviews({commit}, data) {
         commit('changeLoad', false);
-        this.app.$rest.api('public/reviews/get', data || { page: 1, limit: 12 })
+        this.app.$rest.api('public/reviews/get', data || {page: 1, limit: 12})
             .then(response => {
                 console.log(response.data);
                 commit('changeLoad', true);
                 if (response.success === true) {
-                    
-                    commit('changeData', response.data.reviews)
-                    commit('changeCurrentPage', response.data.count.select_page || 1)
 
-                    commit('changeTotalPages', response.data.count.pages)
+                    commit('changeData', response.data.reviews);
+                    commit('changeCurrentPage', response.data.count.select_page || 1);
+                    commit('changeTotalPages', response.data.count.pages);
                 }
 
 
             })
     },
-    deleteReview({ commit }, id) {
-        this.app.$rest.api('admin/reviews/delete', { review_id: id })
+    deleteReview({commit}, id) {
+        this.app.$rest.api('admin/reviews/delete', {review_id: id})
             .then(response => {
                 console.log(response);
-                return this.getReviews();
+                return this.getReviews.call(this, arguments);
             })
     }
 };
