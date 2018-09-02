@@ -1,17 +1,12 @@
 <template>
-   <all></all>
+    <review/>
 
 </template>
 
 <script>
-import all from '~/components/review'
-  export default {
-   components:{
-     all
-   }
-  }
+    import review from '~/components/review'
+
+    export default {
+        components: {review}
+    }
 </script>
-
-
-<style lang='scss' scoped>
-</style>
