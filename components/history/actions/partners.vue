@@ -14,8 +14,8 @@
             <div class="df">
 
                 <p class="name">Партнерский блок<i class="fal fa-angle-right"></i></p>
-                <p  v-if="method === 'createPartner'"> Администратор добавил партнера {{param.title}}</p>
-                <p  v-if="method === 'deletePartner'"> Администратор удалил партнера {{param.title}}</p>
+                <p  v-if="method === 'admin/partners-block/create'"> Администратор добавил партнера {{param.title}}</p>
+                <p  v-if="method === 'admin/partners-block/delete'"> Администратор удалил партнера {{param.title}}</p>
             </div>
 
         </td>

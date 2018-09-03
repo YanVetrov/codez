@@ -1,15 +1,15 @@
 <template>
     <table>
         <tbody>
-        <component v-bind:is="getTypeAction(action.method).componentName"
+        <component :is="getTypeAction(action.method).componentName"
                    v-for="(action,i) in history"
-                   :method="history.method"
+                   :method="action.method"
                    :date="action.createdAt"
                    :param="action.param"
                    :user="action.user"
                    :network="action.network"
                    :response="action.response"
-                   
+
                    :key="i"
         />
         </tbody>

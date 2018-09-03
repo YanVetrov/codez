@@ -4,7 +4,7 @@
 
             <div class="action-main--top">
 
-                <h3 class="title">ЗАЯВКАМИ на обмен</h3>
+                <h3 class="title">History of management</h3>
 
             </div>
 

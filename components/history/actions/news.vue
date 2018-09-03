@@ -14,9 +14,9 @@
             <div class="df">
 
                 <p class="name">Новость<i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'createNews'">Администратор опубликовал новость: "{{response.title}}"</p>
-                <p v-if="method === 'editNews'">Администратор отредактировал данные новости: "{{param.title}}"</p>
-                <p v-if="method === 'deleteNews'">Администратор удалил новость: "{{response.news.title}}"</p>
+                <p v-if="method === 'admin/news/create'">Администратор опубликовал новость: "{{response.title}}"</p>
+                <p v-if="method === 'admin/news/edit'">Администратор отредактировал данные новости: "{{param.title}}"</p>
+                <p v-if="method === 'admin/news/delete'">Администратор удалил новость: "{{response.news.title}}"</p>
             </div>
 
         </td>

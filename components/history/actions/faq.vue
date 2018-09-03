@@ -14,8 +14,8 @@
             <div class="df">
 
                 <p class="name">FAQ<i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'createFaq'">Администратор опубликовал вопрос: {{response.title}}</p>
-                <p v-if="method === 'deleteFaq'">Администратор удалил вопрос: {{response.faq.title}} </p>
+                <p v-if="method === 'admin/faq/create'">Администратор опубликовал вопрос: {{response.title}}</p>
+                <p v-if="method === 'admin/faq/delete'">Администратор удалил вопрос: {{response.faq.title}} </p>
             </div>
 
         </td>

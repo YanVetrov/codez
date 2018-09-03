@@ -14,9 +14,9 @@
             <div class="df">
 
                 <p class="name">Правило<i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'createRules'"> Администратор опубликовал правило: {{response.title}}</p>
-                <p v-if="method === 'editRules'"> Администратор отредактировал правило: {{response.title}}</p>
-                <p v-if="method === 'deleteRule'"> Администратор удалил правило: {{response.rules.title}}</p>
+                <p v-if="method === 'admin/rule/create'"> Администратор опубликовал правило: {{response.title}}</p>
+                <p v-if="method === 'admin/rule/edit'"> Администратор отредактировал правило: {{response.title}}</p>
+                <p v-if="method === 'admin/rule/delete'"> Администратор удалил правило: {{response.rules.title}}</p>
             </div>
 
         </td>
