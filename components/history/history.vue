@@ -45,6 +45,8 @@
         props: ['history'],
         data() {
             return {
+
+                // !!! todo: нужно проверить все компоненты  (в многих не розобраны метоыды (обработать ошибки когда нет IP или user или param или response)
                 type: {
                     "admin/news/comment/delete": {componentName: 'actionCommentForNews', icon: 'exchange'},
 
