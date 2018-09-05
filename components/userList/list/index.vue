@@ -51,7 +51,7 @@
                             this.info.users = response.data.users;
                             this.info.placehold = 'Поиск по сайту'
                             this.info.tabs = [{name:'Активные',id:'active'},{name:'Не подтвержденные',id:'notproof'},{name:'Заблокированые',id:'blacklist'},]
-                            this.total_page = response.data.count.pages;
+                            this.total_page = response.data.count.total || 1;
 
                         }
                         this.load = true;

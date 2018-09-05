@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <DataInfo :data="info" v-if="load && info" @oncreate='newAdmin($event)'></DataInfo>
+        <DataInfo :data="profile" v-if="load || profile" @edit="editProfile($event)"></DataInfo>
 
         <WaitInfo :errorData="errorData" v-else></WaitInfo>
     </div>
@@ -10,52 +10,27 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-    
+    import { mapGetters, mapActions } from 'vuex';
     export default {
-        components: {DataInfo, WaitInfo},
+        components: { DataInfo, WaitInfo },
         data() {
-            return {
-                load: true,
-                errorData: false,
-                info: true,
-
-            }
+            return {}
+        },
+        computed: {
+            ...mapGetters({
+                load: 'profile/getLoad',
+                errorData: 'profile/getError',
+                profile: 'profile/getData'
+            })
         },
         methods: {
-            newAdmin(admin) {
-                this.load = false;
-                let obj = {};
-                admin.name && admin.name !== '' ? obj.name = admin.name : '';
-                admin.link && admin.link !== '' ? obj.link = admin.link : '';
-                admin.imageId && admin.imageId !== '' ? obj.imageId = admin.imageId : '';
-                admin.size && admin.size !== '' ? obj.size = admin.size : '';
-                admin.value && admin.value !== '' ? obj.value = admin.value : '';
-                this.$rest.api('addContact', obj)
-                    .then(res => {
-                        console.log(res);
-                        if (res.success) {
-                            this.$notify({
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'new contact added'
-                            });
-                        }
-                        else {
-                            this.$notify({
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Bad',
-                                text: "Something wrong..."
-                            })
-                        }
-
-
-                        this.load = true
-                    })
-
-
-            },
+            ...mapActions({
+                getProfile: 'profile/getProfile',
+                editProfile: 'profile/editProfile'
+            })
+        },
+        created(){
+            this.getProfile()
         }
     }
 </script>

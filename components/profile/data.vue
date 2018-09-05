@@ -31,16 +31,16 @@
                             <ul>
                                 <li>
                     
-                                    <p class="profile-sidebar--panel-title"><i class="fal fa-id-card"></i> Пользователь</p>
+                                    <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-id-card"></i> Пользователь</p>
                     
                                     <div class="profile-sidebar--panel-body">
                                         <label>
-                                            <em>Фамилия</em>
-                                            <p><input type="text" placeholder="Фамилия"><span class="btn btn__correct"></span></p>
+                                            <em></em>
+                                            <p><input type="text" placeholder="Фамилия" v-model="profile.last_name"><span class="btn btn__correct"></span></p>
                                         </label>
                                         <label>
                                             <em>Имя</em>
-                                            <p><input type="text" placeholder="Имя"><span class="btn btn__correct"></span></p>
+                                            <p><input type="text" placeholder="Имя" v-model="profile.first_name"><span class="btn btn__correct"></span></p>
                                         </label>
                                         <label>
                                             <em>Отчество</em>
@@ -50,22 +50,46 @@
                     
                                 </li>
                                 <li>
-                                    <p class="profile-sidebar--panel-title"><i class="fal fa-shield-check"></i> Паспортные данные</p>
+                                    <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-shield-check"></i> Действия</p>
                     
                                     <div class="profile-sidebar--panel-body">
-                                        <span class="error text-center">Error</span>
+                                        <button class="btn btn-blue" style="padding:5px;margin:5px" :style="profile.active?'':disabled" >Заблокировать</button>
+                                        <button class="btn btn-blue" style="padding:5px;margin:5px" :style="profile.active?disabled:''">Разблокировать</button>
+                                        <button class="btn btn-blue" style="padding:5px;margin:5px">Войти в личный кабинет</button>
                                     </div>
                                 </li>
                                 <li>
-                                    <p class="profile-sidebar--panel-title"><i class="fal fa-envelope"></i> Контактыне данные</p>
+                                    <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-envelope"></i> Контактыне данные</p>
                                     <div class="profile-sidebar--panel-body">
-                                        <span class="error text-center">Error</span>
+                                                                              
+                                                                               
+                                        <label>
+                                            <em>Email</em>
+                                            <p><input type="text" placeholder="xxxx@domain.com" v-model="profile.email"><span class="btn btn__correct"></span></p>
+                                        </label>                             
+                                        <label>
+                                            <em>Телефон</em>
+                                            <p><input type="text" placeholder="+555 555 55 55" v-model="profile.phone"><span class="btn btn__correct"></span></p>
+                                        </label>
+                                    
                                     </div>
                                 </li>
                                 <li>
-                                    <p class="profile-sidebar--panel-title"><i class="fal fa-key"></i> Смена пароля</p>
+                                    <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-key"></i> Смена пароля</p>
                                     <div class="profile-sidebar--panel-body">
-                                        <span class="error text-center">Error</span>
+                                      <label>
+                                            <em>Старый пароль</em>
+                                            <p><input type="text" placeholder="********" v-model="password.old"><span class="btn btn__correct"></span></p>
+                                        </label> 
+                                           <label>
+                                            <em>Новый пароль</em>
+                                            <p><input type="text" placeholder="*********" v-model="password.new"><span class="btn btn__correct"></span></p>
+                                        </label>
+                                       <label>
+                                            <em>Повторите новый пароль</em>
+                                            <p><input type="text" placeholder="*********" v-model="password.new_repeat"><span class="btn btn__correct"></span></p>
+                                        </label> 
+                                        <button class="btn btn-blue" style="padding:5px">Сменить пароль</button>
                                     </div>
                                 </li>
                             </ul>
@@ -73,7 +97,7 @@
                         </div>
                     
                         <div class="profile-sidebar--bot">
-                            <button class="btn btn-blue">Применить изменения</button>
+                            <button class="btn btn-blue" @click="$emit('edit',profile)">Применить изменения</button>
                         </div>
                     
                     
@@ -89,171 +113,9 @@
                             </ul>
                         </div>
                         
-                        <div class="profile-main profile-main-step_1" style="display: none;">
+                        <partner :profile="profile" v-if="current==tabs[1].component"/>
                         
-                            <div class="profile-main-step_1--top border">
-                                <ul>
-                                    <li>
-                                        <div class="profile-main-step_1--top__item">
-                                            <h5 class="profile-main-step_1--top__title text-center">Доступно для вывода:</h5>
-                                            <div class="profile-main-step_1--top__center">
-                                                <span><i class="fal fa-university"></i></span>
-                                                <p><span>204.36 $</span>
-                                                    <em>сумма в usd</em>
-                                                </p>
-                                            </div>
-                                            <button class="btn btn-blue">Вывести средства</button>
-                                            <p class="text-center">
-                                                <button class="btn__set"><i class="fal fa-cog"></i> Автовывод</button>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="profile-main-step_1--top__item">
-                                            <h5 class="profile-main-step_1--top__title text-center">МОЯ СТАВКА:</h5>
-                                            <div class="profile-main-step_1--top__center">
-                                                <span><i class="fal fa-donate"></i></span>
-                                                <p><span>10 %</span>
-                                                    <em>от прибыли</em>
-                                                </p>
-                                            </div>
-                                            <button class="btn btn-blue">Увеличить ставку</button>
-                                            <p class="text-center">
-                                                <button class="btn__set"><i class="fal fa-info-circle"></i> подробнее</button>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="profile-main-step_1--top__item">
-                                            <h5 class="profile-main-step_1--top__title text-center">Выплачено:</h5>
-                                            <div class="profile-main-step_1--top__center">
-                                                <span><i class="fal fa-hand-holding-usd"></i></span>
-                                                <p><span>1206.65 $</span>
-                                                    <em>cумма в usd</em>
-                                                </p>
-                                            </div>
-                                            <ul>
-                                                <li>Операций: <span>320632</span></li>
-                                                <li>Переходов: <span>320632</span></li>
-                                                <li>Рефералов: <span>320632</span></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        
-                            <div class="profile-main-step_1--bot">
-                        
-                                <div class="border profile-schedule">
-                                    <h5 class="title">Партнерская активность</h5>
-                                    <div></div>
-                                </div>
-                        
-                                <div class="border sidebar-width">
-                        
-                                    <h5 class="title">ПАРТНЕРСКАЯ ПРИБЫЛЬ <i class="fal fa-history"></i></h5>
-                        
-                                    <div class="profile-main-partners-profit">
-                                        <ul>
-                                            <li>
-                                                <div class="profile-main-partners-profit--item">
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                    <div class="profile-main-partners-profit--ref"><a href=""><i class="fal fa-sync"></i></a></div>
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="profile-main-partners-profit--bot">
-                                                    <span>
-                                                        <i class="fal fa-chart-line"></i>
-                                                        Ваша прибыль:
-                                                    </span>
-                                                    <p>
-                                                        <span>90 RUB</span>
-                                                        <span>1.53 USD</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="profile-main-partners-profit--item">
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                    <div class="profile-main-partners-profit--ref"><a href=""><i class="fal fa-sync"></i></a></div>
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="profile-main-partners-profit--bot">
-                                                    <span>
-                                                        <i class="fal fa-chart-line"></i>
-                                                        Ваша прибыль:
-                                                    </span>
-                                                    <p>
-                                                        <span>90 RUB</span>
-                                                        <span>1.53 USD</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="profile-main-partners-profit--item">
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                    <div class="profile-main-partners-profit--ref"><a href=""><i class="fal fa-sync"></i></a></div>
-                                                    <div class="profile-main-partners-profit--bank">
-                                                        <span><img src="img/bank.svg" alt=""></span>
-                                                        <p>
-                                                            <span class="color">26 000</span>
-                                                            <em>RUB</em>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="profile-main-partners-profit--bot">
-                                                    <span>
-                                                        <i class="fal fa-chart-line"></i>
-                                                        Ваша прибыль:
-                                                    </span>
-                                                    <p>
-                                                        <span>90 RUB</span>
-                                                        <span>1.53 USD</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                        
-                            </div>
-                        
-                        </div>
-                        
-                       <component :is="current" :sidebar="false" />
+                       <component :style="{marginTop:current==tabs[1].component?'375px':'55px'}" :is="current" :sidebar="false" />
 
 
                     </div>
@@ -268,8 +130,10 @@
     import histor from '~/components/history/all'
     import orders from '~/components/orders/list'
     import partners from '~/components/partners/list'
+    import partner from './partner'
     export default {
-        components: { histor, orders, partners },
+        components: { histor, orders, partners, partner },
+        props: ['data'],
         data() {
             return {
                 tabs: [
@@ -278,7 +142,18 @@
                     { name: 'Обмены', component: orders }
 
                 ],
-                current: histor
+                disabled: {
+                    opacity: 0.3,
+                    cursor: 'not-allowed'
+                },
+                profile: {},
+                current: histor,
+                password: {}
+            }
+        },
+        watch: {
+            data() {
+                this.profile = this.data
             }
         }
 
