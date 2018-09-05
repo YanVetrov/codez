@@ -25,7 +25,7 @@
         },
         methods: {
             getUserStatistic() {
-                Promise.all([this.$rest.api('getUserStatistic'), this.$rest.api('getSocialAuthStatistic'), this.$rest.api('getSocialAuthSettings')])
+                Promise.all([this.$rest.api('admin/visits/statistic/get'), this.$rest.api('getSocialAuthStatistic'), this.$rest.api('getSocialAuthSettings')])
                     .then(response => {
 
                         if (response[1].success === true && response[2].success === true&& response[0].success === true) {

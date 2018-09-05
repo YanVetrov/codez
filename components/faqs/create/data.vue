@@ -1,9 +1,9 @@
 <template>
 <div class="faq-create-wr">
 <editor
-:faq='data.faq'
-:langs='data.langs'
-:groups='data.groups'
+:faq='{}'
+:langs='langs'
+:groups='groups'
 @publish="$emit('publish',$event)"
 />
 <div class="faq-sidebar">
@@ -21,13 +21,13 @@
     import advices from './advices'
     import archive from './fastAccess'
     export default {
-        components:{editor,advices,archive},
-        props: ['data'],
+        components: { editor, advices, archive },
+        props: ['faq', 'langs', 'groups'],
     }
 </script>
 
 <style lang='scss' scoped>
     .sidebar-width {
-        height:auto;
+        height: auto;
     }
 </style>

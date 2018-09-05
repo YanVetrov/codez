@@ -66,21 +66,26 @@
 <script>
     import buttons from './buttons'
     export default {
-        components:{buttons},
-        props: ['groups','langs','faq'],
-        data(){
-            return{
-                faqs:this.faq,
-                groupss:this.groups,
-                newgroup:false,
-                newFaqGroup:'',
+        components: { buttons },
+        props: ['groups', 'langs', 'faq'],
+        data() {
+            return {
+                faqs: this.faq,
+                groupss: this.groups,
+                newgroup: false,
+                newFaqGroup: '',
             }
         },
-        methods:{
-            pushGroup(){
+        methods: {
+            pushGroup() {
                 this.faqs.group = this.newFaqGroup;
-                this.groupss.push({groupName:this.newFaqGroup});
-                this.newgroup=false;
+                this.groupss.push({ groupName: this.newFaqGroup });
+                this.newgroup = false;
+            }
+        },
+        watch: {
+            faq() {
+                this.faqs = this.faq
             }
         }
     }
@@ -88,6 +93,6 @@
 
 <style lang='scss' scoped>
     .sidebar-width {
-        height:auto;
+        height: auto;
     }
 </style>

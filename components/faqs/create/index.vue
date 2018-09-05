@@ -2,9 +2,10 @@
 
     <div>
         <DataInfo 
-        :data='info'
+        :langs='langs'
+        :groups='groups'
         v-if="load"
-        @publish="save($event)"
+        @publish="createFaq($event)"
         >
         </DataInfo>
         
@@ -15,62 +16,29 @@
 <script>
     import DataInfo from "./data.vue";
     import WaitInfo from "./loader.vue";
-
+    import { mapGetters, mapActions } from 'vuex';
     export default {
         components: { DataInfo, WaitInfo },
         data() {
-            return {
-                info: {},
-                load: false,
-                errorData: false,
-
-
-            }
+            return {}
+        },
+        computed: {
+            ...mapGetters({
+                groups: 'faq/getGroups',
+                langs: 'faq/getLangs',
+                load: 'faq/getLoad',
+                errorData: 'faq/getError'
+            })
         },
         methods: {
-            save(obj) {
-                this.load = false
-                this.$rest.api('admin/faq/create', obj)
-                    .then(res => {
-                        if (res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'info',
-                                title: 'OK',
-                                text: 'Faq successful created'
-                            })
-                        }
-                        if (!res.success) {
-                            this.$notify({
-                                group: 'main',
-                                duration: 5000,
-                                type: 'error',
-                                title: 'Error ...',
-                                text: res.error.message,
-                            })
-                        }
-                        this.load = true
-                    })
-                    .catch(err => {
-                        this.load = true
-                    })
-
-
-            },
-            update() {
-                Promise.all([this.$rest.api('public/faq/get/group'), this.$rest.api('public/server/lang/all')])
-                    .then(res => {
-                        this.info.groups = res[0].data.faqGroups
-                        this.info.langs = res[1].data.lang;
-                        this.info.faq = {};
-                        this.load = true;
-                    })
-            }
+            ...mapActions({
+                createFaq: 'faq/createFaq',
+                getLangsGroups: 'faq/getLangsGroups'
+            })
         },
 
         created() {
-            this.update();
+            this.getLangsGroups();
         }
 
     }

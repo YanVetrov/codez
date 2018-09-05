@@ -33,7 +33,7 @@
                 filter ? '' : filter = {};
                 let obj = {page: page || 1, limit: 12,sortType:filter.sortType ||1,search:filter.search||''};
                 console.log(obj);
-                this.$rest.api('getUserAdmin', obj)
+                this.$rest.api('admin/users/list', obj)
                     .then(response => {
                         console.log(response);
                         if (response.success === false) {

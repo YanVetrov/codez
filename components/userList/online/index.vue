@@ -26,7 +26,7 @@
         },
         methods: {
             getUserAdmin(page) {
-                this.$rest.api('getUserOnline', {page: page || 1, limit: 12})
+                this.$rest.api('admin/users/online/list', {page: page || 1, limit: 12})
                     .then(response => {
                         console.log(response);
                         if (response.success === false) {
