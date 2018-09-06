@@ -30,7 +30,8 @@
             })
         },
         created(){
-            this.getProfile()
+            this.getProfile(this.$route.params.id)
+            
         }
     }
 </script>

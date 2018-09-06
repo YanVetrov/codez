@@ -17,10 +17,10 @@ export const mutations = {
 };
 
 export const actions = {
-    async getProfile({ commit, dispatch }) {
-        let profile = await this.app.$rest.api('admin/auth/session/get');
-        await commit('changeData', profile.data)
-        await console.log(profile.data)
+    async getProfile({ commit, dispatch }, userId) {
+        let profile = await this.app.$rest.api('admin/users/profile/get', { userId }).catch(err=>{});
+        await commit('changeData', profile.data.user)
+        await console.log(profile)
     },
     async editProfile({ commit, dispatch }, obj) {
         obj.id = obj._id
