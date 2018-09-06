@@ -125,9 +125,8 @@
                     </ul>
                 </div>
 
-                <partner :profile="profile" v-if="current==tabs[1].component"/>
 
-                <component :style="{marginTop:current==tabs[1].component?'375px':'55px'}" :is="current"
+                <component :profile="profile" :is="current"
                            :sidebar="false"/>
 
 
@@ -142,17 +141,16 @@
 <script>
     import histor from '~/components/history/all'
     import orders from '~/components/orders/list'
-    import partners from '~/components/partners/list'
     import partner from './partner'
 
     export default {
-        components: {histor, orders, partners, partner},
+        components: {histor, orders, partner},
         props: ['data'],
         data() {
             return {
                 tabs: [
                     {name: 'История', component: histor},
-                    {name: 'Партнеры', component: partners},
+                    {name: 'Партнеры', component: partner},
                     {name: 'Обмены', component: orders}
 
                 ],
@@ -160,14 +158,13 @@
                     opacity: 0.3,
                     cursor: 'not-allowed'
                 },
-                profile: {},
                 current: histor,
                 password: {}
             }
         },
-        watch: {
-            data() {
-                this.profile = this.data
+        computed:{
+            profile(){
+                return this.data
             }
         }
 
