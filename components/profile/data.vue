@@ -32,7 +32,7 @@
                     <ul>
                         <li>
 
-                            <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-id-card"></i> User
+                            <p @click="active1==''?active1='profile-sidebar--panel-title__panel-active':active1=''" class="profile-sidebar--panel-title" :class='active1'><i class="fal fa-id-card"></i> User
                             </p>
 
                             <div class="profile-sidebar--panel-body">
@@ -56,22 +56,23 @@
 
                         </li>
                         <li>
-                            <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-shield-check"></i>
+                            <p @click="active2==''?active2='profile-sidebar--panel-title__panel-active':active2=''" class="profile-sidebar--panel-title" :class='active2'><i class="fal fa-shield-check"></i>
                                 Actions</p>
 
                             <div class="profile-sidebar--panel-body">
+                                <span v-if="profile.blocked" style="color:rgba(150,50,50,0.7)">{{profile.blockReason}}</span>
                                 <button class="btn btn-blue" style="padding:5px;margin:5px"
-                                        :style="profile.active?'':disabled">Block
+                                        :style="profile.blocked?disabled:''">Block
                                 </button>
                                 <button class="btn btn-blue" style="padding:5px;margin:5px"
-                                        :style="profile.active?disabled:''">Unblock
+                                        :style="profile.blocked?'':disabled">Unblock
                                 </button>
                                 <button class="btn btn-blue" style="padding:5px;margin:5px">Sign-in to this account
                                 </button>
                             </div>
                         </li>
                         <li>
-                            <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-envelope"></i>
+                            <p @click="active3==''?active3='profile-sidebar--panel-title__panel-active':active3=''" class="profile-sidebar--panel-title" :class='active3'><i class="fal fa-envelope"></i>
                                 Contact data</p>
                             <div class="profile-sidebar--panel-body">
                                 <label>
@@ -83,7 +84,7 @@
                             </div>
                         </li>
                         <li>
-                            <p class="profile-sidebar--panel-title__panel-active"><i class="fal fa-key"></i> Access</p>
+                            <p @click="active4==''?active4='profile-sidebar--panel-title__panel-active':active4=''" class="profile-sidebar--panel-title" :class='active4'><i class="fal fa-key"></i> Access</p>
                             <div class="profile-sidebar--panel-body">
                                 <label>
                                     <em>Old password</em>
@@ -144,14 +145,14 @@
     import partner from './partner'
 
     export default {
-        components: {histor, orders, partner},
+        components: { histor, orders, partner },
         props: ['data'],
         data() {
             return {
                 tabs: [
-                    {name: 'История', component: histor},
-                    {name: 'Партнеры', component: partner},
-                    {name: 'Обмены', component: orders}
+                    { name: 'История', component: histor },
+                    { name: 'Партнеры', component: partner },
+                    { name: 'Обмены', component: orders }
 
                 ],
                 disabled: {
@@ -159,11 +160,12 @@
                     cursor: 'not-allowed'
                 },
                 current: histor,
-                password: {}
+                password: {},
+                active1:'',active2:'',active3:'',active4:'',
             }
         },
-        computed:{
-            profile(){
+        computed: {
+            profile() {
                 return this.data
             }
         }
