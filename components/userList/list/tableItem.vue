@@ -42,7 +42,7 @@
 
         <td>
             <div class="table-btn-users">
-                <nuxt-link :to="'/admins/edit/'+user._id" class="btn btn-simple " style="padding-left: 40px">
+                <nuxt-link :to="'/users/edit/'+user._id" class="btn btn-simple " style="padding-left: 40px">
                     <i class="fal fa-address-card"
                        style="margin-right: 5px;font-size: 16px;position: absolute; margin-left: -25px;"></i>
                     Профиль
