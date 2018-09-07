@@ -39,7 +39,7 @@
 
         mounted() {
 
-            this.$rest.api('getAllParsers')
+            this.$rest.api('admin/parser/list')
                 .then((res) => {
                     this.banks = res.data.parsers
                 })
