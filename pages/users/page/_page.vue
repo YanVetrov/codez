@@ -18,9 +18,9 @@
 </template>
 
 <script>
-    import online from '~/components/userList/online';
-    import statistic from '~/components/userList/statistic';
-    import list from '~/components/userList/list';
+    import online from '~/components/userList/online/index';
+    import statistic from '~/components/userList/statistic/index';
+    import list from '~/components/userList/list/index';
 
     export default {
         props: ['data'],

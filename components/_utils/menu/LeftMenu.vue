@@ -131,11 +131,7 @@
                     page: '/users',
                     isShow: false,
                     icon: 'fa-user-edit',
-                    child: [
-                        { name: 'menu.clients', page: '/clients', icon: 'users' },
-                        { name: 'menu.partners', page: '/partners', icon: 'chart-line' },
-
-                    ]
+                    child: []
                 }, {
                     name: 'menu.blockPartners',
                     page: '/partners',

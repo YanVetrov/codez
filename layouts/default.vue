@@ -24,7 +24,7 @@
     import HeaderMenu from "~/components/_utils/menu/HeaderMenu";
     import FooterBar from "~/components/_utils/footer";
     import LeftMenu from "~/components/_utils/menu/LeftMenu";
-    import breadcrumb from "~/components/_utils/breadcrumb";
+    import breadcrumb from "~/components/_utils/menu/breadcrumb";
 
     export default {
         created() {

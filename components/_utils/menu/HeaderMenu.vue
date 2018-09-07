@@ -95,7 +95,7 @@
                             </div>
                         </li>
                         <li>
-                            <nuxt-link :to="'/admins/edit/'+user.id">Редактировать профиль <i
+                            <nuxt-link :to="'/users/edit/'+user.id">Редактировать профиль <i
                                     class="fal fa-user-edit"></i>
                             </nuxt-link>
                         </li>
