@@ -67,7 +67,7 @@
         },
         methods: {
             getParsers() {
-                return this.$rest.api('getAllParsers')
+                return this.$rest.api('admin/parser/list')
                     .then((res) => {
                         this.optionsParsers = res.data.parsers.map(el => {
                             return {...el.conf, _id: el._id};
