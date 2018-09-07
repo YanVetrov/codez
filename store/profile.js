@@ -13,21 +13,38 @@ export const mutations = {
     },
     changeError(state, data) {
         state.errorData = data
-    },
+    }
 };
 
 export const actions = {
-    async getProfile({ commit, dispatch }, userId) {
-        let profile = await this.app.$rest.api('admin/users/profile/get', { userId }).catch(err=>{});
-        await commit('changeData', profile.data.user)
-        await console.log(profile)
+    getProfile({commit, dispatch}, userId) {
+        return this.app.$rest.api('admin/users/profile/get', {userId})
+            .then(profile => {
+                return commit('changeData', profile.data.user)
+
+            })
+            .catch(err => {
+                console.error(err);
+                new Error('Error actions.getProfile');
+                return Promise.reject(err);
+            });
+
     },
-    async editProfile({ commit, dispatch }, obj) {
+    editProfile({commit, dispatch}, obj) {
         obj.userId = obj._id;
         obj.rate = obj.affiliate.rate;
-        console.log(obj);
-        let res = await this.app.$rest.api('admin/users/profile/edit', obj)
-        console.log(res)
+
+
+        return this.app.$rest.api('admin/users/profile/edit', obj)
+            .then(res => {
+                console.log('actions.editProfile:', res);
+                return res
+            })
+            .catch(err => {
+                console.error(err);
+                new Error('Error actions.editProfile');
+                return Promise.reject(err);
+            });
     },
 
 };
@@ -42,4 +59,4 @@ export const getters = {
     getError(state) {
         return state.errorData
     },
-}
+};
