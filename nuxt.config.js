@@ -1,7 +1,9 @@
 const config = require('./_config/app');
 let proxyConfig = {};
-proxyConfig[config.servicePath + '/'] = {target: config.serviceAPI, pathRewrite: {}};
-proxyConfig[config.servicePath + '/'].pathRewrite['^' + config.servicePath + '/'] = '/';
+if (!config.__proxy_path)
+    config.__proxy_path = '/service';
+proxyConfig[config.__proxy_path + '/'] = {target: config.__proxy_to_rest_api, pathRewrite: {}};
+proxyConfig[config.__proxy_path + '/'].pathRewrite['^' + config.__proxy_path + '/'] = '/';
 
 module.exports = {
     /*

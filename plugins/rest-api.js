@@ -7,7 +7,7 @@ const Rest = {
         Vue.prototype.$rest = this
     },
     api(method, param) {
-        return axios.post(config.baseUrl + config.servicePath + config.apiPath + method + '/', param)
+        return axios.post(config.baseUrl  + config.apiPath + method + '/', param)
             .then(res => {
                 if (res.success === false) {
                     return Promise.reject(res.error)
@@ -19,7 +19,7 @@ const Rest = {
             })
     },
     baseUrl: config.baseUrl ,
-    apiPath: config.baseUrl + config.servicePath + config.apiPath,
+    apiPath: config.baseUrl + config.apiPath,
     fsPath: config.baseUrl + config.fsPath
 };
 Vue.use(Rest);
