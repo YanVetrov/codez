@@ -8,8 +8,10 @@ export const state = () => {
 
 export const mutations = {
     setLang(state, locale) {
+
         if (state.locales.indexOf(locale) !== -1) {
             state.selectLang = locale;
+
             if (process.browser) {
                 window.localStorage.setItem('locale', locale);
 

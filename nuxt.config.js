@@ -27,10 +27,27 @@ module.exports = {
     },
 
     css: [],
+
+    // router: {
+    //     middleware: ['auth']
+    // },
+    modules: [
+
+        '@nuxtjs/axios',
+        '@nuxtjs/proxy',
+        // ['nuxt-sass-resources-loader',
+        //     './assets/sass/style.scss'
+        // ]
+    ],
+    env: {
+        config: config
+    },
+    axios: {},
     plugins: [
         // '~/plugins/airbrake.js',
         {src: "~/plugins/vue-storage.js", ssr: false},
         {src: "~/plugins/i18n"},
+        {src: "~/plugins/moment.js"},
         {src: '~/plugins/rest-api'},
         {src: '~/plugins/vue-pagination.js'},
         {src: '~/plugins/vue-loader.js'},
@@ -45,24 +62,6 @@ module.exports = {
 
 
     ],
-    // router: {
-    //     middleware: ['auth']
-    // },
-    modules: [
-        // Doc: https://github.com/nuxt-community/axios-module#usage
-        '@nuxtjs/axios',
-        '@nuxtjs/proxy',
-        '@nuxtjs/moment',
-        // ['nuxt-sass-resources-loader',
-        //     './assets/sass/style.scss'
-        // ]
-    ],
-    env: {
-        config: config
-    },
-    axios: {},
-    moment: {},
-
     proxy: proxyConfig,
     build: {
         // analyze: {

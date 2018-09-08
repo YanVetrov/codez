@@ -203,6 +203,15 @@
         created: function () {
             let self = this;
             if (process.client) {
+                // todo: check lang and set locale for moment
+                console.error('-_________-: ',this.$moment().locale());
+                this.$moment.locale('ru');
+                console.error('-_________-: ',this.$moment().locale());
+                // todo: check lang and set locale for moment
+
+
+
+
                 console.warn('.....Почему он создается 2 раза хотя он  один  но created срабатует 2 раза чтото  тут не так', 'Header', 'при этом дестрой того что  изчес не срабатует', this);
 
                 console.log("Create EventListener click on this window!");
@@ -245,6 +254,7 @@
             },
             changeLang(lang) {
                 this.$store.dispatch('local/change', lang);
+                console.log(this.$moment().locale(lang));
                 this.$root.$i18n.locale = lang;
             }
         }
