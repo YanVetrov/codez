@@ -3,6 +3,8 @@ import user from './page/user'
 import lang from '../langs'
 
 export default {
+    "moment-locale": "en",
+
     lang,
     "menu":menu,
     "breadcrumb": {

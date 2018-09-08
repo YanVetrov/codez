@@ -5,7 +5,7 @@ import routes from './routes'
 import lang from '../langs'
 
 export default {
-
+    "moment-locale": "ru",
     lang,
     menu,
     "page": {
