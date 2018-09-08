@@ -63,7 +63,7 @@
                     <div class="master-bloc-date" @click="openProfileMenu">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
-                                <img :src="$identicon.create(user.id)" alt="">
+                                <img class="pic" :src="$identicon.create(user.id)" alt="">
                             </div>
                         </div>
                         <div class="master-bloc-date-info">

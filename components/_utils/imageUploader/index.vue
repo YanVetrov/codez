@@ -3,6 +3,7 @@
         <ImageUploader
                 field="image"
                 class="uploader-image"
+
                 @crop-success="cropSuccess"
                 @crop-upload-success="cropUploadSuccess"
                 @crop-upload-fail="cropUploadFail"
@@ -11,9 +12,7 @@
                 :width="width"
                 :height="height"
                 langType="en"
-                :noRotate="false"
-                :noCircle="true"
-                :noSquare="true"
+
                 :url="$rest.apiPath+'admin/files/upload/image/'"
                 :params="params"
                 :headers="headers"
@@ -33,7 +32,6 @@
             show: {type: Boolean, default: false},
         },
         computed: {
-
             showLocal: {
                 get() {
                     return this.show;
@@ -53,7 +51,6 @@
                     type: this.type
                 },
                 headers: {
-                    smail: '._~'
                 }
             }
         },
