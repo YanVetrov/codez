@@ -6,7 +6,7 @@
                 </span>
 
             <div class="company">
-                <p class="name-company">{{user.last_name}} {{user.first_name}}</p>
+                <p class="name-company">{{user.first_name}} {{user.last_name}}</p>
                 <p><span>{{user.email}}</span></p>
             </div>
 
