@@ -5,7 +5,9 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+            <span class="icon-company img-border" style="background: #4d548d;color: #fff;">
+                <i class="fal fa-user-edit"  v-if="method === 'admin/users/profile/edit'"/>
+            </span>
 
         </td>
 
@@ -14,10 +16,12 @@
             <div class="df">
 
                 <p class="name">Пользователи <i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'editUser'">Администратор отредактировал данные о пользователе:
-                    {{param.first_name}}
-                    {{param.last_name}}
-                    [{{param.id}}]</p>
+                <p v-if="method === 'admin/users/profile/edit'">
+                    Администратор отредактировал данные о пользователе:
+                    {{param.userId}}
+                </p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>

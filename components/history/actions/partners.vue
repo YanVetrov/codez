@@ -5,8 +5,9 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
-
+             <span class="icon-company img-border" style="background: #005bc1;color: #fff;">
+                <i class="fal fa-handshake-alt"/>
+            </span>
         </td>
 
         <td class="bg bg-ar">
@@ -15,7 +16,9 @@
 
                 <p class="name">Партнерский блок<i class="fal fa-angle-right"></i></p>
                 <p  v-if="method === 'admin/partners-block/create'"> Администратор добавил партнера {{param.title}}</p>
-                <p  v-if="method === 'admin/partners-block/delete'"> Администратор удалил партнера {{param.title}}</p>
+                <p  v-else-if="method === 'admin/partners-block/delete'"> Администратор удалил партнера {{param.title}}</p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>

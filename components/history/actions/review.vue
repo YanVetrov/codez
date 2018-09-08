@@ -15,8 +15,10 @@
 
                 <p class="name">Отзывы<i class="fal fa-angle-right"></i></p>
                 <p v-if="method === 'confirmReviewAdmin'">Администратор подвердил отзыв: {{param.name}}</p>
-                <p v-if="method === 'editReviewAdmin'">Администратор отредактировал данные отзыва: {{param.name}}</p>
-                <p v-if="method === 'editReviewAdmin'">Администратор удалил отзыв: {{response.review.name}}</p>
+                <p v-else-if="method === 'editReviewAdmin'">Администратор отредактировал данные отзыва: {{param.name}}</p>
+                <p v-else-if="method === 'editReviewAdmin'">Администратор удалил отзыв: {{response.review.name}}</p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>

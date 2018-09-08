@@ -16,6 +16,8 @@
 
                 <p class="name">Отзыв новости <i class="fal fa-angle-right"></i></p>
                 <p  v-if="method === 'deleteCommentNews'">Администратор удалил коменнтарий к новосте: "{{response.news.title}}"</p>
+                <p v-else>{{method}}</p>
+
 
             </div>
 

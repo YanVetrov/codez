@@ -89,3 +89,9 @@
 
     }
 </script>
+<style>
+    .icon-company.img-border{
+        padding: 6px;
+        text-align: center;
+    }
+</style>

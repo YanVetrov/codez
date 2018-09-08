@@ -6,7 +6,7 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+            <span class="icon-company img-border"></span>
 
         </td>
 
@@ -19,6 +19,9 @@
                     Params:
                     <br>
                     {{JSON.stringify(param)}}
+                    Response:
+                    <br>
+                    {{JSON.stringify(response)}}
                 </p>
             </div>
 

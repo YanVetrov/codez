@@ -5,7 +5,10 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
+
+            <span class="icon-company img-border" style="background: #54c105;color: #fff;">
+                <i class="fal fa-question"/>
+            </span>
 
         </td>
 

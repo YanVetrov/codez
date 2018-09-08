@@ -17,6 +17,8 @@
                 <p v-if="method === 'createCurrency'">Администратор добавил валюту {{param.title}}</p>
                 <p v-if="method === 'editCurrency'">Администратор отредактировал валюту {{param.title}}</p>
                 <p v-if="method === 'deleteCurrency'">Администратор удалил валюту</p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>

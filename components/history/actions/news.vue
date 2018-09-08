@@ -5,8 +5,10 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
 
+             <span class="icon-company img-border" style="background: #a700c1;color: #fff;">
+                <i class="fal fa-newspaper"/>
+            </span>
         </td>
 
         <td class="bg bg-ar">
@@ -15,8 +17,10 @@
 
                 <p class="name">Новость<i class="fal fa-angle-right"></i></p>
                 <p v-if="method === 'admin/news/create'">Администратор опубликовал новость: "{{response.title}}"</p>
-                <p v-if="method === 'admin/news/edit'">Администратор отредактировал данные новости: "{{param.title}}"</p>
-                <p v-if="method === 'admin/news/delete'">Администратор удалил новость: "{{response.news.title}}"</p>
+                <p v-else-if="method === 'admin/news/edit'">Администратор отредактировал данные новости: "{{param.title}}"</p>
+                <p v-else-if="method === 'admin/news/delete'">Администратор удалил новость: "{{response.news.title}}"</p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>

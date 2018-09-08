@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import actionDefault from './actions/default.vue';
     import actionCommentForNews from './actions/comment_for_news.vue';
     import actionNews from './actions/news.vue';
     import actionRules from './actions/rules.vue';
@@ -31,6 +32,7 @@
 
     export default {
         components: {
+            actionDefault,
             actionNews,
             actionReview,
             actionRules,
@@ -85,7 +87,7 @@
                 if (!!this.type[method]) {
                     return this.type[method];
                 } else {
-                    return {componentName: "actionNews", icon: 'settings'}
+                    return {componentName: "actionDefault", icon: 'settings'}
                 }
             }
         },

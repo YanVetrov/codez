@@ -5,8 +5,9 @@
 
         <td class="small-ico">
 
-            <span class="icon-company img-border"><img src="img/bank.svg" alt=""></span>
-
+             <span class="icon-company img-border" style="background: #c14700;color: #fff;">
+                <i class="fal fa-book"/>
+            </span>
         </td>
 
         <td class="bg bg-ar">
@@ -15,8 +16,10 @@
 
                 <p class="name">Правило<i class="fal fa-angle-right"></i></p>
                 <p v-if="method === 'admin/rule/create'"> Администратор опубликовал правило: {{response.title}}</p>
-                <p v-if="method === 'admin/rule/edit'"> Администратор отредактировал правило: {{response.title}}</p>
-                <p v-if="method === 'admin/rule/delete'"> Администратор удалил правило: {{response.rules.title}}</p>
+                <p v-else-if="method === 'admin/rule/edit'"> Администратор отредактировал правило: {{response.title}}</p>
+                <p v-else-if="method === 'admin/rule/delete'"> Администратор удалил правило: {{response.rules.title}}</p>
+                <p v-else>{{method}}</p>
+
             </div>
 
         </td>
