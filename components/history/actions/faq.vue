@@ -14,8 +14,10 @@
             <div class="df">
 
                 <p class="name">FAQ<i class="fal fa-angle-right"></i></p>
-                <p v-if="method === 'admin/faq/create'">Администратор опубликовал вопрос: {{response.title}}</p>
-                <p v-if="method === 'admin/faq/delete'">Администратор удалил вопрос: {{response.faq.title}} </p>
+                <p v-if="method === 'admin/faq/create'">Администратор создал ответ на вопрос: {{response.title}}</p>
+                <p v-else-if="method === 'admin/faq/delete'">Администратор удалил вопрос: {{response.faq.title}} </p>
+                <p v-else-if="method === 'admin/faq/edit'">Администратор отредактировал вопрос: {{JSON.stringify(response)}} </p>
+                <p v-else>{{method}}</p>
             </div>
 
         </td>

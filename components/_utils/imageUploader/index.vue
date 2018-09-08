@@ -6,8 +6,8 @@
                 @crop-success="cropSuccess"
                 @crop-upload-success="cropUploadSuccess"
                 @crop-upload-fail="cropUploadFail"
-                @input="$emit('close')"
-                v-model="show"
+
+                v-model="showLocal"
                 :width="width"
                 :height="height"
                 langType="en"
@@ -31,6 +31,18 @@
             width: {type: Number, required: true},
             height: {type: Number, required: true},
             show: {type: Boolean, default: false},
+        },
+        computed: {
+
+            showLocal: {
+                get() {
+                    return this.show;
+                },
+                set(newValue) {
+                    this.toggleShow(newValue);
+                    return this.show;
+                }
+            }
         },
         data() {
             return {

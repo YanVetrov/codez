@@ -3,27 +3,31 @@
 
         <h4 class="create-currency-sidebar--title text-center">Логотип системы</h4>
 
-        <div class="create-currency-sidebar__bot" style="    text-align: center;">
+        <div class="create-currency-sidebar__bot" style="text-align: center;">
 
-
-            <div>
+            <p v-if="base64" style="margin: 0 auto;"><img :src="base64" alt="logo" style="border-radius: 50%"/></p>
+            <div v-else style="margin-bottom: 30px;">
                 <p>Логотип валюты должно быть не меньше чем <b>100 x 100 px</b> и иметь формат: <b>PNG,JPG,JPEG</b></p>
             </div>
         </div>
 
         <ul class="create-currency-sidebar--tools">
-            <li>
-                <button class="btn" @click="upload=!upload" ><i class="fal fa-cloud-upload"></i> Загрузить лого</button>
-                <imageUploader 
-                :show="upload"                
-                type="currencies"
-                :width="100"
-                :height="100"
-                 />
+            <li v-if="$parent.imageId">
+                <button class="btn" @click="removeLogo"><i class="fal fa-times-circle"></i> Удалить</button>
             </li>
-            <!--  <li>
-                  <button class="btn"><i class="fal fa-times-circle"></i> Удалить</button>
-              </li>-->
+            <li v-else>
+                <button class="btn" @click="uploadShow=true"><i class="fal fa-cloud-upload"></i> Загрузить лого</button>
+                <imageUploader
+                        :show="uploadShow"
+                        @close="closeImager"
+                        @change-imageBase64="changeCurrencyImageBase64"
+                        @change-imageId="changeCurrencyImage"
+                        type="currencies"
+                        :width="100"
+                        :height="100"
+                />
+            </li>
+
         </ul>
 
         <h4 class="create-currency-sidebar--title text-center">Основные данные</h4>
@@ -98,15 +102,35 @@
 
 <script>
     import imageUploader from '~/components/_utils/imageUploader'
+
     export default {
-        components:{imageUploader},
+        components: {imageUploader},
         props: {
             step: {type: Number, required: true},
         },
         data() {
             return {
-                upload:false,
+                uploadShow: false,
+                base64: null,
             }
+        },
+        methods: {
+            changeCurrencyImageBase64(base64) {
+                this.base64 = base64;
+            },
+            changeCurrencyImage(imageId) {
+                this.$parent.imageId = imageId;
+            },
+            removeLogo() {
+                this.$parent.imageId = null;
+                this.base64 = null;
+                return false;
+            },
+            closeImager() {
+                this.uploadShow = false;
+                return false;
+            }
+
         }
     }
 </script>
