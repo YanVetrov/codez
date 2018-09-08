@@ -299,7 +299,7 @@
       }
     }
 
-    .master-bloc-list-open {
+    .master-bloc-list.open {
       opacity: 1;
       visibility: visible;
       top: 110%;
@@ -404,7 +404,7 @@
       }
     }
 
-    .setting-bloc-list-open {
+    .setting-bloc-list.open {
       opacity: 1;
       visibility: visible;
       top: 110%;
@@ -524,7 +524,7 @@
         border-bottom: 10px solid #252b4e; /* Добавляем треугольник */
       }
 
-      &.locales-block-list-open {
+      &.locales-block-list.open {
         opacity: 1;
         visibility: visible;
         top: 110%;

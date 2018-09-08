@@ -4,7 +4,8 @@
 
         <div class="logo" v-if="menuActive">
             <nuxt-link to="/">
-                <img :src="logoUrl" alt="Logo" @error="logoUrl = 'https://proexchanger.net/assets/img/logo/logo_fff.svg'"/>
+                <img :src="logoUrl" alt="Logo"
+                     @error="logoUrl = 'https://proexchanger.net/assets/img/logo/logo_fff.svg'"/>
             </nuxt-link>
         </div>
 
@@ -43,11 +44,11 @@
             <div class="header__item">
 
                 <div class="locales-block">
-                    <div class="locales-block-date" @click="openLocalesMenu">
+                    <div class="locales-block-date" @click="toggleDropdown('locale')" data-busy="locale">
                         <flag-icon :iso="$t('lang.flag.'+$root.$i18n.locale)"/>
                     </div>
 
-                    <ul :class="dropdownLocalesMenu">
+                    <ul class="locales-block-list" :class="{open:dropdown.locale.open}">
                         <li>
                             <a style="cursor: pointer" @click="changeLang('en')">{{$t('lang.en')}}</a>
                         </li>
@@ -60,7 +61,7 @@
                 </div>
 
                 <div class="master-bloc">
-                    <div class="master-bloc-date" @click="openProfileMenu">
+                    <div class="master-bloc-date" @click="toggleDropdown('profile')" data-busy="profile">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
                                 <img class="pic" :src="$identicon.create(user.id)" alt="">
@@ -76,7 +77,7 @@
                     </div>
 
                     <!--<ul class="master-bloc-list master-bloc-list-open">-->
-                    <ul :class="dropdownProfileMenu">
+                    <ul class="master-bloc-list" :class="{open:dropdown.profile.open}">
                         <li>
                             <div class="switch-block ">
                                 <div class="switch__">
@@ -84,7 +85,7 @@
                                     <span>Онлайн оператора</span>
                                 </div>
                                 <div class="switch-site">
-                                <span class="switch switch-switcher">
+                                <span class="switch switch-switcher" data-busy="profile">
                                     <input type="radio" name="notifyAdmin" value="-1" title="">
                                     <input type="radio" name="notifyAdmin" value="1" title="" checked>
                                     <i></i>
@@ -95,8 +96,8 @@
                             </div>
                         </li>
                         <li>
-                            <nuxt-link :to="'/users/edit/'+user.id">Редактировать профиль <i
-                                    class="fal fa-user-edit"></i>
+                            <nuxt-link :to="'/users/edit/'+user.id">
+                                Редактировать профиль <i class="fal fa-user-edit"/>
                             </nuxt-link>
                         </li>
                         <li>
@@ -109,9 +110,11 @@
 
                 <div class="setting-block">
 
-                    <span class="setting-icon" @click="openSettingMenu"><i class="fal fa-sliders-h"></i></span>
+                    <span class="setting-icon" @click="toggleDropdown('setting')" data-busy="setting">
+                        <i class="fal fa-sliders-h"/>
+                    </span>
 
-                    <ul :class="dropdownSettingMenu">
+                    <ul class="setting-bloc-list" :class="{open:dropdown.setting.open}">
                         <li>
                             <nuxt-link to="/history">История действий <i class="fal fa-history"></i></nuxt-link>
                         </li>
@@ -123,7 +126,7 @@
                                     <span>Закрыть сайт на тех.работы</span>
                                 </div>
 
-                                <div class="switch-site">
+                                <div class="switch-site" data-busy="setting">
 
                                 <span class="switch switch-switcher">
                                     <input type="radio" name="activeSite" value="-1" title="" checked>
@@ -143,7 +146,7 @@
                                     <span>Отключить файл курсов для листинга в мониторингах </span>
                                 </div>
 
-                                <div class="switch-site">
+                                <div class="switch-site" data-busy="setting">
 
                                 <span class="switch switch-switcher">
                                     <input type="radio" name="xmlStatus" value="-1" title="" checked>
@@ -176,9 +179,12 @@
         data() {
             return {
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
-                dropdownSettingMenu: 'setting-bloc-list',
-                dropdownLocalesMenu: 'locales-block-list',
-                dropdownProfileMenu: 'master-bloc-list',
+                dropdown: {
+                    setting: {open: false},
+                    locale: {open: false},
+                    profile: {open: false},
+                },
+
             }
         },
         computed: {
@@ -190,9 +196,35 @@
                     id: this.$store.getters['auth/checkAdmin']._id
                 }
             },
-            menuActive(){
+            menuActive() {
                 return this.$store.getters['Menu/close']
             }
+        },
+        created: function () {
+            let self = this;
+            if (process.client) {
+                console.warn('.....Почему он создается 2 раза хотя он  один  но created срабатует 2 раза чтото  тут не так', 'Header', 'при этом дестрой того что  изчес не срабатует', this);
+
+                console.log("Create EventListener click on this window!");
+                document.onclick = function (e) {
+                    let busy = null;
+                    if (e.path) {
+                        for (let i in e.path) {
+                            if (e.path.hasOwnProperty(i) && e.path[i] && e.path[i].dataset && e.path[i].dataset.busy) {
+                                busy = e.path[i].dataset.busy;
+                                continue;
+                            }
+                        }
+                    }
+                    for (let key in self.dropdown) {
+                        if (self.dropdown.hasOwnProperty(key) && key !== busy)
+                            self.dropdown[key].open = false;
+                    }
+                };
+            }
+        },
+        destroyed() {
+            console.log('............................................destroy Header, скорее всего ты сделал изменения в коде поэтому этот метод вызвался  но ошибка с 2 created не решена')
         },
         methods: {
 
@@ -200,38 +232,20 @@
                 this.$store.dispatch('auth/destroyUser', () => this.$router.push('/signin'));
 
             },
-            switchMenu(){
+            switchMenu() {
                 this.$store.commit('Menu/CLOSE')
             },
+            toggleDropdown(name) {
 
-            openLocalesMenu() {
-                let n = 'locales-block-list';
-                this.dropdownLocalesMenu === n ? this.dropdownLocalesMenu = `${n}-open` : this.dropdownLocalesMenu = n;
-                this.dropdownSettingMenu = 'setting-bloc-list';
-                this.dropdownProfileMenu = 'master-bloc-list';
-            },
-            openProfileMenu() {
-                let n = 'master-bloc-list';
-                this.dropdownProfileMenu === n ? this.dropdownProfileMenu = `${n}-open` : this.dropdownProfileMenu = n;
-                this.dropdownSettingMenu = 'setting-bloc-list';
-                this.dropdownLocalesMenu = 'locales-block-list';
-
-            },
-            openSettingMenu() {
-                let n = 'setting-bloc-list';
-                this.dropdownSettingMenu === n ? this.dropdownSettingMenu = `${n}-open` : this.dropdownSettingMenu = n;
-                this.dropdownProfileMenu = 'master-bloc-list';
-                this.dropdownLocalesMenu = 'locales-block-list';
+                if (this.dropdown[name]) {
+                    this.dropdown[name].open = !this.dropdown[name].open;
+                }
 
 
             },
-
             changeLang(lang) {
                 this.$store.dispatch('local/change', lang);
                 this.$root.$i18n.locale = lang;
-                this.dropdownLocalesMenu = 'locales-block-list';
-
-
             }
         }
     }
