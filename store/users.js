@@ -26,7 +26,9 @@ export const mutations = {
 };
 
 export const actions = {
-    
+    getUserAdmin({ commit },obj) {
+        this.app.$rest.api('admin/users/list', obj)
+    }
 };
 
 export const getters = {

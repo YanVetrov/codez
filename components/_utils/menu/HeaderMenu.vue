@@ -44,11 +44,11 @@
             <div class="header__item">
 
                 <div class="locales-block">
-                    <div class="locales-block-date" @click="toggleDropdown('locale')" data-busy="locale">
+                    <div class="locales-block-date" @click="$store.commit('Menu/changeTab',{tab:'lang',val:true})" data-busy="locale">
                         <flag-icon :iso="$t('lang.flag.'+$root.$i18n.locale)"/>
                     </div>
 
-                    <ul class="locales-block-list" :class="{open:dropdown.locale.open}">
+                    <ul class="locales-block-list" :class="langTab?'open':''">
                         <li>
                             <a style="cursor: pointer" @click="changeLang('en')">{{$t('lang.en')}}</a>
                         </li>
@@ -60,7 +60,7 @@
 
                 </div>
 
-                <div class="master-bloc" @click="toggleDropdown('profile')">
+                <div class="master-bloc" @click="$store.commit('Menu/changeTab',{tab:'profile',val:true})">
                     <div class="master-bloc-date"  data-busy="profile">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
@@ -77,7 +77,7 @@
                     </div>
 
                     <!--<ul class="master-bloc-list master-bloc-list-open">-->
-                    <ul class="master-bloc-list" :class="{open:dropdown.profile.open}">
+                    <ul class="master-bloc-list" :class="profTab?'open':''">
                         <li>
                             <div class="switch-block ">
                                 <div class="switch__">
@@ -110,11 +110,11 @@
 
                 <div class="setting-block">
 
-                    <span class="setting-icon" @click="toggleDropdown('setting')" data-busy="setting">
+                    <span class="setting-icon" @click="$store.commit('Menu/changeTab',{tab:'settings',val:true})" data-busy="setting">
                         <i class="fal fa-sliders-h"/>
                     </span>
 
-                    <ul class="setting-bloc-list" :class="{open:dropdown.setting.open}">
+                    <ul class="setting-bloc-list" :class="settTab?'open':''">
                         <li>
                             <nuxt-link to="/history">История действий <i class="fal fa-history"></i></nuxt-link>
                         </li>
@@ -174,26 +174,11 @@
 <script>
     import FlagIcon from "@/components/_utils/flag"
 
-    function composedPath(el) {
-        let path = [];
-        while (el) {
-            path.push(el);
-            el = el.parentElement;
-        }
-        return path
-    }
-
     export default {
-        components: {FlagIcon},
+        components: { FlagIcon },
         data() {
             return {
                 logoUrl: this.$rest.fsPath + '/img/logo/res/logo.png',
-                dropdown: {
-                    setting: {open: false},
-                    locale: {open: false},
-                    profile: {open: false},
-                },
-
             }
         },
         computed: {
@@ -205,38 +190,18 @@
                     id: this.$store.getters['auth/checkAdmin']._id
                 }
             },
+            profTab() {
+                return this.$store.getters['Menu/tabState']('profile')
+            },
+            langTab() {
+                return this.$store.getters['Menu/tabState']('lang')
+            },
+            settTab() {
+                return this.$store.getters['Menu/tabState']('settings')
+            },
             menuActive() {
                 return this.$store.getters['Menu/close']
             }
-        },
-        created: function () {
-            let self = this;
-            if (process.client) {
-                console.warn('.....Почему он создается 2 раза хотя он  один  но created срабатует 2 раза чтото  тут не так', 'Header', 'при этом дестрой того что  изчес не срабатует', this);
-
-                document.onclick = function (e) {
-                    let busy = null;
-                    if (!e.path)
-                        e.path = composedPath(e.target);
-
-                    if (e.path) {
-                        for (let i in e.path) {
-                            if (e.path.hasOwnProperty(i) && e.path[i] && e.path[i].dataset && e.path[i].dataset.busy) {
-                                busy = e.path[i].dataset.busy;
-                                continue;
-                            }
-                        }
-                    }
-
-                    for (let key in self.dropdown) {
-                        if (self.dropdown.hasOwnProperty(key) && key !== busy)
-                            self.dropdown[key].open = false;
-                    }
-                };
-            }
-        },
-        destroyed() {
-            console.log('............................................destroy Header, скорее всего ты сделал изменения в коде поэтому этот метод вызвался  но ошибка с 2 created не решена')
         },
         methods: {
 
@@ -247,19 +212,16 @@
             switchMenu() {
                 this.$store.commit('Menu/CLOSE')
             },
-            toggleDropdown(name) {
-
-               
-                    this.dropdown[name].open = !this.dropdown[name].open;
-                
-                console.log('open')
-
-            },
             changeLang(lang) {
                 this.$store.dispatch('local/change', lang);
                 console.log(lang);
                 this.$moment.locale(lang);
                 this.$root.$i18n.locale = lang;
+            }
+        },
+        watch: {
+            route() {
+                this.$store.commit('Menu/closeAll')
             }
         }
     }
@@ -269,4 +231,3 @@
 <style lang='scss' scoped>
     /*@import "dashboard/dashboard-top";*/
 </style>
-

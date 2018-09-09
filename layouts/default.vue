@@ -1,7 +1,7 @@
 <template>
     <div class="container-body">
         <HeaderMenu/>
-        <div class="wrapper">
+        <div class="wrapper" @click="$store.commit('Menu/closeAll')">
             <LeftMenu/>
             <div class="main">
                 <breadcrumb/>

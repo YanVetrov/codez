@@ -1,34 +1,44 @@
 export const state = () => ({
   close: true,
-  lvl:false,
+  lvl: false,
+  tabs: {
+    profile: false,
+    settings: false,
+    lang: false,
+  }
 });
 
 export const mutations = {
   CLOSE(state) {
     state.close = !state.close;
   },
-  ADMIN(state,lvl){
+  ADMIN(state, lvl) {
     state.lvl = lvl;
+  },
+  changeTab(state, { tab, val }) {
+    state.tabs[tab] = val
+  },
+  closeAll(state) {
+    Object.keys(state.tabs).forEach(el => state.tabs[el] = false)
   }
 };
 
 export const actions = {
-  close({commit}) {
+  close({ commit }) {
     commit('CLOSE')
   },
-  admin({commit},lvl){
-    commit('ADMIN',lvl)
-  }
+  admin({ commit }, lvl) {
+    commit('ADMIN', lvl)
+  },
 };
 
 export const getters = {
-  list: state => {
-    return state.menu;
-  },
-  checkAdmin: state =>{
-    return state.lvl;
-  },
-  close: state => {
-    return state.close;
-  }
+  list: state => state.menu,
+
+  checkAdmin: state => state.lvl,
+
+  close: state => state.close,
+
+  tabState: state => val => state.tabs[val]
+
 };
