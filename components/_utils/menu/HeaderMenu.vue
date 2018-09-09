@@ -174,6 +174,15 @@
 <script>
     import FlagIcon from "@/components/_utils/flag"
 
+    function composedPath(el) {
+        let path = [];
+        while (el) {
+            path.push(el);
+            el = el.parentElement;
+        }
+        return path
+    }
+
     export default {
         components: {FlagIcon},
         data() {
@@ -207,6 +216,9 @@
 
                 document.onclick = function (e) {
                     let busy = null;
+                    if (!e.path)
+                        e.path = composedPath(e.target);
+
                     if (e.path) {
                         for (let i in e.path) {
                             if (e.path.hasOwnProperty(i) && e.path[i] && e.path[i].dataset && e.path[i].dataset.busy) {
@@ -215,6 +227,7 @@
                             }
                         }
                     }
+
                     for (let key in self.dropdown) {
                         if (self.dropdown.hasOwnProperty(key) && key !== busy)
                             self.dropdown[key].open = false;
@@ -244,7 +257,7 @@
             },
             changeLang(lang) {
                 this.$store.dispatch('local/change', lang);
-console.log(lang);
+                console.log(lang);
                 this.$moment.locale(lang);
                 this.$root.$i18n.locale = lang;
             }
