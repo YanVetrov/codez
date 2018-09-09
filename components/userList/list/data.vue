@@ -5,8 +5,8 @@
 
 
         <search :ph="data.placehold"
-                @onselect='$parent.getUserAdmin(1,{sortType:$event})'
-                @onenter='$parent.getUserAdmin(1,{search:$event})'/>
+                @onselect='$parent.filter.sortType=$event'
+                @onenter='$parent.filter.search=$event'/>
 
 
         <tableMain :data='data.users'/>

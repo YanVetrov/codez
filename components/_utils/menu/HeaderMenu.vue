@@ -60,8 +60,8 @@
 
                 </div>
 
-                <div class="master-bloc">
-                    <div class="master-bloc-date" @click="toggleDropdown('profile')" data-busy="profile">
+                <div class="master-bloc" @click="toggleDropdown('profile')">
+                    <div class="master-bloc-date"  data-busy="profile">
                         <div class="master-bloc-date-photo">
                             <div class="user-bloc-date-photo-item">
                                 <img class="pic" :src="$identicon.create(user.id)" alt="">
@@ -236,10 +236,10 @@
             },
             toggleDropdown(name) {
 
-                if (this.dropdown[name]) {
+               
                     this.dropdown[name].open = !this.dropdown[name].open;
-                }
-
+                
+                console.log('open')
 
             },
             changeLang(lang) {
