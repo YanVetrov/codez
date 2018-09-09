@@ -8,7 +8,7 @@ export default {
     "moment-locale": "ru",
     lang,
     menu,
-    "page": {
+    page: {
         user,
         contacts
     },

@@ -14,8 +14,8 @@
 
                     <button>
 
-                        <strong>
-                            <img src="img/sadness-face.svg" alt="photo">
+                        <strong style="padding: 0;">
+                            <img class="pic" :src="$identicon.create(profile.id)" alt="">
                         </strong>
 
                         <p>
@@ -32,7 +32,8 @@
                     <ul>
                         <li>
 
-                            <p @click="active1==''?active1='profile-sidebar--panel-title__panel-active':active1=''" class="profile-sidebar--panel-title" :class='active1'><i class="fal fa-id-card"></i> User
+                            <p class="profile-sidebar--panel-title profile-sidebar--panel-title__panel-active">
+                                <i class="fal fa-id-card"></i> User
                             </p>
 
                             <div class="profile-sidebar--panel-body">
@@ -56,11 +57,13 @@
 
                         </li>
                         <li>
-                            <p @click="active2==''?active2='profile-sidebar--panel-title__panel-active':active2=''" class="profile-sidebar--panel-title" :class='active2'><i class="fal fa-shield-check"></i>
+                            <p @click="active2==''?active2='profile-sidebar--panel-title__panel-active':active2=''"
+                               class="profile-sidebar--panel-title" :class='active2'><i class="fal fa-shield-check"></i>
                                 Actions</p>
 
                             <div class="profile-sidebar--panel-body">
-                                <span v-if="profile.blocked" style="color:rgba(150,50,50,0.7)">{{profile.blockReason}}</span>
+                                <span v-if="profile.blocked"
+                                      style="color:rgba(150,50,50,0.7)">{{profile.blockReason}}</span>
                                 <button class="btn btn-blue" style="padding:5px;margin:5px"
                                         :style="profile.blocked?disabled:''">Block
                                 </button>
@@ -72,7 +75,8 @@
                             </div>
                         </li>
                         <li>
-                            <p @click="active3==''?active3='profile-sidebar--panel-title__panel-active':active3=''" class="profile-sidebar--panel-title" :class='active3'><i class="fal fa-envelope"></i>
+                            <p @click="active3==''?active3='profile-sidebar--panel-title__panel-active':active3=''"
+                               class="profile-sidebar--panel-title" :class='active3'><i class="fal fa-envelope"></i>
                                 Contact data</p>
                             <div class="profile-sidebar--panel-body">
                                 <label>
@@ -84,7 +88,9 @@
                             </div>
                         </li>
                         <li>
-                            <p @click="active4==''?active4='profile-sidebar--panel-title__panel-active':active4=''" class="profile-sidebar--panel-title" :class='active4'><i class="fal fa-key"></i> Access</p>
+                            <p @click="active4==''?active4='profile-sidebar--panel-title__panel-active':active4=''"
+                               class="profile-sidebar--panel-title" :class='active4'><i class="fal fa-key"></i> Access
+                            </p>
                             <div class="profile-sidebar--panel-body">
                                 <label>
                                     <em>Old password</em>
@@ -122,7 +128,8 @@
                 <div class="profile-main-head">
                     <ul class="text-center">
                         <li v-for="tab in tabs" @click="current=tab.component"
-                            :class="current==tab.component?'active':''" :key="tab.name"><span>{{tab.name}}</span></li>
+                            :class="current===tab.component?'active':''" :key="tab.name"><span>{{$t(tab.name)}}</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -140,28 +147,31 @@
 </template>
 
 <script>
-    import histor from '~/components/history/all'
+    import history from '~/components/history/all'
     import orders from '~/components/orders/list'
     import partner from './partner'
 
     export default {
-        components: { histor, orders, partner },
+        components: {history, orders, partner},
         props: ['data'],
         data() {
             return {
                 tabs: [
-                    { name: 'История', component: histor },
-                    { name: 'Партнеры', component: partner },
-                    { name: 'Обмены', component: orders }
+                    {name: 'page.user.profile.tab.history', component: "history", active: false},
+                    {name: 'page.user.profile.tab.partners', component: "partner", active: false},
+                    {name: 'page.user.profile.tab.orders', component: "orders", active: false},
+                    {name: 'page.user.profile.tab.verifications', component: "orders", active: false}
 
                 ],
                 disabled: {
                     opacity: 0.3,
                     cursor: 'not-allowed'
                 },
-                current: histor,
+                current: "history",
                 password: {},
-                active1:'',active2:'',active3:'',active4:'',
+                active2: '',
+                active3: '',
+                active4: '',
             }
         },
         computed: {
@@ -172,3 +182,9 @@
 
     }
 </script>
+<style scoped>
+    .pic {
+        width: 100%;
+        height: 100%;
+    }
+</style>
